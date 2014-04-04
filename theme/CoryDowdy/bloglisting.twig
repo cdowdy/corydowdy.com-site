@@ -1,0 +1,31 @@
+{% include 'headers/_blog-header.twig' %}
+
+<div class="row">
+    <div class="blog-listings" role="content">
+        {% setcontent blogposts = "blog/latest/4" allowpaging %}
+        {% for blogpost in blogposts %}
+        <article>
+
+            <section class="row">
+                <div class="listing-snippet">
+                    <header>
+                        <h3 class="blog-post-title"><a class="listing-link" href="{{ blogpost.link }}">{{ blogpost.title }}</a></h3>
+                        {% set recdate = record.datepublish|localdate("%A %B %e, %Y") %}
+                        <p class="pub-date">{{ __('Posted on %date%',{ '%date%': recdate }) }}</p>
+                    </header>
+                    <p>{{ blogpost.excerpt }}</p>
+                    <p><a class="listing-link" href="{{ blogpost.link }}">{{ __('Read Post &#10141;') }}</a></p>
+                </div>
+                <div class="listing-image">
+                    <figure>
+                        <img class="center" src="{{ thumbnail(blogpost.image, 200, 200) }}">
+                    </figure>
+                </div>
+            </section>
+        </article>
+        <hr />
+        {% endfor %}
+    </div>
+</div>
+
+{% include 'footers/_blog-footer.twig' %}

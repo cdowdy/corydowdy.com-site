@@ -1,0 +1,21 @@
+{% include 'headers/_c-header.twig' %}
+<section class="form-container">
+  <div class="medium-9 medium-centered small-12 columns">
+    <h4>Get In Touch</h4>
+  </div>
+  <div class="row">
+    <div class="medium-8 small-12 columns">
+      {{ simpleform('contact') }}
+    </div>
+    <div class="medium-4 small-12 columns">
+      <ul class="vcard">
+        <li class="fn">Cory Dowdy Web Development</li>
+        <li class="locality">Ravenna</li>
+        <li><span class="state">Ohio</span>, <span class="zip">44266</span></li>
+        <li class="email"><a href="mailto:info@corydowdy.com">Email Me</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+{% include 'footers/_c-footer.twig' %}

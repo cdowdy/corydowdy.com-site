@@ -1,0 +1,31 @@
+<footer id="sticky-footer">
+    <p class="text-center">&copy Cory Dowdy Web Development</p>
+</footer>
+</section>
+
+<!-- close the off-canvas menu -->
+<a class="exit-off-canvas"></a>
+</div>
+
+</div>
+
+<!-- Footer -->
+
+<script src="{{ paths.theme }}js/min/CoryDowdy.min.js" ></script>
+<script>$(document).foundation();</script>
+<script>
+    $(window).bind("load", function () {
+        var footer = $("#sticky-footer");
+        var pos = footer.position();
+        var height = $(window).height();
+        height = height - pos.top;
+        height = height - footer.height();
+        if (height > 0) {
+            footer.css({
+                'margin-top': height + 'px'
+            });
+        }
+    });
+</script>
+</body>
+</html>

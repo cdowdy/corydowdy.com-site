@@ -1,0 +1,15 @@
+{% include 'headers/_404-header.twig' %}
+
+<div class="row four-o-four">
+    <div class="small-12 large-10 large-centered columns">
+        <h5>The Page you were looking for cannot be found</h5>
+        {% include '_search.twig' %}
+        {% if search is defined %}
+            <h3>
+                {{ __('Search results for <b> %search% </b>.', { '%search%': search|escape }) }}
+            </h3>
+        {% endif %}
+    </div>
+
+</div>
+{% include 'footers/_404-footer.twig' %}
