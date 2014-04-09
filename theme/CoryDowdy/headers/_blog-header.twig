@@ -19,8 +19,8 @@
     {# paths.theme is always a correct path to the current theme. Even if you rename the theme-folder,
        this will keep working. See the documentation on paths: http://docs.bolt.cm/internals#paths #}
     <link rel="stylesheet" href="{{ paths.theme }}css/blog.min.css">
-    <script type="text/javascript" src="//use.typekit.net/vdn5jzd.js"></script>
-    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+      <script type="text/javascript" src="//use.typekit.net/vdn5jzd.js"></script>
+      <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 
 </head>
 <body>
@@ -36,7 +36,8 @@
       </nav>
       <div class="row">
         <div class="small-10 columns">
-            <h1 class="header_logo"><a href="/"><img src="{{ paths.theme }}img/logo.svg" alt="Cory Dowdy Web Development logo"/> <small>//blog</small></a></h1>
+            <h1 class="header_logo">
+                <a href="/"><img src="{{ paths.theme }}img/logo.svg"> <small>//blog</small></a></h1>
         </div>
       </div>
     </div><!-- .hide--small -->
