@@ -1,9 +1,4 @@
-<article>
 <section id="intro">
-<header class="blog-title">
-  <h3>Improving Website Performance</h3>
-  <h6 class="pub-date">April 3, 2014</h6>
-</header>
 <p>
   When I'm developing a website one of the development considerations I take into account among many is Website/Webpage performance. I want my site or the site I'm working on to load or look like its loaded as fast as possible with as few requests as possible. Slow loading websites are a pain the in ass for an end user. Slow rendering pages can make the difference of a visitor to your site using your service or moving on to one of your competitors. We don't want that.
 </p>
@@ -215,7 +210,7 @@ grunt.registerTask( 'buildjs', ['concat', 'uglify'] );
 <section id="inlinedcss">
 <h3 class="heading">Inline Critical CSS</h3>
 <p>
-  Inlining CSS is simple if you have very small css file (14 bytes or so) but it too comes with some warnings. You will save a trip to the server to get your CSS (good!) but you will lose out on it being able to be cached. To inline CSS copy the small css into a <code class="language-markkup">&lt;style&gt;</code> tag in your head.
+  Inlining CSS is simple if you have very small css file (14 kb or so) but it too comes with some warnings. You will save a trip to the server to get your CSS (good!) but you will lose out on it being able to be cached. To inline CSS copy the small css into a <code class="language-markkup">&lt;style&gt;</code> tag in your head.
 </p>
 <pre class="language-markup">
   <code>
@@ -251,6 +246,27 @@ grunt.registerTask( 'buildjs', ['concat', 'uglify'] );
 <p>
   For those not fortunate to have Mod_PagSpeed Paul Kinlan, a Chrome Devoloper Advocate, has created a JavaScript snippet to find the above the fold content in his post <a class="external_link" href="//paul.kinlan.me/detecting-critical-above-the-fold-css/">Detecting Critical Above the Fold CSS <svg class="icon icon-external-link" viewBox="0 0 15 15"><use xlink:href="#icon-external-link"></use></svg></a>. There is also a <a class="external_link" href="//www.youtube.com/watch?v=CfmUf1_M9lI">demo video <svg class="icon icon-youtube" viewBox="0 0 15 15"><use xlink:href="#icon-youtube"></use></svg></a>. Feedthebot has a post on <a class="external_link" href="//www.feedthebot.com/pagespeed/prioritize-visible-content.html">how to prioritize critical content <svg class="icon icon-external-link" viewBox="0 0 15 15"><use xlink:href="#icon-external-link"></use></svg></a>.
 </p>
+<h5 class="heading">Update: 6/10/2014</h5>
+<p>
+  Above I mentioned just "dropping" in a small stylesheet into your head inside style tags. This can and will work but in regards to RWD (Resposive Web Design) we have these things called media queries. As a developer we don't know anything about the users screen size. Is it mobile device? What is considered above the fold (how "tall" the screen is)? Scott Jehl (<a class="external_link" href="//twitter.com/scottjehl">@scottjehl</a>) suggests instead of thinking "mobile first" that if you're going to inline or "embed" css that we should start thinking "global first".
+</p>
+<blockquote class="twitter-tweet" data-link-color="#cc0000" data-theme="dark" lang="en"><p>WRT inlining critical CSS &amp; async-loading the rest, I’m starting wonder if instead of “mobile-first,” we should be thinking “global-first.”</p>&mdash; Scott Jehl (@scottjehl) <a href="https://twitter.com/scottjehl/statuses/476032494014566404">June 9, 2014</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p>
+  The CSS that you can, or rather should, inline/embed into the head is the CSS that will render a useable page on any and all devices (think text stylings, basic page structure etc). Then you can load the "enhaced" or rest of the css to fully render your page. Keeping in mind that the inlined CSS portion should be small and able to be fetched in the first round trip to your server.
+</p>
+<ul class="no-bullet">
+  <li>More Resources On Critical CSS</li>
+  <li><a class="external_link" href="//developers.google.com/web/fundamentals/performance/critical-rendering-path/">Google Web Fundamentals: Critcal Rendering Path</a></li>
+   <li><a class="external_link" href="//developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp">Analyzing Critical Rendering Path</a></li>
+  <li><a class="external_link" href="//decadecity.net/blog/2014/05/07/asynchronous-css-delivery-for-fault-tolerance#linline-css">Asynchronous CSS Delivery</a></li>
+  <li><a class="external_link" href="//developers.google.com/speed/docs/insights/PrioritizeVisibleContent">Prioritze Visible Content</a></li>
+  <li><a class="external_link" href="//cdn.oreillystatic.com/en/assets/1/event/99/Prioritize%20Your%20Critical%20CSS%20and%20Images%20To%20Make%20Your%20Site%20Fast%20Presentation.pdf">Velocity NYC 2013 - Slides: Prioritize Your Critical CSS and Images</a></li>
+   <li><a class="external_link" href="//youtu.be/n7NyD5C8YvU">Velocity NYC 2013 - Video: Prioritize Your Critical CSS and Images</a></li>
+   <li><a class="external_link" href="//www.igvita.com/2012/06/14/debunking-responsive-css-performance-myths/">Ilya Grigorik: Debunking Responsive CSS Performance Myths</a></li>
+   <li><a class="external_link" href="https://github.com/filamentgroup/loadCSS/">A function for loading CSS asynchronously: Scott Jehl, Filament Group</a></li>
+   
+</ul>
 </section>
 <!-- end inline css -->
 <!-- blocking js -->
@@ -266,7 +282,7 @@ grunt.registerTask( 'buildjs', ['concat', 'uglify'] );
 <section id="fixthis">
   <h3 class="heading">Fixing My Demos Page</h3>
 <p>
-  I've done all the above and then some to optimize my site. In fact some of my pages (as of this writting it may change :) ) score 98 to 99 in Google PageSpeed Insights. My Demos page isn't as lucky.
+  I've done all the above and then some to optimize my site. In fact some of my pages (as of this writing it may change :) ) score 98 to 99 in Google PageSpeed Insights. My Demos page isn't as lucky.
 </p>
 <table class="using">
   <thead>
@@ -328,4 +344,3 @@ grunt.registerTask( 'buildjs', ['concat', 'uglify'] );
   GO FORTH AND MAKE THE WEB FAST!
 </p>
 </section>
-</article>
