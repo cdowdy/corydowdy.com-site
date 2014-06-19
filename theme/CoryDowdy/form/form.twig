@@ -1,0 +1,47 @@
+{% form_theme form 'assets/simpleforms_fields.twig' %}
+
+{% if error %}
+    <div class="error-alert">
+        {{ error }}
+    </div>
+{% endif %}
+{% if message %}
+    <div class="success">
+        {{ message }}
+    </div>
+{% endif %}
+{% if not sent %}
+    {% if recaptcha_theme %}
+        <script>
+            var RecaptchaOptions = {
+                theme : '{{ recaptcha_theme }}'
+            };
+        </script>
+    {% endif %}
+    <form data-abide action="#" method="post" class="{{ formname }}" enctype="multipart/form-data">
+      <fieldset>
+          <div class="row">
+              {{ form_widget(form.yourname) }}
+              {{ form_widget(form.email) }}
+          </div>
+
+
+          {{ form_widget(form.message) }}
+          {{ form_rest(form) }}
+
+          {% if recaptcha_html %}
+              <div class="simpleform-row">
+                  <label for="form_message" class="required">ReCaptcha</label>
+                  {{ recaptcha_html|raw }}
+              </div>
+          {% endif %}
+          {% if recaptcha_html %}
+              <div class="simpleform-row">
+                  <label for="form_message" class="required">ReCaptcha</label>
+                  {{ recaptcha_html|raw }}
+              </div>
+          {% endif %}
+        <button type="submit" name="submit" value="Send" class=" tiny radius">Send</button>
+      </fieldset>
+    </form>
+{% endif %}
