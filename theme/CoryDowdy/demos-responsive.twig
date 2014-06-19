@@ -1,5 +1,98 @@
-{% include 'headers/_header-demos.twig' %}
+{% include 'headers/_header-demo-responsive.twig' %}
 
-{{ record.body }}
+{# {{ record.body }} #}
+<header class="main-header">
+    <h2>Concrete 5 Responsive Images Block</h2>
+    <p>An Add-on block the uses Non-Picture Element Responsive Image Techniques</p>
+    <hr />
+</header>
+<div class="row">
+    <div class="demo-section-head">
+        <header>
+            <h3>Responsive Images: PictureFill</h3>
+            <p>PictureFill allows you to use Foundation 5's Media queries or your own custom queries</p>
+        </header>
+    </div>
+</div>
+<div class="row">
+    <div class="media-queries-used">
+        <ul class="mq-list">
+            <li><strong>Media Queries Currently Used:</strong></li>
+            <li><span class="sm">Default/Small</span></li>
+            <li><span class="med">Medium</span></li>
+            <li><span class="lrg">Large</span></li>
+        </ul>
+    </div>
+    <div class="resp-image-container">
+        <span class="pfill-images" data-picture data-alt="Image Alternate Text">
 
+            <span data-src="//cdn.corydowdy.com/assets/img/resp/default.gif"></span>
+            <span data-src="//cdn.corydowdy.com/assets/img/resp/medium.gif" data-media="(min-width: 641px)"></span>
+            <span data-src="/files/large.gif" data-media="(min-width: 1024px)"></span>
+            <!--[if (lt IE 9) & (!IEMobile)]>
+            <span data-src="//cdn.corydowdy.com/assets/img/resp/medium.gif"></span>
+            <![endif]-->
+            <!-- Fallback content for non-JS browsers. Same img src as the initial, unqualified source element. -->
+            <noscript>
+                <img src="//cdn.corydowdy.com/assets/img/resp/medium.gif" alt="Medium Image">
+            </noscript>
+          </span>
+    </div>
+
+</div>
+<div class="row">
+    <div class="demo-section-head">
+        <hr />
+        <header>
+            <h3>Responsive Images: Interchange</h3>
+            <p>You have the option to use Foundation 5's media queries or your own custom queries. Resize your browser to see them change.</p>
+        </header>
+
+    </div>
+</div>
+<div class="row">
+    <div class="media-queries-used">
+        <ul class="mq-list">
+            <li><strong>Using Foundation 5 Media Queries:</strong></li>
+            <li><span class="sm">Default/Small</span></li>
+            <li><span class="med">Medium</span></li>
+            <li><span class="lrg">Large</span></li>
+        </ul>
+    </div>
+    <div class="resp-image-container">
+        <img class="center" data-interchange="[/files/default.gif, (default)], [/files/medium.gif, (medium)], [/files/large.gif, (large)]">
+        <noscript><img src="/files/default.gif"></noscript>
+    </div>
+</div>
+<!--
+  Use Vid
+-->
+<div class="row">
+    <hr />
+    <div class="small-12">
+        <h3>Responsive Image Block In Use</h3>
+    </div>
+    <hr />
+    <div class="video-container">
+        <video controls preload="metadata" poster="{{ paths.theme }}img/resp-poster.jpg">
+            <source src="//cdn.corydowdy.com/assets/video/resp-in-use.webm"
+                    type='video/webm;codecs="vp8, vorbis"' />
+            <source src="//cdn.corydowdy.com/assets/video/resp-in-use.mp4"
+                    type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"' />
+        </video>
+
+    </div>
+</div>
+<div class="row">
+    <hr />
+    <div class="wrap-up">
+        <p>Foundation Interchange can be found at Zurb Foundations Website <a href="//foundation.zurb.com/docs/components/interchange.html">Interchange</a>
+        </p>
+        <p>PictureFill by Scott Jehl can be found at his github respository <a href="//github.com/scottjehl/picturefill">PictureFill Github</a>
+        </p>
+        <p>
+            The Complete Source Code For this Add-on can be found at my github account. <a href="//github.com/cdowdy/concrete5-responsive-images">Concrete 5 Responsive Images</a>
+        </p>
+    </div>
+</div>
 {% include 'footers/_footer-resp-demo.twig' %}
