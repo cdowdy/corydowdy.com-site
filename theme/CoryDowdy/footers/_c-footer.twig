@@ -11,8 +11,15 @@
 
 
 <script src="{{ paths.theme }}js/min/CoryDowdy.min.js"></script>
+<script src="{{ paths.theme }}form/abide.js"></script>
 <script>
-    $(document).foundation();
+    $(document).foundation({
+        abide : {
+            live_validate : true,
+            focus_on_invalid : true,
+            error_labels: true, // labels with a for="inputId" will recieve an `error` class
+            }
+    });
 
     $(function(){FastClick.attach(document.body);});
 </script>
