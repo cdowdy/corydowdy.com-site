@@ -11,40 +11,7 @@
 </div>
 
 <script src="{{ paths.theme }}js/min/CoryDowdy-blog.min.js"></script>
-<script>
-    $(document).foundation();
-</script>
-<script>
-    $(document).ready(function() {
+<script src="{{ paths.theme }}blog/blog-js-jquery.js"></script>
 
-        $('.image-popup-vertical-fit').magnificPopup({
-            type: 'image',
-            closeOnContentClick: true,
-            mainClass: 'mfp-img-mobile',
-            image: {
-                verticalFit: true
-            }
-
-        });
-    });
-</script>
-<script>
-    $(window).bind("load", function () {
-        var footer = $("#sticky-footer");
-        var pos = footer.position();
-        var height = $(window).height();
-        height = height - pos.top;
-        height = height - footer.height();
-        if (height > 0) {
-            footer.css({
-                'margin-top': height + 'px'
-            });
-        }
-    });
-</script>
-<script>
-    $(function(){FastClick.attach(document.body);});
-</script>
-<script>Modernizr.load([{test : Modernizr.cssremunit,nope:['js/rem.min.js']}]);</script>
 </body>
 </html>

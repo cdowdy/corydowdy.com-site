@@ -1,4 +1,4 @@
-{% include 'headers/_blog-header.twig' %}
+{% include 'headers/_blog-listing-header.html.twig' %}
 
 <div class="row">
     <div class="blog-listings" role="content">
@@ -10,7 +10,7 @@
                 <div class="listing-snippet">
                     <header>
                         <h3 class="blog-post-title"><a class="listing-link" href="{{ blogpost.link }}">{{ blogpost.title }}</a></h3>
-                        {% set recdate = record.datepublish|localdate("%A %B %e, %Y") %}
+                        {% set recdate = blogpost.datepublish|localdate("%A %B %e, %Y") %}
                         <p class="pub-date">{{ __('Posted on %date%',{ '%date%': recdate }) }}</p>
                     </header>
                     <p>{{ blogpost.excerpt }}</p>
@@ -18,7 +18,7 @@
                 </div>
                 <div class="listing-image">
                     <figure>
-                        <img class="center" src="{{ thumbnail(blogpost.image, 200, 200) }}">
+                        <img class="center" src="{{ thumbnail(blogpost.image, 200, 200) }}" alt="{{ blogpost.title }}" pagespeed_no_defer="">
                     </figure>
                 </div>
             </section>
@@ -29,3 +29,4 @@
 </div>
 
 {% include 'footers/_blog-footer.twig' %}
+
