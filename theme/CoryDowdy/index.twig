@@ -1,4 +1,5 @@
 {% include 'headers/_header.twig' %}
+<!--
 <div class="row">
     <ul class="small-block-grid-2">
         <li class="home_hov">
@@ -33,5 +34,78 @@
             </a>
         </li>
     </ul>
+</div>
+-->
+<header class="small-device-header">
+    <h1><span class="logo_first">Cory</span>Dowdy <small>Web Design</small></h1>
+</header>
+<div class="page-wrap">
+    <div class="row">
+        <ul class="small-block-grid-2" role="navigation" aria-label="Primary">
+            <li class="home_hov">
+                <a href="work/" aria-label="External Link to Work">
+                    <div class="home_icon">
+                        <svg viewbox="0 0 350 266" class="center">
+                            <use xlink:href="#icon-work"></use>
+                        </svg>
+                    </div>
+                    <div class="mobile_icon">
+                        <svg viewBox="0 0 100 206.809" class="center">
+                            <use xlink:href="#icon-work-mobile"></use>
+                        </svg>
+                    </div>
+                </a>
+            </li>
+            <li class="home_hov">
+                <a href="contact/" aria-label="External Link to Contact Information">
+                    <div class="home_icon">
+                        <svg viewbox="0 0 350 266" class="center">
+                            <use xlink:href="#icon-contact"></use>
+                        </svg>
+                    </div>
+                    <div class="mobile_icon">
+                        <svg viewBox="0 0 100 206.809" class="center">
+                            <use xlink:href="#icon-contact-mobile"></use>
+                        </svg>
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <div class="big_header">
+            <header>
+                <h1 class="home_header"><span class="logo_first">Cory</span>Dowdy <small>Web Design</small></h1>
+            </header>
+        </div>
+        <ul class="small-block-grid-2">
+            <li class="home_hov">
+                <a href="blog/" aria-label="External Link to Blog">
+                    <div class="home_icon">
+                        <svg viewbox="0 0 350 266" class="center home-icon">
+                            <use xlink:href="#icon-blog"></use>
+                        </svg>
+                    </div>
+                    <div class="mobile_icon">
+                        <svg viewBox="0 0 100 206.809" class="center">
+                            <use xlink:href="#icon-blog-mobile"></use>
+                        </svg>
+                    </div>
+                </a>
+            </li>
+            <li class="home_hov">
+                <a href="demos/" aria-label="External Link to Demos Page">
+                    <div class="home_icon">
+                        <svg viewbox="0 0 350 266" class="center">
+                            <use xlink:href="#icon-demo"></use>
+                        </svg>
+                    </div>
+                    <div class="mobile_icon">
+                        <svg viewBox="0 0 100 206.809" class="center">
+                            <use xlink:href="#icon-demo-mobile"></use>
+                        </svg>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
 </div>
 {% include 'footers/_footer.twig' %}
