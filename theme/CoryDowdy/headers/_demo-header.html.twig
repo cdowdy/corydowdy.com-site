@@ -12,7 +12,7 @@
     <link rel="dns-prefetch" href="//use.typekit.net/vdn5jzd.js"/>
     <link rel="dns-prefetch" href="//www.google-analytics.com/ga.js"/>
     <script pagespeed_no_defer="">
-        function loadCSS(e,t,n){"use strict";var r=window.document.createElement("link");var i=t||window.document.getElementsByTagName("script")[0];r.rel="stylesheet";r.href=e;r.media="only x";i.parentNode.insertBefore(r,i);setTimeout(function(){r.media=n||"all"})}
+        function loadCSS(e,t,n){"use strict";var i=window.document.createElement("link");var o=t||window.document.getElementsByTagName("script")[0];i.rel="stylesheet";i.href=e;i.media="only x";o.parentNode.insertBefore(i,o);setTimeout(function(){i.media=n||"all"})}
         loadCSS('{{ paths.theme }}css/app.min.css');
     </script>
     {% include 'webfonts/webfont.js.twig' %}
@@ -39,23 +39,20 @@
             </nav>
             <div class="row">
                 <div class="small-10 columns">
-                    <h1 class="header_logo">
-                        <a href="/"><img src="{{ paths.theme }}img/logo.svg" alt="Cory Dowdy Web Development logo"> <small>//demos</small></a></h1>
+                    <h1 class="header_logo"><a href="/"><img src="{{ paths.theme }}img/logo.svg" alt="Cory Dowdy Web Development logo"/> <small>//work</small></a></h1>
                 </div>
             </div>
-        </div><!-- .hide- -small -->
+        </div><!-- .hide--small -->
         <div class="hide--large">
             <nav class="tab-bar">
                 <section class="left-small">
                     <a class="left-off-canvas-toggle menu-icon" ><span></span></a>
                 </section>
                 <section class="middle tab-bar-section">
-                    <h1 class="title"><a href="/">CoryDowdy <small>//blog</small></a></h1>
+                    <h1 class="title"><a href="/">CoryDowdy <small>//work</small></a></h1>
                 </section>
             </nav>
         </div>
-
-
         <!-- Off Canvas Menu -->
         <aside class="left-off-canvas-menu">
             {{ menu('main', '_menu_offcanvas.twig') }}
