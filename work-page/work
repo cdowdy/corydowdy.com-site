@@ -36,7 +36,7 @@
                   <source srcset="files/BYPPShowcase.png" media="(min-width: 800px)">
                   <source srcset="files/BYPPShowcase-small.png" media="(max-width: 799px)">
                   <source srcset="files/BYPPShowcase.png">
-                  <img class="center" srcset="img/work/BYPPShowcase.png" alt="Backyard Pleasure Pools on Multiple Devices">
+                  <img class="center" srcset="files/BYPPShowcase.png" alt="Backyard Pleasure Pools on Multiple Devices">
                 </picture>
               </div>
             </div>
