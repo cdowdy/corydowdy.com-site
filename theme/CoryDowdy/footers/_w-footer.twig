@@ -10,18 +10,10 @@
 
 </div>
 
+<script src="{{ paths.theme }}js/min/CoryDowdy.min.js"  ></script>
 
-<script src="{{ paths.theme }}js/min/CoryDowdy.min.js"></script>
 <script>
-    $(document).foundation();
-    $(document).foundation('interchange', {
-        named_queries : {
-            smallLarge : 'only screen and (max-width: 799px)',
-            largeUp    : 'only screen and (min-width: 800px)'
-        }
-    });
     $(document).ready(function() {
-
         $('.image-popup-vertical-fit').magnificPopup({
             type: 'image',
             closeOnContentClick: true,
@@ -33,8 +25,7 @@
     });
 
     $(function(){FastClick.attach(document.body);});$(function(){$("img.lazy").jail()});
-</script>
-<script>
+
     $(window).bind("load", function () {
         var footer = $("#sticky-footer");
         var pos = footer.position();
@@ -48,6 +39,7 @@
         }
     });
 </script>
+
 <script pagespeed_no_defer="">
     (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
             function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
