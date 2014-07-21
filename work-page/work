@@ -4,9 +4,9 @@
             <li class="w_hov">
               <a href="#current" ><span class="hidden">Current Projects Link</span>
                 <div class="work_icon">
-	                <svg viewbox="0 0 350 266" class="center">
-		                <use xlink:href="#icon-work"></use>
-	                </svg>
+                  <svg viewbox="0 0 350 266" class="center">
+                    <use xlink:href="#icon-work"></use>
+                  </svg>
                 </div>
                 <h2>Current Project</h2>
               </a>
@@ -14,9 +14,9 @@
             <li class="w_hov">
               <a href="#c5Section"><span class="hidden">Concrete 5 Add-ons Link</span>
                 <div class="work_icon">
-	                <svg viewbox="0 0 350 266" class="center">
-		                <use xlink:href="#icon-demos"></use>
-	                </svg>
+                  <svg viewbox="0 0 350 266" class="center">
+                    <use xlink:href="#icon-demos"></use>
+                  </svg>
                 </div>
                 <h2>Concrete5 Add-ons</h2>
               </a>
@@ -32,12 +32,12 @@
             <div class="row">
               <div class="small-12 medium-9 medium-centered columns">
 
-	              <picture >
-		              <source srcset="img/work/BYPPShowcase.png" media="(min-width: 800px)">
-		              <source srcset="img/work/BYPPShowcase-small.png" media="(max-width: 799px)">
-		              <source srcset="img/work/BYPPShowcase.png">
-		              <img class="center" srcset="img/work/BYPPShowcase.png" alt="A giant stone face at The Bayon temple in Angkor Thom, Cambodia">
-	              </picture>
+                <picture >
+                  <source srcset="files/BYPPShowcase.png" media="(min-width: 800px)">
+                  <source srcset="files/BYPPShowcase-small.png" media="(max-width: 799px)">
+                  <source srcset="files/BYPPShowcase.png">
+                  <img class="center" srcset="img/work/BYPPShowcase.png" alt="Backyard Pleasure Pools on Multiple Devices">
+                </picture>
               </div>
             </div>
             <div class="row">
@@ -61,23 +61,23 @@
               <div class="medium-12 columns">
                 <ul class="small-block-grid-2">
                   <li>
-                    <a class="image-popup-vertical-fit" href="img/work/comp_1_pop.png" title="First Site Comp.">
-                      <img class="center" src="img/work/comp1-th.png" alt="first site comp" width="395" height="297" />
+                    <a class="image-popup-vertical-fit" href="files/comp_1_pop.png" title="First Site Comp.">
+                      <img class="center" src="files/comp1-th.png" alt="first site comp" width="395" height="297" />
                     </a>
                   </li>
                   <li>
-                    <a class="image-popup-vertical-fit" href="img/work/comp_2_pop.png" title="Second Site Comp.">
-                      <img class="center" src="img/work/comp2-th.png" alt="Second site comp" width="395" height="297" />
+                    <a class="image-popup-vertical-fit" href="files/comp_2_pop.png" title="Second Site Comp.">
+                      <img class="center" src="files/comp2-th.png" alt="Second site comp" width="395" height="297" />
                     </a>
                   </li>
                   <li>
-                    <a class="image-popup-vertical-fit" href="img/work/comp_3_pop.png" title="Third Site Comp.">
-                      <img class="center" src="img/work/comp3-th.png" alt="Third site comp" width="395" height="297" />
+                    <a class="image-popup-vertical-fit" href="files/comp_3_pop.png" title="Third Site Comp.">
+                      <img class="center" src="files/comp3-th.png" alt="Third site comp" width="395" height="297" />
                     </a>
                   </li>
                   <li>
-                    <a class="image-popup-vertical-fit" href="img/work/current_pop.png" title="Current Site.">
-                      <img class="center" src="img/work/current-th.png" alt="Current Backyard Pleasure Pools site" width="395" height="297" />
+                    <a class="image-popup-vertical-fit" href="files/current_pop.png" title="Current Site.">
+                      <img class="center" src="files/current-th.png" alt="Current Backyard Pleasure Pools site" width="395" height="297" />
                     </a>
                   </li>
                 </ul>
@@ -93,7 +93,7 @@
             <div class="row">
               <div class="small-12 medium-6 columns">
                 <h4>Concrete5 Magnific Popup</h4>
-                  <ul class="demo_links small-block-grid-1">
+                  <ul class="demo_links">
                     <li>
                       <a class="anchor" href="https://github.com/cdowdy/concrete5-magnific-popup">Add-on Source</a>
                     </li>
@@ -104,7 +104,7 @@
                 </div>
                 <div class="small-12 medium-6 columns">
                    <h4>Concrete5 Responsive Images</h4>
-                  <ul class="demo_links small-block-grid-1">
+                  <ul class="demo_links">
                     <li>
                       <a class="anchor" href="https://github.com/cdowdy/concrete5-responsive-images">Add-on Source</a>
                     </li>
