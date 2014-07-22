@@ -5,6 +5,9 @@
 
 {% if record.slug == 'demo' %}
 <script src="{{ paths.theme }}js/min/CoryDowdy.min.js"></script>
+  <script>
+    $(document).foundation();
+  </script>
 <script>
     $(window).bind("load", function () {
         var footer = $("#sticky-footer");
