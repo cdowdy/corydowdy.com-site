@@ -2,28 +2,23 @@
 <html class="no-js" lang="{{ htmllang() }}">
   <head>
     <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="dns-prefetch" href="//use.typekit.net"/>
-      <link rel="dns-prefetch" href="//p.typekit.net" />
-      <link rel="dns-prefetch" href="//www.google-analytics.com"/>
-      <link rel="dns-prefetch" href="//cdn.corydowdy.com"/>
     <title>
-        {% if record.title is defined %}{{ record.title|striptags }} | {% endif %}
-        {{ app.config.get('general/sitename') }}
-        {% if record.title is not defined and app.config.get('general/payoff') %} | {{ app.config.get('general/payoff') }}{% endif %}
+      {% if record.title is defined %}{{ record.title|striptags }} | {% endif %}
+      {{ app.config.get('general/sitename') }}
+      {% if record.title is not defined and app.config.get('general/payoff') %} | {{ app.config.get('general/payoff') }}{% endif %}
     </title>
-    {% include 'webfonts/webfont.js.twig' %}
-    {% include 'fonts/_index-fout-html.twig' %}
-    <style>
-        html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}footer,header{display:block}a{background:0 0}a:active,a:hover{outline:0}svg:not(:root){overflow:hidden}*,*:before,*:after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}html,body{font-size:100%}body{background:#fff;color:#444;padding:0;margin:0;font-family:"ff-dagny-web-pro",sans-serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:default}a:hover{cursor:pointer}[class*="block-grid-"]{display:block;padding:0;margin:0;*zoom:1}[class*="block-grid-"]:before{content:" ";display:table}[class*="block-grid-"]:after{content:" ";display:table;clear:both}[class*="block-grid-"]>li{display:block;height:auto;float:left;padding:0 .9375rem 1.875rem}@media only screen{.small-block-grid-2>li{width:50%;list-style:none}.small-block-grid-2>li:nth-of-type(n){clear:none}.small-block-grid-2>li:nth-of-type(2n+1){clear:both}.small-block-grid-2>li:nth-child(2n+1){padding-left:0;padding-right:.9375rem}.small-block-grid-2>li:nth-child(2n){padding-left:.9375rem;padding-right:0}}@-moz-document url-prefix(){select{background:#fafafa}select:hover{background:#f3f3f3}}.row{width:100%;margin:0 auto;max-width:62.5rem;*zoom:1}.row:before,.row:after{content:" ";display:table}.row:after{clear:both}@font-face{font-family:'icomoon';src:url('../fonts/icomoon.eot?d35dnt');src:url('../fonts/icomoon.eot?#iefixd35dnt') format('embedded-opentype'),url('../fonts/icomoon.woff?d35dnt') format('woff'),url('../fonts/icomoon.ttf?d35dnt') format('truetype'),url('../fonts/icomoon.svg?d35dnt#icomoon') format('svg');font-weight:400;font-style:normal}*{margin:0}html,body{height:100%}.page-wrap{min-height:100%;margin-bottom:1em;margin-top:1.875em}.page-wrap:after{content:"";display:block}footer,.page-wrap:after{height:1em}.center{display:block;margin-left:auto;margin-right:auto}.home_hov:hover,.home_hov:focus{background-color:#2C3E50;border-radius:4px}.home_icon{width:350px;height:266px;margin:15px auto 0}.mobile_icon{width:100px;height:206.809px;margin:10px auto 0}@media screen and (min-width:800px){.mobile_icon{display:none}}.big_header{display:none}@media only screen and (min-width:50em){.big_header{display:block}}.home_header{text-align:center}@media screen and (max-width:350px){.home_header{padding-left:45px}}@media only screen and (min-width:0) and (max-width:49.938em){.home_icon{display:none}}.small-device-header{text-align:center;margin-bottom:20px}@media only screen and (min-width:49.938em){.small-device-header{display:none}}@media screen and (max-width:300px){.small-device-header small{display:none}}.logo_first{font-weight:700;color:#008CBA}.text-center{text-align:center!important}div{margin:0}div,ul{padding:0}li{margin:0}li,h1,p{padding:0}a{color:#2980B9;text-decoration:none;line-height:inherit}a:hover,a:focus{color:#007ba0}p{font-weight:400;font-size:1rem;line-height:1.6;margin:0 0 1.25rem}p,h1{font-family:"ff-dagny-web-pro",sans-serif;font-style:normal;text-rendering:optimizeLegibility}h1{font-weight:700;color:#2C3E50;margin:.2rem 0 .5rem;line-height:1.4}h1 small{font-size:50%;color:#7F8C8D;line-height:0;font-weight:400}h1{font-size:2.125rem}small{font-size:50%;line-height:inherit}ul{font-size:1rem;line-height:1.6;list-style-position:outside;font-family:"ff-dagny-web-pro",sans-serif;margin:0 0 1.25rem 1.1rem}@media only screen and (min-width:40em){h1{line-height:1.4;font-size:2.75rem}}@media print{@page{margin:.5cm}*{background:transparent!important;color:#000!important;-webkit-box-shadow:none!important;box-shadow:none!important;text-shadow:none!important}a,a:visited{text-decoration:underline}a[href]:after{content:" (" attr(href)")"}p{orphans:3;widows:3}}
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% include 'prefetch/_dns-prefetch.html.twig' %}
+
+
+
+
 
     <meta name="msvalidate.01" content="346403273F73350B6928A46B28684A5B" />
     <meta name="mobile-web-app-capable" content="yes">
     {% include 'headers/_touchicons.twig' %}
-      {#
-      <script src="{{ paths.theme }}js/svg4everybody.min.js" async></script>
-      #}
+    <link rel="stylesheet" href="{{ paths.theme }}css/app.min.css"/>
+
   </head>
 <body>
 <svg style="position:absolute; width:0; height:0;">

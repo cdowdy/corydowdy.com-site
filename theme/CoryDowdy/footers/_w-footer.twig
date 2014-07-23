@@ -10,38 +10,11 @@
 
 </div>
 
-<script src="{{ paths.theme }}js/min/CoryDowdy.min.js" ></script>
--
-<script>
-  $(document).foundation();
-</script>
-<script>
-    $(document).ready(function() {
-        $('.image-popup-vertical-fit').magnificPopup({
-            type: 'image',
-            closeOnContentClick: true,
-            mainClass: 'mfp-img-mobile',
-            image: {
-                verticalFit: true
-            }
-        });
-    });
 
-    $(function(){FastClick.attach(document.body);});$(function(){$("img.lazy").jail()});
+<script src="{{ paths.theme }}js/min/CoryDowdy.min.js" async pagespeed_no_defer=""></script>
+<script src="{{ paths.theme }}js/page/work/app-work.js" ></script>
 
-    $(window).bind("load", function () {
-        var footer = $("#sticky-footer");
-        var pos = footer.position();
-        var height = $(window).height();
-        height = height - pos.top;
-        height = height - footer.height();
-        if (height > 0) {
-            footer.css({
-                'margin-top': height + 'px'
-            });
-        }
-    });
-</script>
+
 
 <script pagespeed_no_defer="">
     (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
