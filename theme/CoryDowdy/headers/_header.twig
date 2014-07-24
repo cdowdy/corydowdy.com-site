@@ -12,47 +12,17 @@
     <meta name="msvalidate.01" content="346403273F73350B6928A46B28684A5B" />
     <meta name="mobile-web-app-capable" content="yes">
     {% include 'headers/_touchicons.twig' %}
-<!--
-    <link rel="stylesheet" href="{{ paths.theme }}css/new-app.comb.css"/>
-    -->
+{#
+     <link rel="stylesheet" href="{{ paths.theme }}css/new-app.comb.css"/>
+#}
     <style>
       html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}footer,header{display:block}a{background:0 0}a:active,a:hover{outline:0}svg:not(:root){overflow:hidden}*,:after,:before{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}body,html{font-size:100%}body{background:#fff;color:#444;padding:0;margin:0;font-family:source_sans_proregular,sans-serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:default}a:hover{cursor:pointer}[class*=block-grid-]{display:block;padding:0;margin:0 -.625rem}[class*=block-grid-]:after,[class*=block-grid-]:before{content:" ";display:table}[class*=block-grid-]:after{clear:both}[class*=block-grid-]>li{display:block;height:auto;float:left;padding:0 .625rem 1.25rem}@media only screen{.small-block-grid-2>li{width:50%;list-style:none}.small-block-grid-2>li:nth-of-type(1n){clear:none}.small-block-grid-2>li:nth-of-type(2n+1){clear:both}}button::-moz-focus-inner{border:0;padding:0}select::-ms-expand{display:none}.row{width:100%;margin:0 auto;max-width:62.5rem}.row:after,.row:before{content:" ";display:table}.row:after{clear:both}@font-face{font-family:icomoon;src:url(../fonts/icomoon.eot?d35dnt);src:url(../fonts/icomoon.eot?#iefixd35dnt) format('embedded-opentype'),url(../fonts/icomoon.woff?d35dnt) format('woff'),url(../fonts/icomoon.ttf?d35dnt) format('truetype'),url(../fonts/icomoon.svg?d35dnt#icomoon) format('svg');font-weight:400;font-style:normal}.page-wrap{margin-top:1.875em}.home_icon{width:350px;height:266px;margin:15px auto 0}.mobile_icon{width:100px;height:206.81px;margin:10px auto 0}@media screen and (min-width:800px){.mobile_icon{display:none}}@media only screen and (min-width:50em){.big_header{display:block}}@media screen and (max-width:350px){.home_header{padding-left:45px}}@media only screen and (min-width:0) and (max-width:49.938em){.home_icon{display:none}}.small-device-header{text-align:center;margin-bottom:20px}@media only screen and (min-width:49.938em){.small-device-header{display:none}}@media screen and (max-width:300px){.small-device-header small{display:none}}.text-center{text-align:center!important}div{margin:0}div,h1{padding:0}li{margin:0}li,p,ul{padding:0}a{color:#2980B9;text-decoration:none;line-height:inherit}a:focus,a:hover{color:#444}p{font-family:source_sans_proregular,sans-serif;font-weight:400;font-size:1rem;line-height:1.6;margin:0 0 1.25rem}p,h1{font-style:normal;text-rendering:optimizeLegibility}h1{font-family:pt_sansbold,sans-serif;font-weight:700;color:#2C3E50;margin:.2rem 0 .5rem;line-height:1.4}h1 small{font-size:50%;color:#7F8C8D;line-height:0;font-weight:400}h1{font-size:2.125rem}small{font-size:50%;line-height:inherit}ul{font-size:1rem;line-height:1.6;list-style-position:outside;font-family:source_sans_proregular,sans-serif;margin:0 0 1.25rem 1.1rem}@media only screen and (min-width:40em){h1{line-height:1.4;font-size:2.75rem}}@media print{@page{margin:.5cm}*{background:transparent!important;color:#000!important;-webkit-box-shadow:none!important;box-shadow:none!important;text-shadow:none!important}a,a:visited{text-decoration:underline}a[href]:after{content:" (" attr(href)")"}p{orphans:3;widows:3}}.big_header{display:none}@media only screen and (min-width:61.25em){.big_header{display:block}}.home_header{text-align:center}@media screen and (max-width:350px){.home_header{padding-left:45px}}@media only screen and (min-width:0) and (max-width:49.938em){.home_icon{display:none}}@media screen and (min-width:800px){.home_hov .mobile_icon{display:none}}.home_hov .home_icon{width:350px;height:266px;margin:15px auto 0}.home_hov .mobile_icon{width:100px;height:206.81px;margin:10px auto 0}@media screen and (min-width:800px){.home_hov .mobile_icon{display:none}}.home_hov:focus,.home_hov:hover{background-color:#2C3E50;border-radius:4px}*{margin:0}body,html{height:100%}.page-wrap{min-height:100%;margin-bottom:20px}.page-wrap:after{content:"";display:block}.page-wrap:after,footer{height:20px}.center{display:block;margin-left:auto;margin-right:auto}.logo_first{font-weight:700;color:#008CBA}footer{text-align:center}.icon{max-width:350px;margin-top:10px}svg{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;width:100%;height:100%;display:block}
     </style>
-<!--
-    <link rel="stylesheet" href="{{ paths.theme }}css/webfont.07242014v2.css"/>
--->
-
+{#
+     <link rel="stylesheet" href="{{ paths.theme }}css/webfont.07242014v2.css"/>
+#}
     <script>
-      ! function() {
-        function e(e, t, n) {
-          e.addEventListener ? e.addEventListener(t, n, !1) : e.attachEvent && e.attachEvent("on" + t, n)
-        }
-
-        function t(e) {
-          return window.localStorage && localStorage.font_css_cache && localStorage.font_css_cache_file === e
-        }
-
-        function n() {
-          if (window.localStorage && window.XMLHttpRequest)
-            if (t(o)) a(localStorage.font_css_cache);
-            else {
-              var n = new XMLHttpRequest;
-              n.open("GET", o, !0), e(n, "load", function() {
-                4 === n.readyState && (a(n.responseText), localStorage.font_css_cache = n.responseText, localStorage.font_css_cache_file = o)
-              }), n.send()
-            } else {
-            var c = document.createElement("link");
-            c.href = o, c.rel = "stylesheet", c.type = "text/css", document.getElementsByTagName("head")[0].appendChild(c), document.cookie = "font_css_cache"
-          }
-        }
-
-        function a(e) {
-          var t = document.createElement("style");
-          t.innerHTML = e, document.getElementsByTagName("head")[0].appendChild(t)
-        }
-        var o = "./theme/CoryDowdy/css/webfont.07242014v2.css";
-        window.localStorage && localStorage.font_css_cache || document.cookie.indexOf("font_css_cache") > -1 ? n() : e(window, "load", n)
-      }();
+      !function(){function e(e,t,o){e.addEventListener?e.addEventListener(t,o,!1):e.attachEvent&&e.attachEvent("on"+t,o)}function t(e){return window.localStorage&&localStorage.font_css_cache&&localStorage.font_css_cache_file===e}function o(){if(window.localStorage&&window.XMLHttpRequest)if(t(c))n(localStorage.font_css_cache);else{var o=new XMLHttpRequest;o.open("GET",c,!0),e(o,"load",function(){4===o.readyState&&(n(o.responseText),localStorage.font_css_cache=o.responseText,localStorage.font_css_cache_file=c)}),o.send()}else{var a=document.createElement("link");a.href=c,a.rel="stylesheet",a.type="text/css",document.getElementsByTagName("head")[0].appendChild(a),document.cookie="font_css_cache"}}function n(e){var t=document.createElement("style");t.innerHTML=e,document.getElementsByTagName("head")[0].appendChild(t)}var c="./theme/CoryDowdy/css/webfont.07242014v2.css";window.localStorage&&localStorage.font_css_cache||document.cookie.indexOf("font_css_cache")>-1?o():e(window,"load",o)}();
     </script>
 
 
