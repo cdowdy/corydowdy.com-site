@@ -1,0 +1,54 @@
+ {# Include header, navigation here #}
+{# 
+
+  HTML for Blog listing page 
+
+<div class="push-down">
+    <article class="container">
+      <div class="full">
+        <div class="listing-snippet">
+          <header>
+            <h3 class="blog-post-title"><a href="#">Blog Post Title</a></h3>
+            <p class="pub-date">Posted on <time datetime="2014-03-14">March 14, 2014</time></p>
+          </header>
+          <p>
+            Boudin aliqua adipisicing rump corned beef. Nulla corned beef sunt ball tip, qui bresaola enim jowl.
+            Capicola short ribs minim salami nulla nostrud pastrami.
+          </p>
+          <a class="listing-link" href="">Read Post &#10141; </a>
+        </div>
+        <div class="listing-image">
+          <img class="center" src="img/200.gif" />
+        </div><!-- /.listing-image -->
+      </div><!-- /.full -->
+    </article>
+    <hr/>
+</div><!-- /.push-down -->
+
+#}
+<div class="push-down">
+ {% setcontent blogposts = "blog/latest/4" allowpaging %}
+  {% for blogpost in blogposts %}
+    <article class="container">
+      <div class="full">
+        <div class="listing-snippet">
+          <header>
+            <h3 class="blog-post-title"><a href="{{ blogpost.link }}">{{ blogpost.title }}</a></h3>
+            {% set recdate = blogpost.datepublish|localdate("%A %B %e, %Y") %}
+            <p class="pub-date">{{ __('Posted on %date%',{ '%date%': recdate }) }}</p>
+          </header>
+          <p>
+            {{ blogpost.excerpt }}
+          </p>
+          <a href="{{ blogpost.link }}">{{ __('Read Post &#10141;') }}</a>
+        </div>
+        <div class="listing-image">
+          <img class="center" src="{{ thumbnail(blogpost.image, 200, 200) }}" alt="{{ blogpost.title }}" pagespeed_no_defer="">
+        </div><!-- /.listing-image -->
+      </div><!-- /.full -->
+    </article>
+    <hr/>
+  {% endfor %}
+</div><!-- /.push-down -->
+ 
+{# Include Footer, closing main, scripts and body #}
