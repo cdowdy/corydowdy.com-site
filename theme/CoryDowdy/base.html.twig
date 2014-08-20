@@ -1,0 +1,105 @@
+<!doctype html>
+<html class="no-js" lang="{{ htmllang() }}">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        {% if record.title is defined %}{{ record.title|striptags }} | {% endif %}
+        {{ app.config.get('general/sitename') }}
+        {% if record.title is not defined and app.config.get('general/payoff') %} | {{ app.config.get('general/payoff') }}{% endif %}
+    </title>
+    {# Include DNS Prefetch  #}
+    {% block dns_prefetch %}
+    <link rel="dns-prefetch" href="//use.typekit.net"/>
+    <link rel="dns-prefetch" href="//p.typekit.net" />
+    <link rel="dns-prefetch" href="//www.google-analytics.com"/>
+    <link rel="dns-prefetch" href="//cdn.corydowdy.com"/>
+    {% endblock dns_prefetch %}
+    {# Bing Validation #}
+    <meta name="msvalidate.01" content="346403273F73350B6928A46B28684A5B" />
+    {# Chrome Webapp Capable #}
+    <meta name="mobile-web-app-capable" content="yes">
+
+    {% block enhance_js_meta %}
+    <meta name="fullcss"  content="{{ paths.theme}}css/app.min.css">
+    {% endblock %}
+
+
+    {# include javascripts / javascripts block#}
+    {% block header_javascripts %}
+    <script>
+        (function(d) {
+            var config = {
+                        kitId: 'vdn5jzd',
+                        scriptTimeout: 3000
+                    },
+                    h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='//use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+        })(document);
+    /*! EnhanceJS: a progressive enhancement boilerplate. Copyright 2014 @scottjehl, Filament Group, Inc. Licensed MIT */
+    (function(e,t){"use strict";function f(t){var n=e.document.getElementsByTagName("script")[0];var r=e.document.createElement("script");r.src=t;n.parentNode.insertBefore(r,n);return r}function l(t,n,r){var i=e.document.createElement("link");var s=n||e.document.getElementsByTagName("script")[0];i.rel="stylesheet";i.href=t;i.media="only x";s.parentNode.insertBefore(i,s);setTimeout(function(){i.media=r||"all"});return i}function c(t){var n=e.document.getElementsByTagName("meta");var r;for(var i=0;i<n.length;i++){if(n[i].name&&n[i].name===t){r=n[i];break}}return r}function h(n,r,i){if(r===t){var s="; "+e.document.cookie;var o=s.split("; "+n+"=");if(o.length==2){return o.pop().split(";").shift()}return null}else{if(r===false){i=-1}if(i){var u=new Date;u.setTime(u.getTime()+i*24*60*60*1e3);var a="; expires="+u.toGMTString()}else{var a=""}e.document.cookie=n+"="+r+a+"; path=/"}}e.enhance={};var n=e.document,r=n.documentElement,i=n.head||n.getElementsByTagName("head")[0],s="fullcss",o="fulljs",u="fonts",a=["enhanced"];enhance.loadJS=f;enhance.loadCSS=l;enhance.getMeta=c;enhance.cookie=h;var p=c(s);if(p&&!h(s)){l(p.content);h(s,"true",7)}if(!("querySelector"in n)){return}r.className+=" "+a.join(" ");var d=c(o);if(d){f(d.content)}var v=c(u);if(v){l(v.content)}})(this)
+    </script>
+
+    {% endblock %}
+    <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+    <script src="//s3.amazonaws.com/nwapi/nwmatcher/nwmatcher-1.2.5-min.js"></script>
+    <script src="//html5base.googlecode.com/svn-history/r38/trunk/js/selectivizr-1.0.3b.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="js/lib/oldie/rem.min.js"></script>
+    <script src="js/lib/flexie.min.js"><script>
+    <![endif]-->
+    {#  stylesheets block #}
+    {% block stylesheets %}
+        {% block fout %}
+        {% endblock fout %}
+        {% if app.request.cookies.has('fullcss') %}
+        <link rel="stylesheet" href="{{ paths.theme}}css/app.min.css"/>
+            {% else %}
+                {% block inlined_styles %}
+
+                {% endblock %}
+        {% endif %}
+    {% endblock %}
+
+
+
+
+</head>
+<body>
+<header class="app-bar promote-layer" role="banner">
+    <div class="app-bar-container">
+        <button class="menu">
+            <svg class="menu-icon">
+                <use xlink:href="{{ paths.theme }}svgsprites/linkicons-sprite.svg#a"></use>
+            </svg>
+        </button>
+        <h1 class="logo">Cory Dowdy</h1>
+    </div>
+</header>
+{# Insert Menu from menu directory #}
+{{ menu('main', 'menu/_menu.html.twig') }}
+<main class="container" role="main">
+    <!--[if lt IE 9]>
+    <div class="ie_8_update_notice">
+        <p class="browsehappy">
+            You are using an <strong>outdated</strong> browser. Which is no longer supported.
+            Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience and increase
+            your security across the web.
+        </p>
+    </div>
+    <![endif]-->
+{# Main Body #}
+{% block body %}
+
+{% endblock body %}
+
+{#  Footer block and closing main tag    #}
+{% block footer %}
+
+</main>
+    {% block footer_javascripts %}
+
+    {% endblock %}
+</body>
+</html>
+{% endblock %}
