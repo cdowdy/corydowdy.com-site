@@ -1,0 +1,16 @@
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>
+    {% if record.title is defined %}{{ record.title|striptags }} | {% endif %}
+    {{ app.config.get('general/sitename') }}
+    {% if record.title is not defined and app.config.get('general/payoff') %} | {{ app.config.get('general/payoff') }}{% endif %}
+</title>
+{# Include DNS Prefetch  #}
+<link rel="dns-prefetch" href="//use.typekit.net"/>
+<link rel="dns-prefetch" href="//p.typekit.net" />
+<link rel="dns-prefetch" href="//www.google-analytics.com"/>
+<link rel="dns-prefetch" href="//cdn.corydowdy.com"/>
+{# Bing Validation #}
+<meta name="msvalidate.01" content="346403273F73350B6928A46B28684A5B" />
+{# Chrome Webapp Capable #}
+<meta name="mobile-web-app-capable" content="yes">
