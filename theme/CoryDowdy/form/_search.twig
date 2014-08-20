@@ -1,0 +1,10 @@
+
+<div class="form-container">
+    <form method="get" action="{{ paths.root }}search" id="searchform" enctype="text/plain">
+        <fieldset>
+            <label for="search">Site Search</label>
+            <input type="search" value="{% if search is defined %}{{ search|escape }}{% endif %}" placeholder="{{ __("Search…") }}" name="search">
+            <button class="radius tiny" type="search">Submit</button>
+        </fieldset>
+    </form>
+</div>
