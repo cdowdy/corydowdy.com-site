@@ -1,0 +1,548 @@
+ {# Include header, navigation here #}
+ <section id="intro">
+      <p>
+        CSS Frameworks are bloated! At least that is the argument. They can be is the truth. A standard Sass install
+        with all components included of Foundation 5 is 111KB uncompressed 16 Kb compressed. They can also be as slim
+        as you want. You can use only the parts you want when you use tools like Sass (scss) but that still may leave
+        over unwanted styles. Grunt Uncss can fill in those gaps and shrink our file down even more.
+      </p>
+      <div class="snippet">
+        <div class="blog-info-using">
+          The following tutorial will use these grunt plugins and these Foundation templates
+        </div>
+        <table class="using">
+          <thead>
+          <tr>
+            <th width="300">
+              Grunt Plugins
+            </th>
+            <th width="300">
+              Foundation Templates
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>
+              <a  href="http://foundation.zurb.com/docs/sass.html">Foundation 5 Sass</a>
+            </td>
+            <td>
+              <a href="http://foundation.zurb.com/templates/banded.html">Banded</a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="https://github.com/addyosmani/grunt-uncss">Grunt Uncss</a>
+            </td>
+            <td>
+              <a href="http://foundation.zurb.com/templates/feed.html">Feed</a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="https://github.com/gruntjs/grunt-contrib-cssmin">Grunt Cssmin</a>
+            </td>
+            <td>
+              <a href="http://foundation.zurb.com/templates/grid.html">Grid</a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="https://github.com/dciccale/grunt-processhtml">Grunt Processhtml</a>
+            </td>
+            <td>
+              <a href="http://foundation.zurb.com/templates/marketing.html">Marketing</a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="https://github.com/nDmitry/grunt-autoprefixer">Grunt Autoprefixer</a>
+            </td>
+            <td>
+              <a href="http://foundation.zurb.com/templates/store.html">Store</a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- /.snippet -->
+      <p>
+        Seeing that list of Grunt plugins, and their Github pages might put a lot of people off. It looks hard.
+        The great thing about grunt is: If you don't want to use a plugin don't. If it doesn't fit your workflow,
+        don't use it. Its about your workflow and what works best for you.
+      </p>
+    </section>
+    <!-- /#intro -->
+    <section id="setup">
+      <h3 class="heading">
+        Setup
+      </h3>
+      <p>
+        We'll start off by creating a new Foundation 5 project. Mine will be in my htdocs directory of my xampp install.
+        This project will be named uncss and will use libsass. Starting this project will give you a leg up by giving
+        you a package.json and a gruntfile.js.
+      </p>
+<pre class="language-bash">
+<code>
+  C:\xampp\htdocs&gt;foundation new uncss --libsass
+</code>
+</pre>
+      <p>
+        After you have completed the Foundation install you can then move on to setting up your gruntfile. Change
+        directories in your terminal/command prompt to your newly created project. You will install all of the above
+        mentioned grunt plugins at once. Leave out any plugins you don't want to use. You may also elect to install
+        the plugins one at a time.
+      </p>
+    <pre class="language-bash">
+<code>
+  npm install grunt-uncss grunt-contrib-cssmin grunt-processhtml grunt-autoprefixer --save-dev
+</code>
+</pre>
+      <p>
+        This will download the plugins, save them locally to your project and update your package.json file. You can
+        then move on to loading the tasks, enabling the tasks and actually creating the tasks you wish to run.
+      </p>
+      <h4 class="heading">
+        Enabling
+      </h4>
+      <p>
+        At the bottom of your Gruntfile you will see the
+        <code class="language-javascript">grunt.loadNpmTasks('task here');</code> you will place your newly downloaded
+        and installed tasks below the ones Foundation has installed for you.
+      </p>
+    <pre class="language-javascript">
+<code>
+  // foundations tasks
+  grunt.loadNpmTasks('grunt-sass');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  // ones you wish to use
+  grunt.loadNpmTasks('grunt-uncss');
+  grunt.loadNpmTasks('grunt-processhtml');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-autoprefixer');
+</code>
+</pre>
+      <h4 class="heading">
+        Uncss Task
+      </h4>
+      <p>
+        Uncss will scan our HTML files for used selectors, remove the unused selectors and create a new, smaller css
+        file. The files you want scanned will be on the right. The newly created css file is on the left. At this point
+        the file and directory of this file don't exist. Once the uncss task has been ran it will create the file
+        and/or directory specified on the left.
+      </p>
+      <p>
+        Underneath the "Watch" task in your gruntfile place the following
+      </p>
+    <pre class="language-javascript">
+<code>
+  watch: {
+  grunt: { files: ['Gruntfile.js'] },
+
+    sass: {
+      files: 'scss/**/*.scss',
+      tasks: ['sass']
+    }
+  }, // <- notice the comma
+
+  uncss: {
+    dist: {
+      files: { // files scanned on the right. cleaned css on the left in a "cleaned" directory
+      'cleaned/css/app-cleaned.css': ['banded.html', 'feed.html', 'grid.html', 'marketing.html', 'store.html']
+      }
+    }
+  }, // <- notice the comma
+</code>
+</pre>
+      <p>
+        To separate the cleaned css from the full css file I'll save the uncss task created css file into the
+        "cleaned" directory.
+      </p>
+      <h4 class="heading">
+        Processhtml Task
+      </h4>
+      <p>
+        This task is done in two parts. The first part is creating the task in our gruntfile. Processhtml will take
+        the files on the right (our input) and scan those for a snippet we will place in each file then place those in
+        the directory specified on the left.
+      </p>
+    <pre class="language-javascript">
+<code>
+  processhtml: {
+    dist: {
+      files: {
+        'cleaned/banded.html'   : ['banded.html'],
+        'cleaned/feed.html'     : ['feed.html'],
+        'cleaned/grid.html'     : ['grid.html'],
+        'cleaned/marketing.html': ['marketing.html'],
+        'cleaned/store.html'    : ['store.html']
+      }
+    }
+  },
+</code>
+</pre>
+      <p>
+        Here is the snippet we will place in each of the HTMl files on the right of the task
+      </p>
+    <pre class="language-markup">
+<code>
+  &lt;!-- build:css css/app-cleaned.min.css --&gt;
+  &lt;link rel="stylesheet" href="css/app.css" /&gt;
+  &lt;!-- /build --&gt;
+</code>
+</pre>
+      <p>
+        During the Processhtml task it will search your HTML files for this snippet. It will repleace our "app.css"
+        with the css file with the .min.css extension located in the "cleaned/css" directory. The minified css will
+        come from the cssmin task.
+      </p>
+      <h4 class="heading">
+        Autoprefixer Task
+      </h4>
+      <p>
+        Autoprefixer will place needed vendor prefixes our css using data from
+        <a class="external-link"
+           href="//caniuse.com">Caniuse <svg class="link-icon"
+                                             role="presentation"
+                                             title="External Link Icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>.
+        We'll use the default values from the Autoprefixer github page and use the needed prefixes for the last 2
+        versions of all browser, Internet Explorer 8 and 9 and Android 2.3. The input is our cleaned CSS file from
+        uncss task. We will save it in the same directory under the same name.
+      </p>
+    <pre class="language-javascript">
+<code>
+  autoprefixer: {
+    options: {
+      browsers: ['last 2 versions', 'ie 8', 'ie 9', 'Android 2.3']
+      },
+      target: {
+        src: 'cleaned/css/app-cleaned.css',
+        dest: 'cleaned/css/app-cleaned.css'
+    }
+  },
+</code>
+</pre>
+      <h4 class="heading">
+        Cssmin Task
+      </h4>
+      <p>
+        Cssmin will take our file we have created from uncss and autoprefixer and minify it. Again the input file is
+        on the right and our new file with the .min.css extension we will like to create is on the left.
+      </p>
+    <pre class="language-javascript">
+<code>
+  cssmin: {
+    minify: {
+      files: {
+      'cleaned/css/app-cleaned.min.css': ['cleaned/css/app-cleaned.css']
+      }
+    }
+  }
+</code>
+</pre>
+    </section>
+    <!-- /#setup -->
+    <section id="running">
+      <h3 class="heading">
+        Running a Task
+      </h3>
+      <p>
+        You can now open up your terminal/command prompt in your project directory if you closed it and enter
+        <code class="language-bash"> grunt [task-name] </code>
+        for each task you wish to run. That is time consuming if you have a large gruntfile and many plugins and kind
+        of defeats the purpose of a task runner. To fix this we will register a task, call this task "clean". This task
+        will build our css from scss the run uncss followed by autoprefixer, minify our prefixed-cleaned css then copy
+        hose files over to our "cleaned" directory.
+      </p>
+      <p>
+        At the bottom of your Gruntilfe in the
+        <code class="language-javascript"> grunt.registerTask('task name') </code>
+        section place this:
+      </p>
+    <pre class="language-javascript">
+<code>
+  // default foundation grunt tasks
+  grunt.registerTask('build', ['sass']);
+  grunt.registerTask('default', ['build','watch']);
+  // our task we are registering
+  grunt.registerTask('clean', ['build', 'uncss', 'autoprefixer', 'cssmin', 'processhtml']);
+</code>
+</pre>
+      <p>
+        Now we can run
+        <code class="language-bash"> grunt clean </code> from your terminal
+      </p>
+      <img class="center" alt="grunt task running" src="/files/task.gif" />
+      <h4 class="heading">
+        Results
+      </h4>
+      <table class="table-no-style">
+        <thead>
+        <tr>
+          <th width="80">
+            &nbsp;
+          </th>
+          <th width="200" class="table-number">
+            Before <a class="image-popup-vertical-fit" title="before uncss" href="/files/results-reg.png">Photo <svg class="link-icon"
+                                                                                                                     role="presentation"
+                                                                                                                     title="Image Popup Icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-picture"></use></svg></a>
+          </th>
+          <th width="200" class="table-number">
+            After <a class="image-popup-vertical-fit" title="after uncss" href="/files/results-uncss.png">Photo <svg class="link-icon"
+                                                                                                                     role="presentation"
+                                                                                                                     title="Image Popup Icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-picture"></use></svg></a>
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>
+            Css Size
+          </td>
+          <td class="table-number">
+            16KB
+          </td>
+          <td class="table-number">
+            4KB
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <p>
+        The results are great! We shrunk the complete css file from 16 KB compressed to 4. Your users on low bandwidth
+        connections will love you. After all <a class="external-link"
+                                                href="https://twitter.com/search?q=%23perfmatters&amp;src=typd">#PerfMatters <svg class="link-icon"
+                                                                                                                                  role="presentation"
+                                                                                                                                  title="External Link Icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>.
+      </p>
+      <p>
+        The only issue we have now is some of the Foundation components no longer work. Things like the topbar will no
+        longer open on small mobile menu screens. <a class="image-popup-vertical-fit" title="topbar not working" href="/files/topbar-broke.gif">Example <svg class="link-icon"
+                                                                                                                                                             role="presentation"
+                                                                                                                                                             title="Image Popup Icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-picture"></use></svg></a>
+      </p>
+    </section>
+    <!-- /#running -->
+    <section id="fixing">
+      <h3 class="heading">
+        Fixing Components
+      </h3>
+      <p>
+        Fixing the broke components can be done at least two ways. The first way is to add an option parameter to
+        uncss and have it ignore the selectors you place there or a regular expression.
+      </p>
+    <pre class="language-javascript">
+<code>
+  uncss: {
+    dist: {
+      files: { // files scanned on the right. cleaned css on the left in a "cleaned" directory
+      'cleaned/css/app-cleaned.css': ['banded.html', 'feed.html', 'grid.html', 'marketing.html', 'store.html']
+      }
+    },
+    options: {
+      ignore: ['.top-bar .expanded', 'other selectors']
+    }
+  },
+</code>
+</pre>
+      <p>
+        Doing this can fix the problem if you know all of the selectors generated by Javascript or are really handy
+        with regex's.
+      </p>
+      <p>
+        The other longer more involved method would be to edit your 'app.scss' file in your scss folder. Comment out
+        the main Foundation import in your app.scss file and then proceed to un comment all the components you wish to
+        use. When you come across a component that was broke after running uncss leave it commented out. In this case
+        its topbar.scss
+      </p>
+    <pre class="language-css">
+<code>
+  @import "settings";
+  // @import "foundation";
+  // Or selectively include components
+  @import
+  "foundation/components/accordion",
+  "foundation/components/alert-boxes",
+  "foundation/components/block-grid",
+  /* rest of the components .... */
+  // "foundation/components/top-bar",
+</code>
+</pre>
+      <p>
+        In your scss directory create a new scss file. This file will contain the scss/css files that were broken on
+        the previous running of uncss. Copy over the imports from app.scss into this file and save.
+      </p>
+    <pre class="language-css">
+<code>
+  @import "foundation/components/top-bar";
+</code>
+</pre>
+      <h4 class="heading">
+        Fixing the Gruntfile
+      </h4>
+      <p>
+        Open up your gruntfile and head to the sass task. We want it to compile a separate style sheet for our topbar
+        scss file. Add this option.
+      </p>
+    <pre class="language-javascript">
+<code>
+  sass: {
+    options: {
+      includePaths: ['bower_components/foundation/scss']
+    },
+    dist: {
+      options: {
+      outputStyle: 'compressed'
+      },
+      files: {
+        'css/app.css': 'scss/app.scss',
+        // our component file on the right
+        // file to save on the left
+        'css/top-bar.css' : 'scss/topbar.scss'
+      }
+    }
+  },
+</code>
+</pre>
+      <p>
+        Once you have completed that part you'll have to edit the cssmin task. We want to combine the two css files
+        generated by the sass build task into one file after uncss has ran then minify it.
+      </p>
+    <pre class="language-javascript">
+<code>
+  cssmin: {
+  // the combine task
+    combine: {
+      files: {
+      'cleaned/css/app-cleaned.css': ['cleaned/css/app-cleaned.css', 'css/top-bar.css']
+      }
+    },
+    minify: {
+      files: {
+      'cleaned/css/app-cleaned.min.css': ['cleaned/css/app-cleaned.css']
+      }
+    }
+  }
+</code>
+</pre>
+      <p>
+        We can now run grunt clean from our project directory and have a working topbar.
+        <a class="image-popup-vertical-fit" title="topbar fixed" href="/files/topbar-fixed.gif">Example <svg class="link-icon"
+                                                                                                             role="presentation"
+                                                                                                             title="Image Popup Icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-picture"></use></svg></a>.
+      </p>
+    </section>
+    <!-- /#fixing -->
+    <section id="wrapup">
+      <h3 class="heading">
+        Result Comparision
+      </h3>
+      <table class="table-no-style">
+        <thead>
+        <tr>
+          <th width="80">
+            &nbsp;
+          </th>
+          <th width="200" class="table-number">
+            All components <a class="image-popup-vertical-fit" title="after uncss" href="/files/results-uncss.png">Photo <svg class="link-icon"
+                                                                                                                              role="presentation"
+                                                                                                                              title="Image Popup Icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-picture"></use></svg></a>
+          </th>
+          <th width="250" class="table-number">
+            Separate components <a class="image-popup-vertical-fit" title="after uncss" href="/files/topbar-fixed.png">Photo <svg class="link-icon"
+                                                                                                                                  role="presentation"
+                                                                                                                                  title="Image Popup Icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-picture"></use></svg></a>
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>
+            Css Size
+          </td>
+          <td class="table-number">
+            4KB
+          </td>
+          <td class="table-number">
+            5KB
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <p>
+        Creating a standalone top-bar.css file will also include all of the grid css classes. You can see from the
+        above example its not much of a size difference when using compression to serve your site (which is highly recommended).
+        You can shrink the entire css file more once you are ready to put your site into production. After you have
+        built your assets (by running <code class="language-bash"> grunt build </code>) you'll have two css files.
+        This instance we'll have app.css and top-bar.css. We can then take steps to shrink
+        this file by running indiviual grunt tasks. In order to use this option we must remove the unnecessary css
+        from our component css (top-bar.css). Open this file and remove the grid classes and the meta.mq classes and
+        save the top-bar.css. You can then run the individual tasks or build a new task.
+      </p>
+      <div class="snippet ind-panel">
+        <p>
+          Individual
+        </p>
+        <ul class="no-bullet">
+          <li>Run Grunt uncss (will remove css from our app.css save it as app-cleaned)</li>
+          <li>Run Grunt processhtml</li>
+          <li>Run Grunt autoprefixer</li>
+          <li>Run Grunt cssmin</li>
+        </ul>
+      </div>
+      <table class="table-no-style">
+        <thead>
+        <tr>
+          <th width="100">
+          </th>
+          <th width="300" class="table-number">
+            Before <a class="image-popup-vertical-fit" title="grid included" href="/files/grid-included.png">Photo <svg class="link-icon"
+                                                                                                                        role="presentation"
+                                                                                                                        title="Image Popup Icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-picture"></use></svg></a>
+          </th>
+          <th width="300" class="table-number">
+            After <a class="image-popup-vertical-fit" title="grid removed" href="/files/grid-removed.png">Photo <svg class="link-icon"
+                                                                                                                     role="presentation"
+                                                                                                                     title="Image Popup Icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-picture"></use></svg></a>
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>
+            Css Size
+          </td>
+          <td class="table-number">
+            5 KB (30 KB uncompressed)
+          </td>
+          <td class="table-number">
+            4 KB (18 KB uncompressed)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Page Weight
+          </td>
+          <td class="table-number">
+            71 KB (246 KB uncompressed)
+          </td>
+          <td class="table-number">
+            70 KB (234 KB uncompressed)
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <p>
+        Run the clean task at the end of your build process and separate your cleaned css file from your development
+        files in case anything breaks. You don't need to use another directory as I did with <em>'cleaned'</em>. You
+        could just give it a different name (ie <em>tidy.css</em> or <em>cleaned.css</em>). If something does break you
+        don't have to worry about you writting over the one that worked and you can troubleshoot from there.
+      </p>
+      <p>
+        Css frameworks don't have to be "bloated" or heavy. With the increase of people accessing the internet with
+        mobile devices it helps to send assets down to their device that aren't littered with unnecessary css.
+      </p>
+    </section>
+  <!-- /#wrapup -->
+ 
+{# Include Footer, closing main, scripts and body #}
