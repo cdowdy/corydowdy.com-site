@@ -1,0 +1,45 @@
+{#
+    08/16/2014
+#}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="push-down">
+        <div class="demo-link center-text">
+            <figure>
+                <a href="/demos/concrete5-magnific-popup"><span class="visuallyhidden">Concrete 5 Magnific Popup</span>
+                    <svg class="center full-size-icon">
+                        <use xlink:href="{{ paths.theme }}svgsprites/linkicons-sprite.svg#demo-c5-demo"></use>
+                    </svg>
+                </a>
+                <figcaption>
+                    <h4>
+                        Concrete5 Magnific Popup
+                    </h4>
+                    <p>
+                        Add-on using Magnific Popup Lightbox Plugin
+                    </p>
+                </figcaption>
+            </figure>
+        </div>
+        <div class="demo-link center-text">
+            <figure>
+                <a href="/demos/concrete5-responsive-images"><span class="visuallyhidden">Concrete 5 Responsive Images</span>
+                    <svg  class="center full-size-icon">
+                        <use xlink:href="{{ paths.theme }}svgsprites/linkicons-sprite.svg#demo-c5-demo"></use>
+                    </svg>
+                </a>
+                <figcaption>
+                    <h4>
+                        Concrete 5 Responsive Images
+                    </h4>
+                    <p>
+                        Add-on using Picturefill and Foundation Interchange
+                    </p>
+                </figcaption>
+            </figure>
+        </div>
+    </div>
+    <!-- /.push-down -->
+{% endblock %}
