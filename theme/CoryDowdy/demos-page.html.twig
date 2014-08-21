@@ -4,6 +4,11 @@
 
 {% extends 'base.html.twig' %}
 
+ {% block enhance_js_meta %}
+     {{ parent() }}
+     <meta name="fulljs"  content="{{ paths.theme }}js/homepage.js">
+ {% endblock %}
+
 {% block body %}
     <div class="push-down">
         <div class="demo-link center-text">
