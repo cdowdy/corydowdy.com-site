@@ -18,4 +18,4 @@ Projects Used In this theme:
   * [Parsley Github](https://github.com/guillaumepotier/Parsley.js/)
   * [Parsley Home Page](http://parsleyjs.org/)
 * Enhance by the Filament Group for async loading of JavaScript and CSS
-  * [Enhance Github Page](https://github.com/filamentgroup/enhance) 
+  * [Enhance Github Page](https://github.com/filamentgroup/enhance)   
