@@ -1,0 +1,546 @@
+ {# Include header, navigation here #}
+  <section id="intro">
+    <p>
+      When I'm developing a website one of the development considerations I take into account among many is Website/Webpage
+      performance. I want my site or the site I'm working on to load or look like its loaded as fast as possible with
+      as few requests as possible. Slow loading websites are a pain the in ass for an end user. Slow rendering pages
+      can make the difference of a visitor to your site using your service or moving on to one of your competitors.
+      We don't want that.
+    </p>
+    <p>
+      Ideally we want our sites to render in 1000ms (1 second!) &mdash; <a class="external-link" href="//www.youtube.com/watch?v=Il4swGfTOSM">Breaking the 1000ms Time to Glass Mobile Barrier <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-youtube"></use></svg></a>.
+      Yes you read that right 1 second. How do we get there though is the big question. Images followed by JavaScript
+      and CSS tend to be the heaviest parts of webpages in respect to size and requests so that seems like the logical
+      spot to start our optimizations.
+    </p>
+  </section>
+  <!-- /#intro -->
+  <section id="ps-rules">
+    <h3 class="heading">Web Performance Best Practices</h3>
+    <p>
+      I'm not going to go over all of the best practices provided by Google &mdash;
+      <a class="external-link" href="//developers.google.com/speed/docs/best-practices/rules_intro">Page Speed Rules <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+      &amp; <a class="external-link" href="//developers.google.com/web/fundamentals/">Google Web Fundamentals Performance Section <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+      &mdash; or <a class="external-link" href="//developer.yahoo.com/performance/">Yahoo <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+      and <a class="external-link" href="//stevesouders.com/hpws/rules.php">Steve Souders <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+      because this is already a lengthy post. I will go over some of the ones that can be achieved easiest.
+    </p>
+    <p>
+      The ones I'll be focusing on in this post are:
+    </p>
+    <ol>
+      <li>Optimize Images</li>
+      <li>Enable Compression</li>
+      <li>Minimize Requests, Minify CSS and JavaScript</li>
+      <li>Inline Critical CSS</li>
+      <li>Avoid Render Blocking JavaScript</li>
+    </ol>
+
+  </section>
+  <!-- /#ps-rules -->
+  <section id="getting-started">
+    <h3 class="heading">Getting Started: A baseline</h3>
+    <p>
+      Before implementing any of the web performance best practices it's best to have a baseline of what your site
+      currently "scores" and how heavy your images may or may not be. Luckily there isn't a shortage of tools to use
+      to get this baseline.
+    </p>
+    <table>
+      <tr>
+        <td><a href="//developers.google.com/speed/pagespeed/insights/">Google PageSpeed Insights</a></td>
+        <td>Enter your domain name and select <em>Analyze</em>. There is also Firefox and Chrome Extensions
+          Available <a  href="//developers.google.com/speed/pagespeed/insights_extensions">Extensions</a></td>
+      </tr>
+      <tr>
+        <td><a href="//gtmetrix.com/">GTMetrix</a></td>
+        <td>Enter your domain name and select <em>Go</em></td>
+      </tr>
+      <tr>
+        <td><a href="//tools.pingdom.com/fpt/">Pingdom Tools Website Speed Test</a></td>
+        <td>Enter your domain and select <em>Test Now</em></td>
+      </tr>
+      <tr>
+        <td><a href="//developer.yahoo.com/yslow/">Yahoo YSlow</a></td>
+        <td>This is a browser extension/bookmarklet and command line/terminal tool.</td>
+      </tr>
+      <tr>
+        <td><a href="//www.sitespeed.io/">Sitespeed.io</a></td>
+        <td>Command Line/Terminal tool. Produces a lot of information on your site. Extremely handy.</td>
+      </tr>
+      <tr>
+        <td><a href="//www.webpagetest.org/">Webpagetest.org</a></td>
+        <td>Everyone should use Webpagetest. Will test mobile/desktop and multitude of browsers.</td>
+      </tr>
+    </table>
+    <p>
+      In addition to those above mentioned tools there are copious amounts of browser extensions to use. One of the
+      better ones is the Web Developer Toolbar
+      <a class="external-link" href="//chrome.google.com/webstore/detail/web-developer/bfbameneiokkgbdmiekhjnmfkcnldhhm?hl=en-US">Chrome Version <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+      &ndash; <a class="external-link" href="//addons.mozilla.org/en-US/firefox/addon/web-developer/">FireFox Version <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>.
+    </p>
+    <p>
+      Once you have your baseline from any of the above services we can move on to the nuts and bolts of actually
+      speeding up our site. Throughout this post I'll be working on a page from my site
+      ( <a href="//corydowdy.com/demos">corydowdy.com/demos</a> ) that has already had some of the best practices
+      applied and is using <a class="external-link" href="//developers.google.com/speed/pagespeed/module">Google's Mod_PageSpeed <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a> Apache Module.
+    </p>
+    <p>
+      The baseline I'll be using is split into two parts. One with PageSpeed Module turned off on <a class="image-popup-vertical-fit" title="before desktop" href="//cdn.corydowdy.com/assets/blog/desktop-no-PS.png">desktop <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-picture"></use></svg></a>
+      and off on <a class="image-popup-vertical-fit" title="before mobile" href="//cdn.corydowdy.com/assets/blog/mobile-no-PS.png">mobile <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-picture"></use></svg></a>.
+      The other with PageSpeed service on for the <a class="image-popup-vertical-fit" title="PageSpeed desktop" href="//cdn.corydowdy.com/assets/blog/desktop-PS.png">desktop <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-picture"></use></svg></a>
+      and <a class="image-popup-vertical-fit" title="PageSpeed Mobile" href="//cdn.corydowdy.com/assets/blog/mobile-PS.png">mobile <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-picture"></use></svg></a>
+      devices which you can see causes a few issues that I'll fix further on down. Your website will more than likely
+      have only one baseline to go from.
+    </p>
+    </section>
+  <!-- /#getting-started -->
+  <section id="img-opti">
+    <h3 class="heading">Image Optimization</h3>
+    <p>
+      Images, as I said earlier, are usually the heaviest and biggest components in our web pages / web sites. So
+      making these smaller can give us huge gains. Particularly when choosing the right image format. Some quick and
+      dirty rules on choosing the correct image format.
+    </p>
+    <ul class="no-bullet">
+      <li>If its a Photo &rarr; JPEG</li>
+      <li>If its a Logo, Line Art &rarr; SVG</li>
+      <li>If its a graphic with multiple colors &rarr; PNG over GIF (PNG better compression)</li>
+      <li>If its a long animation &rarr; use <code class="language-markup">&lt;video&gt;</code></li>
+    </ul>
+    <p>
+      Those rules are quick and dirty because not every browser supports SVG and I left out one of my newer favorite
+      formats - <a class="external-link" href="//developers.google.com/speed/webp/?csw=1">WebP <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>.
+    </p>
+    <p>
+      Image optimization tools are a plenty. Addy Osmani has a great post on
+      <a class="external-link" href="//addyosmani.com/blog/image-optimization-tools/">Image Optimization Tools <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+      that gathers many of the desktop and browser based tools to optimize images. If you're not into grunt / gulp or
+      any of the other JavaScript task runners and are able to install server modules I highly recommend taking
+      advantage of <a class="external-link" href="//developers.google.com/speed/pagespeed/module">mod_pagespeed <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>.
+      It will optimize your images and convert them to many formats including to WebP for supported browsers.
+      If you're not in the position to install server modules then you may want to look at the
+      <a class="external-link" href="//developers.google.com/speed/pagespeed/service">PageSpeed Service <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>.
+    </p>
+    <p>
+      Another way to get an optimized image is to use Google's PageSpeed Chrome extension. Open up the DevTools Panel
+      (<kbd>ctrl</kbd>+<kbd>shift</kbd>+<kbd>i</kbd> on Windows or <kbd>cmd+opt+i</kbd> Mac ) and navigate to the
+      PageSpeed tab (baring that you have the pagespeed extension listed up top installed). Select Analyze. If you have
+      images that can be optimized they will be listed under the "Optimize Images" suggestion. You may then click the
+      "<a class="image-popup-vertical-fit" title="PageSpeed Image Optimization" href="//cdn.corydowdy.com/assets/blog/pagespeed-image-opti.jpg">see optimized content <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-picture"></use></svg></a>"
+      link. Open for each image and save to your image directory. This can be a cumbersome process so the use one of
+      the previously mentioned tools can be extremely helpful.
+    </p>
+    <p>
+      The final piece to the image optimization puzzle is responsive images. Recently the
+      <a class="external-link" href="//responsiveimages.org/">Responsive Images Community Group (RICG) <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+      put together a proposal for responsive images. Their work produced the picture element and the srcset element.
+      You can use these elements today (even in browsers like Internet Explorer!) by taking advantage of the
+      Filament Group's <a class="external-link" href="//scottjehl.github.io/picturefill/">PictureFill <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+      polyfill.
+    </p>
+    <ul class="no-bullet">
+      <li>Other Responsive Image Solutions</li>
+      <li><a class="external-link" href="//foundation.zurb.com/docs/components/interchange.html">Foundation Interchange</a></li>
+      <li><a class="external-link" href="//css-tricks.com/which-responsive-images-solution-should-you-use/">CSS-Tricks: which responsive image solution to use.</a></li>
+    </ul>
+  </section>
+  <!-- /#img-opti -->
+  <section id="compression">
+    <h3 class="heading">Compression</h3>
+    <p>
+      Enabling compression can be different depending on your server you host your site on. The simplest way to do it
+      is to head over to the <a class="external-link" href="//github.com/h5bp/server-configs">HTML5 boilerplate server configs section on github  <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>.
+      The section labeled under <em>Web Performance</em> has Expires headers and enables compression for you. Drop
+      that into your web root and you're good to go. Example of the Apache specific lines I'm talking about can be
+      found on lines <a class="external-link" href="//github.com/h5bp/server-configs-apache/blob/master/.htaccess#L491-622">491-622 <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>.
+    </p>
+    <h5 class="heading">Helpful Compression Links</h5>
+    <ul class="no-bullet">
+      <li>Enable <a class="external-link" href="//www.feedthebot.com/pagespeed/enable-compression.html">GZIP <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a> by Patrick Sexton on Feedthebot</li>
+      <li><a class="external-link" href="//www.html5rocks.com/en/tutorials/speed/txt-compression/">Text Compression For Developers <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a> by Colt McAnlis on HTML5 Rocks</li>
+    </ul>
+  </section>
+  <!-- /#compression -->
+<section id="min-requests">
+  <h3 class="heading">Minimize Requests</h3>
+  <p>
+    My Demos page has four (4) CSS files and six (6) JavaScript files loaded externally and two images inside
+    an <code class="language-markup">&lt;img&gt;</code> tag. This may seem like a lot of JavaScript to some people
+    and not many to others. Since my normal work flow uses Grunt unCSS I separate my individual component CSS
+    (navigation plug ins etc) in order to keep dynamically created css from breaking after the uncss task. A sample of
+    that work flow can be found
+    <a class="external-link" href="//corydowdy.com/blog/foundation-5-sass-and-grunt-uncss">here <svg class="link-icon">
+      <use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg>.</a>
+  </p>
+  <p>
+    As I mentioned before I use Grunt in my work flow. You don't have to use any task runner. None at all. This is
+    strictly my preference. It makes things easier for me but each persons workflow is different so don't paint yourself
+    into a corner thinking you <strong>NEED</strong> to use a task runner. For those who do not use a task runner like
+    Grunt here are some other tools you can use to concatenate and minify your JavaScript files and minify and combine
+    your CSS files.
+  </p>
+  <ul class="no-bullet">
+    <li>Broswer Based. By No means is this a complete list</li>
+    <li><a class="external-link" href="//refresh-sf.com/yui/">Online YUI Compressor</a></li>
+    <li><a class="external-link" href="//jscompress.com/">JS Compress</a></li>
+    <li><a class="external-link" href="//www.minifycss.com/css-compressor/">MinifyCSS</a></li>
+    <li><a class="external-link" href="//marijnhaverbeke.nl/uglifyjs">uglifyjs</a></li>
+  </ul>
+  <ul class="no-bullet">
+    <li>Desktop Apps</li>
+    <li><a class="external-link" href="//incident57.com/codekit/">CodeKit (Mac only)</a></li>
+    <li><a class="external-link" href="//koala-app.com/">Koala App (Cross Platform)</a></li>
+    <li><a class="external-link" href="//alphapixels.com/prepros/">PrePros (Cross Platform)</a></li>
+    <li><a class="external-link" href="//mhs.github.io/scout-app/">Scout App (Cross Platform)</a></li>
+    <li><a class="external-link" href="//mixture.io">Mixture.io (Cross Platform)</a></li>
+  </ul>
+  <p>
+    To minimize my request size I'll use <a class="external-link" href="//github.com/gruntjs/grunt-contrib-cssmin">grunt-contrib-cssmin <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+    to minify and combine my css files and <a class="external-link" href="//github.com/gruntjs/grunt-contrib-concat">grunt-contrib-concat <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+    and <a class="external-link" href="//github.com/gruntjs/grunt-contrib-uglifyt">uglify <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+    to minify and combine my JavaScript files. I'll install these to my project files in one command.
+  </p>
+  <pre class="language-bash"><code>npm install grunt-contrib-cssmin grunt-contrib-concat grunt-contrib-uglify --save-dev</code></pre>
+
+  <p>
+    Once those are installed I'll move on to the Gruntfile and setup which CSS files I want combined and the Javascript
+    files I want to combine and uglify (minify) paying close attention to their order. I don't want a JavaScript
+    plug-in dependent on JQuery being loaded after JQuery.
+  </p>
+  <p>
+    An example Gruntfile follows:
+  </p>
+<pre class="language-javascript">
+<code>
+  // cssmin setup
+  cssmin: {
+    combine: {
+      files: {
+        // File to create      CSS Files I want to combine and minify
+        'css/app.min.css': ['css/demo.css', 'css/demo-menu.css','css/another-demo.css', 'css/demo-3.css']
+      }
+    }
+  },
+  // concat and uglify setup
+  concat: {
+    options: {
+      separator: ';'
+    },
+    basic: {
+      // javascript files I want to combine
+      src: ['jquery.js','js-1.js','js-2.js','js-3.js', 'js-4.js', 'js-5.js'],
+      // The Resulting JavaScript I want to create
+      dest: 'js/min/cd-demos.comb.js'
+    }
+  },
+  uglify: {
+    options: {
+      // the banner is inserted at the top of the output
+      banner: '/*! &lt;%= pkg.name %&gt; &lt;%= grunt.template.today("dd-mm-yyyy") %&gt; */\n',
+      compress: {
+        drop_console: true
+      }
+    },
+    dist: {
+      files: {
+      'js/min/&lt;%= pkg.name %&gt;-demos.min.js' : ['js/min/cd-demos.comb.js']
+      }
+    }
+  },
+</code>
+</pre>
+  <p>
+    After setting up the files I want grunt to create and use we can move on to enabling the task and registering
+    them so we can run them from our terminal.
+  </p>
+<pre class="language-javascript">
+<code>
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-concat');
+</code>
+</pre>
+  <p>
+    You can register a grunt task that will combine any of the plugins you installed to run at once. Since I'm using
+    Sass I'll create a build task to compile my Scss to CSS, combine the separate component CSS files then minify it.
+    The JavaScript task will concat the multiple JS files then uglify them.
+  </p>
+<pre class="language-javascript">
+<code>
+  grunt.registerTask( 'build', ['sass', 'cssmin'] );
+  grunt.registerTask( 'buildjs', ['concat', 'uglify'] );
+</code>
+</pre>
+  <p>
+    When you register a task it allows you to call it from your command line. For instance if I were to
+    type <code class="language-bash"> grunt build </code> it will run grunt-sass and grunt-contrib-cssmin on the
+    targets I specified in my Gruntfile. Same goes for the task I called <em>buildjs</em> above. By doing the above I
+    have reduced my CSS and JavaScript requests from ten (10) to two (2).
+  </p>
+</section>
+<!-- /#min-requrest -->
+<section id="inlinedcss">
+  <h3 class="heading">Inline Critical CSS</h3>
+  <p>
+    Inlining CSS is simple if you have very small css file (14 kb or so) but it too comes with some warnings. You will
+    save a trip to the server to get your CSS (good!) but you will lose out on it being able to be cached. To inline
+    CSS copy the small css into a <code class="language-markkup">&lt;style&gt;</code> tag in your head.
+  </p>
+<pre class="language-markup">
+  <code>
+&lt;!doctype html&gt;
+  &lt;html class="no-js" lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+    &lt;title&gt;Inline CSS&lt;/title&gt;
+    &lt;style&gt;
+    header {
+    /* header styles */
+    }
+    nav {
+    /* menu styles */
+    }
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;header&gt;
+      &lt;nav&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;img src="logo.svg" alt="logo" &gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href="index.html"&gt;Home&lt;/a&gt;&lt;/li&gt;
+  </code>
+</pre>
+  <p>
+    You may notice there is no <code class="language-markup"> &lt;link&gt; </code> tag containing a CSS file. Link
+    tags will block painting of the web page which will slow down rendering. Few ways to combat this are outlined at
+    <a class="external-link" href="//calendar.perfplanet.com/2012/make-your-mobile-pages-render-in-under-one-second/">Make Mobile Pages Render in Under 1 Second <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+    and <a class="external-link" href="//plus.google.com/+PaulIrish/posts/Ahn8VkC36nM">loading stylesheets without blocking painting <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>.
+    Currently my favorite way to load stylesheets async is <a class="external-link" href="//github.com/filamentgroup/loadCSS">loadCSS</a>
+    by the Filament Group. You may choose to skip all that and just plop your css link in your head. This comes down to
+    your performance "budget" and how much time and knowledge you're willing to spend.
+  </p>
+  <p>
+    If you page is small and your not dealing with responsive design you can just plug the css needed to render the
+    "above the fold" content on the first request like we did above. If you're not in that position but you have a
+    VPS/Dedicated Server or your hosting provider allows you to install modules then save yourself some hair pulling
+    and a lot of work and install Mod_PageSpeed. Once PageSpeed is installed you can inline css by enabling the
+    <a class="external-link" href="//developers.google.com/speed/pagespeed/module/filter-css-inline">inline_css <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+    filter. To Prioritize Critical CSS with Mod_PageSpeed you can enable the
+    <a class="external-link" href="//developers.google.com/speed/pagespeed/module/filter-prioritize-critical-css">prioritize_critical_css <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+    filter. Mod_PageSpeed really is worth installing and that good!
+  </p>
+  <p>
+    For those not fortunate to have Mod_PagSpeed Paul Kinlan, a Chrome Devoloper Advocate, has created a JavaScript
+    snippet to find the above the fold content in his post
+    <a class="external-link" href="//paul.kinlan.me/detecting-critical-above-the-fold-css/">Detecting Critical Above the Fold CSS <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>.
+    There is also a <a class="external-link" href="//www.youtube.com/watch?v=CfmUf1_M9lI">demo video <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-youtube"></use></svg></a>.
+    Feedthebot has a post on <a class="external-link" href="//www.feedthebot.com/pagespeed/prioritize-visible-content.html">how to prioritize critical content <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>.
+  </p>
+  <h5 class="heading">Update: 6/10/2014</h5>
+  <p>
+    Above I mentioned just "dropping" in a small stylesheet into your head inside style tags. This can and will work
+    but in regards to RWD (Resposive Web Design) we have these things called media queries. As a developer we don't
+    know anything about the users screen size. Is it mobile device? What is considered above the fold (how "tall" the
+    screen is)? Scott Jehl (<a class="external_link" href="//twitter.com/scottjehl">@scottjehl</a>) suggests instead
+    of thinking "mobile first" that if you're going to inline or "embed" css that we should start thinking "global first".
+  </p>
+  <div class="container">
+    <div class="snippet">
+      <blockquote class="twitter-tweet" lang="en">
+        <p>
+          WRT inlining critical CSS &amp; async-loading the rest, I’m starting wonder if instead of “mobile-first,”
+          we should be thinking “global-first.”
+        </p>
+        &mdash; Scott Jehl (@scottjehl) <a href="https://twitter.com/scottjehl/statuses/476032494014566404">June 9, 2014</a>
+      </blockquote>
+      <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+  </div>
+  <p>
+    The CSS that you can, or rather should, inline/embed into the head is the CSS that will render a useable page on
+    any and all devices (think text stylings, basic page structure etc). Then you can load the "enhaced" or rest of the
+    css to fully render your page. Keeping in mind that the inlined CSS portion should be small and able to be fetched
+    in the first round trip to your server.
+  </p>
+  <ul class="no-bullet">
+    <li>More Resources On Critical CSS</li>
+    <li>
+      <a class="external-link"
+           href="//developers.google.com/web/fundamentals/performance/critical-rendering-path/">Google Web Fundamentals:
+      Critical Rendering Path</a>
+    </li>
+    <li>
+      <a class="external-link"
+           href="//developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp">Analyzing
+      Critical Rendering Path</a>
+    </li>
+    <li>
+      <a class="external-link"
+           href="//decadecity.net/blog/2014/05/07/asynchronous-css-delivery-for-fault-tolerance#linline-css">Asynchronous
+      CSS Delivery</a>
+    </li>
+    <li>
+      <a class="external-link"
+           href="//developers.google.com/speed/docs/insights/PrioritizeVisibleContent">Prioritze Visible Content</a>
+    </li>
+    <li>
+      <a class="external-link"
+           href="//cdn.oreillystatic.com/en/assets/1/event/99/Prioritize%20Your%20Critical%20CSS%20and%20Images%20To%20Make%20Your%20Site%20Fast%20Presentation.pdf">
+        Velocity NYC 2013 - Slides: Prioritize Your Critical CSS and Images</a>
+    </li>
+    <li>
+      <a class="external-link"
+           href="//youtu.be/n7NyD5C8YvU">Velocity NYC 2013 - Video: Prioritize Your Critical CSS and Images</a>
+    </li>
+    <li>
+      <a class="external-link"
+           href="//www.igvita.com/2012/06/14/debunking-responsive-css-performance-myths/">Ilya Grigorik: Debunking
+        Responsive CSS Performance Myths</a>
+    </li>
+    <li>
+      <a class="external-link"
+           href="https://github.com/filamentgroup/loadCSS/">A function for loading CSS asynchronously: Scott Jehl,
+        Filament Group</a>
+    </li>
+  </ul>
+</section>
+<!-- /#inlinedcss -->
+<section id="blockingjs">
+  <h3 class="heading">Render Blocking JS</h3>
+  <p>
+    To avoid Render Blocking JavaScript we can do two things with minimal work. Either add the "defer" attribute to your script
+    tags <code class="language-markup">&lt;script src="1.js" defer&gt;&lt;/script&gt; </code> or the "async" attribute
+    to your script tags <code class="language-markup">&lt;script src="1.js" async&gt;&lt;/script&gt; </code>. Defer
+    works by waiting till <strong>After</strong> the HTML parser is finished. Async works by letting HTML parsing to
+    continue and then load the scripts whenever they are ready. Both of these methods do not take into account script order
+    so dependencies may be loaded after the script they are dependent on. Another way to load scripts in a non blocking
+    manner is to use a script loader such as <a class="external-link" href="//requirejs.org/">RequireJS <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+    which can seem and be a little bit complicated. &mdash;<em>YO, YOU NEED TO LOAD JAVASCRIPT...HERE'S SOME JAVASCRIPT TO LOAD YOUR
+    JAVASCRIPT!!!</em> &mdash;. If you'd rather skip the sometimes very complicated world of script loading take a look
+    at Mod_PageSpeed and enabled the <a class="external-link" href="//developers.google.com/speed/pagespeed/module/filter-js-defer">defer_javascript <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+    filter.
+  </p>
+  <p>
+    If you're doing any JavaScript modifications as the page loads this may cause problems. So make sure you test in a dev
+    environment before deploying. Ilya Grigorik says <a class="external-link" href="//www.igvita.com/2014/05/20/script-injected-async-scripts-considered-harmful/">Async is ready for every browser <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+    due to preloading scanners and has a few things to consider at the end of his post. He also suggest removing
+    <em>defer</em> altogether in preference to async. To support older browsers that do not recognize <em>async</em>
+    he suggest adding defer also like so:
+    </p>
+  <div class="snippet">
+<pre>
+<code class="language-markup">&lt;script src="//example.com/your-funky-js.js" async defer&gt;&lt;/script&gt;</code>
+</pre>
+  </div> <!-- /.snippet -->
+  <h5 class="heading">Update: 7/10/2014</h5>
+  <p>
+    The Filament Group, in all their awesome ways, has released a function to load your JavaScript in a non-blocking
+    manner called <a class="external-link" href="//github.com/filamentgroup/loadJS">loadJS <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>.
+    This is extremely useful and I am in the process of converting my sites to it currently.
+  </p>
+  <p>
+    You can couple this function along with their loadCSS function which they have already done for you and it is called
+    <a class="external-link" href="//github.com/filamentgroup/enhance">Enhance Js <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>.
+    This file should be inlined in your head. It allows for the loading of webfonts, CSS, and JavaScript in a non-blocking
+    fashion. It also includes a cookie function to remove inlined CSS after a return visit in favor of the cached version
+    that is loaded async.
+  </p>
+</section>
+<!-- /#blockingjs -->
+<section id="fixthis">
+  <h3 class="heading">Fixing My Demos Page</h3>
+  <p>
+    I've done all the above and then some to optimize my site. In fact some of my pages (as of this writing it may
+    change :) ) score 98 to 99 in Google PageSpeed Insights. My Demos page isn't as lucky.
+  </p>
+  <table class="table-no-style">
+    <thead>
+    <tr>
+      <th width="200"></th>
+      <th width="200" class="table-number">Score</th>
+      <th width="200">Picture</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>No Mod_PageSpeed</td>
+      <td class="table-number">84 Mobile 94 Desktop</td>
+      <td><a class="image-popup-vertical-fit" title="No Mod_PageSpeed Score" href="//cdn.corydowdy.com/assets/blog/no-ps-combined.png">Score Picture <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-picture"></use></svg></a></td>
+    </tr>
+    <tr>
+      <td>With Mod_PageSpeed</td>
+      <td class="table-number">57 Mobile 84 Desktop</td>
+      <td><a class="image-popup-vertical-fit" title="With Mod_PageSpeed Enabled" href="//cdn.corydowdy.com/assets/blog/ps-combined.png">Score Picture <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-picture"></use></svg></a></td>
+    </tr>
+    </tbody>
+  </table>
+  <p>
+    I can immediately improve this score by taking the two svg's inside the image tag and inlining them either as an
+    inline <code class="language-markup">&lt;svg&gt;</code> or as a data uri. I'll first run the SVG I'm using on my
+    page through <a class="external-link" href="//github.com/sindresorhus/grunt-svgmin">grunt svgmin <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+    which will remove some of the fluff generated from Adobe Illustrator.
+  </p>
+  <p>
+    Popping in an inline SVG is easy but you have to do it with a few caveats. Chrome adds weird padding above and
+    below the SVG. I fixed that with this <a class="external-link" href="//gist.github.com/cdowdy/3472dac171a0ceaf1120#file-chrome-inline-svg-fix">Gist <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+    and removing the width and height properties from the SVG and replacing them with 100% in each one which allows the
+    SVG to take up the entire width and height of its container. If you want more control over the size you can control
+    it through CSS or setting it in it's "viewBox" attribute. You may choose to give it a class name (recommended). I
+    just kept it as SVG since I'm not doing any other CSS modification to any other SVG's. You also have to take into
+    account your sites analytics and making sure your visitors browsers can handle inline SVG.
+    <a class="external-link" href="//caniuse.com/#feat=svg-html5">Caniuse <svg class="link-icon" ><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+    is a great resource for this along with Chris Coyier's great site
+    <a class="external-link" href="//css-tricks.com">css-tricks <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+    specifically his post on <a class="external-link" href="//css-tricks.com/using-svg/">using svg <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>.
+  </p>
+  <h5 class="heading">Results</h5>
+  <p>
+    The
+    <a class="image-popup-vertical-fit" title="New PageSpeed Score" href="//cdn.corydowdy.com/assets/blog/score-combined.jpg">results <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-picture"></use></svg></a>
+    of Mod_Pagespeed and inlining my SVG are pretty great. On a return or repeat view of the site all Critical Path
+    CSS is inlined along with any small css files I may have included. This is because mod_pagespeed with the
+    "inline_css" and "inline_critical_css" filters enabled will post a beacon back to my server with the height of the
+    users screen. This enables mod_pagespeed to then gather all the css selectors used in the "above the fold" content,
+    inline those and lazy load the remaining CSS for every view after the initial view.
+  </p>
+  <table class="table-no-style">
+    <thead>
+    <tr>
+      <th width="200"></th>
+      <th width="100" class="table-number">Score</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>Desktop</td>
+      <td class="table-number">99</td>
+    </tr>
+    <tr>
+      <td>Mobile</td>
+      <td class="table-number">98</td>
+    </tr>
+    </tbody>
+  </table>
+  <p>
+    There still is a "Consider Fixing" suggestion of Leverage Browser Caching. That happens to be a suggestion of
+    extending the cache time of my Typekit script. The cache time is pretty low on it and I can't seem to find anywhere
+    on how to extend it so it will have to stay.
+  </p>
+  <p>
+    Start off small for optimizing your website but at the very least please enable compression and run your images
+    through an image optimizer. If you don't want to go through the process of optimizing your site, or your budget
+    doesn't allot for optimization (it should be a design choice like anything else) at the least install Mod_Pagespeed.
+    It's a great module that not only does the things mentioned in this post but has filters that can help Optimize
+    Caching, Minimize Round Trip times, Minimize Request Overhead, Minimize Payload Size and Optimize Rendering. All
+    those filters can be found at
+    <a class="external-link" href="//developers.google.com/speed/pagespeed/module/filters">PageSpeed Filters <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+    page for the module.
+
+  </p>
+  <p>
+    GO FORTH AND MAKE THE WEB FAST!
+  </p>
+</section>
+ 
+{# Include Footer, closing main, scripts and body #}
