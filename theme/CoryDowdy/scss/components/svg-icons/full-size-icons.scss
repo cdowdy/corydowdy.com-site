@@ -1,0 +1,13 @@
+// Full size icons = 356px wide & 266px tall
+// set it to 100% width so it fills its container in every viewport
+// add a margin to the top to place them nicely in the container
+.full-size-icon {
+  width:100%;
+  height: 266px;
+  margin-top: 10px;
+}
+.home-icon {
+  width: 350px;
+  height: 266px;
+  margin: 15px auto 0;
+}

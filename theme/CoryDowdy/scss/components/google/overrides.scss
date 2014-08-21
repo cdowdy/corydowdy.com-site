@@ -1,0 +1,24 @@
+body.open {
+  overflow: hidden;
+}
+.lg-2 {
+  color: #2C3E50;
+}
+small {
+  font-size: 50%;
+  color: #7F8C8D;
+  line-height: 0;
+  font-weight: 400;
+}
+.hide-small {
+  display: none;
+}
+@media all and (min-width: 535px) {
+  .hide-small {
+    display: inline-block;
+  }
+}
+
+footer {
+  text-align: center;
+}
