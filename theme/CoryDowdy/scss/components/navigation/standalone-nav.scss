@@ -1,0 +1,653 @@
+@import "scss/settings";
+/*
+body.open {
+  overflow: hidden;
+}
+
+.menu-icon {
+  height: 45px;
+  width: 45px;
+
+}
+
+.app-bar {
+  display: block;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: $primary-color;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.app-bar.open,
+.app-bar.open ~ main {
+  -webkit-transform: translate(250px, 0);
+  transform: translate(250px, 0);
+}
+
+.app-bar-container {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 60px;
+  position: relative;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin: 0 auto;
+}
+
+.app-bar {
+  &.open {
+    -webkit-transform: translate(250px, 0);
+    transform: translate(250px, 0);
+  }
+  .logo {
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    font-size: 2em;
+    margin: 0 16px;
+    padding: 0;
+    color: #fefefe;
+    float: none;
+    max-width: none;
+    font-weight: 300;
+    line-height: 60px;
+  }
+  button {
+    width: 60px;
+    height: 60px;
+    background-image: none;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    -webkit-transition: background-color .2s ease-out;
+    transition: background-color .2s ease-out;
+    -webkit-tap-highlight-color: transparent;
+    img {
+      width: 60px;
+      height: 60px;
+    }
+    &:hover {
+      background-color: rgba(127, 140, 141, 0.1);
+    }
+    &:focus {
+      background-color: rgba(127, 140, 141, 0.2);
+      outline: 0;
+    }
+    &:active {
+      background-color: rgba(127, 140, 141, 0.4);
+    }
+  }
+}
+
+
+
+.promote-layer {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.navdrawer-container {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 250px;
+  height: 100%;
+  background-color: $primary-color;
+  color: #fefefe;
+  -webkit-transform: translate(-250px, 0);
+  transform: translate(-250px, 0);
+  overflow-y: auto;
+  &.open {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+}
+
+.app-bar, .navdrawer-container, main {
+  -webkit-transition: -webkit-transform .3s ease-out;
+  transition: transform .3s ease-out;
+}
+
+.navdrawer-container {
+  h4, ul li a {
+    height: auto;
+    padding: 19px 16px;
+    line-height: 1.4;
+    margin-top: 0px;
+
+  }
+  h4 {
+    background-color: #fff;
+    color: $primary-color;
+  }
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    li {
+      a {
+        display: block;
+        text-decoration: none;
+        color: #fff;
+        -webkit-transition: background-color .2s ease-out;
+        transition: background-color .2s ease-out;
+        white-space: nowrap;
+      }
+      border-bottom-style: solid;
+      border-width: 1px;
+      border-color: #fff;
+      padding: 0;
+      &::before {
+        content: none;
+      }
+      a {
+        &:hover {
+          background-color: rgba(127, 140, 141, 0.2);
+        }
+        &:focus {
+          background-color: rgba(127, 140, 141, 0.3);
+          outline: 0;
+        }
+        &:active {
+          background-color: rgba(127, 140, 141, 0.4);
+        }
+      }
+    }
+  }
+}
+
+main {
+  margin: 0 auto;
+ // padding: 60px 16px 16px;
+  min-height: 100%;
+}
+
+
+@media all and (min-width: 800px) {
+
+  .menu-icon {
+    height: 45px;
+    width: 45px;
+    fill: $primary-color;
+  }
+  .app-bar.open,
+  .app-bar.open ~ main {
+    -webkit-transform: translate(250px, 0);
+    transform: translate(250px, 0);
+  }
+  .app-bar {
+    display: block;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .app-bar-container {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    height: 60px;
+    position: relative;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    margin: 0 auto;
+    -webkit-flex-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .app-bar {
+    &.open {
+      -webkit-transform: translate(250px, 0);
+      transform: translate(250px, 0);
+    }
+    .logo {
+      -webkit-flex: 1;
+      -ms-flex: 1;
+      flex: 1;
+      margin: 0 16px;
+      padding: 0;
+      color: $primary-color;
+      float: none;
+      max-width: none;
+      font-weight: 700;
+      line-height: 1.4;
+      font-size: 2.75rem;
+    }
+    button {
+      width: 60px;
+      height: 60px;
+      background-image: none;
+      background-color: transparent;
+      border: none;
+      padding: 0;
+      -webkit-transition: background-color .2s ease-out;
+      transition: background-color .2s ease-out;
+      -webkit-tap-highlight-color: transparent;
+      img {
+        width: 60px;
+        height: 60px;
+      }
+      &:hover {
+        background-color: rgba(127, 140, 141, 0.2);;
+      }
+      &:focus {
+        background-color: rgba(127, 140, 141, 0.2);
+        outline: 0;
+      }
+      &:active {
+        background-color: rgba(127, 140, 141, 0.4);
+      }
+    }
+  }
+
+  button.menu img {
+    height: 24px;
+    width: 24px;
+  }
+
+  .promote-layer {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  .navdrawer-container {
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 250px;
+    height: 100%;
+    background-color: $primary-color;
+    color: #fefefe;
+    -webkit-transform: translate(-250px, 0);
+    transform: translate(-250px, 0);
+    overflow-y: scroll;
+    &.open {
+      -webkit-transform: translate(0, 0);
+      transform: translate(0, 0);
+    }
+  }
+
+  .app-bar, .navdrawer-container, main {
+    -webkit-transition: -webkit-transform .3s ease-out;
+    transition: transform .3s ease-out;
+  }
+
+  .navdrawer-container {
+    h4, ul li a {
+      height: auto;
+      padding: 19px 16px;
+      line-height: 1.4;
+      margin-top: 0px;
+
+    }
+    h4 {
+      background-color: #fff;
+      color: $primary-color;
+    }
+    ul {
+      padding: 0;
+      margin: 0;
+      list-style-type: none;
+      li {
+        a {
+          display: block;
+          text-decoration: none;
+          color: #fff;
+          -webkit-transition: background-color .2s ease-out;
+          transition: background-color .2s ease-out;
+          white-space: nowrap;
+        }
+        border-bottom-style: solid;
+        border-width: 1px;
+        border-color: #fff;
+        padding: 0;
+        &::before {
+          content: none;
+        }
+        a {
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+          }
+          &:focus {
+            background-color: rgba(255, 255, 255, 0.3);
+            outline: 0;
+          }
+          &:active {
+            background-color: rgba(255, 255, 255, 0.4);
+          }
+        }
+      }
+    }
+  }
+}
+ */
+
+
+
+.app-bar {
+  display: block;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: $navigation-bg;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.app-bar-container {
+  display: -webkit-flex;
+  display: flex;
+  width: 100%;
+  height: 60px;
+  position: relative;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  margin: 0 auto;
+}
+
+.app-bar {
+  &.open {
+    -webkit-transform: translate(250px, 0);
+    transform: translate(250px, 0);
+    ~ main {
+      -webkit-transform: translate(250px, 0);
+      transform: translate(250px, 0);
+    }
+  }
+  .logo {
+    -webkit-flex: 1;
+    flex: 1;
+
+    margin: 0 16px;
+    padding: 0;
+    color: $silver;//#fefefe;
+    float: none;
+    max-width: none;
+    font-family: 'ff-dagny-web-pro', sans-serif;
+    font-weight: 300;
+    line-height: 1.4;
+    font-size: 2.75rem;
+    a {
+      text-decoration: none;
+      color: inherit;
+      font-weight: normal;
+    }
+  }
+}
+
+.app-bar-actions {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  z-index: 2;
+}
+
+.app-bar button {
+  width: 60px;
+  height: 60px;
+  background-image: none;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  transition: background-color 0.2s ease-out;
+  -webkit-tap-highlight-color: transparent;
+  img {
+    width: 60px;
+    height: 60px;
+  }
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  &:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+    outline: 0;
+  }
+  &:active {
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+}
+
+button.menu img {
+  height: 24px;
+  width: 24px;
+}
+
+.navdrawer-container {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 250px;
+  height: 100%;
+  background-color: $navigation-bg;
+  color: $silver;
+  -webkit-transform: translate(-250px, 0);
+  transform: translate(-250px, 0);
+  overflow-y: scroll;
+  &.open {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+}
+
+.app-bar, .navdrawer-container, main {
+  transition: -webkit-transform 0.3s ease-out;
+  transition: transform 0.3s ease-out;
+}
+
+.navdrawer-container {
+  h4, ul li a {
+    height: 60px;
+    padding: 19px 16px;
+    line-height: 1.4;
+    margin-top: 0px;
+  }
+  h4 {
+    background-color: white;
+    color: $navigation-bg;//#3367D6;
+  }
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    li {
+      a {
+        display: block;
+        text-decoration: none;
+        color: $silver;
+        transition: background-color 0.2s ease-out;
+      }
+      border-bottom-style: solid;
+      border-width: 1px;
+      border-color: white;
+      padding: 0;
+      &:before {
+        content: none;
+      }
+      a {
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.2);
+        }
+        &:focus {
+          background-color: rgba(255, 255, 255, 0.3);
+          outline: 0;
+        }
+        &:active {
+          background-color: rgba(255, 255, 255, 0.4);
+        }
+      }
+    }
+  }
+}
+
+main {
+  margin: 0 auto;
+  /* Height of the header */
+  // padding: 60px 16px 16px 16px;
+  min-height: 100%;
+}
+
+@media all and (min-device-width: 800px) {
+
+  .app-bar {
+    position: relative;
+  }
+
+  .app-bar-container {
+   // display: block;
+    display: none;
+    height: 130px;
+    max-width: 864px;
+    padding: 0 16px;
+    box-sizing: border-box;
+    background-color: #4285f4;
+  }
+
+  .app-bar .logo {
+    float: left;
+    margin: 0;
+    padding: 0;
+    line-height: 130px;
+    font-size: 46px;
+  }
+
+  .app-bar-actions {
+    float: right;
+  }
+
+  .app-bar:after {
+    content: ' ';
+    display: block;
+    height: 0;
+    overflow: hidden;
+    clear: both;
+  }
+
+  button.menu {
+    display: none;
+  }
+
+  nav {
+    display: block;
+    margin-top: 130px;
+  }
+
+  .navdrawer-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin-top: 130px;
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+    transition: none;
+    overflow-y: auto;
+  }
+
+  .navdrawer-container h4 {
+    display: none;
+  }
+
+  .navdrawer-container ul {
+    display: -webkit-flex;
+    display: flex;
+    max-width: 864px;
+    margin: 0 auto;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  .navdrawer-container ul li {
+    border: none;
+  }
+  .navdrawer-container ul li:first-child {
+    width: 50%;
+  }
+
+  main {
+    max-width: 864px;
+    padding-top: 0;
+    min-height: initial;
+  }
+
+  body {
+    overflow-y: scroll;
+  }
+
+  .navdrawer-container {
+    position: relative;
+    margin-top: 0;
+  }
+}
+
+
+/*
+@media all and (min-device-width: 800px) {
+
+  .app-bar-container {
+    // display: block;
+    // height: 130px;
+    max-width: 100%;//864px;
+    padding: 0 16px;
+    box-sizing: border-box;
+    background-color: $navigation-bg; //#008CBA;
+    display: flex;
+    width: 100%;
+    height: 60px;
+    position: relative;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    margin: 0 auto;
+    -webkit-flex-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    text-align: center;
+  }
+
+}
+*/
+/*
+@media all and (min-device-width: 1200px) and (max-width: 800px) {
+  .app-bar .logo {
+    float: none;
+    width: 100%;
+    line-height: normal;
+    text-align: center;
+    padding-top: 36px;
+  }
+  .app-bar-container {
+    height: auto;
+  }
+
+  .navdrawer-container {
+    padding: 0 16px;
+    overflow-y: auto;
+    li {
+      -webkit-flex: 1;
+      flex: 1;
+      text-align: center;
+    }
+  }
+}
+*/
