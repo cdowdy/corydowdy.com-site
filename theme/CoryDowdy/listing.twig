@@ -1,8 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block enhance_js_meta %}
-    {{ parent() }}
-    <meta name="fulljs"  content="{{ paths.theme }}js/homepage.js">
-{% endblock %}
+
 
 
 {% block inlined_styles %}
@@ -90,3 +87,8 @@
     </div>
 
 {% endblock body %}
+
+{% block footer_javascripts %}
+    {{ parent() }}
+    <script src="{{ paths.theme}}js/lib/off-canvas.min.js" async defer ></script>
+{% endblock footer_javascripts %}

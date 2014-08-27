@@ -3,6 +3,13 @@
 #}
 
 {% extends 'base.html.twig' %}
+
+{% block enhance_js_meta %}
+    {{ parent() }}
+    <meta name="fulljs" content="{{ paths.theme }}js/demos-resp.21-08-2014">
+{% endblock enhance_js_meta  %}
+
+
 {% block stylesheets %}
    {{ parent() }}
     <style>
