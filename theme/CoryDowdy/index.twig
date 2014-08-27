@@ -9,10 +9,6 @@
 {% extends 'base.html.twig' %}
 
 
-{% block enhance_js_meta %}
-    {{ parent() }}
-    <meta name="fulljs"  content="{{ paths.theme}}js/lib/off-canvas.min.js">
-{% endblock %}
 
 
 {% block inlined_styles %}
@@ -20,7 +16,10 @@
     {% include 'css/critical-css/home-critical.css' %}
 </style>
 {% endblock %}
-
+{#
+//cdn.corydowdy.com/assets/svg_sprites/linkicons-sprite.svg
+{{ paths.theme }}svgsprites/linkicons-sprite.svg
+#}
 
 {% block body %}
 <div class="push-down--home full">
@@ -84,3 +83,8 @@
     </ul>
 </div>
 {% endblock %}
+
+{% block footer_javascripts %}
+    {{ parent() }}
+<script src="{{ paths.theme}}js/lib/off-canvas.min.js" async defer ></script>
+{% endblock footer_javascripts %}
