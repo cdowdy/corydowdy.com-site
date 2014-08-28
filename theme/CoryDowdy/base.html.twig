@@ -76,6 +76,11 @@
 
 
     {% block ie8_conditionals %}
+    {# 
+      These have to be here because they scan CSS Files for media queries
+      Maybe Use Modernizr Load here instead of the Top Script Block to 
+      Load these for unsupported browsers
+    #}  
         <!--[if IE 8]>
         <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/nwmatcher/1.2.5/nwmatcher.min.js"></script>
