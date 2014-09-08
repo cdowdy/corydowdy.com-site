@@ -6,7 +6,7 @@
 
 {% block enhance_js_meta %}
     {{ parent() }}
-    <meta name="fulljs" content="{{ paths.theme }}js/demos-resp.21-08-2014">
+    <meta name="fulljs" content="{{ paths.theme }}js/demos-resp.08-09-2014.js">
 {% endblock enhance_js_meta  %}
 
 
@@ -15,11 +15,12 @@
     <style>
         meta.foundation-version{font-family:"/5.3.3/"}meta.foundation-mq-small{font-family:"/only screen/";width:0}meta.foundation-mq-medium{font-family:"/only screen and (min-width:40.063em)/";width:40.063em}meta.foundation-mq-large{font-family:"/only screen and (min-width:64.063em)/";width:64.063em}meta.foundation-mq-xlarge{font-family:"/only screen and (min-width:90.063em)/";width:90.063em}meta.foundation-mq-xxlarge{font-family:"/only screen and (min-width:120.063em)/";width:120.063em}meta.foundation-data-attribute-namespace{font-family:false}
     </style>
-    {% block inlined_styles %}
-        <style>
-            {% include 'css/critical-css/demos_resp-critical.css' %}
-        </style>
-    {% endblock %}
+
+{% endblock %}
+{% block inlined_styles %}
+    <style>
+        {% include 'css/critical-css/demos_resp-critical.css' %}
+    </style>
 {% endblock %}
 
 
@@ -113,7 +114,7 @@
 
 {% block footer_javascripts %}
   {{ parent() }}
-<script src="{{ paths.theme }}js/demos-resp.21-08-2014.js"></script>
+<script src="{{ paths.theme }}js/demos-resp-interchange.08-09-2014.js"></script>
 <script>
 $(document).foundation();
 </script>
