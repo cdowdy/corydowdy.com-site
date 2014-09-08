@@ -16,14 +16,16 @@
 
 
 {% block body %}
-    <article class="push-down full">
+    <article class="push-down full" itemscope="" itemtype="http://schema.org/BlogPosting">
         <header class="centered-header">
-            <h3>{{ record.title }}</h3>
-            <h6 class="pub-date">{% set recdate = record.datepublish|localdate("%A %B %e, %Y") %}
+            <h3 itemprop="headline">{{ record.title }}</h3>
+            <h6 class="pub-date" itemprop="datePublished">{% set recdate = record.datepublish|localdate("%A %B %e, %Y") %}
                 {{ __('%date%',{'%date%': recdate }) }}</h6>
             <hr/>
         </header>
+        <div itemprop="articleBody">
         {{ record.body }}
+        </div>
     </article>
 {% endblock %}
 
