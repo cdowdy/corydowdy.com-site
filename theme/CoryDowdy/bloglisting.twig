@@ -17,21 +17,21 @@
 <div class="push-down">
     {% setcontent blogposts = "blog/latest/4" allowpaging %}
     {% for blogpost in blogposts %}
-        <article class="container">
+        <article class="container" itemscope="" itemtype="http://schema.org/BlogPosting">
             <div class="full">
                 <div class="listing-snippet">
                     <header>
-                        <h3 class="blog-post-title"><a href="{{ blogpost.link }}">{{ blogpost.title }}</a></h3>
+                        <h3 class="blog-post-title" itemprop="headline url"><a href="{{ blogpost.link }}">{{ blogpost.title }}</a></h3>
                         {% set recdate = blogpost.datepublish|localdate("%A %B %e, %Y") %}
-                        <p class="pub-date">{{ __('Posted on %date%',{ '%date%': recdate }) }}</p>
+                        <p class="pub-date" itemprop="datePublished">{{ __('Posted on %date%',{ '%date%': recdate }) }}</p>
                     </header>
-                    <p>
+                    <p itemprop="description">
                         {{ blogpost.excerpt }}
                     </p>
-                    <a href="{{ blogpost.link }}">{{ __('Read Post &#10141;') }}</a>
+                    <a itemprop="url" href="{{ blogpost.link }}">{{ __('Read Post &#10141;') }}</a>
                 </div>
                 <div class="listing-image">
-                    <img class="center" src="{{ thumbnail(blogpost.image, 200, 200) }}" alt="{{ blogpost.title }}" pagespeed_no_defer="">
+                    <img itemprop="image" class="center" src="{{ thumbnail(blogpost.image, 200, 200) }}" alt="{{ blogpost.title }}" pagespeed_no_defer="">
                 </div><!-- /.listing-image -->
             </div><!-- /.full -->
         </article>
