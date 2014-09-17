@@ -27,7 +27,7 @@
 
 
     {% block enhance_js_meta %}
-    <meta name="fullcss"  content="{{ paths.theme}}css/app.min.css">
+    <meta name="fullcss"  content="{{ paths.theme }}css/app.min.css">
     {% endblock %}
 
 
@@ -66,14 +66,14 @@
         {% endblock fout %}
 
         {% if app.request.cookies.has('fullcss') %}
-        <link rel="stylesheet" href="{{ paths.theme}}css/app.min.css"/>
+        <link rel="stylesheet" href="{{ paths.theme }}css/app.min.css"/>
             {% else %}
                 {% block inlined_styles %}
                     {# Individual Inlined Styles Go in Page Template #}
                 {% endblock %}
         {% endif %}
     {% endblock %}
-    <noscript><link rel="stylesheet" href="{{ paths.theme}}css/app.min.css"/></noscript>
+    <noscript><link rel="stylesheet" href="{{ paths.theme }}css/app.min.css"/></noscript>
 
 
 
@@ -82,6 +82,7 @@
       These have to be here because they scan CSS Files for media queries
       Maybe Use Modernizr Load here instead of the Top Script Block to 
       Load these for unsupported browsers
+      And I absolutely hate it
     #}  
         <!--[if IE 8]>
         <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
