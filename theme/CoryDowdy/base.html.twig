@@ -50,11 +50,6 @@
             Current: 08-27-2014
             No Flexbox, No Flexbox Legacy, CSS Rem Unit, CSS Media Queryies
         #}
-        {#
-         <script src="{{ paths.theme }}js/lib/modernizr/modernizer-08272014.js"></script>
-        #}
-
-
     {% endblock %}
 
 
@@ -62,7 +57,12 @@
     {% block stylesheets %}
 
         {% block fout %}
-            {# Individual FOUT Styles Go in Page Template #}
+            {#
+              Individual FOUT Styles Go in Page Template
+              but they should probably be here because most
+              carry over to each page.
+              Gotta think of a better way
+            #}
         {% endblock fout %}
 
         {% if app.request.cookies.has('fullcss') %}
