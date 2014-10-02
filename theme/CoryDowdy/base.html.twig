@@ -34,7 +34,6 @@
     {# include javascripts / javascripts block #}
     {% block header_javascripts %}
     <script>
-
         {% spaceless %}
         {# Include TypeKit JavaScript #}
             {% include 'js/typekit/typekit.min.js' %}
@@ -44,7 +43,6 @@
         {# Include Enhance JS #}
             {% include 'js/enhance/enhance.min.js' %}
         {% endspaceless %}
-
     </script>
         {# Modernizr:
             Current: 08-27-2014
@@ -75,6 +73,9 @@
     {% endblock %}
     <noscript><link rel="stylesheet" href="{{ paths.theme }}css/app.min.css"/></noscript>
 
+    {% block picturefill %}
+    {# dirty hack to include picturefill AFTER the noscript css#}
+    {% endblock picturefill %}
 
 
     {% block ie8_conditionals %}
