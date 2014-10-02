@@ -18,18 +18,29 @@
     <script>
         document.createElement( "picture" );
     </script>
-    <script src="{{ paths.theme }}js/picturefill/picturefill.min.js" async ></script>
+    {#<script src="{{ paths.theme }}js/picturefill/picturefill.min.js" async defer></script>#}
 {% endblock %}
+
 
  {% block fout %}
     {% include 'css/fout.css.twig' %}
  {% endblock fout %}
 
+{# Inlined styles #}
 {% block inlined_styles %}
     <style>
         {% include 'css/critical-css/work-critical.css' %}
     </style>
 {% endblock %}
+
+{#
+    include picturefill here belore the css because it is external
+    we want to have it load after all the CSS and the inserted TypeKit CSS.
+    and underneath the <noscript> css file
+#}
+{% block picturefill %}
+    <script src="{{ paths.theme }}js/picturefill/picturefill.min.js" async defer></script>
+{% endblock picturefill %}
 
 
 {% block body %}
