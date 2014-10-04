@@ -24,3 +24,5 @@
 
 # Composer PHAR
 /composer.phar
+
+theme/CoryDowdy/node_modules
