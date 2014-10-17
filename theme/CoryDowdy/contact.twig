@@ -5,7 +5,7 @@
 {% extends 'base.html.twig' %}
 
  {% block enhance_js_meta %}
-     <meta name="fullcss"  content="{{ paths.theme}}css/contact.min.css">
+     {{ parent() }}
      <meta name="fulljs" content="{{ paths.theme }}js/contact.21-08-2014.js">
  {% endblock %}
 
@@ -13,11 +13,11 @@
      {% block fout %}
      {% endblock fout %}
      {% if app.request.cookies.has('fullcss') %}
-         <link rel="stylesheet" href="{{ paths.theme}}css/contact.min.css"/>
+         <link rel="stylesheet" href="{{ paths.theme}}css/app.min.10-16-2014.css"/>
      {% else %}
          {% block inlined_styles %}
              <style>
-                 {% include 'css/critical-css/contact-critical.css' %}
+                 {% include 'css/critical-css/contact-critical.16-10-2014.css' %}
              </style>
          {% endblock %}
      {% endif %}
@@ -29,7 +29,7 @@
     <h4>Get In Touch</h4>
 </div>
 <div class="form-container">
-    {{ simpleform('contact') }}
+    {{ simpleform( 'contact' ) }}
 </div>
 <div class="form-container center-text">
     <p>
