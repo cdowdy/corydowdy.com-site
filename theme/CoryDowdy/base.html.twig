@@ -1,4 +1,4 @@
-{% set dev = true %}
+{% set dev = false %}
 <!doctype html>
 <html class="no-js" lang="{{ htmllang() }}">
 <head>
@@ -41,7 +41,7 @@
 
         {% spaceless %}
         {# Include Enhance JS #}
-            {% include 'js/enhance/enhance.min.js' %}
+            {% include 'js/enhance/enhance.10-17-2014.js' %}
         {% endspaceless %}
 
     </script>

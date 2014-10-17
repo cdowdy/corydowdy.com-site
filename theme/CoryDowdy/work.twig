@@ -9,7 +9,7 @@
 
 {% block enhance_js_meta %}
     {{ parent() }}
-    <meta name="fulljs"  content="{{ paths.theme }}js/work-test.js">
+    <meta name="fulljs"  content="{{ paths.theme }}js/work.17-10-2014.js">
 {% endblock %}
 
 {#  insert new javascript files #}
@@ -17,10 +17,7 @@
     {{ parent() }}
     <script>
         document.createElement( "picture" );
-
     </script>
-
-    {#<script src="{{ paths.theme }}js/picturefill/picturefill.min.js" async defer></script>#}
 {% endblock %}
 
 
@@ -31,7 +28,7 @@
 {# Inlined styles #}
 {% block inlined_styles %}
     <style>
-        {% include 'css/critical-css/work-critical.css' %}
+        {% include 'css/critical-css/work-critical.16-10-2014.css' %}
     </style>
 {% endblock %}
 
@@ -42,8 +39,8 @@
 #}
 {% block picturefill %}
   {{ parent() }}
-    <script src="{{ paths.theme }}js/picturefill/picturefill.min.js" async defer></script>
-  {#<script src="{{ paths.theme }}js/_old/work-test.js" async></script>#}
+    {#<script src="{{ paths.theme }}js/picturefill/picturefill.min.js" async defer></script>#}
+  {#&#123;&#35;<script src="{{ paths.theme }}js/_old/work-test.js" async></script>&#35;&#125;#}
 
 {% endblock picturefill %}
 
