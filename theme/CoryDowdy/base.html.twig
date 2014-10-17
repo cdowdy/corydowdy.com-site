@@ -1,4 +1,4 @@
-{% set dev = true %}
+{% set dev = false %}
 <!doctype html>
 <html class="no-js" lang="{{ htmllang() }}">
 <head>
@@ -78,7 +78,7 @@
 
     {% block picturefill %}
     {# dirty hack to include picturefill AFTER the noscript css#}
-      <script src="{{ paths.theme }}js/lib/svg4every1-modernizr.js" async defer></script>
+      <script src="{{ paths.theme }}js/lib/svg4every1-modernizr.js" ></script>
     {% endblock picturefill %}
 
 
