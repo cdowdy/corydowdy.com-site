@@ -13,7 +13,7 @@
 
 {% block inlined_styles %}
 <style>
-    {% include 'css/critical-css/home-critical.css' %}
+    {% include 'css/critical-css/home-critical.16-10-2014.css' %}
 </style>
 {% endblock %}
 {#
@@ -85,6 +85,6 @@
 {% endblock %}
 
 {% block footer_javascripts %}
-    {{ parent() }}
-<script src="{{ paths.theme}}js/lib/off-canvas.min.js" async defer ></script>
+
+<script src="{{ paths.theme}}js/homepage.min.js" async defer ></script>
 {% endblock footer_javascripts %}
