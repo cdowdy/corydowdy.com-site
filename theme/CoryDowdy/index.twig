@@ -85,6 +85,6 @@
 {% endblock %}
 
 {% block footer_javascripts %}
-
 <script src="{{ paths.theme}}js/homepage.min.js" async defer ></script>
+  {{ parent() }}
 {% endblock footer_javascripts %}

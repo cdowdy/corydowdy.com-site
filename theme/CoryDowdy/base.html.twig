@@ -134,24 +134,19 @@
 
 
     {% block footer_javascripts %}
-
-
-
-        {#<script src="{{ paths.theme }}js/lib/modernizr/modernizer-08272014.js" async defer></script>#}
-        {#<script src="{{ paths.theme }}js/lib/svg4everybody.ie8.min.js" async defer ></script>#}
 {% if dev == true %}
-        {# development enviroment dont place GA in page #}
-        {% else %}
-        <script>
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  {# development enviroment dont place GA in page #}
+    {% else %}
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-            ga('create', 'UA-46388684-1', 'auto');
-            ga('send', 'pageview');
+        ga('create', 'UA-46388684-1', 'auto');
+        ga('send', 'pageview');
 
-        </script>
+      </script>
 {% endif %}
 
     {% endblock %}
