@@ -27,7 +27,7 @@
 
 
     {% block enhance_js_meta %}
-    <meta name="fullcss"  content="{{ paths.theme }}css/app.min.css">
+    <meta name="fullcss"  content="{{ paths.theme }}css/app.min.10-16-2014.css">
     {% endblock %}
 
 
@@ -43,6 +43,7 @@
         {# Include Enhance JS #}
             {% include 'js/enhance/enhance.min.js' %}
         {% endspaceless %}
+
     </script>
         {# Modernizr:
             Current: 08-27-2014
@@ -64,32 +65,33 @@
         {% endblock fout %}
 
         {% if app.request.cookies.has('fullcss') %}
-        <link rel="stylesheet" href="{{ paths.theme }}css/app.min.css"/>
+        <link rel="stylesheet" href="{{ paths.theme }}css/app.min.10-16-2014.css"/>
             {% else %}
                 {% block inlined_styles %}
                     {# Individual Inlined Styles Go in Page Template #}
                 {% endblock %}
         {% endif %}
     {% endblock %}
-    <noscript><link rel="stylesheet" href="{{ paths.theme }}css/app.min.css"/></noscript>
+    <noscript>
+      <link rel="stylesheet" href="{{ paths.theme }}css/app.min.10-16-2014.css"/>
+    </noscript>
 
     {% block picturefill %}
     {# dirty hack to include picturefill AFTER the noscript css#}
+      <script src="{{ paths.theme }}js/lib/svg4every1-modernizr.js" async defer></script>
     {% endblock picturefill %}
 
 
     {% block ie8_conditionals %}
-    {# 
+    {#
       These have to be here because they scan CSS Files for media queries
-      Maybe Use Modernizr Load here instead of the Top Script Block to 
+      Maybe Use Modernizr Load here instead of the Top Script Block to
       Load these for unsupported browsers
       And I absolutely hate it
-    #}  
+    #}
         <!--[if IE 8]>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/nwmatcher/1.2.5/nwmatcher.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js"></script>
-        <script src="//cdn.corydowdy.com/assets/js/rem.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
         <![endif]-->
     {% endblock ie8_conditionals %}
@@ -135,8 +137,8 @@
 
 
 
-        <script src="{{ paths.theme }}js/lib/modernizr/modernizer-08272014.js" async defer></script>
-        <script src="{{ paths.theme }}js/lib/svg4everybody.ie8.min.js" async defer ></script>
+        {#<script src="{{ paths.theme }}js/lib/modernizr/modernizer-08272014.js" async defer></script>#}
+        {#<script src="{{ paths.theme }}js/lib/svg4everybody.ie8.min.js" async defer ></script>#}
 {% if dev == true %}
         {# development enviroment dont place GA in page #}
         {% else %}
