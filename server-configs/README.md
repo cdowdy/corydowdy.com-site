@@ -4,7 +4,7 @@ uses:
 [Nginx 1.6.2](http://nginx.org/)  
 
 Built With
-[Mod_PageSpeed 1.9.32.1](https://developers.google.com/speed/pagespeed/module/build_ngx_pagespeed_from_source)  
+[NGX_PageSpeed 1.9.32.1](https://developers.google.com/speed/pagespeed/module/build_ngx_pagespeed_from_source)  
 [Naxsi](https://github.com/nbs-system/naxsi)  
 The rest of the modules buit in can be found here: [Nginx Build Template](https://github.com/cdowdy/corydowdy.com-site/blob/33f37850e2f7991d572a12c61ffa0c86742e20b6/server-configs/nginx-version-modules-TEMPLATE.md)  
 
