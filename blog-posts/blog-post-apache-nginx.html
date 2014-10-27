@@ -1,0 +1,273 @@
+<section id="intro">
+  <p>
+    It seems more and more people are going to NGINX instead of Apache and rave about the speed. Since I'm not a system
+    admin and never claimed to be one I figured I'd document my switch to NGINX.
+  </p>
+  <p>
+    Me being a novice in relation to NGINX I was quite taken aback that you can't just enable modules like you can in
+    Apache. In an Ubuntu Server install enabling a Module like <a class="external-link" href="https://developers.google.com/speed/pagespeed/module">
+    Mod_Pagespeed <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+    is as  simple as <code class="language-bash"> sudo dpkg -i mod-pagespeed-*.deb </code> followed by
+    <code class="language-bash"> sudo apt-get -f install </code>. That's it and the Google Repository is added to your
+    system and will keep Mod_PageSpeed up to date.
+  </p>
+  <p>
+    Adding the same module in NGINX is quite another process. You must first make sure you have all the dependencies
+    installed for it to build, download the source, unpack it, then build it. Even then you aren't finished because you
+    still have to build NGINX from source and enable the module there. That's a lot of work especially for someone like me
+    who doesn't have a PhD in Unix.
+  </p>
+  <p>
+    Now for my warning:
+  </p>
+  <p>
+    <strong>
+      WARNING WHAT FOLLOWS MIGHT MESS UP YOUR INSTALL DO THIS AT YOUR OWN RISK I TAKE NO RESPONSIBILITY TO WHAT YOU
+      MESS UP AND I DON'T CLAIM THIS IS THE RIGHT WAY TO DO ANYTHING. IT'S ME...RAMBLING AWAY THROUGH MY SWITCH OVER :)
+    </strong>
+  </p>
+</section>
+<!-- /#intro -->
+<section id="my_setup">
+  <h3 class="heading">My Current Setup</h3>
+  <ol>
+    <li>Digital Ocean 1GB Droplet</li>
+    <li>Ubuntu 14.04 LTS x64</li>
+    <li>Apache 2.4.10</li>
+    <li>Bolt CMS v1.6.13</li>
+  </ol>
+  <p>
+    I'll be moving to:
+  </p>
+  <ol>
+    <li>Same Droplet</li>
+    <li>Same OS</li>
+    <li>Same CMS</li>
+    <li>NGINX v 1.6.2</li>
+  </ol>
+
+</section>
+<section id="getting-started">
+  <h3 class="heading">Getting Started</h3>
+  <p>
+    To keep my current site up and running I created a new droplet. I then wanted to see what Nginx had as a
+    dependency <code class="language-bash"> aptitude show nginx-full </code> for the full version
+    of nginx. This will print to your terminal a lot of "things". Pay close attention to the depends part. Depending
+    on the date and nginix version when you do this it will look similar to the following.
+  </p>
+
+<pre class="language-bash"><code>Depends: nginx-common (= 1.4.6-1ubuntu3.1), libc6 (&gt;= 2.14), libexpat1 (&gt;=
+  2.0.1), libgd3 (&gt;= 2.1.0~alpha~), libgeoip1, libpam0g (&gt;= 0.99.7.1),
+  libpcre3, libssl1.0.0 (&gt;= 1.0.1), libxml2 (&gt;= 2.7.4), libxslt1.1 (&gt;=
+  1.1.25), zlib1g (&gt;= 1:1.2.0)
+</code></pre>
+  <p>
+    I'll need libc6, libexpat1, libgd3, libgeoip1, libpam0g, libpcre3, libssl1.0.0, libxml2, libxslt1.1, zlib1g.
+    If you aren't going to go with the <strong>nginx-full</strong> version your dependencies will vary. I know I won't
+    be using any XSLT so I won't be needing <code class="language-bash"> libxslt1.1 </code> but for the sake of this
+    write up and having satisfied all dependencies I'll install it. Chances are though that you'll already have many
+    of these installed already and the current versions.
+  </p>
+<pre class="language-bash">
+<code> apt-get install libc6 libexpat1 libgd3 libgeoip1 libpam0g libpcre3 libssl1.0.0 libxml2 libxslt1.1 zlib1g </code>
+</pre>
+  <p>
+    Now that the dependencies for Nginix are satisfied we can move on to actually downloading NGINX source files. As of
+    this write up the NGINX version I am using is <strong>1.6.2</strong>. We'll do that by typing into a terminal the
+    following:
+  </p>
+
+<pre class="language-bash"><code>
+  #cd
+  NGINX_VERSION=1.6.2
+  wget http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz
+  tar -xvzf nginx-${NGINX_VERSION}.tar.gz
+</code></pre>
+  <p>
+    I also want to take advanted of another module called <a class="external-link" href="//github.com/openresty/headers-more-nginx-module">headers_more <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>.
+    You download that the same way as we did for NGINX source (substituting the release which is compatible with your
+    NGINX version):
+  </p>
+<pre class="language-bash">
+<code>
+  wget https://github.com/openresty/headers-more-nginx-module/releases/tag/v0.25
+  tar -xvzf v0.25.tar.gz
+</code>
+</pre>
+  <p>
+    Now is usually about the time I would download Google's PageSpeed Module source files. I won't be using this with
+    my current NGINX setup right now. More on that <a href="#g_pagespeed">here</a> and I won't be using my old trusty standbye of
+    <a class="external-link" href="//www.modsecurity.org/">ModSecurity <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+    security either. Quite frankly in my opinion...IT'S A PAIN IN THE ASS TO BUILD. I couldn't get ModSecurity for NGINX
+    to build no matter what I tried. I followed the wiki instructions, installed dependencies and nada. Like I said I don't
+    have a PhD in Unix. I'm a modest web developer. Anywho I installed <a class="external-link" href="//github.com/nbs-system/naxsi">Naxsi <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+    in it's place.
+  </p>
+  <p>
+    Naxsi on the other hand is fairly straight forward to install and build. The biggest caveat we have is the order
+    in which we will compile it into NGINX. Download Naxsi like so ( version numbers may change ).
+  </p>
+<pre class="language-bash">
+<code>
+  wget https://github.com/nbs-system/naxsi/archive/0.53-2.tar.gz
+  tar -xvzf 0.53-2.tar.gz
+</code>
+</pre>
+</section>
+<!-- /#getting-started -->
+<section id="building_nginx">
+  <h3 class="heading">Building This Thing!</h3>
+  <p>
+    All our third party modules are downloaded and upacked and ready to go. The next step we will change into the NGINX
+    directory <code class="language-bash"> cd nginx-1.6.2 </code>. If you're unsure about where the directory is you can
+    type <code class="language-bash"> ls </code> in your terminal and it will list all the directories and or files from your
+    current location. Once in the NGINX source directory we can begin to compile our server package. NGINX has a list of
+    other <a class="external-link" href="//wiki.nginx.org/3rdPartyModules">third party modules <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+    that you can include. For any of those follow the same steps for getting headers_more and Naxsi. It also has a list of
+    optional modules you can inlude during complile time found <a class="external-link" href="//wiki.nginx.org/Modules">here <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>.
+    From the Optional Modules I'll be including <em>stub_status, spdy_module, gzip_static and ssl</em> modules. This list
+    may seem long and hard but as of right now it's pretty much downhill from here.
+  </p>
+  <p>
+    Inside our <strong>nginx-1.6.2</strong> directory will give it the compile command. All of this needs to typed on one
+    line unless you escape it like in the code block below. The order of installing Naxsi is important. If you're just starting
+    out and testing NGINX and Naxsi out put it first like in the code block below. More on why you should do this can
+    be found at <a class="external-link" href="//github.com/nbs-system/naxsi/wiki/installation">Naxsi Github Wiki <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+  </p>
+<pre class="language-bash">
+<code>
+  ./configure \
+  --add-module=$HOME/naxsi-0.53-2/naxsi_src \
+  --prefix=/usr/share/nginx \
+  --sbin-path=/usr/sbin/nginx \
+  --conf-path=/etc/nginx/nginx.conf \
+  --pid-path=/var/run/nginx.pid \
+  --lock-path=/var/lock/nginx.lock \
+  --error-log-path=/var/log/nginx/error.log \
+  --http-log-path=/var/log/access.log \
+  --user=www-data \
+  --group=www-data \
+  --with-http_stub_status_module \
+  --with-http_ssl_module \
+  --with-http_spdy_module \
+  --with-http_gzip_static_module \
+  --add-module=$HOME/headers-more-nginx-module-0.25 \
+</code>
+</pre>
+  <p>
+    Once this is complete give it the commands of:
+  </p>
+<pre class="language-bash">
+<code>
+  # you may need to do these as sudo if you aren't root
+  make
+  make install
+</code>
+</pre>
+  <p>
+    That's it. NGINX is now installed... well it's installed but we need to do a few more things.
+  </p>
+</section>
+<section id="compression">
+  <h3 class="heading">Starting and Stopping NGINX</h3>
+  <p>
+    If you were to leave everything as it is you would need to start NGINX like <code class="language-bash"> sudo /usr/sbin/nginx start </code>
+    and then kill it with its PID. That's rather cumbersome in my opinion. So in order to start and stop it like you would
+    Apache ( service apache2 start/stop/status etc ) we need to have an init script. I'm using <a class="external-link" href="//github.com/JasonGiedymin/nginx-init-ubuntu">this one <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+    with modifications to the nginx sbin paths, DAEMON paths, and conf paths that reflect the options in our compile time flags above.
+  </p>
+  <p>
+    Once that's finsihed we'll make sure NGINX starts up on a reboot of our server
+  </p>
+<pre class="language-bash">
+<code>
+  update-rc.d -f nginx defaults
+</code>
+</pre>
+
+  <p>
+    NGINX should now be up and running with our modules. You can now move on to your virtualhosts and server setup. A
+    rather good tutorial on this for Ubuntu can be found at <a class="external-link" href="//www.digitalocean.com/community/tutorials/how-to-set-up-nginx-server-blocks-virtual-hosts-on-ubuntu-14-04-lts">DigitalOcean <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+  </p>
+</section>
+<section id="g_pagespeed">
+  <h3 class="heading">Google's PageSpeed Module</h3>
+  <p>
+    I mentioned I wasn't going to use Google's Pagespeed Module. Reasoning behind this is I don't know if I bunked up my
+    Apache setup but the Time To First Byte and overall load times with Pagespeed installed on Apache and NGINX were extremely
+    different. For My Apache setup I used a setup of <code class="language-bash"> Passthrough </code> and basically relied
+    on pagespeeds image compressions, serving webp to user agents who accepted it and extending the caches of my resources.
+  </p>
+
+</section>
+<section id="results">
+  <h3 class="heading">Result Comparisons</h3>
+  <p>
+    Site Load times for each server configuration on <a class="external-link" href="//webpagetest.org">webpagetest.org <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+    with 5 runs each in Chrome from Dulles, Va.
+  </p>
+  <p><strong>First Run</strong></p>
+  <table class="table-no-style">
+    <thead>
+    <tr>
+      <th width="200">Server</th>
+      <th class="table-number">Load Time</th>
+      <th class="table-number">First Byte</th>
+      <th class="table-number">Start Render</th>
+      <th class="table-number">Speed Index</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td><a class="image-popup-vertical-fit" title="Apache Scores" href="//cdn.corydowdy.com/assets/blog/apache-wpt.png">Apache - Score Picture <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-picture"></use></svg></a></td>
+      <td class="table-number">0.684s</td>
+      <td class="table-number">0.267s</td>
+      <td class="table-number">0.493s</td>
+      <td class="table-number">500</td>
+    </tr>
+    <tr>
+      <td><a class="image-popup-vertical-fit" title="NGINX Scores" href="//cdn.corydowdy.com/assets/blog/nginx-wpt.png">NGINX - Score Picture <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-picture"></use></svg></a></td>
+      <td class="table-number">0.640s</td>
+      <td class="table-number">0.108s</td>
+      <td class="table-number">0.293s</td>
+      <td class="table-number">385</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Second View</strong></p>
+  <table class="table-no-style">
+    <thead>
+    <tr>
+      <th width="200">Server</th>
+      <th class="table-number">Load Time</th>
+      <th class="table-number">First Byte</th>
+      <th class="table-number">Start Render</th>
+      <th class="table-number">Speed Index</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td><a class="image-popup-vertical-fit" title="Apache Scores" href="//cdn.corydowdy.com/assets/blog/apache-wpt.png">Apache - Score Picture <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-picture"></use></svg></a></td>
+      <td class="table-number">0.628s</td>
+      <td class="table-number">0.184s</td>
+      <td class="table-number">0.589s</td>
+      <td class="table-number">600</td>
+    </tr>
+    <tr>
+      <td><a class="image-popup-vertical-fit" title="NGINX Scores" href="//cdn.corydowdy.com/assets/blog/nginx-wpt.png">NGINX - Score Picture <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-picture"></use></svg></a></td>
+      <td class="table-number">0.403s</td>
+      <td class="table-number">0.082s</td>
+      <td class="table-number">0.404s</td>
+      <td class="table-number">400</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <p>
+    Since a target Speed Index is under 1000 both servers did really well. I'm just not looking for the "meh its good enough".
+    I want super dooper fast. NGINX gave that too me. In a few more blog posts I'll tinker with serving webp and jpegxr for
+    better image handling.
+  </p>
+
+</section>
