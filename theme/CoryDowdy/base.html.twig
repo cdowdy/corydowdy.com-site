@@ -1,8 +1,20 @@
-{% set dev = false %}
+{% set dev = true %}
 <!doctype html>
 <html class="no-js" lang="{{ htmllang() }}">
 <head>
     <meta charset="utf-8" />
+    {# Include DNS Prefetch  #}
+    {#
+       October 29 2014 move here because:
+       https://github.com/h5bp/html5-boilerplate/blob/master/dist/doc/extend.md#explicit-prefetches
+    #}
+    {% block dns_prefetch %}
+        <link rel="dns-prefetch" href="//use.typekit.net"/>
+        <link rel="dns-prefetch" href="//p.typekit.net" />
+        <link rel="dns-prefetch" href="//www.google-analytics.com"/>
+        <link rel="dns-prefetch" href="//cdn.corydowdy.com"/>
+    {% endblock dns_prefetch %}
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
         {% if record.title is defined %}{{ record.title|striptags }} | {% endif %}
@@ -10,46 +22,36 @@
         {% if record.title is not defined and app.config.get('general/payoff') %} | {{ app.config.get('general/payoff') }}{% endif %}
     </title>
 
-
-    {# Include DNS Prefetch  #}
-    {% block dns_prefetch %}
-    <link rel="dns-prefetch" href="//use.typekit.net"/>
-    <link rel="dns-prefetch" href="//p.typekit.net" />
-    <link rel="dns-prefetch" href="//www.google-analytics.com"/>
-    <link rel="dns-prefetch" href="//cdn.corydowdy.com"/>
-    {% endblock dns_prefetch %}
-
-
     {# Bing Validation #}
     <meta name="msvalidate.01" content="346403273F73350B6928A46B28684A5B" />
     {# Chrome Webapp Capable #}
     <meta name="mobile-web-app-capable" content="yes">
 
+    {% block touch_icons %}
+        {% include 'touch_icons/_touch_icons.twig' %}
+    {% endblock touch_icons  %}
+
+    {# include javascripts / javascripts block #}
+    {% block header_javascripts %}
+        <script>
+
+            {% spaceless %}
+            {# Include TypeKit JavaScript #}
+            {% include 'js/typekit/typekit.min.js' %}
+            {% endspaceless %}
+
+        </script>
+        {# Modernizr:
+            Current: 08-27-2014
+            No Flexbox, No Flexbox Legacy, CSS Rem Unit, CSS Media Queryies
+        #}
+    {% endblock %}
 
     {% block enhance_js_meta %}
     <meta name="fullcss"  content="{{ paths.theme }}css/app.min.10-16-2014.css">
     {% endblock %}
 
 
-    {# include javascripts / javascripts block #}
-    {% block header_javascripts %}
-    <script>
-        {% spaceless %}
-        {# Include TypeKit JavaScript #}
-            {% include 'js/typekit/typekit.min.js' %}
-        {% endspaceless %}
-
-        {% spaceless %}
-        {# Include Enhance JS #}
-            {% include 'js/enhance/enhance.10-17-2014.js' %}
-        {% endspaceless %}
-
-    </script>
-        {# Modernizr:
-            Current: 08-27-2014
-            No Flexbox, No Flexbox Legacy, CSS Rem Unit, CSS Media Queryies
-        #}
-    {% endblock %}
 
 
     {#  stylesheets block #}
@@ -65,16 +67,27 @@
         {% endblock fout %}
 
         {% if app.request.cookies.has('fullcss') %}
-        <link rel="stylesheet" href="{{ paths.theme }}css/app.min.10-16-2014.css"/>
-            {% else %}
-                {% block inlined_styles %}
-                    {# Individual Inlined Styles Go in Page Template #}
-                {% endblock %}
+            <link rel="stylesheet" href="{{ paths.theme }}css/app.min.10-16-2014.css"/>
+        {% else %}
+            {% block inlined_styles %}
+                {# Individual Inlined Styles Go in Page Template #}
+            {% endblock %}
         {% endif %}
     {% endblock %}
-    <noscript>
-      <link rel="stylesheet" href="{{ paths.theme }}css/app.min.10-16-2014.css"/>
-    </noscript>
+
+    {% block enhance %}
+        <script>
+        {% spaceless %}
+            {# Include Enhance JS #}
+            {% include 'js/enhance/enhance-10-27-2014.min.js' %}
+        {% endspaceless %}
+        </script>
+    {% endblock enhance %}
+
+
+
+
+    <noscript><link rel="stylesheet" href="{{ paths.theme }}css/app.min.10-16-2014.css"/></noscript>
 
     {% block picturefill %}
     {# dirty hack to include picturefill AFTER the noscript css#}
