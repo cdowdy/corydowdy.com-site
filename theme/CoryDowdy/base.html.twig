@@ -1,4 +1,4 @@
-{% set dev = true %}
+{% set dev = false %}
 <!doctype html>
 <html class="no-js" lang="{{ htmllang() }}">
 <head>
@@ -51,9 +51,6 @@
     <meta name="fullcss"  content="{{ paths.theme }}css/app.min.10-16-2014.css">
     {% endblock %}
 
-
-
-
     {#  stylesheets block #}
     {% block stylesheets %}
 
@@ -72,28 +69,22 @@
             {% block inlined_styles %}
                 {# Individual Inlined Styles Go in Page Template #}
             {% endblock %}
+            {% block enhance %}
+                <script>
+                    {% spaceless %}
+                    {# Include Enhance JS #}
+                    {% include 'js/enhance/enhance-11-08-2014.js' %}
+                    {% endspaceless %}
+                </script>
+            {% endblock enhance %}
+
+            <noscript><link rel="stylesheet" href="{{ paths.theme }}css/app.min.10-16-2014.css"/></noscript>
         {% endif %}
     {% endblock %}
-
-    {% block enhance %}
-        <script>
-        {% spaceless %}
-            {# Include Enhance JS #}
-            {% include 'js/enhance/enhance-10-27-2014.min.js' %}
-        {% endspaceless %}
-        </script>
-    {% endblock enhance %}
-
-
-
-
-    <noscript><link rel="stylesheet" href="{{ paths.theme }}css/app.min.10-16-2014.css"/></noscript>
-
     {% block picturefill %}
-    {# dirty hack to include picturefill AFTER the noscript css#}
-      <script src="{{ paths.theme }}js/lib/svg4every1-modernizr.js" async ></script>
+        {# dirty hack to include picturefill AFTER the noscript css#}
+        <script src="{{ paths.theme }}js/lib/svg4every1-modernizr.js" async ></script>
     {% endblock picturefill %}
-
 
     {% block ie8_conditionals %}
     {#
@@ -144,6 +135,9 @@
 {% block footer %}
 
 </main>
+
+
+
 
 
     {% block footer_javascripts %}

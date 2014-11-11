@@ -4,10 +4,7 @@
 
 {% extends 'base.html.twig' %}
 
- {% block enhance_js_meta %}
-     {{ parent() }}
-     <meta name="fulljs" content="{{ paths.theme }}js/contact.21-08-2014.js">
- {% endblock %}
+
 
  {% block stylesheets %}
      {% block fout %}
@@ -42,3 +39,8 @@
     </p>
 </div>
 {% endblock %}
+
+{% block footer_javascripts %}
+<script src="{{ paths.theme }}js/contact.21-08-2014.js" async defer></script>
+    {{ parent() }}
+{% endblock footer_javascripts %}

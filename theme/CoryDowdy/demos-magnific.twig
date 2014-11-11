@@ -13,11 +13,6 @@
 {% endblock dns_prefetch %}
 
 
-{% block enhance_js_meta %}
-    {{ parent() }}
-    <meta name="fulljs"  content="{{ paths.theme }}js/demos-mag.21-08-2014.js">
-{% endblock %}
-
 {% block header_javascripts %}
     {{ parent() }}
     <script>
@@ -89,19 +84,23 @@
         <ul class="popup-block--three">
             <li>
                 <a class="image-popup-vertical-fit" href="//cdn.corydowdy.com/assets/img/verticalfit_large.png" title="Caption">
-                    <img class="center" src="//cdn.corydowdy.com/assets/img/verticalfit_th.png" alt="placeholder" width="200" height="200" />
+                    <img class="center lazyload" src="//cdn.corydowdy.com/assets/img/verticalfit_th.png"
+                         alt="placeholder"
+                         width="200" height="200" />
                 </a>
                 <p class="popup-caption">Vertical Fit Popup</p>
             </li>
             <li>
                 <a class="image-popup-fit-width" href="//cdn.corydowdy.com/assets/img/fitwidth_large.png" title="Caption.">
-                    <img class="center" src="//cdn.corydowdy.com/assets/img/verticalfit_th.png" alt="placeholder" width="200" height="200" />
+                    <img class="center lazyload" src="//cdn.corydowdy.com/assets/img/verticalfit_th.png" alt="placeholder"
+                         width="200" height="200" />
                 </a>
                 <p class="popup-caption">Fit Width Popup</p>
             </li>
             <li>
                 <a class="image-popup-no-margins" href="//cdn.corydowdy.com/assets/img/nomargins_large.png" title="Caption">
-                    <img class="center" src="//cdn.corydowdy.com/assets/img/verticalfit_th.png" alt="placeholder" width="200" height="200" />
+                    <img class="center lazyload" src="//cdn.corydowdy.com/assets/img/verticalfit_th.png" alt="placeholder"
+                         width="200" height="200" />
                 </a>
                 <p class="popup-caption">No Margins Popup</p>
             </li>
@@ -128,22 +127,26 @@
         <ul id="popup-gallery" class="popup-block--two">
             <li>
                 <a href="//cdn.corydowdy.com/assets/img/gallery_1.png" title="Placeholder">
-                    <img class="center" src="//cdn.corydowdy.com/assets/img/gallery_1-th.png" alt="gallery1" width="150" height="150">
+                    <img class="center lazyload" src="//cdn.corydowdy.com/assets/img/gallery_1-th.png" alt="gallery1"
+                         width="150" height="150">
                 </a>
             </li>
             <li>
                 <a href="//cdn.corydowdy.com/assets/img/gallery_2.png" title="Placeholder">
-                    <img class="center" src="//cdn.corydowdy.com/assets/img/gallery_2-th.png" alt="gallery2" width="150" height="150">
+                    <img class="center lazyload" src="//cdn.corydowdy.com/assets/img/gallery_2-th.png" alt="gallery2"
+                         width="150" height="150">
                 </a>
             </li>
             <li>
                 <a href="//cdn.corydowdy.com/assets/img/gallery_3.png" title="Placeholder">
-                    <img class="center" src="//cdn.corydowdy.com/assets/img/gallery_3-th.png" alt="gallery3" width="150" height="150">
+                    <img class="center lazyload" src="//cdn.corydowdy.com/assets/img/gallery_3-th.png" alt="gallery3"
+                         width="150" height="150">
                 </a>
             </li>
             <li>
                 <a href="//cdn.corydowdy.com/assets/img/gallery_4.png" title="Placeholder">
-                    <img class="center" src="//cdn.corydowdy.com/assets/img/gallery_4-th.png" alt="gallery4" width="150" height="150">
+                    <img class="center lazyload" src="//cdn.corydowdy.com/assets/img/gallery_4-th.png" alt="gallery4"
+                         width="150" height="150">
                 </a>
             </li>
         </ul>
@@ -301,3 +304,8 @@
 
 
 {% endblock %}
+
+{% block footer_javascripts %}
+<script src="{{ paths.theme }}js/demos-mag.21-08-2014.js" async defer></script>
+{{ parent() }}
+{% endblock footer_javascripts %}

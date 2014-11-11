@@ -3,10 +3,6 @@
 #}
 
 {% extends 'base.html.twig' %}
-{% block enhance_js_meta %}
-    {{ parent() }}
-    <meta name="fulljs"  content="{{ paths.theme }}js/blog-entries.21-08-2014.js">
-{% endblock %}
 
 {% block inlined_styles %}
     <style>
@@ -31,5 +27,6 @@
 
 {% block footer_javascripts %}
     {{ parent() }}
-    <script src="{{ paths.theme }}js/prism/prism.js"></script>
+    <script src="{{ paths.theme }}js/blog-entries.21-08-2014.js" async defer ></script>
+    <script src="{{ paths.theme }}js/prism/prism.js" defer></script>
 {% endblock %}

@@ -20,7 +20,7 @@
 #}
 {% block picturefill %}
   {{ parent() }}
-    <script>document.createElement( "picture" );</script>
+
     <script src="{{ paths.theme }}js/picturefill/picturefill.min.js" async defer></script>
 {% endblock picturefill %}
 
@@ -57,13 +57,12 @@
         <h2>Current Project</h2>
         <div class="showcase-container">
             <figure>
-                {#20vw, 37.5vw, 50vw, 68.75vw, 100vw#}
                 {# removed src att per http://scottjehl.github.io/picturefill/#img-sizes#}
                 <img class="center"
                      sizes="80vw"
                      srcset="files/bypp-showcase-210.png 210w,
                              files/bypp-showcase-320.png 320w,
-                             files/bypp-showcase-600.png 600w"
+                             files/bypp-showcase-640.png 640w"
                      alt="Backyard Pleasure Pools on multiple devices"/>
 
                 <figcaption class="showcase-container--caption">
@@ -80,27 +79,49 @@
             <ul class="icon-blocks">
                 <li>
                     <a class="image-popup-vertical-fit" href="files/comp_1_pop.png" title="First Site Comp.">
-                        <img class="center" src=files/comp1-th.png
-                             alt="first site comp"
-                          />
+                        {#<img class="center"#}
+                             {#sizes="25vw"#}
+                             {#srcset="files/comp1-th-155.png 155w,#}
+                             {#files/comp1-th.png 355w"#}
+                             {#alt="first site comp"#}
+                          {#/>#}
+                        <img class="center"
+                             sizes="25vw"
+                             {#src="files/comp1-th-155.png"#}
+                             srcset="files/comp1-th-155.png 155w,
+                             files/comp1-th.png 355w" />
                     </a>
                     <p class="showcase-popup-caption">First Site Comp. <small class="hide-small">click to enlarge</small></p>
                 </li>
                 <li>
                     <a class="image-popup-vertical-fit" href="files/comp_2_pop.png" title="Second Site Comp.">
-                        <img class="center" src="files/comp2-th.png" alt="Second site comp" width="395" height="297" />
+                        <img class="center"
+                             sizes="25vw"
+                             srcset="files/comp2-th-155.png 155w,
+                             files/comp2-th.png 355w"
+                             alt="Second site comp"
+                          />
                     </a>
                     <p class="showcase-popup-caption">Second Site Comp. <small class="hide-small">click to enlarge</small></p>
                 </li>
                 <li>
                     <a class="image-popup-vertical-fit" href="files/comp_3_pop.png" title="Third Site Comp.">
-                        <img class="center" src="files/comp3-th.png" alt="Third site comp" width="395" height="297" />
+                        <img class="center"
+                             sizes="25vw"
+                             srcset="files/comp3-th-155.png 155w,
+                             files/comp3-th.png 355w"
+                             alt="Third site comp"
+                             />
                     </a>
                     <p class="showcase-popup-caption">Third Site Comp. <small class="hide-small">click to enlarge</small></p>
                 </li>
                 <li>
                     <a class="image-popup-vertical-fit" href="files/current_pop.png" title="Current Site.">
-                        <img class="center" src="files/current-th.png" alt="Current Backyard Pleasure Pools site" width="395" height="297" />
+                        <img class="center"
+                             sizes="25vw"
+                             srcset="files/current-th-155.png 155w,
+                             files/current-th.png 355w"
+                             alt="Current Backyard Pleasure Pools site"/>
                     </a>
                     <p class="showcase-popup-caption">Current Site. <small class="hide-small">click to enlarge</small></p>
                 </li>
