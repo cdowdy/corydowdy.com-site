@@ -1,4 +1,4 @@
-<article>
+<article class="push-down full" itemscope="" itemtype="http://schema.org/BlogPosting">
   <section id="intro">
     <p>
       CSS Frameworks are bloated! At least that is the argument. They can be is the truth. A standard Sass install with all components included of Foundation 5 is 111KB uncompressed 16 Kb compressed. They can also be as slim as you want. You can use only the parts you want when you use tools like Sass (scss) but that still may leave over unwanted styles. Grunt Uncss can fill in those gaps and shrink our file down even more.
@@ -88,7 +88,7 @@ C:\xampp\htdocs&gt;foundation new uncss --libsass
     </p>
     <pre class="language-bash">
 <code>
-npm install grunt-uncss grunt-contrib-cssmin grunt-processhtml grunt-autoprefixer --save-dev 
+npm install grunt-uncss grunt-contrib-cssmin grunt-processhtml grunt-autoprefixer --save-dev
 </code>
 </pre>
     <p>
@@ -98,9 +98,9 @@ npm install grunt-uncss grunt-contrib-cssmin grunt-processhtml grunt-autoprefixe
       Enabling
     </h5>
     <p>
-      At the bottom of your Gruntfile you will see the 
+      At the bottom of your Gruntfile you will see the
       <code class="language-javascript">
-        grunt.loadNpmTasks('task here'); 
+        grunt.loadNpmTasks('task here');
       </code>
       you will place your newly downloaded and installed tasks below the ones Foundation has installed for you.
     </p>
@@ -109,7 +109,7 @@ npm install grunt-uncss grunt-contrib-cssmin grunt-processhtml grunt-autoprefixe
 // foundations tasks
 grunt.loadNpmTasks('grunt-sass');
 grunt.loadNpmTasks('grunt-contrib-watch');
-// ones you wish to use 
+// ones you wish to use
 grunt.loadNpmTasks('grunt-uncss');
 grunt.loadNpmTasks('grunt-processhtml');
 grunt.loadNpmTasks('grunt-contrib-cssmin');
@@ -224,16 +224,16 @@ cssmin: {
       Running a Task
     </h3>
     <p>
-      You can now open up your terminal/command prompt in your project directory if you closed it and enter 
+      You can now open up your terminal/command prompt in your project directory if you closed it and enter
       <code class="language-bash">
-        grunt [task-name] 
+        grunt [task-name]
       </code>
       for each task you wish to run. That is time consuming if you have a large gruntfile and many plugins and kind of defeates the purpose of a task runner. To fix this we will register a task, call this task "clean". This task will build our css from scss the run uncss followed by autoprefixer, minify our prefixed-cleaned css then copy those files over to our "cleaned" directory.
     </p>
     <p>
-      At the bottom of your Gruntilfe in the 
+      At the bottom of your Gruntilfe in the
       <code class="language-javascript">
-        grunt.registerTask('task name') 
+        grunt.registerTask('task name')
       </code>
       section place this:
     </p>
@@ -247,9 +247,9 @@ grunt.registerTask('clean', ['build', 'uncss', 'autoprefixer', 'cssmin', 'proces
 </code>
 </pre>
     <p>
-      Now we can run 
+      Now we can run
       <code class="language-bash">
-        grunt clean 
+        grunt clean
       </code>
       from your terminal
     </p>
@@ -361,7 +361,7 @@ sass: {
       // our component file on the right
       // file to save on the left
       'css/top-bar.css' : 'scss/topbar.scss'
-    }        
+    }
    }
 },
 </code>
@@ -423,9 +423,9 @@ cssmin: {
       </tbody>
     </table>
     <p>
-      Creating a standalone top-bar.css file will also include all of the grid css classes. You can see from the above example its not much of a size difference when using compression to serve your site (which is highly recomened). You can shrink the entire css file more once you are ready to put your site into production. After you have built your assets (by running 
+      Creating a standalone top-bar.css file will also include all of the grid css classes. You can see from the above example its not much of a size difference when using compression to serve your site (which is highly recomened). You can shrink the entire css file more once you are ready to put your site into production. After you have built your assets (by running
       <code class="language-bash">
-        grunt build 
+        grunt build
       </code>
       ) you'll have two css files. This instance we'll have app.css and top-bar.css. We can then take steps to shrink this file by running indiviual grunt tasks. In order to use this option we must remove the unnecessary css from our component css (top-bar.css). Open this file and remove the grid classes and the meta.mq classes and save the top-bar.css. You can then run the individual tasks or build a new task.
     </p>
@@ -486,4 +486,5 @@ cssmin: {
       Css frameworks don't have to be "bloated" or heavy. With the increase of people accessing the internet with mobile devices it helps to send assets down to their device that aren't littered with unnecessary css.
     </p>
   </section>
+
 </article>
