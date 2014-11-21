@@ -15,7 +15,7 @@
 
 {% block body %}
     <div class="push-down">
-        {% setcontent blogposts = "blog/latest/4" allowpaging %}
+        {% setcontent blogposts = "blog/latest/5" allowpaging  %}
         {% for blogpost in blogposts %}
             <article class="container">
                 <div class="full">
@@ -37,7 +37,9 @@
             </article>
             <hr/>
         {% endfor %}
+        {{ pager('', 3, '_sub_corydowdy_pager.twig') }}
     </div><!-- /.push-down -->
+
 {% endblock %}
 
 {% block footer_javascripts %}
