@@ -1,0 +1,33 @@
+
+{% if "filter" in app.request.query.all|keys %}
+  {% set filter = "filter=" ~ app.request.query.all.filter ~ "&" %}
+{% else %}
+  {% set filter = "" %}
+{% endif %}
+
+{% if "order" in app.request.query.all|keys %}
+  {% set order = "order=" ~ app.request.query.all.order ~ "&" %}
+{% else %}
+  {% set order = "" %}
+{% endif %}
+
+{% if pager.link is defined %}
+  {% set link = pager.link %}
+{% else %}
+  {% set link = "?" ~ filter ~ order ~ "page=" %}
+{% endif %}
+
+{% if pager.totalpages > 1 %}
+  <section class="full pagination-centered">
+        <ul class="pagination">
+          {# 'first' and 'prev' #}
+          {% if pager.current > 1 and class!="narrow" %}
+          <li class="arrow"><a href="{{link}}{{pager.current-1}}">&laquo; Newer Posts</a></li>
+          {% endif %}
+
+          {% if pager.current < pager.totalpages and class!="narrow" %}
+            <li class="arrow"><a  href="{{link}}{{pager.current+1}}"> Older Posts &raquo;</a></li>
+          {% endif %}
+        </ul>
+    </section>
+{% endif %}
