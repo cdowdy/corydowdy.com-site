@@ -13,7 +13,7 @@
 
 {% block inlined_styles %}
 <style>
-    {% include 'css/critical-css/home-critical.16-10-2014.css' %}
+    {% include 'css/critical-css/home-critical-12-02-2014.css' %}
 </style>
 {% endblock %}
 {#
@@ -26,58 +26,26 @@
     <ul class="icon-blocks">
         <li class="home-icon-hover">
             <a href="/work" aria-label="External Link to Work"><span class="visuallyhidden">Work</span>
-            <span class="home-full-icon">
-              <svg  role="presentation" class="center">
-                  <use xlink:href="{{ paths.theme }}svgsprites/linkicons-sprite.svg#icon-work"></use>
-              </svg>
-            </span>
-            <span class="home-mobile-icon">
-              <svg  role="presentation" class="center">
-                  <use xlink:href="{{ paths.theme }}svgsprites/linkicons-sprite.svg#icon-work-mobile"></use>
-              </svg>
-            </span>
+            <span class="icons home-full-icon icon-work"></span>
+            <span class="icons home-mobile-icon icon-work-mobile"></span>
             </a>
         </li>
         <li class="home-icon-hover">
             <a href="/contact"><span class="visuallyhidden">Contact</span>
-          <span class="home-full-icon">
-            <svg  role="presentation" class="center">
-                <use xlink:href="{{ paths.theme }}svgsprites/linkicons-sprite.svg#icon-contact"></use>
-            </svg>
-          </span>
-            <span class="home-mobile-icon">
-               <svg  class="center"  role="presentation">
-                   <use xlink:href="{{ paths.theme }}svgsprites/linkicons-sprite.svg#icon-contact-mobile"></use>
-               </svg>
-            </span>
+              <span class="icons home-full-icon icon-contact"></span>
+              <span class="icons home-mobile-icon icon-contact-mobile"></span>
             </a>
         </li>
         <li class="home-icon-hover">
             <a href="/blog" aria-label="External Link to Blog"><span class="visuallyhidden">Blog</span>
-            <span class="home-full-icon">
-              <svg  role="presentation" class="center">
-                  <use xlink:href="{{ paths.theme }}svgsprites/linkicons-sprite.svg#icon-blog"></use>
-              </svg>
-            </span>
-            <span class="home-mobile-icon">
-              <svg  role="presentation" class="center">
-                  <use xlink:href="{{ paths.theme }}svgsprites/linkicons-sprite.svg#icon-blog-mobile"></use>
-              </svg>
-            </span>
+              <span class="icons home-full-icon icon-blog"></span>
+              <span class="icons home-mobile-icon icon-blog-mobile"></span>
             </a>
         </li>
         <li class="home-icon-hover">
             <a href="/demo" aria-label="External Link to Demos"><span class="visuallyhidden">Demos</span>
-            <span class="home-full-icon">
-              <svg  role="presentation" class="center">
-                  <use xlink:href="{{ paths.theme }}svgsprites/linkicons-sprite.svg#icon-demo"></use>
-              </svg>
-            </span>
-            <span class="home-mobile-icon">
-              <svg  role="presentation" class="center">
-                  <use xlink:href="{{ paths.theme }}svgsprites/linkicons-sprite.svg#icon-demo-mobile"></use>
-              </svg>
-            </span>
+              <span class="icons home-full-icon icon-demo"></span>
+              <span class="icons home-mobile-icon icon-demo-mobile"></span>
             </a>
         </li>
     </ul>

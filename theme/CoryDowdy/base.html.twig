@@ -48,7 +48,7 @@
     {% endblock %}
 
     {% block enhance_js_meta %}
-    <meta name="fullcss"  content="{{ paths.theme }}css/app.min.10-16-2014.css">
+    <meta name="fullcss"  content="{{ paths.theme }}css/app.min.12-03-2014.css">
     {% endblock %}
 
     {#  stylesheets block #}
@@ -64,26 +64,28 @@
         {% endblock fout %}
 
         {% if app.request.cookies.has('fullcss') %}
-            <link rel="stylesheet" href="{{ paths.theme }}css/app.min.11-20-2014.css"/>
+            <link rel="stylesheet" href="{{ paths.theme }}css/app.min.12-03-2014.css"/>
         {% else %}
             {% block inlined_styles %}
                 {# Individual Inlined Styles Go in Page Template #}
             {% endblock %}
+        {% endif %}
             {% block enhance %}
                 <script>
                     {% spaceless %}
                     {# Include Enhance JS #}
-                    {% include 'js/enhance/enhance-11-08-2014.js' %}
+                    {% include 'js/enhance/enhance-grunticon-12-02-2014.js' %}
                     {% endspaceless %}
                 </script>
             {% endblock enhance %}
 
-            <noscript><link rel="stylesheet" href="{{ paths.theme }}css/app.min.10-16-2014.css"/></noscript>
-        {% endif %}
+            <noscript><link rel="stylesheet" href="{{ paths.theme }}css/app.min.12-03-2014.css"/></noscript>
+            <noscript><link href="{{ paths.theme }}css/icons/icons.fallback.css" rel="stylesheet"></noscript>
+
     {% endblock %}
     {% block picturefill %}
         {# dirty hack to include picturefill AFTER the noscript css#}
-        <script src="{{ paths.theme }}js/lib/svg4every1-modernizr.js" async ></script>
+        <script src="{{ paths.theme }}js/lib/modernizr/modernizr-10-16-2014.js" async ></script>
     {% endblock picturefill %}
 
     {% block ie8_conditionals %}
@@ -105,11 +107,9 @@
 {% endblock svgs %}
 <header class="app-bar promote-layer" role="banner">
     <div class="app-bar-container">
-        <button class="menu">
-            <svg class="menu-icon">
-                <use xlink:href="{{ paths.theme }}svgsprites/linkicons-sprite.svg#a"></use>
-            </svg>
-        </button>
+       <button class="menu menu-icon icon-hamburger">
+           <span class="visuallyhidden">Open Menu</span>
+       </button>
         <h1 class="logo"><a class="back-home" href="/">Cory Dowdy</a></h1>
     </div>
 </header>
