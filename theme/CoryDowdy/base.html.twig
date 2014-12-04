@@ -16,6 +16,7 @@
     {% endblock dns_prefetch %}
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#2C3E50"/>
     <title>
         {% if record.title is defined %}{{ record.title|striptags }} | {% endif %}
         {{ app.config.get('general/sitename') }}
