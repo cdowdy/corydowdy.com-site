@@ -9,7 +9,7 @@
 
 
     {% block inlined_styles %}
-        <style>{% include 'css/critical-css/work-critical.16-10-2014.css' %}</style>
+        <style>{% include 'css/critical-css/work-critical-12-05-2014.css' %}</style>
     {% endblock %}
 
 
@@ -21,29 +21,15 @@
 {% block picturefill %}
   {{ parent() }}
 
-    <script src="{{ paths.theme }}js/picturefill/picturefill.min.js" async defer></script>
+    {#<script src="{{ paths.theme }}js/picturefill/picturefill.min.js" async defer></script>#}
+    {#<script src="{{ paths.theme }}js/picturefill/ri.intrinsic.min.js" async defer></script>#}
+  <script src="{{ paths.theme }}js/lib/lazysizes.min.js" async defer></script>
 {% endblock picturefill %}
 
 
 
 
 {% block body %}
-    <!-- Icon Block Skip links -->
-    <ul class="icon-blocks work">
-        <li class="w_hov">
-            <a href="#current">
-                <span class="visuallyhidden">Current Projects Link</span>
-                  <div class="work_icon icon-work"></div>
-                <h2>Current Project</h2>
-            </a>
-        </li>
-        <li class="w_hov">
-            <a href="#c5Section"><span class="visuallyhidden">Concrete 5 Add-ons Link</span>
-                <div class="work_icon icon-c5-demos"></div>
-                <h2>Concrete5 Add-ons</h2>
-            </a>
-        </li>
-    </ul> <!-- ./icon-blocks -->
     <section id="current" class="evo">
         <h2>Current Project</h2>
         <div class="showcase-container">
@@ -72,25 +58,19 @@
             <ul class="icon-blocks">
                 <li>
                     <a class="image-popup-vertical-fit" href="files/comp_1_pop.png" title="First Site Comp.">
-                        {#<img class="center"#}
-                             {#sizes="25vw"#}
-                             {#srcset="files/comp1-th-155.png 155w,#}
-                             {#files/comp1-th.png 355w"#}
-                             {#alt="first site comp"#}
-                          {#/>#}
-                        <img class="center"
+                        <img class="center lazyload "
                              sizes="25vw"
                              {#src="files/comp1-th-155.png"#}
-                             srcset="files/comp1-th-155.png 155w,
+                             data-srcset="files/comp1-th-155.png 155w,
                              files/comp1-th.png 355w" />
                     </a>
                     <p class="showcase-popup-caption">First Site Comp. <small class="hide-small">click to enlarge</small></p>
                 </li>
                 <li>
                     <a class="image-popup-vertical-fit" href="files/comp_2_pop.png" title="Second Site Comp.">
-                        <img class="center"
+                        <img class="center lazyload "
                              sizes="25vw"
-                             srcset="files/comp2-th-155.png 155w,
+                             data-srcset="files/comp2-th-155.png 155w,
                              files/comp2-th.png 355w"
                              alt="Second site comp"
                           />
@@ -99,9 +79,9 @@
                 </li>
                 <li>
                     <a class="image-popup-vertical-fit" href="files/comp_3_pop.png" title="Third Site Comp.">
-                        <img class="center"
+                        <img class="center lazyload "
                              sizes="25vw"
-                             srcset="files/comp3-th-155.png 155w,
+                             data-srcset="files/comp3-th-155.png 155w,
                              files/comp3-th.png 355w"
                              alt="Third site comp"
                              />
@@ -110,9 +90,9 @@
                 </li>
                 <li>
                     <a class="image-popup-vertical-fit" href="files/current_pop.png" title="Current Site.">
-                        <img class="center"
+                        <img class="center lazyload "
                              sizes="25vw"
-                             srcset="files/current-th-155.png 155w,
+                             data-srcset="files/current-th-155.png 155w,
                              files/current-th.png 355w"
                              alt="Current Backyard Pleasure Pools site"/>
                     </a>
