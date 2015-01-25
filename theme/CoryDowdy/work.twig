@@ -21,9 +21,9 @@
 {% block picturefill %}
   {{ parent() }}
 
-    {#<script src="{{ paths.theme }}js/picturefill/picturefill.min.js" async defer></script>#}
+    <script src="{{ paths.theme }}js/picturefill/picturefill.min.js"></script>
     {#<script src="{{ paths.theme }}js/picturefill/ri.intrinsic.min.js" async defer></script>#}
-  <script src="{{ paths.theme }}js/lib/lazysizes.min.js" async defer></script>
+  {#<script src="{{ paths.theme }}js/lib/lazysizes.min.js" async defer></script>#}
 {% endblock picturefill %}
 
 
@@ -60,9 +60,9 @@
                     <a class="image-popup-vertical-fit" href="files/comp_1_pop.png" title="First Site Comp.">
                         <img class="center lazyload "
                              sizes="25vw"
-                             {#src="files/comp1-th-155.png"#}
-                             data-srcset="files/comp1-th-155.png 155w,
-                             files/comp1-th.png 355w" />
+                             srcset="files/comp1-th-155.png 155w,
+                             files/comp1-th.png 355w"
+                             alt="first site comp"/>
                     </a>
                     <p class="showcase-popup-caption">First Site Comp. <small class="hide-small">click to enlarge</small></p>
                 </li>
@@ -70,7 +70,7 @@
                     <a class="image-popup-vertical-fit" href="files/comp_2_pop.png" title="Second Site Comp.">
                         <img class="center lazyload "
                              sizes="25vw"
-                             data-srcset="files/comp2-th-155.png 155w,
+                             srcset="files/comp2-th-155.png 155w,
                              files/comp2-th.png 355w"
                              alt="Second site comp"
                           />
@@ -81,7 +81,7 @@
                     <a class="image-popup-vertical-fit" href="files/comp_3_pop.png" title="Third Site Comp.">
                         <img class="center lazyload "
                              sizes="25vw"
-                             data-srcset="files/comp3-th-155.png 155w,
+                             srcset="files/comp3-th-155.png 155w,
                              files/comp3-th.png 355w"
                              alt="Third site comp"
                              />
@@ -92,7 +92,7 @@
                     <a class="image-popup-vertical-fit" href="files/current_pop.png" title="Current Site.">
                         <img class="center lazyload "
                              sizes="25vw"
-                             data-srcset="files/current-th-155.png 155w,
+                             srcset="files/current-th-155.png 155w,
                              files/current-th.png 355w"
                              alt="Current Backyard Pleasure Pools site"/>
                     </a>
