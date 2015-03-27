@@ -220,38 +220,39 @@
 <code>
   // cssmin setup
   cssmin: {
-  combine: {
-  files: {
-  // File to create      CSS Files I want to combine and minify
-  'css/app.min.css': ['css/demo.css', 'css/demo-menu.css','css/another-demo.css', 'css/demo-3.css']
-  }
-  }
+    combine: {
+      files: {
+        // File to create      CSS Files I want to combine and minify
+        'css/app.min.css': ['css/demo.css', 'css/demo-menu.css','css/another-demo.css', 'css/demo-3.css']
+      }
+    }
   },
+
   // concat and uglify setup
   concat: {
-  options: {
-  separator: ';'
-  },
-  basic: {
-  // javascript files I want to combine
-  src: ['jquery.js','js-1.js','js-2.js','js-3.js', 'js-4.js', 'js-5.js'],
-  // The Resulting JavaScript I want to create
-  dest: 'js/min/cd-demos.comb.js'
-  }
+    options: {
+      separator: ';'
+    },
+    basic: {
+      // javascript files I want to combine
+      src: ['jquery.js','js-1.js','js-2.js','js-3.js', 'js-4.js', 'js-5.js'],
+      // The Resulting JavaScript I want to create
+      dest: 'js/min/cd-demos.comb.js'
+    }
   },
   uglify: {
-  options: {
-  // the banner is inserted at the top of the output
-  banner: '/*! &lt;%= pkg.name %&gt; &lt;%= grunt.template.today("dd-mm-yyyy") %&gt; */\n',
-  compress: {
-  drop_console: true
-  }
-  },
-  dist: {
-  files: {
-  'js/min/&lt;%= pkg.name %&gt;-demos.min.js' : ['js/min/cd-demos.comb.js']
-  }
-  }
+    options: {
+      // the banner is inserted at the top of the output
+      banner: '/*! &lt;%= pkg.name %&gt; &lt;%= grunt.template.today("dd-mm-yyyy") %&gt; */\n',
+      compress: {
+        drop_console: true
+      }
+    },
+    dist: {
+      files: {
+        'js/min/&lt;%= pkg.name %&gt;-demos.min.js' : ['js/min/cd-demos.comb.js']
+      }
+    }
   },
 </code>
 </pre>
@@ -294,27 +295,27 @@
   </p>
 <pre class="language-markup">
   <code>
-    &lt;!doctype html&gt;
-    &lt;html class="no-js" lang="en"&gt;
-    &lt;head&gt;
+&lt;!doctype html&gt;
+&lt;html class="no-js" lang="en"&gt;
+  &lt;head&gt;
     &lt;meta charset="utf-8" /&gt;
     &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
     &lt;title&gt;Inline CSS&lt;/title&gt;
     &lt;style&gt;
-    header {
-    /* header styles */
-    }
-    nav {
-    /* menu styles */
-    }
+      header {
+      /* header styles */
+      }
+      nav {
+      /* menu styles */
+      }
     &lt;/style&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-    &lt;header&gt;
+  &lt;/head&gt;
+&lt;body&gt;
+  &lt;header&gt;
     &lt;nav&gt;
-    &lt;ul&gt;
-    &lt;li&gt;&lt;img src="logo.svg" alt="logo" &gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href="index.html"&gt;Home&lt;/a&gt;&lt;/li&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;img src="logo.svg" alt="logo" &gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="index.html"&gt;Home&lt;/a&gt;&lt;/li&gt;
   </code>
 </pre>
   <p>
