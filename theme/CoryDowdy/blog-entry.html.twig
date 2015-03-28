@@ -4,9 +4,21 @@
 
 {% extends 'base.html.twig' %}
 
+{# try {{ app.request}}/{{ record.slug}} for critical css #}
+
+
 {% block inlined_styles %}
     <style>
-        {% include 'css/critical-css/blog-pagespeed-critical.16-10-2014.css' %}
+  {% if record.slug == 'foundation-5-sass-and-grunt-uncss' %}
+      {% include 'css/critical-css/foundation-5-sass-and-grunt-uncss.03-26-2015.min.css' %}
+  {% endif %}
+  {% if record.slug == 'improving-pagespeed-performance' %}
+    {% include 'css/critical-css/improving-pagespeed-performance.03-26-2015.min.css' %}
+  {% endif %}
+  {% if record.slug == 'moving-from-apache-to-nginx' %}
+    {% include 'css/critical-css/moving-from-apache-to-nginx.03-26-2015.min.css' %}
+  {% endif %}
+      {% include 'css/fout.twig' %}
     </style>
 {% endblock %}
 
