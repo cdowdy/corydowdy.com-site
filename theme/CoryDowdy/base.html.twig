@@ -49,9 +49,10 @@
     {% endblock %}
 
     {% block enhance_js_meta %}
-    <meta name="fullcss"  content="{{ paths.theme }}css/app.min.12-05-2014.css">
-    <meta name="grunticon" content="{{ paths.theme }}css/icons/icons.data.svg.css" >
-    <meta name="grunticonPNG" content="{{ paths.theme }}css/icons/icons.data.png.css" >
+    <meta name="fullcss"  content="{{ paths.theme }}css/app.03-26-2015.min.css">
+    <meta name="gpng" content="{{ paths.theme }}css/icons/icons.fallback.css">
+    <meta name="gsvg" content="{{ paths.theme }}css/icons/icons.data.svg.css">
+    <meta name="gdpng" content="{{ paths.theme }}css/icons/icons.data.png.css">
     {% endblock %}
 
     {#  stylesheets block #}
@@ -67,7 +68,8 @@
         {% endblock fout %}
 
         {% if app.request.cookies.has('fullcss') %}
-            <link rel="stylesheet" href="{{ paths.theme }}css/app.min.12-05-2014.css"/>
+    <link rel="stylesheet" href="{{ paths.theme }}css/app.03-26-2015.min.css"/>
+    <link rel="stylesheet" href="{{ app.request.cookies.get('grunticon') }}" />
         {% else %}
             {% block inlined_styles %}
                 {# Individual Inlined Styles Go in Page Template #}
@@ -77,20 +79,13 @@
                 <script>
                     {% spaceless %}
                     {# Include Enhance JS #}
-                    {% include 'js/enhance/enhance-grunticon-12-02-2014.js' %}
+                    {% include 'js/enhance/enhance-3-26-2015.min.js' %}
                     {% endspaceless %}
                 </script>
             {% endblock enhance %}
         {% endif %}
-        <script>
-        /* grunticon Stylesheet Loader | https://github.com/filamentgroup/grunticon | (c) 2012 Scott Jehl, Filament
-        Group, Inc. | MIT license. */
-        window.grunticon=function(e){if(e&&3===e.length){var t=window,n=!(!t.document.createElementNS||!t.document.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect||!document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image","1.1")||window.opera&&-1===navigator.userAgent.indexOf("Chrome")),o=function(o){var a=t.document.createElement("link"),r=t.document.getElementsByTagName("script")[0];a.rel="stylesheet",a.href=e[o&&n?0:o?1:2],a.media="only x",r.parentNode.insertBefore(a,r),setTimeout(function(){a.media="all"})},a=new t.Image;a.onerror=function(){o(!1)},a.onload=function(){o(1===a.width&&1===a.height)},a.src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="}};
-        grunticon(["{{ paths.theme }}css/icons/icons.data.svg.css", "{{ paths.theme }}css/icons/iicons.data.png.css",
-         "{{ paths.theme }}css/icons/icons.fallback.css"]);
-        </script>
 
-            <noscript><link rel="stylesheet" href="{{ paths.theme }}css/app.min.12-05-2014.css"/></noscript>
+            <noscript><link rel="stylesheet" href="{{ paths.theme }}css/app.03-26-2015.min.css"/></noscript>
             <noscript><link rel="stylesheet" href="{{ paths.theme }}css/icons/icons.fallback.css" ></noscript>
 
     {% endblock %}
