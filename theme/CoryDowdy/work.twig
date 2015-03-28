@@ -9,7 +9,7 @@
 
 
     {% block inlined_styles %}
-        <style>{% include 'css/critical-css/work-critical-12-05-2014.css' %}</style>
+        <style>{% include 'css/critical-css/work.03-26-2015.min.css' %}</style>
     {% endblock %}
 
 
@@ -21,7 +21,7 @@
 {% block picturefill %}
   {{ parent() }}
 
-    <script src="{{ paths.theme }}js/picturefill/picturefill.min.js"></script>
+    <script src="{{ paths.theme }}js/picturefill/picturefill.min.js" async defer ></script>
     {#<script src="{{ paths.theme }}js/picturefill/ri.intrinsic.min.js" async defer></script>#}
   {#<script src="{{ paths.theme }}js/lib/lazysizes.min.js" async defer></script>#}
 {% endblock picturefill %}

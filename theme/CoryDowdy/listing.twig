@@ -30,6 +30,7 @@
                     {{ slug }}
                 {% endif %}
             </h1>
+            {% set records = records|order(app.config.get('general/listing_sort')) %}
         {% endif %}
 
         {# This is also the default template for searchresults. If 'search' is defined,

@@ -20,22 +20,11 @@
         document.createElement( "picture" );
     </script>
 {% endblock %}
-{% block fout  %}
-    <style>
-        .wf-loading h1 {font-size: 2.75rem; font-weight: 400;font-style: normal;color: #2C3E50;text-rendering: optimizelegibility;margin-top: 0.2rem;margin-bottom: 0.5rem;}
-        .wf-loading .name h1 {line-height: 60px;font-size: 1.0625rem;margin: 0px;}
-        .wf-loading h1,h2,h3,h4,h5,h6 {line-height: 1.4;}
-        .wf-loading dl {font-size: 1rem;line-height: 1.6;}
-        .wf-loading dd {font-family:sans-serif;font-weight: 400;font-size: .875rem;color: #999;}
-        .wf-loading p {font-family:sans-serif;font-weight: 400;font-size: 1rem;line-height: 1.6;margin-bottom: 1.25rem;text-rendering: optimizeLegibility;}
-    </style>
-{% endblock fout  %}
-
-
 
 {% block inlined_styles %}
     <style>
-        {% include 'css/critical-css/demos_mag-critical.11-20-2014.css' %}
+        {% include 'css/critical-css/concrete5-magnific-popup.03-27-2015.min.css' %}
+        {% include 'css/fout.twig' %}
     </style>
 {% endblock %}
 
