@@ -7,12 +7,13 @@ html, body {
 }
 
 // Menu Icon for the top bar (hamburger)
-.menu-icon {
-  height: 45px;
-  width: 45px;
-  fill: $silver;
-  display: inline;
-}
+//.menu-icon {
+//  height: 45px;
+//  width: 45px;
+//  background-position: center;
+////  fill: $silver;
+////  display: inline;
+//}
 .mobile-help {
   @media #{$large-up} {
     display: none;
@@ -21,12 +22,14 @@ html, body {
 
 
 // center stuff
-.center {
+.center,
+%center {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
-.center-text {
+.center-text,
+%center-text {
   text-align: center;
 }
 
@@ -68,6 +71,7 @@ html, body {
   dd {
     @media #{$large-up} {
       float: none;
+      display: inline;
     }
   }
 }
@@ -77,3 +81,11 @@ video{
   height: auto;
 }
 
+// IE 8 notice
+.browsehappy {
+  margin: 3px;
+  background: #F2DEDE;
+  color: #A94442;
+  border-color: #EBCCD1;
+  padding: 10px;
+}

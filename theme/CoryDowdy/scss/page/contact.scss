@@ -2,6 +2,10 @@
 // 8-8-2014
 // github.com/cdowdy/corydowdy.com-site
 
+
+// REMINDER... SET FONT SIZE TO 16PX (1REM) to stop zoom in on mobile phones in inputs
+
+
 $success-color: #43ac6a;
 $error-color:   #d9534f;
 
@@ -30,6 +34,7 @@ $error-color:   #d9534f;
 
 }
 // form grid
+/* form grid 12 columns small screen 8 columns centered large ones */
 .form-container, .form-submitted-container {
   @include grid-column(12);
   @media #{$large-up} {
@@ -39,45 +44,10 @@ $error-color:   #d9534f;
     );
   }
 }
+//
+//input[type=email], input[type=search], input[type=text], textarea {
+//  font-size: rem-calc(16);
+//}
 
-// Paresely JS Error styling
-input.parsley-success, select.parsley-success, textarea.parsley-success {
-  color: $success-color;
-  background-color: #DFF0D8;
-  border: 1px solid #D6E9C6;
-}
-
-input.parsley-error, select.parsley-error, textarea.parsley-error {
-  color: $error-color;
-  background-color: #F2DEDE;
-  border: 1px solid #EED3D7;
-}
-
-.parsley-errors-list {
-  margin: 2px 0 3px 0;
-  padding: 0;
-  list-style-type: none;
-  font-size: 0.9em;
-  line-height: 0.9em;
-  opacity: 0;
-  -moz-opacity: 0;
-  -webkit-opacity: 0;
-  transition: all .3s ease-in;
-  -o-transition: all .3s ease-in;
-  -ms-transition: all .3s ease-in;
-  -moz-transition: all .3s ease-in;
-  -webkit-transition: all .3s ease-in;
-  &.filled {
-    opacity: 1;
-    background-color: $error-color;
-    color: #fff;
-  }
-  .parsley-required,
-  .parsley-type,
-  .parsley-range,
-  .parsley-length {
-    padding: 5px;
-  }
-}
 
 

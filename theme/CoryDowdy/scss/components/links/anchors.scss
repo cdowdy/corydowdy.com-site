@@ -43,10 +43,12 @@
 // Styles for Link Icons
 //
 .link-icon {
-  display: inherit;
+  display: inline-block;
   width: 15px;
   height: 15px;
   fill: currentColor;
+  // for grunticon icons
+//  background-position: center;
 }
 
 

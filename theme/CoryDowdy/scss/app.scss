@@ -3,6 +3,7 @@
 
 @import "settings";
 @import "components/accessibility/ally";
+@import "components/typography/type";
 //@import "foundation";
 
 // Or selectively include components
@@ -25,7 +26,7 @@
 //   "foundation/components/labels",
 //   "foundation/components/magellan",
 //   "foundation/components/orbit",
-//   "foundation/components/pagination",
+   "foundation/components/pagination",
    "foundation/components/panels",
 //   "foundation/components/pricing-tables",
 //   "foundation/components/progress-bars",
@@ -39,7 +40,7 @@
 //   "foundation/components/thumbs",
 //   "foundation/components/tooltips",
 //   "foundation/components/top-bar",
-   "foundation/components/type",
+//   "foundation/components/type",
 //   "foundation/components/offcanvas",
    "foundation/components/visibility";
 //@import "fonts";
@@ -51,8 +52,12 @@
 @import "components/grid/custom-grids";
 @import "components/links/anchors";
 @import "components/svg-icons/full-size-icons";
+@import "components/panels/panel";
 @import "page/work";
 @import "page/demos";
 @import "page/blog";
 @import "page/contact";
 @import "page/homepage";
+
+@import "components/pagination/pagination";
+

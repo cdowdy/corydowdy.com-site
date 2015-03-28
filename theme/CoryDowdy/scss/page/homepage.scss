@@ -3,6 +3,10 @@
 
 
 .home-icon-hover {
+  &:hover, &:focus, &:active {
+    background-color: #2C3E50;
+    border-radius: 4px;
+  }
   .home-full-icon {
     width: 350px;
     height: 266px;

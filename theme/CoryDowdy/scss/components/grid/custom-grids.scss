@@ -20,6 +20,16 @@
   @include grid-column(12);
 }
 
+.centered-5-to-full {
+  @include grid-column(12);
+  @media #{$large-up} {
+    @include grid-column(
+      $columns: 5,
+      $center: true
+    );
+  }
+}
+
 // block grid for work Icon blocks
 .icon-blocks {
   @include block-grid(2);
