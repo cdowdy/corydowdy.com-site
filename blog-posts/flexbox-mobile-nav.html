@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+ <section id="quicknav">
+      <div class="container">
+        <div class="centered-5-to-full quick-nav-panel">
+            <p>quick navigation</p>
+            <ol>
+              <li><a href="#browser-support">Browser Support</a></li>
+              <li><a href="#screens">Browser Screenshots</a></li>
+              <li><a href="#how-to-use">Instructions</a></li>
+              <li><a href="#download">Download</a></li>
+            </ol>
+        </div>
+      </div>
+      </section>
+      <section id="intro">
+        <p>
+          While working on a template for a client we decided to use Flexbox. I had these requirements set in stone from
+          the get go:
+        </p>
+        <ol>
+          <li>Be Accessible</li>
+          <li>Load Quickly</li>
+          <li>Not have a ton of dependencies</li>
+          <li>Work when javascript may fail</li>
+        </ol>
+        <p>
+          Jquery for all its usefulness I felt was unneeded for this navigation for a few reasons. One being if JQuery wasn't being used on the page I didn't want to load it. Two It would make our dependency tree smaller. Not loading un-needed files helps with #2 requirement and Tim Kadlec's "<a href="http://whatdoesmysitecost.com/">whatdoesmysitecost.com</a>" really helps put into perspective what heavy sites may cost in other parts of the world. Our browser support was at least Internet Explorer 9. So working off the assumptions of being mobile AND accessible first I came up with <a class="external-link" href="https://developers.google.com/speed/pagespeed/module">Flexbox Mobile Dropdown Navigation <svg class="link-icon"><use
+          xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+        </p>
+        <p>
+          Its a small "module" that should be fine plugged into any site. In the tables below you'll find the sizes of both files - CSS and JavaScript - minified and gzipped. Gzip sizes may differ depending on your servers settings.
+        </p>
+      </section>
+      <!-- /#intro -->
+      <section id="filesizes">
+        <table class="table-no-style">
+          <thead>
+          <tr>
+            <th>File</th>
+            <th class="table-number">Size Minified</th>
+            <th class="table-number">Size Gzipped</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>navigation.min.css (with fallback support)</td>
+            <td class="table-number">4.5KB</td>
+            <td class="table-number">1.7KB</td>
+          </tr>
+          <tr>
+            <td>nav-flexbox-only.min.css (without fallback support)</td>
+            <td class="table-number">3.0KB</td>
+            <td class="table-number">1.0KB</td>
+          </tr>
+          <tr>
+            <td>navigation.android-ie8.min.js</td>
+            <td class="table-number">3.3KB</td>
+            <td class="table-number">1.9KB</td>
+          </tr>
+          <tr>
+            <td>navigation.min.js (without classList polyfill)</td>
+            <td class="table-number">1.6KB</td>
+            <td class="table-number">1.1KB</td>
+          </tr>
+          </tbody>
+        </table>
+        <p>
+          This isn't going to be useful to everyone - for instance there is no support for multi-level menus
+          currently - but you can modify it to to fit your needs!
+        </p>
+      </section>
+      <!-- /#filesizes -->
+      <section id="browser-support">
+        <h3 class="heading">
+          Browser Support:
+        </h3>
+        <ul class="no-bullets">
+          <li>Desktop:
+            <ul>
+              <li> Chrome, Firefox, Safari, Opera, Internet Explorer 8+</li>
+            </ul>
+          </li>
+          <li>Mobile OS:
+            <ul>
+              <li>Android 2.3.1+ (requires the file <code class="language-markup"> navigation.android-ie8.min.js </code> or classList Polyfill for Android Gingerbread <a class="external-link" href="https://github.com/eligrey/classList.js">github.com/eligrey/classList.js</a>)
+              </li>
+              <li>iOS5+</li>
+              <li>Tested on Windows Phone 8.1</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <!-- /#browser-support -->
+      <section id="screens">
+        <p>Screenshots of the demo page on various browsers:</p>
+
+        <div class="container">
+          <ul class="popup-block--three">
+            <li>
+              <figure>
+                <a class="image-popup-vertical-fit" title="Android 2.3.1" href="//cdn.corydowdy.com/assets/blog/2-3-side-by-side.png">
+                  <img class="center lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                       data-src="/files/2.3.1.png"/>
+                </a>
+              </figure>
+              <figcaption>
+                <p class="text-center">Android 2.3.1</p>
+              </figcaption>
+            </li>
+            <li>
+              <figure>
+                <a class="image-popup-vertical-fit" title="Android 4.0" href="//cdn.corydowdy.com/assets/blog/4-0-side-by-side.png">
+                  <img class="center lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                       data-src="/files/4-0.png"/>
+                </a>
+              </figure>
+              <figcaption>
+                <p class="text-center">Android 4.0</p>
+              </figcaption>
+            </li>
+            <li>
+              <figure>
+                <a class="image-popup-vertical-fit" title="Android Opera Mini"
+                   href="//cdn.corydowdy.com/assets/blog/operaMini-side-by-side.png">
+                  <img class="center lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                       data-src="/files/android-operaMini.png"/>
+                </a>
+              </figure>
+              <figcaption>
+                <p class="text-center">Opera Mini</p>
+              </figcaption>
+            </li>
+          </ul>
+          <ul class="popup-block--three">
+            <li>
+              <figure>
+                <a class="image-popup-vertical-fit" title="Windows Phone 8.1" href="//cdn.corydowdy.com/assets/blog/winphone-side-by-side.png">
+                  <img class="center lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                       data-src="/files/winPhone-8-1.png"/>
+                </a>
+              </figure>
+              <figcaption>
+                <p class="text-center">Windows Phone 8.1 (IE 11)</p>
+              </figcaption>
+            </li>
+            <li>
+              <figure>
+                <a class="image-popup-vertical-fit" title="ios 8" href="//cdn.corydowdy.com/assets/blog/4-0-side-by-side.png">
+                  <img class="center lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                       data-src="/files/IPhone_5.png"/>
+                </a>
+              </figure>
+              <figcaption>
+                <p class="text-center">iOS 8 Safari</p>
+              </figcaption>
+            </li>
+          </ul>
+          <ul class="popup-block--three">
+            <li>
+              <figure>
+                <a class="image-popup-vertical-fit" title="Internet Explorer 8" href="//cdn.corydowdy.com/assets/blog/ie8.png">
+                  <img class="center lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                       data-src="/files/ie8-thumb.png"/>
+                </a>
+              </figure>
+              <figcaption>
+                <p class="text-center">Internet Explorer 8</p>
+              </figcaption>
+            </li>
+            <li>
+              <figure>
+                <a class="image-popup-vertical-fit" title="Internet Explorer 9" href="//cdn.corydowdy.com/assets/blog/ie9.jpg">
+                  <img class="center lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                       data-src="/files/ie9-thumb.jpg"/>
+                </a>
+              </figure>
+              <figcaption>
+                <p class="text-center">Internet Explorer 9</p>
+              </figcaption>
+            </li>
+            <li>
+              <figure>
+                <a class="image-popup-vertical-fit" title="Internet Explorer 10" href="//cdn.corydowdy.com/assets/blog/ie10.jpg">
+                  <img class="center lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                       data-src="/files/ie10-thumb.jpg"/>
+                </a>
+              </figure>
+              <figcaption>
+                <p class="text-center">Internet Explorer 10</p>
+              </figcaption>
+            </li>
+          </ul>
+          <!-- /.popup-block--css-dialog -->
+        </div>
+        <p>
+          For a demo visit: <a class="external-link" href="http://cdowdy.github.io/flexbox-mobile-dropdown-nav/">Flexbox
+          Nav on Github
+          <svg class="link-icon">
+            <use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use>
+          </svg>
+        </a>
+        </p>
+      </section>
+      <!-- /#screens -->
+      <section id="how-to-use">
+        <h3 class="heading">How To Use</h3>
+        <ol>
+          <li>Download the latest release or entire github repo or clone it:
+            <ul id="download" class="no-bullets">
+              <li>
+                <a class="external-link"
+                   href="https://github.com/cdowdy/flexbox-mobile-dropdown-nav/releases">releases</a>
+              </li>
+              <li>
+                <a href="https://github.com/cdowdy/flexbox-mobile-dropdown-nav" class="external-link">Repo</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Move the CSS and Js files you wish to use from the <code class="language-bash">dist</code> directory into
+            your css and JS folders of your project along with the <code class="language-bash">menu.png</code> from the img directory to a directory titled "img".
+          </li>
+          <li>Follow the markup provided below</li>
+        </ol>
+        <p>
+          This is written in a way to assume that JavaScript has failed to load or a user has disabled JavaScript.
+          Also known as progressive enhancement. So I have made a few opinionated assumptions and added a <code class="language-markup"> no-js </code> class to the document. This will be removed if  you include the bundled modernizr or your own version. To go along with an accessibility minded approach we have not disabled zooming and set the viewport to:
+          </p>
+<pre>
+<code class="language-markup">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"/&gt;</code>
+</pre>
+        <p>
+          More information on the viewport can be found at the <a class="external-link" href="http://a11yproject.com/posts/never-use-maximum-scale/">a11y project</a> website.
+        </p>
+        <h4 id="head">The Head markup</h4>
+<pre>
+<code class="language-markup">
+&lt;!doctype html&gt;
+  &lt;html class="no-js" lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"/&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"/&gt;
+</code>
+</pre>
+        <h4 id="css">The CSS File</h4>
+        <p>
+          Add in the CSS file you wish to use from the <code class="language-bash"> dist/css </code> directory.
+        </p>
+<pre class="language-markup">
+<code>
+&lt;link rel="stylesheet" href="dist/css/navigation.MOST-CURRENT-DATE-HERE.min.css"&gt;
+</code>
+</pre>
+        <p>
+          Underneath that add in either the included modernizr from <code class="language-bash"> dist/js </code> or
+          your own custom version with flexbox tests.
+        </p>
+<pre class="language-markup">
+<code>
+&lt;script src="js/modernizr.MOST-CURRENT-DATE-HERE.js"&gt;&lt;/script&gt;
+</code>
+</pre>
+
+        <h4 id="navigation">The Header and Navigation Markup</h4>
+<pre class="language-markup">
+<code>
+  &lt;header class="fn-header" id="js-header"&gt;
+    &lt;div class="fn-header__title-container"&gt;
+      &lt;h1 class="fn-header__name"&gt;Your Site Title&lt;/h1&gt;
+    &lt;/div&gt;
+    &lt;!-- used for no-js fallbacks --&gt;
+    &lt;input type="checkbox" id="fn-noJs" class="fn-navTrigger__no-js"/&gt;
+    &lt;label id="fn-noJs_label" for="fn-noJs"&gt;&lt;/label&gt;
+    &lt;!-- /end of no-js fallback --&gt;
+    &lt;nav class="fn-nav-container" role="navigation"&gt;
+      &lt;ul class="fn-navigation" id="js-nav"&gt;
+        &lt;!-- for each link mark them up as follows --&gt;
+        &lt;li class="fn-navigation__item"&gt;
+          &lt;a href="#first-Link"&gt;Link 1&lt;/a&gt;
+        &lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/nav&gt;
+    &lt;!-- /.fn-nav-container --&gt;
+  &lt;/header&gt;
+  &lt;!-- /.fn-header --&gt;
+</code>
+</pre>
+        <p>
+          On small devices to enable the menu to be closed besides clicking the close button you must add in a <code
+          class="language-markup"> &lt;main&gt; </code> tag.
+        </p>
+<pre>
+<code class="language-markup">
+  &lt;!-- previous steps above here --&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+&lt;main&gt;
+</code>
+</pre>
+        <h4 id="jsinc">The JavaScript</h4>
+        <p>
+          Include the navigation js file from <code class="language-bash"> dist/js </code> you wish to use before your
+          closing body.
+        </p>
+<pre>
+<code class="language-markup"> &lt;script src="dist/js/navigation.android-ie8.min.js" async defer&gt;&lt;/script&gt; </code>
+</pre>
+        <h4>Completed Setup</h4>
+<pre>
+<code class="language-markup">
+&lt;!doctype html&gt;
+&lt;html class="no-js" lang=""&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"/&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"/&gt;
+    &lt;link rel="stylesheet" href="dist/css/navigation.MOST-CURRENT-DATE-HERE.min.css"&gt;
+    &lt;!-- any other css files --&gt;
+    &lt;script src="js/modernizr.MOST-CURRENT-DATE-HERE.js"&gt;&lt;/script&gt;
+  &lt;/head&gt;
+&lt;body&gt;
+  &lt;header class="fn-header" id="js-header"&gt;
+    &lt;div class="fn-header__title-container"&gt;
+      &lt;h1 class="fn-header__name"&gt;Your Site Title&lt;/h1&gt;
+    &lt;/div&gt;
+    &lt;input type="checkbox" id="fn-noJs" class="fn-navTrigger__no-js"/&gt;
+    &lt;label id="fn-noJs_label" for="fn-noJs"&gt;&lt;/label&gt;
+    &lt;nav class="fn-nav-container" role="navigation"&gt;
+      &lt;ul class="fn-navigation" id="js-nav"&gt;
+        &lt;li class="fn-navigation__item"&gt;
+          &lt;a href="#"&gt;Link 1&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li class="fn-navigation__item"&gt;
+          &lt;a href="#"&gt;Link 2&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li class="fn-navigation__item"&gt;
+          &lt;a href="#"&gt;Link 3&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li class="fn-navigation__item"&gt;
+          &lt;a href="#"&gt;Link 4&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li class="fn-navigation__item"&gt;
+          &lt;a href="#"&gt;Link 5&lt;/a&gt;
+        &lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/nav&gt;
+  &lt;/header&gt;
+  &lt;main&gt;
+  &lt;!-- body content --&gt;
+  &lt;/main&gt;
+  &lt;footer&gt;
+  &lt;!-- footer content if present --&gt;
+  &lt;footer>
+  &lt;script src="dist/js/navigation.android-ie8.min.js" async defer>&lt;script&gt;
+&lt;body&gt;
+&lt;html&gt;
+</code>
+</pre>
+      </section>
+      <!-- /#how-to-use -->
+
+</body>
+</html>
