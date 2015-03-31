@@ -9,6 +9,7 @@
 
 {% block inlined_styles %}
     <style>
+      {% spaceless %}
   {% if record.slug == 'foundation-5-sass-and-grunt-uncss' %}
       {% include 'css/critical-css/foundation-5-sass-and-grunt-uncss.03-26-2015.min.css' %}
   {% endif %}
@@ -18,7 +19,11 @@
   {% if record.slug == 'moving-from-apache-to-nginx' %}
     {% include 'css/critical-css/moving-from-apache-to-nginx.03-26-2015.min.css' %}
   {% endif %}
+  {% if record.slug == 'flexbox-mobile-navigation' %}
+  {% include 'css/critical-css/flexbox-mobile-navigation.03-26-2015.min.css' %}
+  {% endif %}
       {% include 'css/fout.twig' %}
+      {% endspaceless %}
     </style>
 {% endblock %}
 
@@ -35,10 +40,19 @@
         {{ record.body }}
         </div>
     </article>
+  {#{% if record.taxonomy is defined %}#}
+    {#{% for type, values in record.taxonomy %}#}
+        {#<em>{{ type }}:</em>#}
+        {#{% for link, value in values %}#}
+                {#<a href="{{ link }}">{{ value }}</a>{% if not loop.last %}, {% endif %}#}
+        {#{% endfor %}#}
+        {#{% if not loop.last %} - {% endif %}#}
+    {#{% endfor %}#}
+{#{% endif %}#}
 {% endblock %}
 
 {% block footer_javascripts %}
     {{ parent() }}
-    <script src="{{ paths.theme }}js/blog-entries.21-08-2014.js" async defer ></script>
+    <script src="{{ paths.theme }}js/blog-entries.03-31-2015.js" async defer ></script>
     <script src="{{ paths.theme }}js/prism/prism-11-17-2014.js"></script>
 {% endblock %}
