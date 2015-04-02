@@ -24,7 +24,7 @@
     </title>
 
     {# Bing Validation #}
-    <meta name="msvalidate.01" content="" />
+
     {# Chrome Webapp Capable #}
     <meta name="mobile-web-app-capable" content="yes">
 
@@ -49,7 +49,7 @@
     {% endblock %}
 
     {% block enhance_js_meta %}
-    <meta name="fullcss"  content="{{ paths.theme }}css/app.03-26-2015.min.css">
+    <meta name="fullcss"  content="{{ paths.theme }}css/app.04-01-2015.min.css">
     <meta name="gpng" content="{{ paths.theme }}css/icons/icons.fallback.css">
     <meta name="gsvg" content="{{ paths.theme }}css/icons/icons.data.svg.css">
     <meta name="gdpng" content="{{ paths.theme }}css/icons/icons.data.png.css">
@@ -68,7 +68,7 @@
         {% endblock fout %}
 
         {% if app.request.cookies.has('fullcss') %}
-    <link rel="stylesheet" href="{{ paths.theme }}css/app.03-26-2015.min.css"/>
+    <link rel="stylesheet" href="{{ paths.theme }}css/app.04-01-2015.min.css"/>
     <link rel="stylesheet" href="{{ app.request.cookies.get('grunticon') }}" />
         {% else %}
             {% block inlined_styles %}
@@ -85,7 +85,7 @@
             {% endblock enhance %}
         {% endif %}
 
-            <noscript><link rel="stylesheet" href="{{ paths.theme }}css/app.03-26-2015.min.css"/></noscript>
+            <noscript><link rel="stylesheet" href="{{ paths.theme }}css/app.04-01-2015.min.css"/></noscript>
             <noscript><link rel="stylesheet" href="{{ paths.theme }}css/icons/icons.fallback.css" ></noscript>
 
     {% endblock %}
