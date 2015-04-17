@@ -30,8 +30,7 @@
           <li>Work when javascript may fail</li>
         </ol>
         <p>
-          Jquery for all its usefulness I felt was unneeded for this navigation for a few reasons. One being if JQuery wasn't being used on the page I didn't want to load it. Two It would make our dependency tree smaller. Not loading un-needed files helps with #2 requirement and Tim Kadlec's "<a href="http://whatdoesmysitecost.com/">whatdoesmysitecost.com</a>" really helps put into perspective what heavy sites may cost in other parts of the world. Our browser support was at least Internet Explorer 9. So working off the assumptions of being mobile AND accessible first I came up with <a class="external-link" href="https://developers.google.com/speed/pagespeed/module">Flexbox Mobile Dropdown Navigation <svg class="link-icon"><use
-          xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+          Jquery for all its usefulness I felt was unneeded for this navigation for a few reasons. One being if JQuery wasn't being used on the page I didn't want to load it. Two It would make our dependency tree smaller. Not loading un-needed files helps with #2 requirement and Tim Kadlec's "<a href="http://whatdoesmysitecost.com/">whatdoesmysitecost.com</a>" really helps put into perspective what heavy sites may cost in other parts of the world. Our browser support was at least Internet Explorer 9. So working off the assumptions of being mobile AND accessible first I came up with <a class="external-link" href="https://developers.google.com/speed/pagespeed/module">Flexbox Mobile Dropdown Navigation <span class="link-icon icon-external-link"></span></a>
         </p>
         <p>
           Its a small "module" that should be fine plugged into any site. In the tables below you'll find the sizes of both files - CSS and JavaScript - minified and gzipped. Gzip sizes may differ depending on your servers settings.
@@ -105,16 +104,21 @@
             <li>
               <figure>
                 <a class="image-popup-vertical-fit" title="Android 2.3.1" href="//cdn.corydowdy.com/assets/blog/2-3-side-by-side.png">
-                  <img class="center lazyload"
-                       data-sizes="auto"
-
-                       data-srcset="/files/flex/2.3.1-75w.png 75w,
+                   <img class="center"
+                        sizes="(min-width: 980px) 230px,
+                              (min-width: 800px) 165px,
+                              (min-width: 768px) 280px,
+                              (min-width: 360px) 250px,
+                              (min-width: 320px) 210px"
+                        src="/files/flex/2.3.1.png"
+                        srcset="/files/flex/2.3.1-75w.png 75w,
                        /files/flex/2.3.1-120w.png 120w,
                        /files/flex/2.3.1-165w.png 165w,
                        /files/flex/2.3.1-215w.png 215w,
                        /files/flex/2.3.1-230w.png 230w,
                        /files/flex/2.3.1-280w.png 280w,
-                       /files/flex/2.3.1.png 454w"/>
+                       /files/flex/2.3.1.png 454w"
+                        alt="Android 2.3.1 Flexnav Opened and Closed"/>
                 </a>
               </figure>
               <figcaption>
@@ -124,16 +128,20 @@
             <li>
               <figure>
                 <a class="image-popup-vertical-fit" title="Android 4.0" href="//cdn.corydowdy.com/assets/blog/4-0-side-by-side.png">
-                  <img class="center lazyload"
-                       data-sizes="auto"
-
-                       data-srcset="/files/flex/4-0-75w.png 75w,
+                   <img class="center"
+                        sizes="(min-width: 980px) 230px,
+                              (min-width: 800px) 165px,
+                              (min-width: 768px) 280px,
+                              (min-width: 360px) 250px,
+                              (min-width: 320px) 210px"
+                        srcset="/files/flex/4-0-75w.png 75w,
                        /files/flex/4-0-120w.png 120w,
                        /files/flex/4-0-165w.png 165w,
                        /files/flex/4-0-215w.png 215w,
                        /files/flex/4-0-230w.png 230w,
                        /files/flex/4-0-280w.png 280w,
-                       /files/flex/4-0.png 454w"/>
+                       /files/flex/4-0.png 454w"
+                        alt="Android 4.0 Flexnav Opened and Closed"/>
                 </a>
               </figure>
               <figcaption>
@@ -144,16 +152,20 @@
               <figure>
                 <a class="image-popup-vertical-fit" title="Android Opera Mini"
                    href="//cdn.corydowdy.com/assets/blog/operaMini-side-by-side.png">
-                  <img class="center lazyload"
-                       data-sizes="auto"
-
-                       data-srcset="/files/flex/android-operaMini-75w.png 75w,
+                  <img class="center"
+                       sizes="(min-width: 980px) 230px,
+                              (min-width: 800px) 165px,
+                              (min-width: 768px) 280px,
+                              (min-width: 360px) 250px,
+                              (min-width: 320px) 210px"
+                       srcset="/files/flex/android-operaMini-75w.png 75w,
                        /files/flex/android-operaMini-120w.png 120w,
                        /files/flex/android-operaMini-165w.png 165w,
                        /files/flex/android-operaMini-215w.png 215w,
                        /files/flex/android-operaMini-230w.png 230w,
                        /files/flex/android-operaMini-280w.png 280w,
-                       /files/flex/android-operaMini.png 454w"/>
+                       /files/flex/android-operaMini.png 454w"
+                       alt="Android Opera Mini Flexnav Opened and Closed"/>
                 </a>
               </figure>
               <figcaption>
@@ -164,16 +176,20 @@
             <li>
               <figure>
                 <a class="image-popup-vertical-fit" title="Windows Phone 8.1" href="//cdn.corydowdy.com/assets/blog/winphone-side-by-side.png">
-                  <img class="center lazyload"
-                       data-sizes="auto"
-
-                       data-srcset="/files/flex/winPhone-8-1-75w.png 75w,
+                  <img class="center"
+                       sizes="(min-width: 980px) 230px,
+                              (min-width: 800px) 165px,
+                              (min-width: 768px) 280px,
+                              (min-width: 360px) 250px,
+                              (min-width: 320px) 210px"
+                       srcset="/files/flex/winPhone-8-1-75w.png 75w,
                        /files/flex/winPhone-8-1-120w.png 120w,
                        /files/flex/winPhone-8-1-165w.png 165w,
                        /files/flex/winPhone-8-1-215w.png 215w,
                        /files/flex/winPhone-8-1-230w.png 230w,
                        /files/flex/winPhone-8-1-280w.png 280w,
-                       /files/flex/winPhone-8-1.png 468w"/>
+                       /files/flex/winPhone-8-1.png 468w"
+                       alt="Windows Phone 8.1 Flexnav Opened and Closed"/>
                 </a>
               </figure>
               <figcaption>
@@ -183,16 +199,20 @@
             <li>
               <figure>
                 <a class="image-popup-vertical-fit" title="ios 8" href="//cdn.corydowdy.com/assets/blog/4-0-side-by-side.png">
-                  <img class="center lazyload"
-                       data-sizes="auto"
-
-                       data-srcset="/files/flex/IPhone_5-75w.png 75w,
+                  <img class="center"
+                       sizes="(min-width: 980px) 230px,
+                              (min-width: 800px) 165px,
+                              (min-width: 768px) 280px,
+                              (min-width: 360px) 250px,
+                              (min-width: 320px) 210px"
+                       srcset="/files/flex/IPhone_5-75w.png 75w,
                        /files/flex/IPhone_5-120w.png 120w,
                        /files/flex/IPhone_5-165w.png 165w,
                        /files/flex/IPhone_5-215w.png 215w,
                        /files/flex/IPhone_5-230w.png 230w,
                        /files/flex/IPhone_5-280w.png 280w,
-                       /files/flex/IPhone_5.png 468w"/>
+                       /files/flex/IPhone_5.png 468w"
+                       alt="Flexnav on iOS 8"/>
                 </a>
               </figure>
               <figcaption>
@@ -203,16 +223,20 @@
               <figure>
                 <a class="image-popup-vertical-fit" title="JavaScript Disabled"
                    href="/files/flex/no-js-side-by-side.jpg">
-                  <img class="center lazyload"
-                       data-sizes="auto"
-
-                       data-srcset="/files/flex/no-js-75w.png 75w,
+                 <img class="center"
+                      sizes="(min-width: 980px) 230px,
+                              (min-width: 800px) 165px,
+                              (min-width: 768px) 280px,
+                              (min-width: 360px) 250px,
+                              (min-width: 320px) 210px"
+                      srcset="/files/flex/no-js-75w.png 75w,
                        /files/flex/no-js-120w.png 120w,
                        /files/flex/no-js-165w.png 165w,
                        /files/flex/no-js-215w.png 215w,
                        /files/flex/no-js-230w.png 230w,
                        /files/flex/no-js-280w.png 280w,
-                       /files/flex/no-js.png 454w"/>
+                       /files/flex/no-js.png 454w"
+                      alt="Flexnav with javascript disabled"/>
                 </a>
               </figure>
               <figcaption>
@@ -223,16 +247,21 @@
             <li>
               <figure>
                 <a class="image-popup-vertical-fit" title="Internet Explorer 8" href="//cdn.corydowdy.com/assets/blog/ie8.png">
-                  <img class="center lazyload"
-                       data-sizes="auto"
-
-                       data-srcset="/files/flex/ie8-thumb-75w.png 75w,
+                  <a class="image-popup-vertical-fit" title="Internet Explorer 8" href="//cdn.corydowdy.com/assets/blog/ie8.png">
+                  <img class="center"
+                       sizes="(min-width: 980px) 230px,
+                              (min-width: 800px) 165px,
+                              (min-width: 768px) 280px,
+                              (min-width: 360px) 250px,
+                              (min-width: 320px) 210px"
+                       srcset="/files/flex/ie8-thumb-75w.png 75w,
                        /files/flex/ie8-thumb-120w.png 120w,
                        /files/flex/ie8-thumb-165w.png 165w,
                        /files/flex/ie8-thumb-215w.png 215w,
                        /files/flex/ie8-thumb-230w.png 230w,
                        /files/flex/ie8-thumb-280w.png 280w,
-                       /files/flex/ie8-thumb.png 600w"/>
+                       /files/flex/ie8-thumb.png 600w"
+                       alt="Flexnav on Internet Explorer 8"/>
                 </a>
               </figure>
               <figcaption>
@@ -242,16 +271,20 @@
             <li>
               <figure>
                 <a class="image-popup-vertical-fit" title="Internet Explorer 9" href="//cdn.corydowdy.com/assets/blog/ie9.jpg">
-                  <img class="center lazyload"
-                       data-sizes="auto"
-
-                       data-srcset="/files/flex/ie9-thumb-75w.png 75w,
+                 <img class="center"
+                      sizes="(min-width: 980px) 230px,
+                              (min-width: 800px) 165px,
+                              (min-width: 768px) 280px,
+                              (min-width: 360px) 250px,
+                              (min-width: 320px) 210px"
+                      srcset="/files/flex/ie9-thumb-75w.png 75w,
                        /files/flex/ie9-thumb-120w.jpg 120w,
                        /files/flex/ie9-thumb-165w.jpg 165w,
                        /files/flex/ie9-thumb-215w.jpg 215w,
                        /files/flex/ie9-thumb-230w.jpg 230w,
                        /files/flex/ie9-thumb-280w.jpg 280w,
-                       /files/flex/ie9-thumb.jpg 600w"/>
+                       /files/flex/ie9-thumb.jpg 600w"
+                      alt="Flexnav on Internet Explorer 9"/>
                 </a>
               </figure>
               <figcaption>
@@ -261,16 +294,20 @@
             <li>
               <figure>
                 <a class="image-popup-vertical-fit" title="Internet Explorer 10" href="//cdn.corydowdy.com/assets/blog/ie10.jpg">
-                  <img class="center lazyload"
-                       data-sizes="auto"
-
-                       data-srcset="/files/flex/ie10-thumb-75w.png 75w,
+                  <img class="center"
+                       sizes="(min-width: 980px) 230px,
+                              (min-width: 800px) 165px,
+                              (min-width: 768px) 280px,
+                              (min-width: 360px) 250px,
+                              (min-width: 320px) 210px"
+                       srcset="/files/flex/ie10-thumb-75w.png 75w,
                        /files/flex/ie10-thumb-120w.jpg 120w,
                        /files/flex/ie10-thumb-165w.jpg 165w,
                        /files/flex/ie10-thumb-215w.jpg 215w,
                        /files/flex/ie10-thumb-230w.jpg 230w,
                        /files/flex/ie10-thumb-280w.jpg 280w,
-                       /files/flex/ie10-thumb.jpg 600w"/>
+                       /files/flex/ie10-thumb.jpg 600w"
+                       alt="Flexnav on Internet Explorer 10"/>
                 </a>
               </figure>
               <figcaption>
@@ -283,9 +320,7 @@
         <p>
           For a demo visit: <a class="external-link" href="http://cdowdy.github.io/flexbox-mobile-dropdown-nav/">Flexbox
           Nav on Github
-          <svg class="link-icon">
-            <use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use>
-          </svg>
+          <span class="link-icon icon-external-link"></span>
         </a>
         </p>
       </section>
