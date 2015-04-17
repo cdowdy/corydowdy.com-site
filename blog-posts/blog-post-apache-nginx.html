@@ -6,7 +6,7 @@
   <p>
     Me being a novice in relation to NGINX I was quite taken aback that you can't just enable modules like you can in
     Apache. In an Ubuntu Server install enabling a Module like <a class="external-link" href="https://developers.google.com/speed/pagespeed/module">
-    Mod_Pagespeed <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+    Mod_Pagespeed <span class="link-icon icon-external-link"></span></a>
     is as  simple as <code class="language-bash"> sudo dpkg -i mod-pagespeed-*.deb </code> followed by
     <code class="language-bash"> sudo apt-get -f install </code>. That's it and the Google Repository is added to your
     system and will keep Mod_PageSpeed up to date.
@@ -84,7 +84,7 @@
   tar -xvzf nginx-${NGINX_VERSION}.tar.gz
 </code></pre>
   <p>
-    I also want to take advanted of another module called <a class="external-link" href="//github.com/openresty/headers-more-nginx-module">headers_more <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>.
+    I also want to take advanted of another module called <a class="external-link" href="//github.com/openresty/headers-more-nginx-module">headers_more <span class="link-icon icon-external-link"></span></a>.
     You download that the same way as we did for NGINX source (substituting the release which is compatible with your
     NGINX version):
   </p>
@@ -97,10 +97,10 @@
   <p>
     Now is usually about the time I would download Google's PageSpeed Module source files. I won't be using this with
     my current NGINX setup right now. More on that <a href="#g_pagespeed">here</a> and I won't be using my old trusty standbye of
-    <a class="external-link" href="//www.modsecurity.org/">ModSecurity <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+    <a class="external-link" href="//www.modsecurity.org/">ModSecurity <span class="link-icon icon-external-link"></span></a>
     security either. Quite frankly in my opinion...IT'S A PAIN IN THE ASS TO BUILD. I couldn't get ModSecurity for NGINX
     to build no matter what I tried. I followed the wiki instructions, installed dependencies and nada. Like I said I don't
-    have a PhD in Unix. I'm a modest web developer. Anywho I installed <a class="external-link" href="//github.com/nbs-system/naxsi">Naxsi <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+    have a PhD in Unix. I'm a modest web developer. Anywho I installed <a class="external-link" href="//github.com/nbs-system/naxsi">Naxsi <span class="link-icon icon-external-link"></span></a>
     in it's place.
   </p>
   <p>
@@ -122,9 +122,9 @@
     directory <code class="language-bash"> cd nginx-1.6.2 </code>. If you're unsure about where the directory is you can
     type <code class="language-bash"> ls </code> in your terminal and it will list all the directories and or files from your
     current location. Once in the NGINX source directory we can begin to compile our server package. NGINX has a list of
-    other <a class="external-link" href="//wiki.nginx.org/3rdPartyModules">third party modules <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+    other <a class="external-link" href="//wiki.nginx.org/3rdPartyModules">third party modules <span class="link-icon icon-external-link"></span></a>
     that you can include. For any of those follow the same steps for getting headers_more and Naxsi. It also has a list of
-    optional modules you can inlude during complile time found <a class="external-link" href="//wiki.nginx.org/Modules">here <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>.
+    optional modules you can inlude during complile time found <a class="external-link" href="//wiki.nginx.org/Modules">here <span class="link-icon icon-external-link"></span></a>.
     From the Optional Modules I'll be including <em>stub_status, spdy_module, gzip_static and ssl</em> modules. This list
     may seem long and hard but as of right now it's pretty much downhill from here.
   </p>
@@ -132,7 +132,7 @@
     Inside our <strong>nginx-1.6.2</strong> directory will give it the compile command. All of this needs to typed on one
     line unless you escape it like in the code block below. The order of installing Naxsi is important. If you're just starting
     out and testing NGINX and Naxsi out put it first like in the code block below. More on why you should do this can
-    be found at <a class="external-link" href="//github.com/nbs-system/naxsi/wiki/installation">Naxsi Github Wiki <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+    be found at <a class="external-link" href="//github.com/nbs-system/naxsi/wiki/installation">Naxsi Github Wiki <span class="link-icon icon-external-link"></span></a>
   </p>
 <pre class="language-bash">
 <code>
@@ -173,7 +173,7 @@
   <p>
     If you were to leave everything as it is you would need to start NGINX like <code class="language-bash"> sudo /usr/sbin/nginx start </code>
     and then kill it with its PID. That's rather cumbersome in my opinion. So in order to start and stop it like you would
-    Apache ( service apache2 start/stop/status etc ) we need to have an init script. I'm using <a class="external-link" href="//github.com/JasonGiedymin/nginx-init-ubuntu">this one <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+    Apache ( service apache2 start/stop/status etc ) we need to have an init script. I'm using <a class="external-link" href="//github.com/JasonGiedymin/nginx-init-ubuntu">this one <span class="link-icon icon-external-link"></span></a>
     with modifications to the nginx sbin paths, DAEMON paths, and conf paths that reflect the options in our compile time flags above.
   </p>
   <p>
@@ -187,7 +187,7 @@
 
   <p>
     NGINX should now be up and running with our modules. You can now move on to your virtualhosts and server setup. A
-    rather good tutorial on this for Ubuntu can be found at <a class="external-link" href="//www.digitalocean.com/community/tutorials/how-to-set-up-nginx-server-blocks-virtual-hosts-on-ubuntu-14-04-lts">DigitalOcean <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+    rather good tutorial on this for Ubuntu can be found at <a class="external-link" href="//www.digitalocean.com/community/tutorials/how-to-set-up-nginx-server-blocks-virtual-hosts-on-ubuntu-14-04-lts">DigitalOcean <span class="link-icon icon-external-link"></span></a>
   </p>
 </section>
 <section id="g_pagespeed">
@@ -203,7 +203,7 @@
 <section id="results">
   <h3 class="heading">Result Comparisons</h3>
   <p>
-    Site Load times for each server configuration on <a class="external-link" href="//webpagetest.org">webpagetest.org <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-external-link"></use></svg></a>
+    Site Load times for each server configuration on <a class="external-link" href="//webpagetest.org">webpagetest.org <span class="link-icon icon-external-link"></span></a>
     with 5 runs each in Chrome from Dulles, Va.
   </p>
   <p><strong>First Run</strong></p>
@@ -219,14 +219,14 @@
     </thead>
     <tbody>
     <tr>
-      <td><a class="image-popup-vertical-fit" title="Apache Scores" href="//cdn.corydowdy.com/assets/blog/apache-wpt.png">Apache - Score Picture <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-picture"></use></svg></a></td>
+      <td><a class="image-popup-vertical-fit" title="Apache Scores" href="//cdn.corydowdy.com/assets/blog/apache-wpt.png">Apache - Score Picture <span class="link-icon icon-picture"></span></td>
       <td class="table-number">0.684s</td>
       <td class="table-number">0.267s</td>
       <td class="table-number">0.493s</td>
       <td class="table-number">500</td>
     </tr>
     <tr>
-      <td><a class="image-popup-vertical-fit" title="NGINX Scores" href="//cdn.corydowdy.com/assets/blog/nginx-wpt.png">NGINX - Score Picture <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-picture"></use></svg></a></td>
+      <td><a class="image-popup-vertical-fit" title="NGINX Scores" href="//cdn.corydowdy.com/assets/blog/nginx-wpt.png">NGINX - Score Picture <span class="link-icon icon-picture"></span></td>
       <td class="table-number">0.640s</td>
       <td class="table-number">0.108s</td>
       <td class="table-number">0.293s</td>
@@ -248,14 +248,14 @@
     </thead>
     <tbody>
     <tr>
-      <td><a class="image-popup-vertical-fit" title="Apache Scores" href="//cdn.corydowdy.com/assets/blog/apache-wpt.png">Apache - Score Picture <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-picture"></use></svg></a></td>
+      <td><a class="image-popup-vertical-fit" title="Apache Scores" href="//cdn.corydowdy.com/assets/blog/apache-wpt.png">Apache - Score Picture <span class="link-icon icon-picture"></span></td>
       <td class="table-number">0.628s</td>
       <td class="table-number">0.184s</td>
       <td class="table-number">0.589s</td>
       <td class="table-number">600</td>
     </tr>
     <tr>
-      <td><a class="image-popup-vertical-fit" title="NGINX Scores" href="//cdn.corydowdy.com/assets/blog/nginx-wpt.png">NGINX - Score Picture <svg class="link-icon"><use xlink:href="/theme/CoryDowdy/svgsprites/linkicons-sprite.svg#icon-picture"></use></svg></a></td>
+      <td><a class="image-popup-vertical-fit" title="NGINX Scores" href="//cdn.corydowdy.com/assets/blog/nginx-wpt.png">NGINX - Score Picture <span class="link-icon icon-picture"></span></td>
       <td class="table-number">0.403s</td>
       <td class="table-number">0.082s</td>
       <td class="table-number">0.404s</td>
