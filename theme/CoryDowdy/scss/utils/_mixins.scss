@@ -1,0 +1,86 @@
+// create a container / row to hold grid
+@mixin container() {
+  margin: 0 auto;
+  width: 100%;
+  max-width: $row-width;
+  @include clearfix();
+}
+
+/**
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    contenteditable attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that are clearfixed.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ *
+ * http://nicolasgallagher.com/micro-clearfix-hack/
+ */
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+
+// center a column in a grid
+@mixin center-column() {
+  margin: auto;
+  float: none;
+}
+
+
+//  This may promote the layer to a composited
+//  layer.
+//  Replace with will-change when available
+// Promote Layer so shit is smoooth yo
+@mixin promote-layer() {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+
+@mixin border-button() {
+  background: none;
+  border: rem-calc(2) solid;
+}
+
+
+// visually hide from screen but show to screen readers
+@mixin hide-visually() {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden;
+}
+
+
+// mixin to hide from screen and screen readers... or use the placeholder class in base/_a11y.scss
+@mixin hide-screen-readers() {
+  display: none;
+  visibility: hidden;
+}
+
+
+$old-ie: false !default;
+
+@mixin old-ie {
+  // Only use this content if we're dealing with old IE
+  @if $old-ie {
+    @content;
+  }
+}
+
+
+
