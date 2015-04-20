@@ -1,0 +1,415 @@
+// =====================================================================================================================
+//    _    _                _              _____ _         _
+//   | |  | |              | |            / ____| |       | |
+//   | |__| | ___  __ _  __| | ___ _ __  | (___ | |_ _   _| | ___  ___
+//   |  __  |/ _ \/ _` |/ _` |/ _ \ '__|  \___ \| __| | | | |/ _ \/ __|
+//   | |  | |  __/ (_| | (_| |  __/ |     ____) | |_| |_| | |  __/\__ \
+//   |_|  |_|\___|\__,_|\__,_|\___|_|    |_____/ \__|\__, |_|\___||___/
+//                                                    __/ |
+//                                                   |___/
+// =====================================================================================================================
+
+/* flexnav header "container" */
+.fn-header {
+  display: block;
+  visibility: visible;
+  background: $navigation-bg;
+  min-width: 100%;
+  padding: $header-padding;
+//  @include promote-layer();
+//  @include clearfix();
+  @media screen and (min-width: 50em) {
+    height: $big-header-height; // 100px
+    padding: $big-header-padding; // 15px 0
+  }
+}
+
+.fn-header__title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 rem-calc(15);
+  height: 100%;
+  // @800px hide the title container ( name and menu button )
+//  @media screen and (min-width: 50em) {
+//    @include hide-screen-readers();
+//  }
+  @media screen and (min-width: 50em ) {
+    display: block;
+//    padding-left: 0.9375rem;
+//    padding-right: 0.9375rem;
+    width: 50%;
+    float: left;
+//    @include grid-column(6);
+  }
+  @media screen and (min-width: 68.75em) {
+    padding-top: .5%;
+//    padding-left: 7.75%;
+  }
+}
+
+/* header site title */
+.fn-header__name {
+  color: $silver;
+  margin-right: auto;
+  font-size: rem-calc(25);
+
+  @media screen and (min-width: 50em) {
+    padding-top: rem-calc(15);
+  }
+  @media screen and (min-width: 68.75em) {
+    padding-top: 0;
+    font-size: 2.5rem;
+  }
+  @media screen and (max-width: 14.813em) {
+    font-size: 15px;
+    font-size: rem-calc(15);
+  }
+  @media screen and (min-width: 14.875em) and (max-width: 18.688em) {
+    font-size: 18px;
+    font-size: rem-calc(18);
+  }
+  // @150px remove the name and keep the menu .fn-header__button on the screen
+  @media screen and (max-width: 9.375em) {
+    @include hide-screen-readers();
+  }
+  a {
+    color: $silver;
+    transition: color .5s ease;
+    &:hover,
+    &:focus {
+     color: #95aaaa
+    }
+  }
+}
+
+.fn-header__button {
+  @include border-button();
+  touch-action: manipulation;
+
+  color: $silver;
+  &:hover,
+  &:focus {
+    background-color: $header-nav-list-item-bg-hover;
+    color: $silver;
+    border: rem-calc(2) solid $silver;
+  }
+    @media screen and (min-width: 50em) {
+      @include hide-screen-readers();
+    }
+  // @ 150px center the button in the header
+  @media screen and (max-width: 9.375em) {
+    margin: auto;
+  }
+}
+
+.header-wrap {
+  @media screen and (min-width: 50em) {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+    max-width: 1100px;
+    max-width: 68.75rem;
+    @include clearfix();
+  }
+}
+
+// =====================================================================================================================
+//
+//    _   _             _             _   _                _____ _         _
+//   | \ | |           (_)           | | (_)              / ____| |       | |
+//   |  \| | __ ___   ___  __ _  __ _| |_ _  ___  _ __   | (___ | |_ _   _| | ___  ___
+//   | . ` |/ _` \ \ / / |/ _` |/ _` | __| |/ _ \| '_ \   \___ \| __| | | | |/ _ \/ __|
+//   | |\  | (_| |\ V /| | (_| | (_| | |_| | (_) | | | |  ____) | |_| |_| | |  __/\__ \
+//   |_| \_|\__,_| \_/ |_|\__, |\__,_|\__|_|\___/|_| |_| |_____/ \__|\__, |_|\___||___/
+//                         __/ |                                      __/ |
+//                        |___/                                      |___/
+//
+// =====================================================================================================================
+
+/* html5 <nav> element... holds the navigation list */
+.fn-nav-container {
+  @include promote-layer();
+  background-color: $navigation-bg;
+  padding: rem-calc(8);
+  max-height: 0;
+  @include hide-screen-readers();
+  @media screen and (min-width: 50em) {
+    display: block;
+    visibility: visible;
+    padding: rem-calc(8) rem-calc(15) ;
+    width: 50%;
+    max-height: 100%; // override L#135 max-height: 0;
+    float: left;
+  }
+}
+
+// nav container is hidden under 800px. is-open class shows the menu.
+.fn-nav-container.is-open {
+  visibility: visible;
+  height: auto;
+  display: block;
+  max-height: 800px;
+}
+
+/* navigation unordered list */
+.fn-navigation {
+  list-style: none;
+  background-color: $navigation-bg;
+  @include hide-screen-readers();
+  @media screen and (min-width: 50em) {
+    display: flex;
+    visibility: visible;
+    list-style: none;
+    width: 100%;
+    max-width: 100%;
+    margin: auto;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+
+/* navigation list is open */
+.fn-navigation.is-open {
+  display: flex;
+  flex-direction: column;
+  visibility: visible;
+  margin-left: 0;
+}
+
+/* navigation list item */
+.fn-navigation__item {
+//  padding: rem-calc(15) rem-calc(20);
+  padding: rem-calc(15) 0;
+  &:focus {
+    outline: 1px solid $header-nav-list-item-bg-hover;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: $header-nav-list-item-bg-hover;
+//    a {
+//      color: $header-nav-anchor-color-hover;
+//    }
+  }
+}
+
+// for anchor links inside the unordered list in the <nav> element
+.fn-navigation__item {
+  a {
+    color: $silver;
+    line-height: inherit;
+    text-decoration: none;
+    padding: rem-calc(15) rem-calc(20);
+//    &:hover,
+//    &:focus,
+    &:active {
+//      background-color: $header-nav-list-item-bg-hover;
+//      color: $header-nav-anchor-color-hover;
+      outline: 1px solid $header-nav-list-item-bg-hover;
+    }
+  }
+}
+
+// =====================================================================================================================
+//    _   _              _        _____ _               _    _
+//   | \ | |            | |      / ____| |             | |  | |
+//   |  \| | ___        | |___  | |    | |__   ___  ___| | _| |__   _____  __
+//   | . ` |/ _ \   _   | / __| | |    | '_ \ / _ \/ __| |/ / '_ \ / _ \ \/ /
+//   | |\  | (_) | | |__| \__ \ | |____| | | |  __/ (__|   <| |_) | (_) >  <
+//   |_| \_|\___/   \____/|___/  \_____|_| |_|\___|\___|_|\_\_.__/ \___/_/\_\
+//
+//
+// =====================================================================================================================
+
+
+// hide checkbox trigger for browsers with js and above 800px
+
+.fn-navTrigger__no-js {
+  display: none;
+  visibility: hidden;
+}
+#fn-noJs_label {
+  display: none;
+  visibility: hidden;
+}
+
+
+// display the checkbox under 800px
+@media screen and (max-width: 49.9375em) {
+  // clip (hide) the checkbox under 800px
+  .no-js .fn-navTrigger__no-js {
+    clip: rect(0px, 0px, 0px, 0px);
+    position: absolute;
+    top: 1.5%;
+    right: 80%;
+    left: 90%;
+  }
+
+  .no-js .fn-navTrigger__no-js:checked ~ .fn-nav-container {
+    display: block;
+    background: $navigation-bg;
+    height: auto;
+    max-height: 800px;
+
+    .fn-navigation {
+      display: inline;
+      visibility: visible;
+    }
+  }
+
+  .no-js #fn-noJs_label {
+    display: inline;
+    visibility: visible;
+  }
+
+  .no-js #fn-noJs_label {
+    position: absolute;
+    top: 1.5%;
+    left: 75%;
+    color: $silver;
+    width: rem-calc(75);
+    height: rem-calc(30);
+    cursor: pointer;
+    background: transparent url("../img/menu.png") center no-repeat;
+  }
+}
+
+/**
+  *
+  * classes for browsers that dont support
+  * 1) Media Queries
+  * 2) Flexbox
+  * Currently using This Modernizr version
+  * http://modernizr.com/download/#-flexbox-flexboxlegacy-shiv-mq-cssclasses-teststyles-testprop-testallprops-domprefixes-css_mediaqueries
+  *
+  */
+// =====================================================================================================================
+//    _   _         ______ _           _
+//   | \ | |       |  ____| |         | |
+//   |  \| | ___   | |__  | | _____  _| |__   _____  __
+//   | . ` |/ _ \  |  __| | |/ _ \ \/ / '_ \ / _ \ \/ /
+//   | |\  | (_) | | |    | |  __/>  <| |_) | (_) >  <
+//   |_| \_|\___/  |_|    |_|\___/_/\_\_.__/ \___/_/\_\
+//
+//
+// =====================================================================================================================
+
+
+
+.no-flexbox .fn-navigation {
+  @media screen and (min-width: 50em) {
+    display: block;
+    margin: 0 auto 1.0625rem auto;
+    margin-left: -1.375rem;
+    margin-right: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+    position: relative;
+  }
+}
+
+.no-flexbox .fn-navigation__item {
+  @media screen and (min-width: 50em) {
+    float: left;
+    margin-left: 1.375rem;
+    display: block;
+  }
+}
+
+// =====================================================================================================================
+//    _   _         __  __          _ _          ____                  _
+//   | \ | |       |  \/  |        | (_)        / __ \                (_)
+//   |  \| | ___   | \  / | ___  __| |_  __ _  | |  | |_   _  ___ _ __ _  ___  ___
+//   | . ` |/ _ \  | |\/| |/ _ \/ _` | |/ _` | | |  | | | | |/ _ \ '__| |/ _ \/ __|
+//   | |\  | (_) | | |  | |  __/ (_| | | (_| | | |__| | |_| |  __/ |  | |  __/\__ \
+//   |_| \_|\___/  |_|  |_|\___|\__,_|_|\__,_|  \___\_\\__,_|\___|_|  |_|\___||___/
+//
+//
+// =====================================================================================================================
+
+
+.no-mediaqueries .fn-header {
+  display: block;
+  visibility: visible;
+  background: $navigation-bg;
+  min-width: 100%;
+  height: $big-header-height; // 100px
+  padding: $big-header-padding; // 15px 0
+}
+//
+.no-mediaqueries .header-wrap {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  margin-bottom: 0;
+  max-width: 1100px;
+  @include clearfix();
+}
+
+.no-mediaqueries .fn-header__title-container {
+  display: block;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 50%;
+  float: left;
+
+}
+
+.no-mediaqueries .fn-header__name {
+    padding-top: 15px;
+}
+
+.no-mediaqueries .fn-nav-container {
+  display: block;
+  visibility: visible;
+  padding: 0 15px 0 15px;
+  width: 50%;
+  float: left;
+}
+
+.no-mediaqueries .fn-navigation {
+  float: left;
+  margin-left: 22px;
+  display: block;
+  visibility: visible;
+  list-style: none;
+  width: 100%;
+  max-width: 100%;
+}
+
+.no-mediaqueries .fn-navigation__item {
+  float: left;
+  margin-left: 22px;
+  display: block;
+  &:focus {
+    outline: 1px solid $silver;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: $silver;
+    color: $header-color;
+    a {
+      color: $header-nav-anchor-color-hover;
+    }
+  }
+}
+
+.no-mediaqueries .fn-navigation__item {
+  a {
+    color: $silver;
+    line-height: inherit;
+    text-decoration: none;
+
+    &:active {
+      outline: 1px solid $header-nav-list-item-bg-hover;
+    }
+  }
+}
