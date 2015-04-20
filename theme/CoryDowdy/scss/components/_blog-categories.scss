@@ -1,0 +1,74 @@
+/* definition lists dispaly attribs*/
+.categories-heading {
+  font-weight: 700;
+  @media screen and (min-width: 615px) {
+    display: inline;
+  }
+}
+
+.categories-item {
+  @media screen and (min-width: 615px) {
+    display: inline;
+  }
+
+  a {
+    color: #fff;
+    padding: rem-calc(10);
+    margin-right: rem-calc(10);
+    transition: background-color .5s ease;
+    background-color: $header-color;
+    &:hover, &:focus {
+      background-color: #e8e8e8;
+      color: $header-color;
+    }
+  }
+}
+
+.blog-tags {
+  display: flex;
+
+  flex-wrap: wrap;
+  //justify-content: space-between;
+  list-style: none;
+  @media screen and (min-width: 550px) {
+    flex-direction: row;
+  }
+  flex-direction: column;
+}
+
+.blog-tags--heading {
+  //margin-right: 0;
+  padding-right: rem-calc(15);
+}
+
+.blog-tags--item {
+  @media screen and (min-width: 550px) {
+    padding: 0 10px;
+  }
+  padding: 10px;
+
+
+  //a {
+  //  &:after {
+  //    content: ", ";
+  //  }
+  //  &:last-child:after {
+  //    content: "";
+  //  }
+  //}
+}
+.blog-tags a:after {
+  content: ", "
+}
+
+.blog-tags a:last-child:after {
+  content: ""
+}
+
+//.blog-tags--item a:after {
+//  content: ", ";
+//}
+//
+//.blog-tags--item a:last-child:after {
+//  content: "";
+//}
