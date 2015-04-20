@@ -1,0 +1,50 @@
+// Cory Dowdy
+// 8-8-2014
+// github.com/cdowdy/corydowdy.com-site
+
+
+// REMINDER... SET FONT SIZE TO 16PX (1REM) to stop zoom in on mobile phones in inputs
+
+
+$success-color: #43ac6a;
+$error-color:   #d9534f;
+
+
+.form-success,
+.form-error {
+  border: 1px solid #3a945b;
+  border-radius: 3px;
+  background: $success-color;
+  color: $white;
+  text-align: center;
+  margin-bottom: rem-calc(20);
+  padding: rem-calc(14) rem-calc(24) rem-calc(14);
+  font-size: rem-calc(16);
+}
+
+
+
+.form-error {
+  background-color: $error-color;
+  border-color: scale-color($error-color, $lightness: $alert-function-factor);
+}
+
+
+// form grid
+/* form grid 12 columns small screen 8 columns centered large ones */
+.form-container, .form-submitted-container {
+  @include grid-column(12);
+  @media #{$large-up} {
+    @include grid-column(
+    $columns: 8,
+    $center: true
+    );
+  }
+}
+//
+//input[type=email], input[type=search], input[type=text], textarea {
+//  font-size: rem-calc(16);
+//}
+
+
+
