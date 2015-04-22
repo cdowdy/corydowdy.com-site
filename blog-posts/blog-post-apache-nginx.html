@@ -1,4 +1,4 @@
-<section id="intro">
+<section class="full" id="intro">
   <p>
     It seems more and more people are going to NGINX instead of Apache and rave about the speed. Since I'm not a system
     admin and never claimed to be one I figured I'd document my switch to NGINX.
@@ -28,7 +28,7 @@
   </p>
 </section>
 <!-- /#intro -->
-<section id="my_setup">
+<section class="full" id="my_setup">
   <h3 class="heading">My Current Setup</h3>
   <ol>
     <li>Digital Ocean 1GB Droplet</li>
@@ -47,7 +47,7 @@
   </ol>
 
 </section>
-<section id="getting-started">
+<section class="full" id="getting-started">
   <h3 class="heading">Getting Started</h3>
   <p>
     To keep my current site up and running I created a new droplet. I then wanted to see what Nginx had as a
@@ -115,7 +115,7 @@
 </pre>
 </section>
 <!-- /#getting-started -->
-<section id="building_nginx">
+<section class="full" id="building_nginx">
   <h3 class="heading">Building This Thing!</h3>
   <p>
     All our third party modules are downloaded and upacked and ready to go. The next step we will change into the NGINX
@@ -168,7 +168,7 @@
     That's it. NGINX is now installed... well it's installed but we need to do a few more things.
   </p>
 </section>
-<section id="compression">
+<section class="full" id="compression">
   <h3 class="heading">Starting and Stopping NGINX</h3>
   <p>
     If you were to leave everything as it is you would need to start NGINX like <code class="language-bash"> sudo /usr/sbin/nginx start </code>
@@ -190,7 +190,7 @@
     rather good tutorial on this for Ubuntu can be found at <a class="external-link" href="//www.digitalocean.com/community/tutorials/how-to-set-up-nginx-server-blocks-virtual-hosts-on-ubuntu-14-04-lts">DigitalOcean <span class="link-icon icon-external-link"></span></a>
   </p>
 </section>
-<section id="g_pagespeed">
+<section class="full" id="g_pagespeed">
   <h3 class="heading">Google's PageSpeed Module</h3>
   <p>
     I mentioned I wasn't going to use Google's Pagespeed Module. Reasoning behind this is I don't know if I bunked up my
@@ -200,7 +200,7 @@
   </p>
 
 </section>
-<section id="results">
+<section class="full" id="results">
   <h3 class="heading">Result Comparisons</h3>
   <p>
     Site Load times for each server configuration on <a class="external-link" href="//webpagetest.org">webpagetest.org <span class="link-icon icon-external-link"></span></a>
@@ -219,14 +219,23 @@
     </thead>
     <tbody>
     <tr>
-      <td><a class="image-popup-vertical-fit" title="Apache Scores" href="//cdn.corydowdy.com/assets/blog/apache-wpt.png">Apache - Score Picture <span class="link-icon icon-picture"></span></td>
+      <td class="image-lightbox">
+        <a title="Apache Scores"
+           href="//cdn.corydowdy.com/assets/blog/apache-wpt.png">Apache - Score Picture <span
+          class="link-icon icon-picture"></span>
+        </a>
+      </td>
       <td class="table-number">0.684s</td>
       <td class="table-number">0.267s</td>
       <td class="table-number">0.493s</td>
       <td class="table-number">500</td>
     </tr>
     <tr>
-      <td><a class="image-popup-vertical-fit" title="NGINX Scores" href="//cdn.corydowdy.com/assets/blog/nginx-wpt.png">NGINX - Score Picture <span class="link-icon icon-picture"></span></td>
+      <td class="image-lightbox">
+        <a title="NGINX Scores"
+           href="//cdn.corydowdy.com/assets/blog/nginx-wpt.png">NGINX - Score Picture <span class="link-icon icon-picture"></span>
+        </a>
+      </td>
       <td class="table-number">0.640s</td>
       <td class="table-number">0.108s</td>
       <td class="table-number">0.293s</td>
@@ -248,14 +257,22 @@
     </thead>
     <tbody>
     <tr>
-      <td><a class="image-popup-vertical-fit" title="Apache Scores" href="//cdn.corydowdy.com/assets/blog/apache-wpt.png">Apache - Score Picture <span class="link-icon icon-picture"></span></td>
+      <td class="image-lightbox">
+        <a title="Apache Scores"
+           href="//cdn.corydowdy.com/assets/blog/apache-wpt.png">Apache - Score Picture <span class="link-icon icon-picture"></span>
+        </a>
+      </td>
       <td class="table-number">0.628s</td>
       <td class="table-number">0.184s</td>
       <td class="table-number">0.589s</td>
       <td class="table-number">600</td>
     </tr>
     <tr>
-      <td><a class="image-popup-vertical-fit" title="NGINX Scores" href="//cdn.corydowdy.com/assets/blog/nginx-wpt.png">NGINX - Score Picture <span class="link-icon icon-picture"></span></td>
+      <td class="image-lightbox">
+        <a title="NGINX Scores"
+           href="//cdn.corydowdy.com/assets/blog/nginx-wpt.png">NGINX - Score Picture <span
+        class="link-icon icon-picture"></span>
+        </a></td>
       <td class="table-number">0.403s</td>
       <td class="table-number">0.082s</td>
       <td class="table-number">0.404s</td>
