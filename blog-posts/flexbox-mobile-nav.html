@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-  <meta charset="UTF-8">
-  <title></title>
-</head>
-<body>
- <section id="quicknav">
+<section class="full" id="quicknav">
       <div class="container">
         <div class="centered-5-to-full quick-nav-panel">
             <p>quick navigation</p>
@@ -18,7 +11,7 @@
         </div>
       </div>
       </section>
-      <section id="intro">
+      <section class="full" id="intro">
         <p>
           While working on a template for a client we decided to use Flexbox. I had these requirements set in stone from
           the get go:
@@ -37,7 +30,7 @@
         </p>
       </section>
       <!-- /#intro -->
-      <section id="filesizes">
+      <section class="full" id="filesizes">
         <table class="table-no-style">
           <thead>
           <tr>
@@ -75,7 +68,7 @@
         </p>
       </section>
       <!-- /#filesizes -->
-      <section id="browser-support">
+      <section class="full" id="browser-support">
         <h3 class="heading">
           Browser Support:
         </h3>
@@ -96,14 +89,13 @@
         </ul>
       </section>
       <!-- /#browser-support -->
-      <section id="screens">
+      <section class="full" id="screens">
         <p>Screenshots of the demo page on various browsers:</p>
-
         <div class="container">
           <ul class="block-grid--sm2-lg3">
             <li>
-              <figure>
-                <a class="image-popup-vertical-fit" title="Android 2.3.1" href="//cdn.corydowdy.com/assets/blog/2-3-side-by-side.png">
+              <figure class="image-lightbox">
+                <a title="Android 2.3.1" href="//cdn.corydowdy.com/assets/blog/2-3-side-by-side.png">
                    <img class="center"
                         sizes="(min-width: 980px) 230px,
                               (min-width: 800px) 165px,
@@ -120,14 +112,14 @@
                        /files/flex/2.3.1.png 454w"
                         alt="Android 2.3.1 Flexnav Opened and Closed"/>
                 </a>
+                <figcaption>
+                  <p class="text-center">Android 2.3.1</p>
+                </figcaption>
               </figure>
-              <figcaption>
-                <p class="text-center">Android 2.3.1</p>
-              </figcaption>
             </li>
             <li>
-              <figure>
-                <a class="image-popup-vertical-fit" title="Android 4.0" href="//cdn.corydowdy.com/assets/blog/4-0-side-by-side.png">
+              <figure class="image-lightbox">
+                <a title="Android 4.0" href="//cdn.corydowdy.com/assets/blog/4-0-side-by-side.png">
                    <img class="center"
                         sizes="(min-width: 980px) 230px,
                               (min-width: 800px) 165px,
@@ -143,14 +135,14 @@
                        /files/flex/4-0.png 454w"
                         alt="Android 4.0 Flexnav Opened and Closed"/>
                 </a>
+                <figcaption>
+                  <p class="text-center">Android 4.0</p>
+                </figcaption>
               </figure>
-              <figcaption>
-                <p class="text-center">Android 4.0</p>
-              </figcaption>
             </li>
             <li>
-              <figure>
-                <a class="image-popup-vertical-fit" title="Android Opera Mini"
+              <figure class="image-lightbox">
+                <a title="Android Opera Mini"
                    href="//cdn.corydowdy.com/assets/blog/operaMini-side-by-side.png">
                   <img class="center"
                        sizes="(min-width: 980px) 230px,
@@ -167,15 +159,15 @@
                        /files/flex/android-operaMini.png 454w"
                        alt="Android Opera Mini Flexnav Opened and Closed"/>
                 </a>
+                <figcaption>
+                  <p class="text-center">Opera Mini</p>
+                </figcaption>
               </figure>
-              <figcaption>
-                <p class="text-center">Opera Mini</p>
-              </figcaption>
             </li>
 
             <li>
-              <figure>
-                <a class="image-popup-vertical-fit" title="Windows Phone 8.1" href="//cdn.corydowdy.com/assets/blog/winphone-side-by-side.png">
+              <figure class="image-lightbox">
+                <a title="Windows Phone 8.1" href="//cdn.corydowdy.com/assets/blog/winphone-side-by-side.png">
                   <img class="center"
                        sizes="(min-width: 980px) 230px,
                               (min-width: 800px) 165px,
@@ -191,14 +183,14 @@
                        /files/flex/winPhone-8-1.png 468w"
                        alt="Windows Phone 8.1 Flexnav Opened and Closed"/>
                 </a>
+                <figcaption>
+                  <p class="text-center">Windows Phone 8.1 (IE 11)</p>
+                </figcaption>
               </figure>
-              <figcaption>
-                <p class="text-center">Windows Phone 8.1 (IE 11)</p>
-              </figcaption>
             </li>
             <li>
-              <figure>
-                <a class="image-popup-vertical-fit" title="ios 8" href="//cdn.corydowdy.com/assets/blog/4-0-side-by-side.png">
+              <figure class="image-lightbox">
+                <a title="ios 8" href="//cdn.corydowdy.com/assets/blog/4-0-side-by-side.png">
                   <img class="center"
                        sizes="(min-width: 980px) 230px,
                               (min-width: 800px) 165px,
@@ -214,14 +206,14 @@
                        /files/flex/IPhone_5.png 468w"
                        alt="Flexnav on iOS 8"/>
                 </a>
+                <figcaption>
+                  <p class="text-center">iOS 8 Safari</p>
+                </figcaption>
               </figure>
-              <figcaption>
-                <p class="text-center">iOS 8 Safari</p>
-              </figcaption>
             </li>
             <li>
-              <figure>
-                <a class="image-popup-vertical-fit" title="JavaScript Disabled"
+              <figure class="image-lightbox">
+                <a title="JavaScript Disabled"
                    href="/files/flex/no-js-side-by-side.jpg">
                  <img class="center"
                       sizes="(min-width: 980px) 230px,
@@ -238,16 +230,14 @@
                        /files/flex/no-js.png 454w"
                       alt="Flexnav with javascript disabled"/>
                 </a>
-              </figure>
-              <figcaption>
-                <p class="text-center">No JavaScript</p>
-              </figcaption>
+                <figcaption>
+                  <p class="text-center">No JavaScript</p>
+                </figcaption>
+                </figure>
             </li>
-
             <li>
-              <figure>
-                <a class="image-popup-vertical-fit" title="Internet Explorer 8" href="//cdn.corydowdy.com/assets/blog/ie8.png">
-                  <a class="image-popup-vertical-fit" title="Internet Explorer 8" href="//cdn.corydowdy.com/assets/blog/ie8.png">
+              <figure class="image-lightbox">
+                <a title="Internet Explorer 8" href="//cdn.corydowdy.com/assets/blog/ie8.png">
                   <img class="center"
                        sizes="(min-width: 980px) 230px,
                               (min-width: 800px) 165px,
@@ -263,14 +253,14 @@
                        /files/flex/ie8-thumb.png 600w"
                        alt="Flexnav on Internet Explorer 8"/>
                 </a>
+                <figcaption>
+                  <p class="text-center">Internet Explorer 8</p>
+                </figcaption>
               </figure>
-              <figcaption>
-                <p class="text-center">Internet Explorer 8</p>
-              </figcaption>
             </li>
             <li>
-              <figure>
-                <a class="image-popup-vertical-fit" title="Internet Explorer 9" href="//cdn.corydowdy.com/assets/blog/ie9.jpg">
+              <figure class="image-lightbox">
+                <a title="Internet Explorer 9" href="//cdn.corydowdy.com/assets/blog/ie9.jpg">
                  <img class="center"
                       sizes="(min-width: 980px) 230px,
                               (min-width: 800px) 165px,
@@ -286,14 +276,14 @@
                        /files/flex/ie9-thumb.jpg 600w"
                       alt="Flexnav on Internet Explorer 9"/>
                 </a>
+                <figcaption>
+                  <p class="text-center">Internet Explorer 9</p>
+                </figcaption>
               </figure>
-              <figcaption>
-                <p class="text-center">Internet Explorer 9</p>
-              </figcaption>
             </li>
             <li>
-              <figure>
-                <a class="image-popup-vertical-fit" title="Internet Explorer 10" href="//cdn.corydowdy.com/assets/blog/ie10.jpg">
+              <figure class="image-lightbox">
+                <a title="Internet Explorer 10" href="//cdn.corydowdy.com/assets/blog/ie10.jpg">
                   <img class="center"
                        sizes="(min-width: 980px) 230px,
                               (min-width: 800px) 165px,
@@ -309,10 +299,10 @@
                        /files/flex/ie10-thumb.jpg 600w"
                        alt="Flexnav on Internet Explorer 10"/>
                 </a>
+                <figcaption>
+                  <p class="text-center">Internet Explorer 10</p>
+                </figcaption>
               </figure>
-              <figcaption>
-                <p class="text-center">Internet Explorer 10</p>
-              </figcaption>
             </li>
           </ul>
           <!-- /.popup-block--css-dialog -->
@@ -325,7 +315,7 @@
         </p>
       </section>
       <!-- /#screens -->
-      <section id="how-to-use">
+      <section class="full" id="how-to-use">
         <h3 class="heading">How To Use</h3>
         <ol>
           <li>Download the latest release or entire github repo or clone it:
@@ -349,15 +339,15 @@
           This is written in a way to assume that JavaScript has failed to load or a user has disabled JavaScript.
           Also known as progressive enhancement. So I have made a few opinionated assumptions and added a <code class="language-markup"> no-js </code> class to the document. This will be removed if  you include the bundled modernizr or your own version. To go along with an accessibility minded approach we have not disabled zooming and set the viewport to:
           </p>
-<pre>
-<code class="language-markup">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"/&gt;</code>
+<pre class="language-markup">
+<code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"/&gt;</code>
 </pre>
         <p>
           More information on the viewport can be found at the <a class="external-link" href="http://a11yproject.com/posts/never-use-maximum-scale/">a11y project</a> website.
         </p>
         <h4 id="head">The Head markup</h4>
-<pre>
-<code class="language-markup">
+<pre class="language-markup">
+<code>
 &lt;!doctype html&gt;
   &lt;html class="no-js" lang="en"&gt;
   &lt;head&gt;
@@ -412,8 +402,8 @@
           On small devices to enable the menu to be closed besides clicking the close button you must add in a <code
           class="language-markup"> &lt;main&gt; </code> tag.
         </p>
-<pre>
-<code class="language-markup">
+<pre class="language-markup">
+<code>
   &lt;!-- previous steps above here --&gt;
   &lt;/nav&gt;
 &lt;/header&gt;
@@ -425,12 +415,12 @@
           Include the navigation js file from <code class="language-bash"> dist/js </code> you wish to use before your
           closing body.
         </p>
-<pre>
-<code class="language-markup"> &lt;script src="dist/js/navigation.android-ie8.min.js" async defer&gt;&lt;/script&gt; </code>
+<pre class="language-markup">
+<code> &lt;script src="dist/js/navigation.android-ie8.min.js" async defer&gt;&lt;/script&gt; </code>
 </pre>
         <h4>Completed Setup</h4>
-<pre>
-<code class="language-markup">
+<pre class="language-markup">
+<code>
 &lt;!doctype html&gt;
 &lt;html class="no-js" lang=""&gt;
   &lt;head&gt;
@@ -480,6 +470,3 @@
 </pre>
       </section>
       <!-- /#how-to-use -->
-
-</body>
-</html>
