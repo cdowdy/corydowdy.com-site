@@ -1,10 +1,10 @@
 
-<section id="intro">
+<section class="full" id="intro">
     <p>
       CSS Frameworks are bloated! At least that is the argument. They can be is the truth. A standard Sass install with all components included of Foundation 5 is 111KB uncompressed 16 Kb compressed. They can also be as slim as you want. You can use only the parts you want when you use tools like Sass (scss) but that still may leave over unwanted styles. Grunt Uncss can fill in those gaps and shrink our file down even more.
     </p>
-    <div class="row">
-      <div class="small-12 large-8 large-centered columns">
+    <div class="container">
+        <div class="snippet">
         <div class="blog-info-using">
           The following tutorial will use these grunt plugins and these Foundation templates
         </div>
@@ -68,7 +68,7 @@
       Seeing that list of Grunt plugins, and their github pages might put a lot of people off. It looks hard. The great thing about grunt is: If you don't want to use a plugin dont. If it doesn't fit your workflow, don't use it. Its about your workflow and what works best for you.
     </p>
   </section>
-  <section id="setup">
+  <section class="full" id="setup">
     <h3 class="heading">
       Setup
     </h3>
@@ -218,7 +218,7 @@ cssmin: {
 </code>
 </pre>
   </section>
-  <section id="running">
+  <section class="full" id="running">
     <h3 class="heading">
       Running a Task
     </h3>
@@ -246,7 +246,15 @@ grunt.registerTask('clean', ['build', 'uncss', 'autoprefixer', 'cssmin', 'proces
       <code class="language-bash"> grunt clean </code>
       from your terminal
     </p>
-    <img class="center" alt="grunt task running" src="/files/task.gif" />
+    <picture>
+        <!--[if IE 9]><video style='display: none;'><![endif]-->
+      <source media="(max-width: 659px)" srcset="//corydowdy.com/assets/blog/task.360.webp" type="image/webp">
+        <source media="(max-width: 659px)" srcset="//cdn.corydowdy.com/assets/blog/task.360.gif" type="image/gif">
+        <source srcset="//cdn.corydowdy.com/assets/blog/task.webp" type="image/webp">
+        <source srcset="//cdn.corydowdy.com/assets/blog/task.gif" type="image/gif">
+      <!--[if IE 9]></video><![endif]-->
+      <img class="center" srcset="//cdn.corydowdy.com/assets/blog/task.gif" alt="grunt task running">
+      </picture>
     <h5 class="heading">
       Results
     </h5>
@@ -256,11 +264,11 @@ grunt.registerTask('clean', ['build', 'uncss', 'autoprefixer', 'cssmin', 'proces
           <th width="80">
             &nbsp;
           </th>
-          <th width="250" class="table-number">
-            Before <a class="image-popup-vertical-fit" title="before uncss" href="/files/results-reg.png">Photo <span class="link-icon icon-picture"></span></a>
+          <th width="250" class="table-number image-lightbox">
+            Before <a title="before uncss" href="/files/results-reg.png">Photo <span class="link-icon icon-picture"></span></a>
           </th>
-          <th width="250" class="table-number">
-            After <a class="image-popup-vertical-fit" title="after uncss" href="/files/results-uncss.png">Photo <span class="link-icon icon-picture"></span></a>
+          <th width="250" class="table-number image-lightbox">
+            After <a title="after uncss" href="/files/results-uncss.png">Photo <span class="link-icon icon-picture"></span></a>
           </th>
         </tr>
       </thead>
@@ -284,12 +292,12 @@ grunt.registerTask('clean', ['build', 'uncss', 'autoprefixer', 'cssmin', 'proces
       href="https://twitter.com/search?q=%23perfmatters&amp;src=typd">#PerfMatters
       <span class="link-icon icon-external-link"></span></a>.
     </p>
-    <p>
+    <p class="image-lightbox">
       The only issue we have now is some of the Foundation components no longer work. Things like the topbar will no
-      longer open on small mobile menu screens. <a class="image-popup-vertical-fit" title="topbar not working" href="/files/topbar-broke.gif">Example <span class="link-icon icon-picture"></span></a>
+      longer open on small mobile menu screens. <a title="topbar not working" href="/files/topbar-broke.gif">Example <span class="link-icon icon-picture"></span></a>
     </p>
   </section>
-  <section id="fixing">
+  <section class="full" id="fixing">
     <h3 class="heading">
       Fixing Components
     </h3>
@@ -383,12 +391,12 @@ cssmin: {
 }
 </code>
 </pre>
-    <p>
+    <p class="image-lightbox">
       We can now run grunt clean from our project directory and have a working topbar. <a
-      class="image-popup-vertical-fit" title="topbar fixed" href="/files/topbar-fixed.gif">Example <span class="link-icon icon-picture"></span></a>.
+      title="topbar fixed" href="/files/topbar-fixed.gif">Example <span class="link-icon icon-picture"></span></a>.
     </p>
   </section>
-  <section id="wrapup">
+  <section class="full" id="wrapup">
     <h3 class="heading">
       Result Comparision
     </h3>
@@ -398,12 +406,12 @@ cssmin: {
           <th width="80">
             &nbsp;
           </th>
-          <th width="250" class="table-number">
-            All components <a class="image-popup-vertical-fit" title="after uncss"
+          <th width="250" class="table-number image-lightbox">
+            All components <a title="after uncss"
                               href="/files/results-uncss.png">Photo <span class="link-icon icon-picture"></span></a>
           </th>
-          <th width="250" class="table-number">
-            Separate components <a class="image-popup-vertical-fit" title="after uncss"
+          <th width="250" class="table-number image-lightbox">
+            Separate components <a title="after uncss"
                                    href="/files/topbar-fixed.png">Photo <span class="link-icon icon-picture"></span></a>
           </th>
         </tr>
@@ -444,11 +452,11 @@ cssmin: {
           <th width="250">
             &nbsp;
           </th>
-          <th width="250" class="table-number">
-            Before <a class="image-popup-vertical-fit" title="grid included" href="/files/grid-included.png">Photo <span class="link-icon icon-picture"></span></a>
+          <th width="250" class="table-number image-lightbox">
+            Before <a title="grid included" href="/files/grid-included.png">Photo <span class="link-icon icon-picture"></span></a>
           </th>
-          <th width="250" class="table-number">
-            After <a class="image-popup-vertical-fit" title="grid removed" href="/files/grid-removed.png">Photo <span class="link-icon icon-picture"></span></a>
+          <th width="250" class="table-number image-lightbox">
+            After <a title="grid removed" href="/files/grid-removed.png">Photo <span class="link-icon icon-picture"></span></a>
           </th>
         </tr>
       </thead>
