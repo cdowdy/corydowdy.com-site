@@ -7,7 +7,7 @@
 
 {% block inlined_styles %}
     <style>
-        {% include 'css/critical-css/blog.03-26-2015.min.css' %}
+        {% include 'css/critical-css/blog.04-22-2015.min.css' %}
         {% include 'css/fout.twig' %}
     </style>
 {% endblock %}
@@ -18,32 +18,32 @@
     <div class="push-down">
         {% setcontent blogposts = "blog/latest/5" allowpaging  %}
         {% for blogpost in blogposts %}
-            <article class="container">
-                <div class="full">
-                    <div class="listing-snippet">
-                        <header>
-                            <h3 class="blog-post-title"><a href="{{ blogpost.link }}">{{ blogpost.title }}</a></h3>
-                            {% set recdate = blogpost.datepublish|localdate("%A %B %e, %Y") %}
-                            <p class="pub-date">{{ __('Posted on %date%',{ '%date%': recdate }) }}</p>
-                        </header>
-                        <p>
-                            {{ blogpost.teaser }}
-                        </p>
-                        <a href="{{ blogpost.link }}">{{ __('Read Post &#10141;') }}</a>
-                    </div>
-                    <div class="listing-image">
-                        <img class="center" src="{{ thumbnail(blogpost.image, 200, 200) }}" alt="{{ blogpost.title }}" pagespeed_no_defer="">
-                    </div><!-- /.listing-image -->
-                </div><!-- /.full -->
-            </article>
-            <hr/>
+          <article class="container" itemscope="" itemtype="http://schema.org/BlogPosting">
+            <div class="full">
+              <div class="listing-snippet">
+                <header>
+                  <h3 class="blog-post-title" itemprop="headline url"><a href="{{ blogpost.link }}">{{ blogpost.title }}</a></h3>
+                    {% set recdate = blogpost.datepublish|localdate("%A %B %e, %Y") %}
+                      <p class="pub-date" itemprop="datePublished">{{ __('Posted on %date%',{ '%date%': recdate }) }}</p>
+                </header>
+                <p itemprop="description">
+                  {{ blogpost.teaser }}
+                </p>
+                <a itemprop="url" href="{{ blogpost.link }}">{{ __('Read Post &#10141;') }}</a>
+              </div>
+              <div class="listing-image">
+                <img itemprop="image" class="center" src="{{ image(blogpost.image) }}" alt="{{ blogpost.title }}" >
+              </div><!-- /.listing-image -->
+            </div><!-- /.full -->
+          </article>
+
+          <hr/>
         {% endfor %}
-        {{ pager('', 3, '_sub_corydowdy_pager.twig') }}
     </div><!-- /.push-down -->
 
 {% endblock %}
 
 {% block footer_javascripts %}
     {{ parent() }}
-    <script src="{{ paths.theme}}js/lib/off-canvas.min.js" async defer ></script>
+    <script src="{{ paths.theme}}js/navigation.04222015.min.js" async defer ></script>
 {% endblock footer_javascripts %}
