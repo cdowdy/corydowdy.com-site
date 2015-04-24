@@ -57,3 +57,5 @@ robots.txt
 Vagrantfile
 composer.json.dist
 401.html
+
+README.md
