@@ -9,10 +9,10 @@
        https://github.com/h5bp/html5-boilerplate/blob/master/dist/doc/extend.md#explicit-prefetches
     #}
     {% block dns_prefetch %}
-        <link rel="dns-prefetch" href="//use.typekit.net"/>
-        <link rel="dns-prefetch" href="//p.typekit.net" />
+        <link rel="dns-prefetch" href="http://use.typekit.net"/>
+        <link rel="dns-prefetch" href="http://p.typekit.net" />
         <link rel="dns-prefetch" href="//www.google-analytics.com"/>
-        <link rel="dns-prefetch" href="//cdn.corydowdy.com"/>
+        {#<link rel="dns-prefetch" href="//cdn.corydowdy.com"/>#}
     {% endblock dns_prefetch %}
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -24,7 +24,7 @@
     </title>
 
     {# Bing Validation #}
-
+    <meta name="msvalidate.01" content="346403273F73350B6928A46B28684A5B" />
     {# Chrome Webapp Capable #}
     <meta name="mobile-web-app-capable" content="yes">
 
@@ -34,14 +34,14 @@
 
     {# include javascripts / javascripts block #}
     {% block header_javascripts %}
-        <script>
+        {#<script>#}
 
-            {% spaceless %}
-            {# Include TypeKit JavaScript #}
-            {% include 'js/typekit/typekit.min.js' %}
-            {% endspaceless %}
+            {#{% spaceless %}#}
+            {#&#123;&#35; Include TypeKit JavaScript &#35;&#125;#}
+            {#{% include 'js/typekit/typekit.min.js' %}#}
+            {#{% endspaceless %}#}
 
-        </script>
+        {#</script>#}
         {# Modernizr:
             Current: 08-27-2014
             No Flexbox, No Flexbox Legacy, CSS Rem Unit, CSS Media Queryies
@@ -49,7 +49,7 @@
     {% endblock %}
 
     {% block enhance_js_meta %}
-    <meta name="fullcss"  content="{{ paths.theme }}css/app.04-01-2015.min.css">
+    <meta name="fullcss"  content="{{ paths.theme }}css/app.04222015.min.css">
     <meta name="gpng" content="{{ paths.theme }}css/icons/icons.fallback.css">
     <meta name="gsvg" content="{{ paths.theme }}css/icons/icons.data.svg.css">
     <meta name="gdpng" content="{{ paths.theme }}css/icons/icons.data.png.css">
@@ -68,7 +68,7 @@
         {% endblock fout %}
 
         {% if app.request.cookies.has('fullcss') %}
-    <link rel="stylesheet" href="{{ paths.theme }}css/app.04-01-2015.min.css"/>
+    <link rel="stylesheet" href="{{ paths.theme }}css/app.04222015.min.css"/>
     <link rel="stylesheet" href="{{ app.request.cookies.get('grunticon') }}" />
         {% else %}
             {% block inlined_styles %}
@@ -85,7 +85,7 @@
             {% endblock enhance %}
         {% endif %}
 
-            <noscript><link rel="stylesheet" href="{{ paths.theme }}css/app.04-01-2015.min.css"/></noscript>
+            <noscript><link rel="stylesheet" href="{{ paths.theme }}css/app.04222015.min.css"/></noscript>
             <noscript><link rel="stylesheet" href="{{ paths.theme }}css/icons/icons.fallback.css" ></noscript>
 
     {% endblock %}
@@ -94,34 +94,37 @@
         <script src="{{ paths.theme }}js/lib/modernizr/modernizr-10-16-2014.js" async ></script>
     {% endblock picturefill %}
 
-    {% block ie8_conditionals %}
-    {#
-      These have to be here because they scan CSS Files for media queries
-      Maybe Use Modernizr Load here instead of the Top Script Block to
-      Load these for unsupported browsers
-      And I absolutely hate it
-    #}
-        <!--[if IE 8]>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/nwmatcher/1.2.5/nwmatcher.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
-        <![endif]-->
-    {% endblock ie8_conditionals %}
+    {#{% block ie8_conditionals %}#}
+    {#&#123;&#35;#}
+      {#These have to be here because they scan CSS Files for media queries#}
+      {#Maybe Use Modernizr Load here instead of the Top Script Block to#}
+      {#Load these for unsupported browsers#}
+      {#And I absolutely hate it#}
+    {#&#35;&#125;#}
+        {#<!--[if IE 8]>#}
+        {#<script src="//cdnjs.cloudflare.com/ajax/libs/nwmatcher/1.2.5/nwmatcher.min.js"></script>#}
+        {#<script src="//cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js"></script>#}
+        {#<script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>#}
+        {#<![endif]-->#}
+    {#{% endblock ie8_conditionals %}#}
 </head>
 <body>
 {% block svgs %}
 {% endblock svgs %}
-<header class="app-bar promote-layer" role="banner">
-    <div class="app-bar-container">
-       <button class="menu menu-icon icon-hamburger">
-           <span class="visuallyhidden">Open Menu</span>
-       </button>
-        <h1 class="logo"><a class="back-home" href="/">Cory Dowdy</a></h1>
+<header class="fn-header" id="js-header" role="banner">
+  <div class="header-wrap">
+    <div class="fn-header__title-container">
+      <h1 class="fn-header__name"><a href="/">Cory Dowdy</a></h1>
     </div>
+    <input type="checkbox" id="fn-noJs" class="fn-navTrigger__no-js"/>
+    <label id="fn-noJs_label" for="fn-noJs"></label>
+    {# Insert Menu from menu directory #}
+    {{ menu('main', 'menu/_menu.html.twig') }}
+  </div>
 </header>
-{# Insert Menu from menu directory #}
-{{ menu('main', 'menu/_menu.html.twig') }}
-<main class="container" role="main">
+<!-- /.fn-header -->
+
+<main class="container fn-main" role="main">
     <!--[if lt IE 9]>
     <div class="ie_8_update_notice">
         <p class="browsehappy">
@@ -139,7 +142,6 @@
 {#  Footer block and closing main tag    #}
 
 {% block footer %}
-
 </main>
 
 
@@ -147,6 +149,14 @@
 
 
     {% block footer_javascripts %}
+      <script>
+
+            {% spaceless %}
+            {# Include TypeKit JavaScript #}
+            {% include 'js/typekit/typekit.min.js' %}
+            {% endspaceless %}
+
+        </script>
 {% if dev == true %}
   {# development enviroment dont place GA in page #}
     {% else %}
@@ -156,7 +166,7 @@
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        ga('create', '', 'auto');
+        ga('create', 'UA-46388684-1', 'auto');
         ga('send', 'pageview');
 
       </script>
