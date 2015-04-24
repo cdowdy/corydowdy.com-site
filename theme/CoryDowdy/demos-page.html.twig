@@ -9,51 +9,52 @@
 
 {% block inlined_styles %}
     <style>
-        {% include 'css/critical-css/demos.03-26-2015.min.css' %}
+        {% include 'css/critical-css/demos.04222015.css' %}
         {% include 'css/fout.twig' %}
     </style>
 {% endblock %}
 
 
 {% block body %}
-    <div class="push-down">
-        <div class="demo-link center-text">
-            <figure>
-                <a href="/demos/concrete5-magnific-popup"><span class="visuallyhidden">Concrete 5 Magnific Popup</span>
-                    <div class="icons full-size-icon icon-c5-demos"></div>
-                </a>
-                <figcaption>
-                    <h4>
-                        Concrete5 Magnific Popup
-                    </h4>
-                    <p>
-                        Add-on using Magnific Popup Lightbox Plugin
-                    </p>
-                </figcaption>
-            </figure>
-        </div>
-        <div class="demo-link center-text">
-            <figure>
-                <a  href="/demos/concrete5-responsive-images"><span class="visuallyhidden">Concrete 5
-                        Responsive
-                        Images</span>
-                    <div class="icons full-size-icon icon-c5-demos"></div>
-                </a>
-                <figcaption>
-                    <h4>
-                        Concrete 5 Responsive Images
-                    </h4>
-                    <p>
-                        Add-on using Picturefill and Foundation Interchange
-                    </p>
-                </figcaption>
-            </figure>
-        </div>
+  <div class="push-down">
+    <div class="full-to-half demo-link">
+      <figure>
+        <a href="/demos/concrete5-magnific-popup">
+          <span class="visuallyhidden">Concrete 5 Magnific Popup</span>
+          <div class="demo-icon icon-demos"></div>
+        </a>
+        <figcaption>
+          <h4>
+            Concrete5 Magnific Popup
+          </h4>
+          <p>
+            Add-on using Magnific Popup Lightbox Plugin
+          </p>
+        </figcaption>
+      </figure>
     </div>
-    <!-- /.push-down -->
+    <div class="full-to-half demo-link">
+      <figure>
+        <a href="/demos/concrete5-responsive-images">
+          <span class="visuallyhidden">Concrete 5 Responsive Images</span>
+          <div class="demo-icon icon-demos"></div>
+        </a>
+        <figcaption>
+          <h4>
+            Concrete 5 Responsive Images
+          </h4>
+          <p>
+            Add-on using Picturefill and Foundation Interchange
+          </p>
+        </figcaption>
+      </figure>
+    </div>
+
+  </div>
+  <!-- /.push-down -->
 {% endblock %}
 
 {% block footer_javascripts %}
     {{ parent() }}
-    <script src="{{ paths.theme}}js/lib/off-canvas.min.js" async defer ></script>
+    <script src="{{ paths.theme}}js/navigation.04212015.min.js" async defer ></script>
 {% endblock footer_javascripts %}

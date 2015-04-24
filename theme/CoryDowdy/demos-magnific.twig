@@ -18,12 +18,14 @@
     <script>
         // Picture element HTML5 shiv
         document.createElement( "picture" );
+        function loadCSS(e,n,o,t){"use strict";var d=window.document.createElement("link"),i=n||window.document.getElementsByTagName("script")[0],s=window.document.styleSheets;return d.rel="stylesheet",d.href=e,d.media="only x",t&&(d.onload=t),i.parentNode.insertBefore(d,i),d.onloadcssdefined=function(n){for(var o,t=0;t<s.length;t++)s[t].href&&s[t].href.indexOf(e)>-1&&(o=!0);o?n():setTimeout(function(){d.onloadcssdefined(n)})},d.onloadcssdefined(function(){d.media=o||"all"}),d}
+      loadCSS('{{ paths.theme }}css/magnific.04222015.min.css')
     </script>
 {% endblock %}
 
 {% block inlined_styles %}
     <style>
-        {% include 'css/critical-css/concrete5-magnific-popup.03-27-2015.min.css' %}
+        {% include 'css/critical-css/concrete5-magnific-popup.04-22-2015.css' %}
         {% include 'css/fout.twig' %}
     </style>
 {% endblock %}
@@ -61,40 +63,46 @@
         <hr/>
     </div> <!-- /.full -->
     <div class="video-container">
-        <video controls poster="//cdn.corydowdy.com/assets/video/dialog_poster.png">
-            <source src="//cdn.corydowdy.com/assets/video/new_single.webm"
-                    type='video/webm;codecs="vp8, vorbis"' />
-            <source src="//cdn.corydowdy.com/assets/video/new_single.mp4"
-                    type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"' />
-        </video>
-        <hr />
+      <video controls
+             poster="//cdn.corydowdy.com/assets/video/dialog_poster.png">
+        <source src="//cdn.corydowdy.com/assets/video/new_single.mp4"
+              type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"' />
+        <source src="//cdn.corydowdy.com/assets/video/new_single.webm"
+              type='video/webm;codecs="vp8, vorbis"' />
+        <embed src="files/new_single.mp4"
+             type="application/x-shockwave-flash"
+             width="640"
+             align="middle"
+             height="400"
+             allowscriptaccess="always"
+             autoplay="false"
+             pluginspage="http://www.adobe.com/go/getflash"
+             allowfullscreen="true"></embed>
+      </video>
+      <hr />
     </div><!-- /. video-container -->
     <div class="full">
         <ul class="popup-block--three">
-            <li>
-                <a class="image-popup-vertical-fit" href="//cdn.corydowdy.com/assets/img/verticalfit_large.png" title="Caption">
-                    <img class="center lazyload" src="//cdn.corydowdy.com/assets/img/verticalfit_th.png"
-                         alt="placeholder"
-                         width="200" height="200" />
-                </a>
-                <p class="popup-caption">Vertical Fit Popup</p>
-            </li>
-            <li>
-                <a class="image-popup-fit-width" href="//cdn.corydowdy.com/assets/img/fitwidth_large.png" title="Caption.">
-                    <img class="center lazyload" src="//cdn.corydowdy.com/assets/img/verticalfit_th.png" alt="placeholder"
-                         width="200" height="200" />
-                </a>
-                <p class="popup-caption">Fit Width Popup</p>
-            </li>
-            <li>
-                <a class="image-popup-no-margins" href="//cdn.corydowdy.com/assets/img/nomargins_large.png" title="Caption">
-                    <img class="center lazyload" src="//cdn.corydowdy.com/assets/img/verticalfit_th.png" alt="placeholder"
-                         width="200" height="200" />
-                </a>
-                <p class="popup-caption">No Margins Popup</p>
-            </li>
-        </ul>
-        <!-- /.popup-block--three -->
+      <li>
+        <a class="image-popup-vertical-fit" href="//cdn.corydowdy.com/assets/img/verticalfit_large.png" title="Caption">
+          <img class="center" src="//cdn.corydowdy.com/assets/img/verticalfit_th.png" alt="placeholder" width="200" height="200" />
+        </a>
+        <p class="popup-caption">Vertical Fit Popup</p>
+      </li>
+      <li>
+        <a class="image-popup-fit-width" href="//cdn.corydowdy.com/assets/img/fitwidth_large.png" title="Caption.">
+          <img class="center" src="//cdn.corydowdy.com/assets/img/verticalfit_th.png" alt="placeholder" width="200" height="200" />
+        </a>
+        <p class="popup-caption">Fit Width Popup</p>
+      </li>
+      <li>
+        <a class="image-popup-no-margins" href="//cdn.corydowdy.com/assets/img/nomargins_large.png" title="Caption">
+          <img class="center" src="//cdn.corydowdy.com/assets/img/verticalfit_th.png" alt="placeholder" width="200" height="200" />
+        </a>
+        <p class="popup-caption">No Margins Popup</p>
+      </li>
+    </ul>
+    <!-- /.popup-block--three -->
     </div>
     <!-- /.full -->
     <hr />
@@ -104,10 +112,18 @@
     </div> <!-- /.full -->
     <div class="video-container">
         <video controls>
-            <source src="//cdn.corydowdy.com/assets/video/new_gallery.webm"
-                    type='video/webm;codecs="vp8, vorbis"' />
-            <source src="//cdn.corydowdy.com/assets/video/new_gallery.mp4"
-                    type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"' />
+          <source src="//cdn.corydowdy.com/assets/video/new_gallery.mp4"
+                  type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"' />
+          <source src="//cdn.corydowdy.com/assets/video/new_gallery.webm"
+                  type='video/webm;codecs="vp8, vorbis"' />
+          <embed src="files/new_gallery.mp4"
+                 type="application/x-shockwave-flash"
+                 width="640"
+                 height="400"
+                 allowscriptaccess="always"
+                 autoplay="false"
+                 pluginspage="http://www.adobe.com/go/getflash"
+                 llowfullscreen="true"></embed>
         </video>
         <hr />
     </div>
@@ -151,10 +167,18 @@
     <!-- /.full -->
     <div class="video-container">
         <video controls>
-            <source src="//cdn.corydowdy.com/assets/video/new_youtube.webm"
-                    type='video/webm;codecs="vp8, vorbis"' />
-            <source src="//cdn.corydowdy.com/assets/video/new_youtube.mp4"
-                    type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"' />
+          <source src="//cdn.corydowdy.com/assets/video/new_youtube.mp4"
+                  type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"' />
+          <source src="//cdn.corydowdy.com/assets/video/new_youtube.webm"
+                  type='video/webm;codecs="vp8, vorbis"' />
+          <embed src="files/new_youtube.mp4"
+                 type="application/x-shockwave-flash"
+                 width="640"
+                 height="400"
+                 allowscriptaccess="always"
+                 autoplay="false"
+                 pluginspage="http://www.adobe.com/go/getflash"
+                 allowfullscreen="true"></embed>
         </video>
         <hr />
     </div>
@@ -210,10 +234,18 @@
     <!-- /.full -->
     <div class="video-container">
         <video controls>
-            <source src="//cdn.corydowdy.com/assets/video/dialog.webm"
-                    type='video/webm;codecs="vp8, vorbis"' />
-            <source src="//cdn.corydowdy.com/assets/video/dialog.mp4"
-                    type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"' />
+          <source src="//cdn.corydowdy.com/assets/video/dialog.mp4"
+                  type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"' />
+          <source src="//cdn.corydowdy.com/assets/video/dialog.webm"
+                  type='video/webm;codecs="vp8, vorbis"' />
+          <embed src="files/dialog.mp4"
+                 type="application/x-shockwave-flash"
+                 width="640"
+                 height="400"
+                 allowscriptaccess="always"
+                 autoplay="false"
+                 pluginspage="http://www.adobe.com/go/getflash"
+                 allowfullscreen="true"></embed>
         </video>
         <hr />
     </div>
@@ -256,10 +288,18 @@
     <div class="container">
         <div class="video-container">
             <video controls>
-                <source src="//cdn.corydowdy.com/assets/video/dialog.webm"
-                        type='video/webm;codecs="vp8, vorbis"' />
-                <source src="//cdn.corydowdy.com/assets/video/dialog.mp4"
-                        type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"' />
+              <source src="//cdn.corydowdy.com/assets/video/dialog.mp4"
+                      type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"' />
+              <source src="//cdn.corydowdy.com/assets/video/dialog.webm"
+                      type='video/webm;codecs="vp8, vorbis"' />
+              <embed src="files/dialog.mp4"
+                     type="application/x-shockwave-flash"
+                     width="640"
+                     height="400"
+                     allowscriptaccess="always"
+                     autoplay="false"
+                     pluginspage="http://www.adobe.com/go/getflash"
+                     allowfullscreen="true"></embed>
             </video>
             <hr />
         </div>
@@ -295,6 +335,6 @@
 {% endblock %}
 
 {% block footer_javascripts %}
-<script src="{{ paths.theme }}js/demos-mag.21-08-2014.js" async defer></script>
+<script src="{{ paths.theme }}js/demos-mag.04222015.js" async defer></script>
 {{ parent() }}
 {% endblock footer_javascripts %}
