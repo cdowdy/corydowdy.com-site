@@ -5,11 +5,17 @@
 
 {% extends 'base.html.twig' %}
 
+    {% block dns_prefetch %}
+      <link rel="dns-prefetch" href="http://use.typekit.net"/>
+      <link rel="dns-prefetch" href="http://p.typekit.net" />
+      <link rel="dns-prefetch" href="//www.google-analytics.com"/>
+      <link rel="dns-prefetch" href="http://cdn.corydowdy.com"/>
+    {% endblock dns_prefetch %}
 
 
 
     {% block inlined_styles %}
-        <style>{% include 'css/critical-css/work.03-26-2015.min.css' %}</style>
+        <style>{% include 'css/critical-css/work.04-16-2015.css' %}</style>
     {% endblock %}
 
 
@@ -21,129 +27,103 @@
 {% block picturefill %}
   {{ parent() }}
 
-    <script src="{{ paths.theme }}js/picturefill/picturefill.min.js" async defer ></script>
-    {#<script src="{{ paths.theme }}js/picturefill/ri.intrinsic.min.js" async defer></script>#}
-  {#<script src="{{ paths.theme }}js/lib/lazysizes.min.js" async defer></script>#}
+    <script src="{{ paths.theme }}js/picturefill/picturefill.min.04062015.js" async defer ></script>
 {% endblock picturefill %}
 
 
 
 
 {% block body %}
-    <section id="current" class="evo">
-        <h2>Current Project</h2>
+    <section id="current" class="current-project--evolution full">
+      <h2>Current Project</h2>
+      <div class="container">
         <div class="showcase-container">
-            <figure>
-                {# removed src att per http://scottjehl.github.io/picturefill/#img-sizes#}
-                <img class="center"
-                     sizes="80vw"
-
-                     srcset="files/bypp-showcase-210.png 210w,
-                             files/bypp-showcase-320.png 320w,
-                             files/bypp-showcase-466.png 466w,
-                             files/bypp-showcase-640.png 640w"
-                     alt="Backyard Pleasure Pools on multiple devices"/>
-
-                <figcaption class="showcase-container--caption">
-                    <p>
-                        The above screen shots are of Backyard Pleasure Pools. An inground pool company located in Ravenna, Ohio.
-                        They specialize in custom pools, pool rebuilds and maintenance.
-                    </p>
-                </figcaption>
-            </figure>
+          <figure class="showcase-figure">
+            <picture>
+              <!--[if IE 9]>
+              <video style="display: none;"><![endif]-->
+              <source type="image/webp" srcset="files/bypp-showcase-700.webp" media="(min-width: 1000px)">
+              <source srcset="files/bypp-showcase-700.png" media="(min-width: 1000px)">
+              <source type="image/webp" srcset="files/bypp-showcase-600.webp" media="(min-width: 980px)">
+              <source srcset="files/bypp-showcase-600.png" media="(min-width: 980px)">
+              <source type="image/webp" srcset="files/bypp-showcase-500.webp" media="(min-width: 800px)">
+              <source srcset="files/bypp-showcase-500.png" media="(min-width: 800px)">
+              <source type="image/webp" srcset="files/bypp-showcase-360.webp" media="(min-width: 768px)">
+              <source srcset="files/bypp-showcase-360.png" media="(min-width: 768px)">
+              <source type="image/webp" srcset="files/bypp-showcase-320.webp" media="(min-width: 640px)">
+              <source srcset="files/bypp-showcase-320.png" media="(min-width: 640px)">
+              <source type="image/webp" srcset="files/bypp-showcase-300.webp" media="(min-width: 360px)">
+              <source srcset="files/bypp-showcase-300.png" media="(min-width: 360px)">
+              <source type="image/webp" srcset="files/bypp-showcase-260.webp" media="(min-width: 320px)">
+              <source srcset="files/bypp-showcase-260.png" media="(min-width: 320px)">
+              <!--[if IE 9]></video><![endif]-->
+              <img class="center" src="files/bypp-showcase-600.png"
+                   alt="Backyard Pleasure Pools site on Multiple Devices"/>
+            </picture>
+            <figcaption class="showcase-container--caption">
+              <p>
+                The above screen shots are of Backyard Pleasure Pools. An inground pool company located in Ravenna, Ohio.
+                They specialize in custom pools, pool rebuilds and maintenance.
+              </p>
+            </figcaption>
+          </figure>
         </div> <!-- ./showcase-container -->
-        <div class="showcase-container--full">
-            <h3>Site Evolution:</h3>
-            <hr/>
-            <ul class="icon-blocks">
-                <li>
-                    <a class="image-popup-vertical-fit" href="files/comp_1_pop.png" title="First Site Comp.">
-                        <img class="center lazyload "
-                             sizes="25vw"
-                             srcset="files/comp1-th-155.png 155w,
-                             files/comp1-th.png 355w"
-                             alt="first site comp"/>
-                    </a>
-                    <p class="showcase-popup-caption">First Site Comp. <small class="hide-small">click to enlarge</small></p>
-                </li>
-                <li>
-                    <a class="image-popup-vertical-fit" href="files/comp_2_pop.png" title="Second Site Comp.">
-                        <img class="center lazyload "
-                             sizes="25vw"
-                             srcset="files/comp2-th-155.png 155w,
-                             files/comp2-th.png 355w"
-                             alt="Second site comp"
-                          />
-                    </a>
-                    <p class="showcase-popup-caption">Second Site Comp. <small class="hide-small">click to enlarge</small></p>
-                </li>
-                <li>
-                    <a class="image-popup-vertical-fit" href="files/comp_3_pop.png" title="Third Site Comp.">
-                        <img class="center lazyload "
-                             sizes="25vw"
-                             srcset="files/comp3-th-155.png 155w,
-                             files/comp3-th.png 355w"
-                             alt="Third site comp"
-                             />
-                    </a>
-                    <p class="showcase-popup-caption">Third Site Comp. <small class="hide-small">click to enlarge</small></p>
-                </li>
-                <li>
-                    <a class="image-popup-vertical-fit" href="files/current_pop.png" title="Current Site.">
-                        <img class="center lazyload "
-                             sizes="25vw"
-                             srcset="files/current-th-155.png 155w,
-                             files/current-th.png 355w"
-                             alt="Current Backyard Pleasure Pools site"/>
-                    </a>
-                    <p class="showcase-popup-caption">Current Site. <small class="hide-small">click to enlarge</small></p>
-                </li>
-            </ul>
-        </div>
-        <!-- /.showcase-container-full -->
-        <hr />
-        <section id="c5Section">
-            <div class="showcase-container--full">
-                <h3>Concrete5 Packages</h3>
-                <p>
-                    The above image lightboxes (the popup image when clicked) are made possible by a JavaScript plugin by Dmitry
-                    Semenov called <a class="external-link" href="//dimsemenov.com/plugins/magnific-popup/">Magnific Popup <span class="link-icon icon-external-link"></span></a>.
-                    I turned this plugin into a Concrete5 add on package. The source of the plugin can be found in the link below.
-                </p>
-            </div>
-            <div class="showcase-container--half">
-                <h4>Concrete5 Magnific Popup</h4>
-                <ul class="external-link-list">
-                    <li>
-                        <a  href="//github.com/cdowdy/concrete5-magnific-popup">Add-on Source <span class="link-icon icon-external-link"></span></a>
-                    </li>
-                    <li>
-                        <a href="//corydowdy.com/demo/concrete5-magnific-popup">Add-on Demo Page <span class="link-icon icon-external-link"></span></a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.showcase-container- -half -->
-            <div class="showcase-container--half">
-                <h4>Concrete5 Responsive Images</h4>
-                <ul class="external-link-list">
-                    <li>
-                        <a href="//github.com/cdowdy/concrete5-responsive-images">Add-on Source <span class="link-icon icon-external-link"></span></a>
-                    </li>
-                    <li>
-                        <a href="//corydowdy.com/demo/concrete5-responsive-images">Add-on Demo Page <span class="link-icon icon-external-link"></span></a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.showcase-container- -half -->
+      </div>
+      <div class="full">
+        <h3>Site Evolution:</h3>
+        <hr/>
+        <ul class="icon-blocks">
+          <li class="image-lightbox">
+            <a href="//cdn.corydowdy.com/assets/img/work/comp_1_pop.png" title="First Site Comp.">
+              <img class="center" src="files/comp1-th.png" alt="first site comp" width="395" height="297"/>
+            </a>
+            <p class="showcase-popup-caption">First Site Comp. <small class="hide-small">click to enlarge</small></p>
+          </li>
+          <li class="image-lightbox">
+            <a href="//cdn.corydowdy.com/assets/img/work/comp_2_pop.png" title="Second Site Comp.">
+              <img class="center" src="files/comp2-th.png" alt="Second site comp" width="395" height="297"/>
+            </a>
+          <p class="showcase-popup-caption">Second Site Comp. <small class="hide-small">click to enlarge</small></p>
+          </li>
+          <li class="image-lightbox">
+            <a href="//cdn.corydowdy.com/assets/img/work/comp_3_pop.png" title="Third Site Comp.">
+              <img class="center" src="files/comp3-th.png" alt="Third site comp" width="395" height="297"/>
+            </a>
+            <p class="showcase-popup-caption">Third Site Comp. <small class="hide-small">click to enlarge</small></p>
+          </li>
+          <li class="image-lightbox">
+            <a href="//cdn.corydowdy.com/assets/img/work/current_pop.png" title="Current Site.">
+              <img class="center" src="files/current-th.png" alt="Current Backyard Pleasure Pools site" width="395"
+                 height="297"/>
+            </a>
+            <p class="showcase-popup-caption">Current Site. <small class="hide-small">click to enlarge</small></p>
+          </li>
+        </ul>
+      </div>
+    <!-- /.showcase-container-full -->
+  </section> <!-- ./evo -->
+  <hr/>
+  <section id="github-links">
+    <div class="full">
+      <h3>My Github</h3>
 
-        </section>
-        <!-- /#c5Section -->
-
-    </section> <!-- ./evo -->
+      <p>You can find my Open Source work and the source for this site at my Github account:</p>
+      <ul class="external-link-list">
+        <li>
+          <a href="https://github.com/cdowdy">Github <span
+              class="link-icon icon-github-link"></span></a>
+        </li>
+        <li>
+          <a href="https://github.com/cdowdy/corydowdy.com-site">Site Source <span
+              class="link-icon icon-github-link"></span></a>
+        </li>
+      </ul>
+    </div>
+  </section>
    {{ record.body }}
 {% endblock %}
 
 {% block footer_javascripts %}
-<script src="{{ paths.theme }}js/work.17-10-2014.js" async defer ></script>
+<script src="{{ paths.theme }}js/work.04212015.min.js" async defer ></script>
 {{ parent() }}
 {% endblock footer_javascripts %}
