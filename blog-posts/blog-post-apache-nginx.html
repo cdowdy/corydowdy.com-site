@@ -1,10 +1,10 @@
 <section class="full" id="intro">
   <p>
-    It seems more and more people are going to NGINX instead of Apache and rave about the speed. Since I'm not a system
-    admin and never claimed to be one I figured I'd document my switch to NGINX.
+    It seems more and more people are going to Nginx instead of Apache and rave about the speed. Since I'm not a system
+    admin and never claimed to be one I figured I'd document my switch to Nginx
   </p>
   <p>
-    Me being a novice in relation to NGINX I was quite taken aback that you can't just enable modules like you can in
+    Me being a novice in relation to Nginx I was quite taken aback that you can't just enable modules like you can in
     Apache. In an Ubuntu Server install enabling a Module like <a class="external-link" href="https://developers.google.com/speed/pagespeed/module">
     Mod_Pagespeed <span class="link-icon icon-external-link"></span></a>
     is as  simple as <code class="language-bash"> sudo dpkg -i mod-pagespeed-*.deb </code> followed by
@@ -12,9 +12,9 @@
     system and will keep Mod_PageSpeed up to date.
   </p>
   <p>
-    Adding the same module in NGINX is quite another process. You must first make sure you have all the dependencies
+    Adding the same module in Nginx is quite another process. You must first make sure you have all the dependencies
     installed for it to build, download the source, unpack it, then build it. Even then you aren't finished because you
-    still have to build NGINX from source and enable the module there. That's a lot of work especially for someone like me
+    still have to build Nginx from source and enable the module there. That's a lot of work especially for someone like me
     who doesn't have a PhD in Unix.
   </p>
   <p>
@@ -43,7 +43,7 @@
     <li>Same Droplet</li>
     <li>Same OS</li>
     <li>Same CMS</li>
-    <li>NGINX v 1.6.2</li>
+    <li>Nginx v 1.6.2</li>
   </ol>
 
 </section>
@@ -72,21 +72,21 @@
 <code> apt-get install libc6 libexpat1 libgd3 libgeoip1 libpam0g libpcre3 libssl1.0.0 libxml2 libxslt1.1 zlib1g </code>
 </pre>
   <p>
-    Now that the dependencies for Nginix are satisfied we can move on to actually downloading NGINX source files. As of
-    this write up the NGINX version I am using is <strong>1.6.2</strong>. We'll do that by typing into a terminal the
+    Now that the dependencies for Nginix are satisfied we can move on to actually downloading Nginx source files. As of
+    this write up the Nginx version I am using is <strong>1.6.2</strong>. We'll do that by typing into a terminal the
     following:
   </p>
 
 <pre class="language-bash"><code>
   #cd
-  NGINX_VERSION=1.6.2
-  wget http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz
-  tar -xvzf nginx-${NGINX_VERSION}.tar.gz
+  Nginx VERSION=1.6.2
+  wget http://nginx.org/download/nginx-${Nginx VERSION}.tar.gz
+  tar -xvzf nginx-${Nginx VERSION}.tar.gz
 </code></pre>
   <p>
-    I also want to take advanted of another module called <a class="external-link" href="//github.com/openresty/headers-more-nginx-module">headers_more <span class="link-icon icon-external-link"></span></a>.
-    You download that the same way as we did for NGINX source (substituting the release which is compatible with your
-    NGINX version):
+    I also want to take advantaged of another module called <a class="external-link" href="//github.com/openresty/headers-more-nginx-module">headers_more <span class="link-icon icon-external-link"></span></a>.
+    You download that the same way as we did for Nginx source (substituting the release which is compatible with your
+    Nginx version):
   </p>
 <pre class="language-bash">
 <code>
@@ -96,16 +96,15 @@
 </pre>
   <p>
     Now is usually about the time I would download Google's PageSpeed Module source files. I won't be using this with
-    my current NGINX setup right now. More on that <a href="#g_pagespeed">here</a> and I won't be using my old trusty standbye of
+    my current Nginx setup right now. More on that <a href="#g_pagespeed">here</a> and I won't be using my old trusty standbye of
     <a class="external-link" href="//www.modsecurity.org/">ModSecurity <span class="link-icon icon-external-link"></span></a>
-    security either. Quite frankly in my opinion...IT'S A PAIN IN THE ASS TO BUILD. I couldn't get ModSecurity for NGINX
-    to build no matter what I tried. I followed the wiki instructions, installed dependencies and nada. Like I said I don't
+    security either. Quite frankly in my opinion...IT'S A PAIN IN THE ASS TO BUILD. I couldn't get ModSecurity for Nginx     to build no matter what I tried. I followed the wiki instructions, installed dependencies and nada. Like I said I don't
     have a PhD in Unix. I'm a modest web developer. Anywho I installed <a class="external-link" href="//github.com/nbs-system/naxsi">Naxsi <span class="link-icon icon-external-link"></span></a>
     in it's place.
   </p>
   <p>
     Naxsi on the other hand is fairly straight forward to install and build. The biggest caveat we have is the order
-    in which we will compile it into NGINX. Download Naxsi like so ( version numbers may change ).
+    in which we will compile it into Nginx  Download Naxsi like so ( version numbers may change ).
   </p>
 <pre class="language-bash">
 <code>
@@ -118,20 +117,19 @@
 <section class="full" id="building_nginx">
   <h3 class="heading">Building This Thing!</h3>
   <p>
-    All our third party modules are downloaded and upacked and ready to go. The next step we will change into the NGINX
-    directory <code class="language-bash"> cd nginx-1.6.2 </code>. If you're unsure about where the directory is you can
+    All our third party modules are downloaded and upacked and ready to go. The next step we will change into the Nginx     directory <code class="language-bash"> cd nginx-1.6.2 </code>. If you're unsure about where the directory is you can
     type <code class="language-bash"> ls </code> in your terminal and it will list all the directories and or files from your
-    current location. Once in the NGINX source directory we can begin to compile our server package. NGINX has a list of
+    current location. Once in the Nginx source directory we can begin to compile our server package. Nginx has a list of
     other <a class="external-link" href="//wiki.nginx.org/3rdPartyModules">third party modules <span class="link-icon icon-external-link"></span></a>
     that you can include. For any of those follow the same steps for getting headers_more and Naxsi. It also has a list of
-    optional modules you can inlude during complile time found <a class="external-link" href="//wiki.nginx.org/Modules">here <span class="link-icon icon-external-link"></span></a>.
+    optional modules you can include during compile time found <a class="external-link" href="//wiki.nginx.org/Modules">here <span class="link-icon icon-external-link"></span></a>.
     From the Optional Modules I'll be including <em>stub_status, spdy_module, gzip_static and ssl</em> modules. This list
     may seem long and hard but as of right now it's pretty much downhill from here.
   </p>
   <p>
     Inside our <strong>nginx-1.6.2</strong> directory will give it the compile command. All of this needs to typed on one
     line unless you escape it like in the code block below. The order of installing Naxsi is important. If you're just starting
-    out and testing NGINX and Naxsi out put it first like in the code block below. More on why you should do this can
+    out and testing Nginx and Naxsi out put it first like in the code block below. More on why you should do this can
     be found at <a class="external-link" href="//github.com/nbs-system/naxsi/wiki/installation">Naxsi Github Wiki <span class="link-icon icon-external-link"></span></a>
   </p>
 <pre class="language-bash">
@@ -165,19 +163,19 @@
 </code>
 </pre>
   <p>
-    That's it. NGINX is now installed... well it's installed but we need to do a few more things.
+    That's it. Nginx is now installed... well it's installed but we need to do a few more things.
   </p>
 </section>
 <section class="full" id="compression">
-  <h3 class="heading">Starting and Stopping NGINX</h3>
+  <h3 class="heading">Starting and Stopping Nginx </h3>
   <p>
-    If you were to leave everything as it is you would need to start NGINX like <code class="language-bash"> sudo /usr/sbin/nginx start </code>
+    If you were to leave everything as it is you would need to start Nginx like <code class="language-bash"> sudo /usr/sbin/nginx start </code>
     and then kill it with its PID. That's rather cumbersome in my opinion. So in order to start and stop it like you would
     Apache ( service apache2 start/stop/status etc ) we need to have an init script. I'm using <a class="external-link" href="//github.com/JasonGiedymin/nginx-init-ubuntu">this one <span class="link-icon icon-external-link"></span></a>
     with modifications to the nginx sbin paths, DAEMON paths, and conf paths that reflect the options in our compile time flags above.
   </p>
   <p>
-    Once that's finsihed we'll make sure NGINX starts up on a reboot of our server
+    Once that's finsihed we'll make sure Nginx starts up on a reboot of our server
   </p>
 <pre class="language-bash">
 <code>
@@ -186,7 +184,7 @@
 </pre>
 
   <p>
-    NGINX should now be up and running with our modules. You can now move on to your virtualhosts and server setup. A
+    Nginx should now be up and running with our modules. You can now move on to your virtualhosts and server setup. A
     rather good tutorial on this for Ubuntu can be found at <a class="external-link" href="//www.digitalocean.com/community/tutorials/how-to-set-up-nginx-server-blocks-virtual-hosts-on-ubuntu-14-04-lts">DigitalOcean <span class="link-icon icon-external-link"></span></a>
   </p>
 </section>
@@ -194,7 +192,7 @@
   <h3 class="heading">Google's PageSpeed Module</h3>
   <p>
     I mentioned I wasn't going to use Google's Pagespeed Module. Reasoning behind this is I don't know if I bunked up my
-    Apache setup but the Time To First Byte and overall load times with Pagespeed installed on Apache and NGINX were extremely
+    Apache setup but the Time To First Byte and overall load times with Pagespeed installed on Apache and Nginx were extremely
     different. For My Apache setup I used a setup of <code class="language-bash"> Passthrough </code> and basically relied
     on pagespeeds image compressions, serving webp to user agents who accepted it and extending the caches of my resources.
   </p>
@@ -232,8 +230,8 @@
     </tr>
     <tr>
       <td class="image-lightbox">
-        <a title="NGINX Scores"
-           href="//cdn.corydowdy.com/assets/blog/nginx-wpt.png">NGINX - Score Picture <span class="link-icon icon-picture"></span>
+        <a title="Nginx Scores"
+           href="//cdn.corydowdy.com/assets/blog/nginx-wpt.png">Nginx - Score Picture <span class="link-icon icon-picture"></span>
         </a>
       </td>
       <td class="table-number">0.640s</td>
