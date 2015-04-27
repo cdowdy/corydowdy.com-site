@@ -15,7 +15,8 @@
 
 
     {% block inlined_styles %}
-        <style>{% include 'css/critical-css/work.04-16-2015.css' %}</style>
+        <style>{% include 'css/critical-css/work.04242015.css' %}
+      {% include 'css/fout.twig' %}</style>
     {% endblock %}
 
 
@@ -27,7 +28,7 @@
 {% block picturefill %}
   {{ parent() }}
 
-    <script src="{{ paths.theme }}js/picturefill/picturefill.min.04062015.js" async defer ></script>
+    <script src="{{ paths.theme }}js/picturefill/picturefill.min.js" async defer ></script>
 {% endblock picturefill %}
 
 
@@ -74,25 +75,25 @@
         <hr/>
         <ul class="icon-blocks">
           <li class="image-lightbox">
-            <a href="//cdn.corydowdy.com/assets/img/work/comp_1_pop.png" title="First Site Comp.">
+            <a href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/img/work/comp_1_pop.png" title="First Site Comp.">
               <img class="center" src="files/comp1-th.png" alt="first site comp" width="395" height="297"/>
             </a>
             <p class="showcase-popup-caption">First Site Comp. <small class="hide-small">click to enlarge</small></p>
           </li>
           <li class="image-lightbox">
-            <a href="//cdn.corydowdy.com/assets/img/work/comp_2_pop.png" title="Second Site Comp.">
+            <a href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/img/work/comp_2_pop.png" title="Second Site Comp.">
               <img class="center" src="files/comp2-th.png" alt="Second site comp" width="395" height="297"/>
             </a>
           <p class="showcase-popup-caption">Second Site Comp. <small class="hide-small">click to enlarge</small></p>
           </li>
           <li class="image-lightbox">
-            <a href="//cdn.corydowdy.com/assets/img/work/comp_3_pop.png" title="Third Site Comp.">
+            <a href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/img/work/comp_3_pop.png" title="Third Site Comp.">
               <img class="center" src="files/comp3-th.png" alt="Third site comp" width="395" height="297"/>
             </a>
             <p class="showcase-popup-caption">Third Site Comp. <small class="hide-small">click to enlarge</small></p>
           </li>
           <li class="image-lightbox">
-            <a href="//cdn.corydowdy.com/assets/img/work/current_pop.png" title="Current Site.">
+            <a href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/img/work/current_pop.png" title="Current Site.">
               <img class="center" src="files/current-th.png" alt="Current Backyard Pleasure Pools site" width="395"
                  height="297"/>
             </a>
@@ -124,6 +125,6 @@
 {% endblock %}
 
 {% block footer_javascripts %}
-<script src="{{ paths.theme }}js/work.04212015.min.js" async defer ></script>
+<script src="{{ paths.theme }}js/work.04222015.min.js" async defer ></script>
 {{ parent() }}
 {% endblock footer_javascripts %}
