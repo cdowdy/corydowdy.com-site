@@ -13,11 +13,14 @@
 
 {% block inlined_styles %}
 <style>
+  {% spaceless %}
     {% include 'css/critical-css/index.04242015.css' %}
+    {% include 'css/fout.twig' %}
+  {% endspaceless %}
 </style>
 {% endblock %}
 {#
-//cdn.corydowdy.com/assets/svg_sprites/linkicons-sprite.svg
+//pullzone1-corydowdywebdesi.netdna-ssl.com/assets/svg_sprites/linkicons-sprite.svg
 {{ paths.theme }}svgsprites/linkicons-sprite.svg
 #}
 
@@ -26,8 +29,8 @@
     <p>
       Hi, I'm <strong>Cory Dowdy</strong>. I do web development focused on performance. This is my playground where I
       try out new web techniques, experiment with server side optimizations and overall just be my development guinea
-      pig. This site is built on top of <a href="//bolt.cm">Bolt</a> CMS, with help from the <a href="//grunticon.com">Grunticon</a>
-      and <a href="//github.com/filamentgroup/enhance/">Enhance</a>
+      pig. This site is built on top of <a href="https://bolt.cm">Bolt</a> CMS, with help from the <a href="http://grunticon.com">Grunticon</a>
+      and <a href="https://github.com/filamentgroup/enhance/">Enhance</a>
     </p>
   </div>
   <div class="flex-home-featured">

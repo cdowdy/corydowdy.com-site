@@ -10,10 +10,10 @@
        https://github.com/h5bp/html5-boilerplate/blob/master/dist/doc/extend.md#explicit-prefetches
     #}
     {% block dns_prefetch %}
-        <link rel="dns-prefetch" href="http://use.typekit.net"/>
-        <link rel="dns-prefetch" href="http://p.typekit.net" />
-        <link rel="dns-prefetch" href="//www.google-analytics.com"/>
-        {#<link rel="dns-prefetch" href="//cdn.corydowdy.com"/>#}
+        <link rel="dns-prefetch" href="https://use.typekit.net"/>
+        <link rel="dns-prefetch" href="https://p.typekit.net" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com"/>
+        {#<link rel="dns-prefetch" href="//pullzone1-corydowdywebdesi.netdna-ssl.com"/>#}
     {% endblock dns_prefetch %}
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -23,7 +23,12 @@
         {{ app.config.get('general/sitename') }}
         {% if record.title is not defined and app.config.get('general/payoff') %} | {{ app.config.get('general/payoff') }}{% endif %}
     </title>
-
+  {% block metaSeo %}
+    <meta name="description" content="{{ record.metadescription }}" />
+    {% if record.metakeywords %}
+    <meta name="keywords" content="{{ record.metakeywords }}" />
+  {% endif %}
+  {% endblock metaSeo %}
     {# Bing Validation #}
     <meta name="msvalidate.01" content="346403273F73350B6928A46B28684A5B" />
     {# Chrome Webapp Capable #}
@@ -35,14 +40,12 @@
 
     {# include javascripts / javascripts block #}
     {% block header_javascripts %}
-        {#<script>#}
-
-            {#{% spaceless %}#}
-            {#&#123;&#35; Include TypeKit JavaScript &#35;&#125;#}
-            {#{% include 'js/typekit/typekit.min.js' %}#}
-            {#{% endspaceless %}#}
-
-        {#</script>#}
+      <script>
+            {% spaceless %}
+            {# Include TypeKit JavaScript #}
+            {% include 'js/typekit/typekit.min.js' %}
+            {% endspaceless %}
+        </script>
         {# Modernizr:
             Current: 08-27-2014
             No Flexbox, No Flexbox Legacy, CSS Rem Unit, CSS Media Queryies
@@ -96,20 +99,6 @@
         {# dirty hack to include picturefill AFTER the noscript css#}
         <script src="{{ paths.theme }}js/lib/modernizr/modernizr.04242015.min.js" async ></script>
     {% endblock picturefill %}
-
-    {#{% block ie8_conditionals %}#}
-    {#&#123;&#35;#}
-      {#These have to be here because they scan CSS Files for media queries#}
-      {#Maybe Use Modernizr Load here instead of the Top Script Block to#}
-      {#Load these for unsupported browsers#}
-      {#And I absolutely hate it#}
-    {#&#35;&#125;#}
-        {#<!--[if IE 8]>#}
-        {#<script src="//cdnjs.cloudflare.com/ajax/libs/nwmatcher/1.2.5/nwmatcher.min.js"></script>#}
-        {#<script src="//cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js"></script>#}
-        {#<script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>#}
-        {#<![endif]-->#}
-    {#{% endblock ie8_conditionals %}#}
 </head>
 <body>
 {% block svgs %}
@@ -152,14 +141,6 @@
 
 
     {% block footer_javascripts %}
-      <script>
-
-            {% spaceless %}
-            {# Include TypeKit JavaScript #}
-            {% include 'js/typekit/typekit.min.js' %}
-            {% endspaceless %}
-
-        </script>
 {% if dev == true %}
   {# development enviroment dont place GA in page #}
     {% else %}
@@ -168,10 +149,8 @@
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
         ga('create', 'UA-46388684-1', 'auto');
         ga('send', 'pageview');
-
       </script>
 {% endif %}
 
