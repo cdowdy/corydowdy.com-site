@@ -1,7 +1,5 @@
-{% set dev = false %}
-{% set cdn = pullzone1-corydowdywebdesi.netdna-ssl.com %}
 <!doctype html>
-<html class="no-js" lang="{{ htmllang() }}">
+<html class="no-js {% if record.slug == 'home' %}do-login{% endif %}" lang="{{ htmllang() }}">
 <head>
     <meta charset="utf-8" />
     {# Include DNS Prefetch  #}
@@ -12,7 +10,6 @@
     {% block dns_prefetch %}
         <link rel="dns-prefetch" href="https://use.typekit.net"/>
         <link rel="dns-prefetch" href="https://p.typekit.net" />
-        <link rel="dns-prefetch" href="https://www.google-analytics.com"/>
         {#<link rel="dns-prefetch" href="//pullzone1-corydowdywebdesi.netdna-ssl.com"/>#}
     {% endblock dns_prefetch %}
 
@@ -50,16 +47,18 @@
             Current: 08-27-2014
             No Flexbox, No Flexbox Legacy, CSS Rem Unit, CSS Media Queryies
         #}
+        {# dirty hack to include picturefill AFTER the noscript css#}
+        <script src="{{ paths.theme }}js/lib/modernizr/modernizr.04242015.min.js" async ></script>
     {% endblock %}
 
     {% block enhance_js_meta %}
-    <meta name="fullcss"  content="{{ paths.theme }}css/app04252015.min.css">
+    <meta name="fullcss"  content="{{ paths.theme }}css/app.07-21-2015.min.css">
     <meta name="gpng" content="{{ paths.theme }}css/icons/icons.fallback.css">
     <meta name="gsvg" content="{{ paths.theme }}css/icons/icons.data.svg.css">
     <meta name="gdpng" content="{{ paths.theme }}css/icons/icons.data.png.css">
     {% endblock %}
   <!--[if lt IE 9]>
-  <link rel="stylesheet" href="{{ paths.theme }}css/oldie.css">
+  <link rel="stylesheet" href="{{ paths.theme }}css/oldie.07-17-2015.css">
   <![endif]-->
     {#  stylesheets block #}
     {% block stylesheets %}
@@ -74,7 +73,7 @@
         {% endblock fout %}
 
         {% if app.request.cookies.has('fullcss') %}
-    <link rel="stylesheet" href="{{ paths.theme }}css/app04252015.min.css"/>
+    <link rel="stylesheet" href="{{ paths.theme }}css/app.07-21-2015.min.css"/>
     <link rel="stylesheet" href="{{ app.request.cookies.get('grunticon') }}" />
         {% else %}
             {% block inlined_styles %}
@@ -85,20 +84,16 @@
                 <script>
                     {% spaceless %}
                     {# Include Enhance JS #}
-                    {% include 'js/enhance/enhance-3-26-2015.min.js' %}
+                    {% include 'js/enhance/enhance-07-23-2015.min.js' %}
                     {% endspaceless %}
                 </script>
             {% endblock enhance %}
         {% endif %}
 
-            <noscript><link rel="stylesheet" href="{{ paths.theme }}css/app04252015.min.css"/></noscript>
+            <noscript><link rel="stylesheet" href="{{ paths.theme }}css/app.07-21-2015.min.css"/></noscript>
             <noscript><link rel="stylesheet" href="{{ paths.theme }}css/icons/icons.fallback.css" ></noscript>
 
     {% endblock %}
-    {% block picturefill %}
-        {# dirty hack to include picturefill AFTER the noscript css#}
-        <script src="{{ paths.theme }}js/lib/modernizr/modernizr.04242015.min.js" async ></script>
-    {% endblock picturefill %}
 </head>
 <body>
 {% block svgs %}
@@ -127,6 +122,7 @@
     </div>
     <![endif]-->
 {# Main Body #}
+
 {% block body %}
 
 {% endblock body %}
@@ -136,23 +132,11 @@
 {% block footer %}
 </main>
 
-
-
+{% block footer_tag %}
+{% endblock footer_tag%}
 
 
     {% block footer_javascripts %}
-{% if dev == true %}
-  {# development enviroment dont place GA in page #}
-    {% else %}
-      <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-        ga('create', 'UA-46388684-1', 'auto');
-        ga('send', 'pageview');
-      </script>
-{% endif %}
 
     {% endblock %}
 
