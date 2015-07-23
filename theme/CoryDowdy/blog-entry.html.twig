@@ -11,16 +11,16 @@
     <style>
       {% spaceless %}
   {% if record.slug == 'foundation-5-sass-and-grunt-uncss' %}
-      {% include 'css/critical-css/foundation-5-sass-and-grunt-uncss.07072015.css' %}
+      {% include 'css/critical-css/foundation-5-sass-and-grunt-uncss.07212015.css' %}
   {% endif %}
   {% if record.slug == 'improving-pagespeed-performance' %}
-    {% include 'css/critical-css/improving-pagespeed-performance.07072015.css' %}
+    {% include 'css/critical-css/improving-pagespeed-performance.07212015.css' %}
   {% endif %}
   {% if record.slug == 'moving-from-apache-to-nginx' %}
-    {% include 'css/critical-css/moving-from-apache-to-nginx.07072015.css' %}
+    {% include 'css/critical-css/moving-from-apache-to-nginx.07212015.css' %}
   {% endif %}
   {% if record.slug == 'flexbox-mobile-navigation' %}
-  {% include 'css/critical-css/flexbox-mobile-navigation.07072015.css' %}
+  {% include 'css/critical-css/flexbox-mobile-navigation.07212015.css' %}
   {% endif %}
       {% include 'css/fout.twig' %}
       {% endspaceless %}
@@ -70,5 +70,6 @@
 {% block footer_javascripts %}
     {{ parent() }}
     <script src="{{ paths.theme }}js/blog-entries.042215.min.js" async defer ></script>
+    <script src="{{ paths.theme}}js/lib/visited-localstorage.min.js" async defer ></script>
     <script src="{{ paths.theme }}js/prism/prism-11-17-2014.js"></script>
 {% endblock %}
