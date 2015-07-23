@@ -11,16 +11,16 @@
     <style>
       {% spaceless %}
   {% if record.slug == 'foundation-5-sass-and-grunt-uncss' %}
-      {% include 'css/critical-css/foundation-5-sass-and-grunt-uncss.04242015.css' %}
+      {% include 'css/critical-css/foundation-5-sass-and-grunt-uncss.07072015.css' %}
   {% endif %}
   {% if record.slug == 'improving-pagespeed-performance' %}
-    {% include 'css/critical-css/improving-pagespeed-performance.04242015.css' %}
+    {% include 'css/critical-css/improving-pagespeed-performance.07072015.css' %}
   {% endif %}
   {% if record.slug == 'moving-from-apache-to-nginx' %}
-    {% include 'css/critical-css/moving-from-apache-to-nginx.04242015.css' %}
+    {% include 'css/critical-css/moving-from-apache-to-nginx.07072015.css' %}
   {% endif %}
   {% if record.slug == 'flexbox-mobile-navigation' %}
-  {% include 'css/critical-css/flexbox-mobile-navigation.04272015.css' %}
+  {% include 'css/critical-css/flexbox-mobile-navigation.07072015.css' %}
   {% endif %}
       {% include 'css/fout.twig' %}
       {% endspaceless %}
@@ -37,9 +37,20 @@
     <article class="push-down full" itemscope="" itemtype="http://schema.org/BlogPosting">
         <header class="centered-header">
             <h3 itemprop="headline">{{ record.title }}</h3>
-            <h6 class="pub-date" itemprop="datePublished">{% set recdate = record.datepublish|localdate("%A %B %e, %Y") %}
-                {{ __('%date%',{'%date%': recdate }) }}</h6>
-            <hr/>
+            <h6 class="pub-date" itemprop="datePublished">
+              {% set recdate = record.datepublish|localdate("%A %B %e, %Y") %}
+                {{ __('%date%',{'%date%': recdate }) }}
+            </h6>
+          {% if record.datepublish|date("U") < "-6 months"|date("U") %}
+            <div class="past-six-months">
+              <p>
+                This post is over six (6) months old. Some things on this page my be out of date or
+                no longer applicable.
+              </p>
+            </div>
+          {% endif %}
+
+          <hr/>
         </header>
         <div itemprop="articleBody">
         {{ record.body }}
