@@ -8,40 +8,82 @@
 
 {% block inlined_styles %}
     <style>
-        {% include 'css/critical-css/blog.04242015.css' %}
+        {% include 'css/critical-css/blog.07212015.css' %}
         {% include 'css/fout.twig' %}
     </style>
 {% endblock %}
 
 
 {% block body %}
-<div class="push-down">
-    {% setcontent blogposts = "blog/latest/4" allowpaging %}
-    {% for blogpost in blogposts %}
-        <article class="container" itemscope="" itemtype="http://schema.org/BlogPosting">
-            <div class="full">
-                <div class="listing-snippet">
-                    <header>
-                        <h3 class="blog-post-title" itemprop="headline url"><a href="{{ blogpost.link }}">{{ blogpost.title }}</a></h3>
-                        {% set recdate = blogpost.datepublish|localdate("%A %B %e, %Y") %}
-                        <p class="pub-date" itemprop="datePublished">{{ __('Posted on %date%',{ '%date%': recdate }) }}</p>
-                    </header>
-                    <p itemprop="description">
-                        {{ blogpost.excerpt }}
-                    </p>
-                    <a itemprop="url" href="{{ blogpost.link }}">{{ __('Read Post &#10141;') }}</a>
-                </div>
-                <div class="listing-image">
-                    <img itemprop="image" class="center" src="{{ thumbnail(blogpost.image, 200, 200, "r") }}" alt="{{ blogpost.title }}" pagespeed_no_defer="">
-                </div><!-- /.listing-image -->
-            </div><!-- /.full -->
-        </article>
-        <hr/>
-    {% endfor %}
-</div><!-- /.push-down -->
+  <div class="push-down">
+      <div class="container">
+        <div class="blog-list">
+          {% setcontent blogposts = "blog/latest/5" allowpaging %}
+          {% for blogpost in blogposts %}
+            <article role="article" class="blog-list--post" itemscope="" itemtype="http://schema.org/BlogPosting">
+              <header>
+                <h2 class="blog-list--title" itemprop="headline url">
+                  <a class="blog-link" href="{{ blogpost.link }}">{{ blogpost.title }}</a>
+                </h2>
+                {% set recdate = blogpost.datepublish|localdate("%A %B %e, %Y") %}
+                <p class="pub-date" itemprop="datePublished">
+                  {{ __('Posted on %date%',{ '%date%': recdate }) }}
+                </p>
+              </header>
+              <p class="blog-teaser" itemprop="description">
+                  {{ blogpost.teaser }}
+              </p>
+              <ul class="blog-list--info">
+                <li>
+                  <a itemprop="url"
+                     href="{{ blogpost.link }}">{{ __('Read Post &#10141;') }}
+                  </a>
+                </li>
+                <li class="blog-list--categories">
+                  <strong>Category:</strong>
+                  {% if blogpost.taxonomy.categories is defined %}
+                    {% for value, category in blogpost.taxonomy.categories %}
+                      <a href="{{ value }}">{{ category }}</a>
+                    {% endfor %}
+                  {% endif %}
+                </li>
+              </ul>
+          </article>
+            <hr/>
+          {% endfor %}
+
+        </div>
+        <aside role="complementary" class="blog-list--sidebar">
+          {% include 'form/_blog-search.html.twig' %}
+
+          <ul class="blog--category-list">
+            <li class="category-list-header">
+              <h3>Categories</h3>
+            </li>
+
+            {% setcontent blogCategories = "blog"  %}
+            {% for blogCategory in blogCategories %}
+
+              {% if blogCategory.taxonomy.categories is defined %}
+
+                {% for value, category in blogCategory.taxonomy.categories %}
+            <li class="category-list-item">
+              <a href="{{ value }}">{{ category }}</a>
+            </li>
+                {% endfor %}
+
+              {% endif %}
+
+            {% endfor %}
+          </ul>
+        </aside>
+      </div>
+    </div><!-- /.push-down -->
 {% endblock %}
 
 {% block footer_javascripts %}
     {{ parent() }}
     <script src="{{ paths.theme}}js/navigation.04222015.min.js" async defer ></script>
+    <script src="{{ paths.theme}}js/lib/visited-localstorage.min.js" async defer ></script>
+
 {% endblock footer_javascripts %}
