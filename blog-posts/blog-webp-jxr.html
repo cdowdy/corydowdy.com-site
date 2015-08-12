@@ -1,0 +1,91 @@
+<section id="intro">
+      <p>
+        Throughout this site I'm using <a class="external-link" href="https://github.com/igrigorik/webp-detect">Webp
+        Detect <span class="link-icon icon-external-link"> </span></a> to serve webp images to browsers who advertise they accept it in the accept header. Many thanks go too <a
+        class="external-link" href="https://twitter.com/uhop">Eugene Lazutkin (@uhop) <span
+        class="link-icon icon-external-link"></span></a> and <a class="external-link"
+                                                                href="https://twitter.com/igrigorik">Ilya Grigorik (@igrigorik) <span
+        class="link-icon icon-external-link"></span></a>
+      </p>
+      <p>Microsoft Edge now advertises "JXR" in the accept header. Here is a test to see if we can reliably use this accept header to serve webp, jxr and regular old jpgs.</p>
+      <figure>
+        <img class="center" src="/files/pineapples-800.jpg" alt="pineapple in field">
+        <figcaption>
+          <p class="popup-caption">
+            Image from <a href="https://unsplash.com/pineapple">unslash.com/pineapple</a> By Scott Web at <a href="http://pineapples.io/">pineapples.io</a>
+          </p>
+        </figcaption>
+      </figure>
+      <p>
+        Image has been scaled down to 800x533 and the JPG image optimized through <a class="external-link" href="https://kraken.io/">Kraken.io <span class="link-icon icon-external-link"></span></a>.
+      </p>
+  <hr />
+  <ul class="popup-block--three">
+    <li>
+        <figure>
+            <img class="center" src="/files/pineapples-200.jpg" alt="pineapples jpg" />
+            <figcaption>
+                <p class="popup-caption">JPG image</p>
+            </figcaption>
+        </figure>
+    </li>
+    <li>
+        <figure>
+        <img class="center" src="/files/pineapples-200.webp" alt="pineapples webp" />
+        <figcaption>
+            <p class="popup-caption">webp image</p>
+        </figcaption>
+        </figure>
+    </li>
+    <li>
+      <figure>
+          <img class="center" src="/files/pineapples-200.jxr" alt="pineapples jxr" />
+          <figcaption>
+              <p class="popup-caption">jxr image</p>
+          </figcaption>
+      </figure>
+    </li>
+  </ul>
+</section>
+<section id="how-to">
+    <h3 class="heading">Nginx How To</h3>
+    <p>
+        Getting the ability to serve JXR files to Microsoft Edge calls for at the least two changes to the solution linked above by Eugene Lazutkin and Ilya Grigorik. If your <code class="language-bash"> mime.types </code> already has the correct mime type for jxr images you're already half way there.
+    </p>
+    <p>
+        First step is to add in the proper mime type for jxr images inside Nginx's mime.types
+    </p>
+<pre class="language-bash"><code>
+image/vnd.ms-photo  jxr wdp hdp;
+
+# image/jxr  jxr wdp hdp; will break the negotiation in Edge 20.10240.16384.0
+</code></pre>
+    <p>
+        Follow this up by changing $webp_suffix in the $http_accept map directive to $img_suffix and adding in the map parameters for jxr.
+    </p>
+<pre class="language-bash"><code>
+map $http_accept $img_suffix {
+  "~*webp"  ".webp";
+  "~*jxr"   ".jxr";
+}
+</code></pre>
+    <p>
+        The last change needed is in the location block you are serving your images from in the "try_files".
+    </p>
+<pre class="language-bash"><code>
+# example location block only dealing with images with these extensions
+  location ~* \.(?:png|jpe?g|gif|webp|jxr)$ {
+    expires 1y;
+    add_header Vary $vary_header;
+    add_header Cache-Control $cache_control;
+    # now serve our images
+    try_files $uri$webp_suffix $uri =404;
+  }
+</code></pre>
+</section>
+<section id="apache-how-to">
+    <h3 class="heading">Apache How To</h3>
+    <p>
+        If you'd like to do this with Apache have a look a <a class="external-link" href="https://github.com/igrigorik/webp-detect/blob/master/apache.conf">Webp Detect - Apache <span class="link-icon icon-external-link"></span></a>. It doesn't have jxr built in with it and I'm not very good with Apache rewrites but it can set you up with at least webp!
+    </p>
+</section>
