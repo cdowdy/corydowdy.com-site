@@ -5,12 +5,13 @@
 {% extends 'base.html.twig' %}
 
 
+{% block fout  %}
+  <style>.wf-loading h1,.wf-loading p,h2,h3,h4,h5,h6{font-family:sans-serif;font-weight:400;text-rendering:auto}.wf-loading h1,h2,h3,h4,h5,h6{font-style:normal;color:#2c3e50;margin-top:.2rem;margin-bottom:.5rem;line-height:1.4}.wf-loading h2{font-size:1.6875rem}.wf-loading h3{font-size:1.375rem}.wf-loading p{font-size:1rem;line-height:1.6;margin-bottom:1.25rem}.wf-loading .fn-header__name a{color:#f2f2f2}.wf-loading .fn-navigation__item a{color:#f2f2f2;line-height:inherit;padding:15px 20px;padding:.9375rem 1.25rem}.wf-loading .blog-list--title a{color:#2c3e50}</style>
+{% endblock fout %}
+
 
 {% block inlined_styles %}
-    <style>
-        {% include 'css/critical-css/blog.07212015.css' %}
-        {% include 'css/fout.twig' %}
-    </style>
+    <style>{% include 'css/critical-css/blog.07212015.css' %}</style>
 {% endblock %}
 
 
@@ -21,10 +22,11 @@
           {% setcontent blogposts = "blog/latest/5" allowpaging %}
           {% for blogpost in blogposts %}
             <article role="article" class="blog-list--post" itemscope="" itemtype="http://schema.org/BlogPosting">
+              <meta itemprop="image" content="{{ paths.canonical }}/files/{{ blogpost.image }}" />
               <header>
-                <h2 class="blog-list--title" itemprop="headline url">
+                <h1 class="blog-list--title" itemprop="headline url">
                   <a class="blog-link" href="{{ blogpost.link }}">{{ blogpost.title }}</a>
-                </h2>
+                </h1>
                 {% set recdate = blogpost.datepublish|localdate("%A %B %e, %Y") %}
                 <p class="pub-date" itemprop="datePublished">
                   {{ __('Posted on %date%',{ '%date%': recdate }) }}
@@ -60,21 +62,28 @@
             <li class="category-list-header">
               <h3>Categories</h3>
             </li>
-
-            {% setcontent blogCategories = "blog"  %}
-            {% for blogCategory in blogCategories %}
-
-              {% if blogCategory.taxonomy.categories is defined %}
-
-                {% for value, category in blogCategory.taxonomy.categories %}
             <li class="category-list-item">
-              <a href="{{ value }}">{{ category }}</a>
+              <a href="/categories/nginx">Nginx</a>
             </li>
+             <li class="category-list-item">
+              <a href="/categories/web-performance">Web Performance</a>
+            </li>
+            <li class="category-list-item">
+              <a href="/categories/foundation">Foundation</a>
+            </li>
+              <li class="category-list-item">
+              <a href="/categories/flexbox">Flexbox</a>
+            </li>
+
+          </ul>
+          <ul class="blog--category-list">
+            <li class="category-list-header">
+              <h3>taxonomy test</h3>
+                {% for value, category in blog.taxonomy.categories %}
+                  <a href="{{ value }}">{{ category }}</a>
                 {% endfor %}
-
-              {% endif %}
-
-            {% endfor %}
+              {{ dump(contenttypes) }}
+            </li>
           </ul>
         </aside>
       </div>
@@ -83,7 +92,5 @@
 
 {% block footer_javascripts %}
     {{ parent() }}
-    <script src="{{ paths.theme}}js/navigation.04222015.min.js" async defer ></script>
     <script src="{{ paths.theme}}js/lib/visited-localstorage.min.js" async defer ></script>
-
 {% endblock footer_javascripts %}
