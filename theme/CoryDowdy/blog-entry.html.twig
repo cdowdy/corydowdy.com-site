@@ -7,6 +7,7 @@
 {# try {{ app.request}}/{{ record.slug}} for critical css #}
 
 
+
 {% block inlined_styles %}
     <style>
       {% spaceless %}
@@ -22,25 +23,29 @@
   {% if record.slug == 'flexbox-mobile-navigation' %}
   {% include 'css/critical-css/flexbox-mobile-navigation.07212015.css' %}
   {% endif %}
+  {% if record.slug == 'webp-jxr-nginx-content-negotiation-test' %}
+      {% include 'css/critical-css/webp-jxr.08132015.css' %}
+   {% endif %}
       {% include 'css/fout.twig' %}
       {% endspaceless %}
     </style>
 {% endblock %}
 
-   {% block picturefill %}
-     {{ parent() }}
-     <script src="{{ paths.theme }}js/picturefill/picturefill.min.js" async ></script>
-   {% endblock picturefill %}
+   {#{% block header_javascripts %}#}
+     {#{{ parent() }}#}
+     {##}
+   {#{% endblock header_javascripts %}#}
 
 
 {% block body %}
     <article class="push-down full" itemscope="" itemtype="http://schema.org/BlogPosting">
+     <meta itemprop="image" content="{{ paths.canonical }}/files/{{ record.image }}" />
         <header class="centered-header">
-            <h3 itemprop="headline">{{ record.title }}</h3>
-            <h6 class="pub-date" itemprop="datePublished">
+            <h1 class="blog-list--title" itemprop="headline">{{ record.title }}</h1>
+            <h2 class="heading-pub pub-date" itemprop="datePublished">
               {% set recdate = record.datepublish|localdate("%A %B %e, %Y") %}
                 {{ __('%date%',{'%date%': recdate }) }}
-            </h6>
+            </h2>
           {% if record.datepublish|date("U") < "-6 months"|date("U") %}
             <div class="past-six-months">
               <p>
@@ -49,7 +54,6 @@
               </p>
             </div>
           {% endif %}
-
           <hr/>
         </header>
         <div itemprop="articleBody">
@@ -67,9 +71,19 @@
 {#{% endif %}#}
 {% endblock %}
 
+{% block footer_tag %}
+ <footer role="contentinfo" class="container">
+   <div class="full">
+   <hr />
+    <p class="text-center">&copy; Cory Dowdy</p>
+ </div>
+ </footer>
+{% endblock footer_tag%}
+
 {% block footer_javascripts %}
     {{ parent() }}
-    <script src="{{ paths.theme }}js/blog-entries.042215.min.js" async defer ></script>
-    <script src="{{ paths.theme}}js/lib/visited-localstorage.min.js" async defer ></script>
-    <script src="{{ paths.theme }}js/prism/prism-11-17-2014.js"></script>
+  <script src="{{ paths.theme }}js/picturefill/picturefill.min.js" async ></script>
+  <script src="{{ paths.theme }}js/lightbox.08172015.min.js" async defer></script>
+  <script src="{{ paths.theme}}js/lib/visited-localstorage.min.js" async defer ></script>
+  <script src="{{ paths.theme }}js/prism/prism-11-17-2014.js"></script>
 {% endblock %}
