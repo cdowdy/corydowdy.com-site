@@ -39,11 +39,11 @@
                 </p>
               </header>
               <p class="blog-teaser" itemprop="description">
-                  {{ record.teaser }}
+                  {{ record.teaser|striptags }}
               </p>
               <ul class="blog-list--info">
                 <li>
-                  <a lass="blog-list--post-link" itemprop="url"
+                  <a class="blog-list--post-link" itemprop="url"
                      href="{{ record.link }}">{{ __('Read Post &#10141;') }}
                   </a>
                 </li>
@@ -57,18 +57,24 @@
 
           <ul class="blog--category-list">
             <li class="category-list-header">Categories</li>
-            <li class="category-list-item">
-              <a href="/categories/nginx">Nginx</a>
-            </li>
-             <li class="category-list-item">
-              <a href="/categories/web-performance">Web Performance</a>
-            </li>
-            <li class="category-list-item">
-              <a href="/categories/foundation">Foundation</a>
-            </li>
+            {#<li class="category-list-item">#}
+              {#<a href="/categories/nginx">Nginx</a>#}
+            {#</li>#}
+             {#<li class="category-list-item">#}
+              {#<a href="/categories/web-performance">Web Performance</a>#}
+            {#</li>#}
+            {#<li class="category-list-item">#}
+              {#<a href="/categories/foundation">Foundation</a>#}
+            {#</li>#}
+              {#<li class="category-list-item">#}
+              {#<a href="/categories/flexbox">Flexbox</a>#}
+            {#</li>#}
+            {#</li>#}
+            {% for category in app.config.get('taxonomy/categories/options') %}
               <li class="category-list-item">
-              <a href="/categories/flexbox">Flexbox</a>
-            </li>
+                <a href="/category/{{ category|slug }}">{{ category }}</a>
+              </li>
+            {% endfor %}
           </ul>
           <ul class="blog--category-list">
             <li class="category-list-header">Latest Blog Posts</li>
