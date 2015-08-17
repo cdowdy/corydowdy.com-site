@@ -30,10 +30,10 @@
            {% for record in records %}
             <article class="blog-list--post" itemscope="" itemtype="http://schema.org/BlogPosting">
               <header>
-                <h2 class="blog-list--title" itemprop="headline url">
+                <h1 class="blog-list--title" itemprop="headline url">
                   <a href="{{ record.link }}">{{ record.title }}</a>
-                </h2>
-                {% set recdate = blogpost.datepublish|localdate("%A %B %e, %Y") %}
+                </h1>
+                {% set recdate = record.datepublish|localdate("%A %B %e, %Y") %}
                 <p class="pub-date" itemprop="datePublished">
                   {{ __('Posted on %date%',{ '%date%': recdate }) }}
                 </p>
@@ -52,25 +52,23 @@
             <hr/>
           {% endfor %}
         </div>
-        <aside class="blog-list--sidebar">
+        <aside class="blog-list--sidebar" role="complementary">
           {% include 'form/_blog-search.html.twig' %}
 
           <ul class="blog--category-list">
             <li class="category-list-header">Categories</li>
-            {% setcontent blogCategories = "blog"  %}
-            {% for blogCategory in blogCategories %}
-
-              {% if blogCategory.taxonomy.categories is defined %}
-
-                {% for value, category in blogCategory.taxonomy.categories %}
-                  <li class="category-list-item">
-              <a href="{{ value }}">{{ category }}</a>
+            <li class="category-list-item">
+              <a href="/categories/nginx">Nginx</a>
             </li>
-                {% endfor %}
-
-              {% endif %}
-
-            {% endfor %}
+             <li class="category-list-item">
+              <a href="/categories/web-performance">Web Performance</a>
+            </li>
+            <li class="category-list-item">
+              <a href="/categories/foundation">Foundation</a>
+            </li>
+              <li class="category-list-item">
+              <a href="/categories/flexbox">Flexbox</a>
+            </li>
           </ul>
           <ul class="blog--category-list">
             <li class="category-list-header">Latest Blog Posts</li>
@@ -89,6 +87,5 @@
 {% endblock body %}
 {% block footer_javascripts %}
   {{ parent() }}
-  <script src="{{ paths.theme}}js/navigation.04222015.min.js" async defer ></script>
   <script src="{{ paths.theme}}js/lib/visited-localstorage.min.js" async defer ></script>
 {% endblock footer_javascripts %}
