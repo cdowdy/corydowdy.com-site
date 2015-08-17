@@ -10,8 +10,10 @@
     {% block dns_prefetch %}
         <link rel="dns-prefetch" href="https://use.typekit.net"/>
         <link rel="dns-prefetch" href="https://p.typekit.net" />
-        {#<link rel="dns-prefetch" href="//pullzone1-corydowdywebdesi.netdna-ssl.com"/>#}
+        <link rel="dns-prefetch" href="https://pullzone1-corydowdywebdesi.netdna-ssl.com"/>
     {% endblock dns_prefetch %}
+
+  <script>{% spaceless %}{# Include TypeKit JavaScript #}{% include 'js/typekit/typekit.min.js' %}{% endspaceless %}</script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#2C3E50"/>
@@ -26,6 +28,7 @@
     <meta name="keywords" content="{{ record.metakeywords }}" />
   {% endif %}
   {% endblock metaSeo %}
+
     {# Bing Validation #}
     <meta name="msvalidate.01" content="346403273F73350B6928A46B28684A5B" />
     {# Chrome Webapp Capable #}
@@ -35,24 +38,10 @@
         {% include 'touch_icons/_touch_icons.twig' %}
     {% endblock touch_icons  %}
 
-    {# include javascripts / javascripts block #}
-    {% block header_javascripts %}
-      <script>
-            {% spaceless %}
-            {# Include TypeKit JavaScript #}
-            {% include 'js/typekit/typekit.min.js' %}
-            {% endspaceless %}
-        </script>
-        {# Modernizr:
-            Current: 08-27-2014
-            No Flexbox, No Flexbox Legacy, CSS Rem Unit, CSS Media Queryies
-        #}
-        {# dirty hack to include picturefill AFTER the noscript css#}
-        <script src="{{ paths.theme }}js/lib/modernizr/modernizr.04242015.min.js" async ></script>
-    {% endblock %}
+
 
     {% block enhance_js_meta %}
-    <meta name="fullcss"  content="{{ paths.theme }}css/app.07-21-2015.min.css">
+    <meta name="fullcss"  content="{{ paths.theme }}css/app.08-17-2015.min.css">
     <meta name="gpng" content="{{ paths.theme }}css/icons/icons.fallback.css">
     <meta name="gsvg" content="{{ paths.theme }}css/icons/icons.data.svg.css">
     <meta name="gdpng" content="{{ paths.theme }}css/icons/icons.data.png.css">
@@ -61,19 +50,16 @@
   <link rel="stylesheet" href="{{ paths.theme }}css/oldie.07-17-2015.css">
   <![endif]-->
     {#  stylesheets block #}
+  {% block fout %}
+    <style>.wf-loading h1,.wf-loading p,h2,h3,h4,h5,h6{font-family:sans-serif;font-weight:400;text-rendering:auto}.wf-loading h1,h2,h3,h4,h5,h6{font-style:normal;color:#2c3e50;margin-top:.2rem;margin-bottom:.5rem;line-height:1.4}.wf-inactive h2,.wf-loading h2{font-size:1.6875rem}.wf-inactive h3,.wf-loading h3{font-size:1.375rem}.wf-loading p{font-size:1rem;line-height:1.6;margin-bottom:1.25rem}.wf-loading .fn-header__name a{color:#f2f2f2}.wf-loading .fn-navigation__item a{color:#f2f2f2;line-height:inherit;padding:15px 20px;padding:.9375rem 1.25rem}@media screen and (min-width: 50em){.wf-loading #fn-noJs_label,.fn-navTrigger__no-js{display:none;visibility:hidden}}strong,b{font-weight:bold}</style>
+  {% endblock fout %}
+
     {% block stylesheets %}
 
-        {% block fout %}
-            {#
-              Individual FOUT Styles Go in Page Template
-              but they should probably be here because most
-              carry over to each page.
-              Gotta think of a better way
-            #}
-        {% endblock fout %}
+
 
         {% if app.request.cookies.has('fullcss') %}
-    <link rel="stylesheet" href="{{ paths.theme }}css/app.07-21-2015.min.css"/>
+    <link rel="stylesheet" href="{{ paths.theme }}css/app.08-17-2015.min.css"/>
     <link rel="stylesheet" href="{{ app.request.cookies.get('grunticon') }}" />
         {% else %}
             {% block inlined_styles %}
@@ -90,10 +76,22 @@
             {% endblock enhance %}
         {% endif %}
 
-            <noscript><link rel="stylesheet" href="{{ paths.theme }}css/app.07-21-2015.min.css"/></noscript>
+            <noscript><link rel="stylesheet" href="{{ paths.theme }}css/app.08-17-2015.min.css"/></noscript>
             <noscript><link rel="stylesheet" href="{{ paths.theme }}css/icons/icons.fallback.css" ></noscript>
 
     {% endblock %}
+  {# include javascripts / javascripts block #}
+  {% block header_javascripts %}
+
+        {# Modernizr:
+            Current: 08-27-2014
+            No Flexbox, No Flexbox Legacy, CSS Rem Unit, CSS Media Queryies
+        #}
+        {# dirty hack to include picturefill AFTER the noscript css#}
+        <script src="{{ paths.theme }}js/lib/modernizr/modernizr.04242015.min.js" async ></script>
+  {% endblock %}
+  {% block picturefill %}
+  {% endblock picturefill %}
 </head>
 <body>
 {% block svgs %}
@@ -102,9 +100,14 @@
   <div class="header-wrap">
     <div class="fn-header__title-container">
       <h1 class="fn-header__name"><a href="/">Cory Dowdy</a></h1>
+      <button id="fn-header__button" class="fn-header__button"
+              aria-label="Menu"
+              aria-expanded="false"
+              aria-controls="js-nav">Menu &#x2261;
+      </button>
     </div>
     <input type="checkbox" id="fn-noJs" class="fn-navTrigger__no-js"/>
-    <label id="fn-noJs_label" for="fn-noJs"></label>
+    <label id="fn-noJs_label" for="fn-noJs"><span class="visuallyhidden">Menu Button</span></label>
     {# Insert Menu from menu directory #}
     {{ menu('main', 'menu/_menu.html.twig') }}
   </div>
@@ -137,7 +140,7 @@
 
 
     {% block footer_javascripts %}
-
+    <script src="{{ paths.theme }}js/navigation.08172015.min.js" async defer></script>
     {% endblock %}
 
 </body>
