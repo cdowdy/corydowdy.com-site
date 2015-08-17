@@ -15,7 +15,7 @@
 <style>
   {% spaceless %}
     {% include 'css/critical-css/index.04242015.css' %}
-    {% include 'css/fout.twig' %}
+    {#{% include 'css/fout.twig' %}#}
   {% endspaceless %}
 </style>
 {% endblock %}
@@ -65,8 +65,8 @@
   </div>
 {% endblock %}
 
-{% block footer_javascripts %}
-{#<script src="{{ paths.theme}}js/homepage.min.js" async defer ></script>#}
-  <script src="{{ paths.theme }}js/navigation.04222015.min.js" async defer></script>
-  {{ parent() }}
-{% endblock footer_javascripts %}
+{#{% block footer_javascripts %}#}
+{#&#123;&#35;<script src="{{ paths.theme}}js/homepage.min.js" async defer ></script>&#35;&#125;#}
+  {#<script src="{{ paths.theme }}js/navigation.04222015.min.js" async defer></script>#}
+  {#{{ parent() }}#}
+{#{% endblock footer_javascripts %}#}
