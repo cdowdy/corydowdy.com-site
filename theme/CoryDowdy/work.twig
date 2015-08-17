@@ -8,15 +8,14 @@
     {% block dns_prefetch %}
       <link rel="dns-prefetch" href="https://use.typekit.net"/>
       <link rel="dns-prefetch" href="https://p.typekit.net" />
-      <link rel="dns-prefetch" href="https://www.google-analytics.com"/>
+      {#<link rel="dns-prefetch" href="https://www.google-analytics.com"/>#}
       <link rel="dns-prefetch" href="https://pullzone1-corydowdywebdesi.netdna-ssl.com"/>
     {% endblock dns_prefetch %}
 
 
 
     {% block inlined_styles %}
-        <style>{% include 'css/critical-css/work.04242015.css' %}
-      {% include 'css/fout.twig' %}</style>
+        <style>{% include 'css/critical-css/work.07292015.css' %}</style>
     {% endblock %}
 
 
@@ -25,11 +24,11 @@
     we want to have it load after all the CSS and the inserted TypeKit CSS.
     and underneath the <noscript> css file
 #}
-{% block picturefill %}
+{% block header_javascripts %}
   {{ parent() }}
+  <script>document.createElement("picture");</script>
 
-    <script src="{{ paths.theme }}js/picturefill/picturefill.min.js" async defer ></script>
-{% endblock picturefill %}
+{% endblock header_javascripts %}
 
 
 
@@ -40,27 +39,14 @@
       <div class="container">
         <div class="showcase-container">
           <figure class="showcase-figure">
-            <picture>
-              <!--[if IE 9]>
-              <video style="display: none;"><![endif]-->
-              <source type="image/webp" srcset="files/bypp-showcase-700.webp" media="(min-width: 1000px)">
-              <source srcset="files/bypp-showcase-700.png" media="(min-width: 1000px)">
-              <source type="image/webp" srcset="files/bypp-showcase-600.webp" media="(min-width: 980px)">
-              <source srcset="files/bypp-showcase-600.png" media="(min-width: 980px)">
-              <source type="image/webp" srcset="files/bypp-showcase-500.webp" media="(min-width: 800px)">
-              <source srcset="files/bypp-showcase-500.png" media="(min-width: 800px)">
-              <source type="image/webp" srcset="files/bypp-showcase-360.webp" media="(min-width: 768px)">
-              <source srcset="files/bypp-showcase-360.png" media="(min-width: 768px)">
-              <source type="image/webp" srcset="files/bypp-showcase-320.webp" media="(min-width: 640px)">
-              <source srcset="files/bypp-showcase-320.png" media="(min-width: 640px)">
-              <source type="image/webp" srcset="files/bypp-showcase-300.webp" media="(min-width: 360px)">
-              <source srcset="files/bypp-showcase-300.png" media="(min-width: 360px)">
-              <source type="image/webp" srcset="files/bypp-showcase-260.webp" media="(min-width: 320px)">
-              <source srcset="files/bypp-showcase-260.png" media="(min-width: 320px)">
-              <!--[if IE 9]></video><![endif]-->
-              <img class="center" src="files/bypp-showcase-600.png"
-                   alt="Backyard Pleasure Pools site on Multiple Devices"/>
-            </picture>
+            <img class="center"
+                  sizes="(min-width: 40em) 80vw, 100vw"
+                  srcset="files/bypp-showcase-250w.png 250w,
+                            files/bypp-showcase-300.png 300w,
+                            files/bypp-showcase-500.png 500w,
+                            files/bypp-showcase-700.png 700w"
+                  {#src="data:image/gif;base64,R0lGODlhAQABAAAAADs="#}
+                  alt="Backyard Pleasure Pools site on Multiple Devices">
             <figcaption class="showcase-container--caption">
               <p>
                 The above screen shots are of Backyard Pleasure Pools. An inground pool company located in Ravenna, Ohio.
@@ -76,26 +62,41 @@
         <ul class="icon-blocks">
           <li class="image-lightbox">
             <a href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/img/work/comp_1_pop.png" title="First Site Comp.">
-              <img class="center" src="files/comp1-th.png" alt="first site comp" width="395" height="297"/>
+              <img class="center"
+                   sizes="25vw"
+                    srcset="files/comp1-th-140w.png 140w,
+                            files/comp1-th.png 395w"
+                    alt="first site comp"/>
             </a>
             <p class="showcase-popup-caption">First Site Comp. <small class="hide-small">click to enlarge</small></p>
           </li>
           <li class="image-lightbox">
             <a href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/img/work/comp_2_pop.png" title="Second Site Comp.">
-              <img class="center" src="files/comp2-th.png" alt="Second site comp" width="395" height="297"/>
+              <img class="center"
+                   sizes="25vw"
+                    srcset="files/comp2-th-140w.png 140w,
+                              files/comp2-th.png 395w"
+                    alt="Second site comp"/>
             </a>
           <p class="showcase-popup-caption">Second Site Comp. <small class="hide-small">click to enlarge</small></p>
           </li>
           <li class="image-lightbox">
             <a href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/img/work/comp_3_pop.png" title="Third Site Comp.">
-              <img class="center" src="files/comp3-th.png" alt="Third site comp" width="395" height="297"/>
+              <img class="center"
+                   sizes="25vw"
+                    srcset="files/comp3-th-140w.png 140w,
+                              files/comp3-th.png 395w"
+                    alt="Third site comp"/>
             </a>
             <p class="showcase-popup-caption">Third Site Comp. <small class="hide-small">click to enlarge</small></p>
           </li>
           <li class="image-lightbox">
             <a href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/img/work/current_pop.png" title="Current Site.">
-              <img class="center" src="files/current-th.png" alt="Current Backyard Pleasure Pools site" width="395"
-                 height="297"/>
+              <img class="center"
+                   sizes="25vw"
+                    srcset="files/current-th-140w.png 140w,
+                          files/current-th.png 395w"
+                   alt="Current Backyard Pleasure Pools site"/>
             </a>
             <p class="showcase-popup-caption">Current Site. <small class="hide-small">click to enlarge</small></p>
           </li>
@@ -125,6 +126,8 @@
 {% endblock %}
 
 {% block footer_javascripts %}
-<script src="{{ paths.theme }}js/work.04222015.min.js" async defer ></script>
+<script src="{{ paths.theme }}js/lightbox.08172015.min.js" async defer ></script>
+  <script>if(!window.HTMLPictureElement){function loadJS(e,t){"use strict";var n=window.document.getElementsByTagName("script")[0],o=window.document.createElement("script");return o.src=e,o.async=!0,n.parentNode.insertBefore(o,n),t&&"function"==typeof t&&(o.onload=t),o}loadjs('{{ paths.theme }}js/picturefill/picturefill.min.js')}</script>
+{#<script src="{{ paths.theme }}js/picturefill/picturefill.min.js" async ></script>#}
 {{ parent() }}
 {% endblock footer_javascripts %}
