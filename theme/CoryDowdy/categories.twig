@@ -26,69 +26,56 @@
           </h2>
         {% endif %}
       </div>
-        <div class="blog-list">
-           {% for record in records %}
-            <article class="blog-list--post" itemscope="" itemtype="http://schema.org/BlogPosting">
-              <header>
-                <h1 class="blog-list--title" itemprop="headline url">
-                  <a href="{{ record.link }}">{{ record.title }}</a>
-                </h1>
-                {% set recdate = record.datepublish|localdate("%A %B %e, %Y") %}
-                <p class="pub-date" itemprop="datePublished">
-                  {{ __('Posted on %date%',{ '%date%': recdate }) }}
-                </p>
-              </header>
-              <p class="blog-teaser" itemprop="description">
-                  {{ record.teaser|striptags }}
+      <div class="blog-list">
+        {% for record in records %}
+          <article class="blog-list--post" itemscope="" itemtype="http://schema.org/BlogPosting">
+          <meta itemprop="image" content="{{ paths.canonical }}/files/{{ record.image }}" />
+            <header>
+              <h1 class="blog-list--title" itemprop="headline url">
+                <a href="{{ record.link }}">{{ record.title }}</a>
+              </h1>
+              {% set recdate = record.datepublish|localdate("%A %B %e, %Y") %}
+              <p class="pub-date" itemprop="datePublished">
+                {{ __('Posted on %date%',{ '%date%': recdate }) }}
               </p>
-              <ul class="blog-list--info">
-                <li>
-                  <a class="blog-list--post-link" itemprop="url"
-                     href="{{ record.link }}">{{ __('Read Post &#10141;') }}
-                  </a>
-                </li>
-              </ul>
-          </article>
-            <hr/>
-          {% endfor %}
-        </div>
-        <aside class="blog-list--sidebar" role="complementary">
-          {% include 'form/_blog-search.html.twig' %}
-
-          <ul class="blog--category-list">
-            <li class="category-list-header">Categories</li>
-            {#<li class="category-list-item">#}
-              {#<a href="/categories/nginx">Nginx</a>#}
-            {#</li>#}
-             {#<li class="category-list-item">#}
-              {#<a href="/categories/web-performance">Web Performance</a>#}
-            {#</li>#}
-            {#<li class="category-list-item">#}
-              {#<a href="/categories/foundation">Foundation</a>#}
-            {#</li>#}
-              {#<li class="category-list-item">#}
-              {#<a href="/categories/flexbox">Flexbox</a>#}
-            {#</li>#}
-            {#</li>#}
-            {% for category in app.config.get('taxonomy/categories/options') %}
-              <li class="category-list-item">
-                <a href="/category/{{ category|slug }}">{{ category }}</a>
+            </header>
+            <p class="blog-teaser" itemprop="description">
+              {{ record.teaser|striptags }}
+            </p>
+            <ul class="blog-list--info">
+              <li>
+                <a class="blog-list--post-link"
+                   itemprop="url"
+                   href="{{ record.link }}">{{ __('Read Post &#10141;') }}
+                </a>
               </li>
-            {% endfor %}
-          </ul>
-          <ul class="blog--category-list">
-            <li class="category-list-header">Latest Blog Posts</li>
-            {% setcontent posts = "blog/latest/5"  %}
-              {% for post in posts %}
-            <li class="category-list-item">
-              <a href="{{ post.link }}">{{ post.title }}</a>
-            </li>
-            {% endfor %}
-          </ul>
-        </aside>
-      </div>
-
-  </div>
+            </ul>
+          </article>
+          <hr/>
+        {% endfor %}
+      </div> <!-- /.blog-list -->
+      <aside class="blog-list--sidebar" role="complementary">
+        {% include 'form/_blog-search.html.twig' %}
+        <ul class="blog--category-list">
+          <li class="category-list-header">Categories</li>
+          {% for category in app.config.get('taxonomy/categories/options') %}
+          <li class="category-list-item">
+            <a href="/category/{{ category|slug }}">{{ category }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+        <ul class="blog--category-list">
+          <li class="category-list-header">Latest Blog Posts</li>
+          {% setcontent posts = "blog/latest/5"  %}
+          {% for post in posts %}
+          <li class="category-list-item">
+            <a href="{{ post.link }}">{{ post.title }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </aside>
+    </div> <!-- /.full -->
+  </div><!-- /.container -->
 
 {% endblock body %}
 {% block footer_javascripts %}
