@@ -8,10 +8,7 @@
 
 
 {% block inlined_styles %}
-    <style>
-        {% include 'css/critical-css/demos.04242015.css' %}
-        {% include 'css/fout.twig' %}
-    </style>
+    <style>{% include 'css/critical-css/demos.04242015.css' %}</style>
 {% endblock %}
 
 
@@ -54,7 +51,7 @@
   <!-- /.push-down -->
 {% endblock %}
 
-{% block footer_javascripts %}
-    {{ parent() }}
-    <script src="{{ paths.theme}}js/navigation.04222015.min.js" async defer ></script>
-{% endblock footer_javascripts %}
+{#{% block footer_javascripts %}#}
+    {#{{ parent() }}#}
+    {#<script src="{{ paths.theme}}js/navigation.04222015.min.js" async defer ></script>#}
+{#{% endblock footer_javascripts %}#}
