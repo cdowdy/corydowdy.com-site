@@ -8,10 +8,7 @@
 
 
          {% block inlined_styles %}
-             <style>
-                 {% include 'css/critical-css/contact.04242015.css' %}
-                 {% include 'css/fout.twig' %}
-             </style>
+             <style>{% include 'css/critical-css/contact.07212015.css' %}</style>
          {% endblock %}
 
 
@@ -40,7 +37,8 @@
             Cory Dowdy Web Development
           </span>
            </li>
-           <li itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+           <span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+           <li>
              <span itemprop="addressLocality">Ravenna</span>, <span itemprop="addressRegion">Ohio</span>
            </li>
            <li itemprop="postalCode">
@@ -49,6 +47,7 @@
            <li itemprop="addressCountry">
              United States
            </li>
+         </span>
            <li itemprop="email">
              <script>
                var x="function f(x){var i,o=\"\",l=x.length;for(i=0;i<l;i+=2) {if(i+1<l)o+=" +
@@ -75,6 +74,6 @@
 {% endblock %}
 
 {% block footer_javascripts %}
-<script src="{{ paths.theme }}js/contact.07282015.min.js" async defer></script>
+<script src="{{ paths.theme }}js/contact.08172015.min.js" async defer></script>
     {{ parent() }}
 {% endblock footer_javascripts %}
