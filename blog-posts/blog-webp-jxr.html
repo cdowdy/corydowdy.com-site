@@ -10,7 +10,7 @@
         Microsoft Edge now advertises that they accept "image/jxr" in their accept header. The Image below should read "Webp" on Chrome/Blink based browsers, "JPG" for Firefox Old IE and old Opera, and "JXR" for Microsoft Edge - at least as of Edge 20.10240.16384.0 .
       </p>
       <figure>
-        <img class="center" src="/files/pineapples-800.jpg" alt="pineapple in field">
+        <img class="center" src="/files/pineapples-800.jpg" alt="pineapple in field" width="800" height="533">
         <figcaption>
           <p class="popup-caption">
             Image from <a href="https://unsplash.com/pineapple">unsplash.com/pineapple</a> By Scott Web at <a href="http://pineapples.io/">pineapples.io</a>
@@ -18,69 +18,62 @@
         </figcaption>
       </figure>
       <p>
-        Image has been scaled down to 800x533 and the JPG image optimized through <a class="external-link" href="https://imageoptim.com/mozjpeg">MoxJpeg <span class="link-icon icon-external-link"></span></a>.
+        Image has been scaled down to 800x533 and the JPG image optimized through <a class="external-link" href="https://imageoptim.com/mozjpeg">MozJpeg <span class="link-icon icon-external-link"></span></a>.
       </p>
   <hr />
   <ul class="popup-block--three">
     <li>
-      <img class="center" src="/files/pineapples-200.jpg" alt="pineapples jpg" />
+      <img class="center" src="/files/pineapples-200.jpg" alt="pineapples jpg" width="200" height="134" />
       <p class="popup-caption">JPG image</p>
     </li>
     <li>
-      <img class="center" src="/files/pineapples-200.webp" alt="pineapples webp" />
+      <img class="center" src="/files/pineapples-200.webp" alt="pineapples webp" width="200" height="134" />
       <p class="popup-caption">webp image</p>
     </li>
     <li>
-      <img class="center" src="/files/pineapples-200.jxr" alt="pineapples jxr" />
+      <img class="center" src="/files/pineapples-200.jxr" alt="pineapples jxr" width="200" height="134" />
       <p class="popup-caption">jxr image</p>
     </li>
   </ul>
 </section>
 <section id="how-to">
-    <h3 class="heading">Nginx How To</h3>
+    <h2 class="heading">Nginx How To</h2>
     <p>
         Getting the ability to serve JXR files to Microsoft Edge calls for at the least two changes to the solution linked above by Eugene Lazutkin and Ilya Grigorik. If your <code class="language-bash"> mime.types </code> already has the correct mime type for jxr images you're already half way there.
     </p>
     <p>
         First step is to add in the proper mime type for jxr images inside Nginx's mime.types
     </p>
-<pre class="language-bash"><code>
-image/vnd.ms-photo  jxr wdp hdp;
-
-# image/jxr  jxr wdp hdp; will break the negotiation in Edge 20.10240.16384.0
-</code></pre>
+<pre class="language-bash"><code> image/vnd.ms-photo  jxr wdp hdp;
+# image/jxr  jxr wdp hdp; will break the negotiation in Edge 20.10240.16384.0</code></pre>
     <p>
         Follow this up by changing $webp_suffix in the $http_accept map directive to $img_suffix and adding in the map parameters for jxr.
     </p>
-<pre class="language-bash"><code>
-map $http_accept $img_suffix {
+<pre class="language-bash"><code>map $http_accept $img_suffix {
   "~*webp"  ".webp";
   "~*jxr"   ".jxr";
-}
-</code></pre>
+}</code></pre>
     <p>
         The last change needed is in the location block you are serving your images from in the "try_files".
     </p>
-<pre class="language-bash"><code>
-# example location block only dealing with images with these extensions
+<pre class="language-bash"><code># example location block only dealing with images with these extensions
   location ~* \.(?:png|jpe?g|gif|webp|jxr)$ {
     expires 1y;
     add_header Vary $vary_header;
     add_header Cache-Control $cache_control;
     # now serve our images
-    try_files $uri$webp_suffix $uri =404;
-  }
-</code></pre>
+    try_files $uri$img_suffix $uri =404;
+  }</code></pre>
 </section>
 <section id="apache-how-to">
-    <h3 class="heading">Apache How To</h3>
+    <h2 class="heading">Apache How To</h2>
     <p>
         If you'd like to do this with Apache have a look a <a class="external-link" href="https://github.com/igrigorik/webp-detect/blob/master/apache.conf">Webp Detect - Apache <span class="link-icon icon-external-link"></span></a>. It doesn't have jxr built in with it and I'm not very good with Apache rewrites but it can set you up with at least webp!
     </p>
 </section>
 
 <section id="creating-images">
-    <h3 class="heading">Creating JXR</h3>
+    <h2 class="heading">Creating JXR</h2>
     <p>
       Creating JXR images can be an absolute pain. So if you're not into installing source and building a tool I suggest using <a class="external-link" href="http://research.microsoft.com/en-us/um/redmond/groups/ivm/JPEGXR/">Microsoft's JXR PhotoShop Plugin <span class="link-icon icon-external-link"></span></a> or GIMP's <a class="external-link" href="http://registry.gimp.org/node/25508">JPEG XR plugin <span class="link-icon icon-external-link"></span></a>. The command line tool gives you better compression and file size but it suuuuuuuuuuuuuuucks to use. There's very little documentation, ImageMagick's jxr conversion seems broken each time I try to use it too.
     </p>
@@ -95,13 +88,11 @@ map $http_accept $img_suffix {
    <p>
      Like I said. A GIANT PAIN. So in your image editor of choice save an image or convert it too tiff then run a command similar to the one below.
    </p>
-<pre class="language-bash"><code>
-JxrEncApp -i input-file.tif -o output-file.jpg.jxr -q 0.6
-</code></pre>
+<pre class="language-bash"><code>JxrEncApp -i input-file.tif -o output-file.jpg.jxr -q 0.6</code></pre>
   <p>
     The <code class="language-bash"> -q </code> parameter is for quality. Ranges are from 0.0 - 1.0 with the default of 1.0 being lossless. Typing JxrEncApp into your terminal will give you all the options. Good Luck haha.
   </p>
-  <h3 class="heading">Creating Webp</h3>
+  <h2 class="heading">Creating Webp</h2>
   <p>
     Creating Webp Images on the other other hand is fairly straight forward with a few tools to actually use.
   </p>
@@ -112,19 +103,20 @@ JxrEncApp -i input-file.tif -o output-file.jpg.jxr -q 0.6
   <p>
     I created the large webp image as follows
   </p>
-<pre class="language-bash"><code>
-cwebp -q 70 pineapples-800-to-webp.jpg -o pineapples-800.jpg.webp
-</code></pre>
-  <p>
-    You can even use the above Content Negotiation to convert a gif to an animated webp
-  </p>
-<pre class="language-bash"><code>
-gif2webp input.gif  -o output.gif.webp
-</code></pre>
+<pre class="language-bash"><code>cwebp -q 70 pineapples-800-to-webp.jpg -o pineapples-800.jpg.webp</code></pre>
+
+	<p>
+		Converting a gif to animated webp
+	</p>
+<pre class="language-bash"><code>gif2webp 15simplependulum.gif  -o 15simplependulum.gif.webp</code></pre>
+	<p>
+		Converting <a href="https://commons.wikimedia.org/wiki/File:15simplependulum.gif">Simple Pendulum by Lookang</a> which is 707KB to an animated webp returns a 354kb animated webp.
+	</p>
+
 </section>
 <section id="file-sizes">
   <h3 class="heading">File Sizes</h3>
-  <table class="no-style">
+  <table class="table-no-style w-60">
     <thead>
       <tr>
         <th>File</th>
@@ -134,18 +126,81 @@ gif2webp input.gif  -o output.gif.webp
     <tbody>
     <tr>
       <td>JPG</td>
-      <td>MozJpeg Compression: 72kb</td>
-    </tr>
-    <tr>
-      <td>Webp</td>
-      <td>70 Quality: 44kb</td>
+      <td >52kb</td>
     </tr>
     <tr>
       <td>Jpeg XR (jxr)</td>
-      <td>0.6 Quality: 63Kb</td>
+      <td >53kb (0.5 Quality)</td>
+    </tr>
+    <tr>
+      <td>Webp</td>
+      <td >33kb (50 Quality)</td>
     </tr>
     </tbody>
   </table>
+  <p>
+    <b>Note on File Sizes</b>
+  </p>
+   <p>
+   Other Images compress better with JPEG XR its really trial and error. For Instance the <a class="external-link" href="http://www.ece.rice.edu/~wakin/images/"> Lena Reference Image</a> using ImageMagick to convert from tiff to jpg we get a JPG image that is 42KB.
+  </p>
+<pre class="language-bash"><code>convert -quality 80 lena512color.tiff lena.jpg</code></pre>
+    <p>
+		The 80 quality JPG compressed with MozJPEG through NPM will give us a 26kb file.
+	</p>
+<pre class="language-bash"><code>mozjpeg -outfile lena-jpg-moz.jpg -quality 70 lena.jpg</code></pre>
+     <p>
+     	Using JxrEncApp to convert the tiff to jxr we will get a JXR that is 25KB
+	</p>
+<pre class="language-bash"><code> JxrEncApp -i lena512color.tiff -o lena-tiff-to-jxr.jxr -q 0.4 </code></pre>
+
+	<p>
+		Using cwebp to convert the 80 quality JPG to webp at a quality of 60 will give us a 18kb image.
+	</p>
+
+<pre class="language-bash"><code>cwebp -q 60 lena.jpg -o lena-60.webp</code></pre>
+
+	<p>
+		Serving these browser specific image formats can give us big gains (specifically webp in most instances) compared to a non-optimized image format. JXR images can/do offer good compression for some images but MozJpeg gives us that, offers tooling for multiple OS's and can be used for anything that accepts a JPG image (read every browser) unlike JXR.
+	</p>
+	<p>
+		You can find the images I mentioned above, the Lena reference image (and links to mozjpeg tools) in my github linked below with the nginx.conf.
+	</p>
+	<table class="table-no-style w-60">
+		<thead>
+      <tr>
+        <th>Lena Image Type</th>
+        <th>Size</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>jpg</td>
+      <td >42KB (80 Quality)</td>
+    </tr>
+    <tr>
+      <td>MozJpeg</td>
+      <td >26kb (70 Quality)</td>
+    </tr>
+    <tr>
+      <td>Jpeg XR (jxr)</td>
+      <td >25KB (0.4 Quality)</td>
+    </tr>
+    <tr>
+      <td>Webp</td>
+      <td >18kb (60 Quality)</td>
+    </tr>
+    </tbody>
+	</table>
+</section>
+<section id="git">
+  <h2 class="heading"> Nginx.conf File</h2>
+  <p>
+    You can find an example of the nginx.conf file and an updated mime.types with jxr mime types <a class="external-link" href="https://github.com/cdowdy/Nginx-Content-Negotiation">at my Github page <span class="link-icon icon-external-link"></span></a>.
+  </p>
+  <p>
+    Also any questions just file an issue and I'll try to help as best I can. Or head over to webp-detects github page linked above and ask there. They are the ones who got this whole ball rolling!
+  </p>
 </section>
 <section id="edits">
   <p>Additions:</p>

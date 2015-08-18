@@ -15,7 +15,7 @@
 </section>
 <!-- /#intro -->
 <section id="ps-rules">
-  <h3 class="heading">Web Performance Best Practices</h3>
+  <h2 class="heading">Web Performance Best Practices</h2>
   <p>
     I'm not going to go over all of the best practices provided by Google &mdash;
     <a class="external-link" href="https://developers.google.com/speed/docs/insights/rules">Page Speed Rules <span class="link-icon icon-external-link"></span></a>
@@ -38,7 +38,7 @@
 </section>
 <!-- /#ps-rules -->
 <section id="getting-started">
-  <h3 class="heading">Getting Started: A baseline</h3>
+  <h2 class="heading">Getting Started: A baseline</h2>
   <p>
     Before implementing any of the web performance best practices it's best to have a baseline of what your site
     currently "scores" and how heavy your images may or may not be. Luckily there isn't a shortage of tools to use
@@ -94,7 +94,7 @@
 </section>
 <!-- /#getting-started -->
 <section id="img-opti">
-  <h3 class="heading">Image Optimization</h3>
+  <h2 class="heading">Image Optimization</h2>
   <p>
     Images, as I said earlier, are usually the heaviest and biggest components in our web pages / web sites. So
     making these smaller can give us huge gains. Particularly when choosing the right image format. Some quick and
@@ -145,7 +145,7 @@
 </section>
 <!-- /#img-opti -->
 <section id="compression">
-  <h3 class="heading">Compression</h3>
+  <h2 class="heading">Compression</h2>
   <p>
     Enabling compression can be different depending on your server you host your site on. The simplest way to do it
     is to head over to the <a class="external-link" href="https://github.com/h5bp/server-configs">HTML5 boilerplate server configs section on github  <span class="link-icon icon-external-link"></span></a>.
@@ -153,7 +153,7 @@
     that into your web root and you're good to go. Example of the Apache specific lines I'm talking about can be
     found on lines <a class="external-link" href="https://github.com/h5bp/server-configs-apache/blob/master/dist/.htaccess#L709-L984">709-984<span class="link-icon icon-external-link"></span></a>.
   </p>
-  <h5 class="heading">Helpful Compression Links</h5>
+  <h3 class="heading">Helpful Compression Links</h3>
   <ul class="no-bullet">
     <li>Enable <a class="external-link" href="https://www.feedthebot.com/pagespeed/enable-compression.html">GZIP <span class="link-icon icon-external-link"></span></a> by Patrick Sexton on Feedthebot</li>
     <li><a class="external-link" href="http://www.html5rocks.com/en/tutorials/speed/txt-compression/">Text Compression For Developers <span class="link-icon icon-external-link"></span></a> by Colt McAnlis on HTML5 Rocks</li>
@@ -161,7 +161,7 @@
 </section>
 <!-- /#compression -->
 <section id="min-requests">
-  <h3 class="heading">Minimize Requests</h3>
+  <h2 class="heading">Minimize Requests</h2>
   <p>
     My Demos page has four (4) CSS files and six (6) JavaScript files loaded externally and two images inside
     an <code class="language-markup">&lt;img&gt;</code> tag. This may seem like a lot of JavaScript to some people
@@ -279,7 +279,7 @@
 </section>
 <!-- /#min-requrest -->
 <section id="inlinedcss">
-  <h3 class="heading">Inline Critical CSS</h3>
+  <h2 class="heading">Inline Critical CSS</h2>
   <p>
     Inlining CSS is simple if you have very small css file (14 kb or so) but it too comes with some warnings. You will
     save a trip to the server to get your CSS (good!) but you will lose out on it being able to be cached. To inline
@@ -336,7 +336,7 @@
     There is also a <a class="external-link" href="https://www.youtube.com/watch?v=CfmUf1_M9lI">demo video <span class="link-icon icon-youtube"></span></a>.
     Feedthebot has a post on <a class="external-link" href="https://www.feedthebot.com/pagespeed/prioritize-visible-content.html">how to prioritize critical content <span class="link-icon icon-external-link"></span></a>.
   </p>
-  <h5 class="heading">Update: 6/10/2014</h5>
+  <h3 class="heading">Update: 6/10/2014</h3>
   <p>
     Above I mentioned just "dropping" in a small stylesheet into your head inside style tags. This can and will work
     but in regards to RWD (Resposive Web Design) we have these things called media queries. As a developer we don't
@@ -406,7 +406,7 @@
 </section>
 <!-- /#inlinedcss -->
 <section id="blockingjs">
-  <h3 class="heading">Render Blocking JS</h3>
+  <h2 class="heading">Render Blocking JS</h2>
   <p>
     To avoid Render Blocking JavaScript we can do two things with minimal work. Either add the "defer" attribute to your script
     tags <code class="language-markup">&lt;script src="1.js" defer&gt;&lt;/script&gt; </code> or the "async" attribute
@@ -432,7 +432,7 @@
 <code class="language-markup">&lt;script src="https://example.com/your-funky-js.js" async defer&gt;&lt;/script&gt;</code>
 </pre>
   </div> <!-- /.snippet -->
-  <h5 class="heading">Update: 7/10/2014</h5>
+  <h3 class="heading">Update: 7/10/2014</h3>
   <p>
     The Filament Group, in all their awesome ways, has released a function to load your JavaScript in a non-blocking
     manner called <a class="external-link" href="https://github.com/filamentgroup/loadJS">loadJS <span class="link-icon icon-external-link"></span></a>.
@@ -448,7 +448,7 @@
 </section>
 <!-- /#blockingjs -->
 <section id="fixthis">
-  <h3 class="heading">Fixing My Demos Page</h3>
+  <h2 class="heading">Fixing My Demos Page</h2>
   <p>
     I've done all the above and then some to optimize my site. In fact some of my pages (as of this writing it may
     change :) ) score 98 to 99 in Google PageSpeed Insights. My Demos page isn't as lucky.
@@ -493,7 +493,7 @@
     <a class="external-link" href="https://css-tricks.com">css-tricks <span class="link-icon icon-external-link"></span></a>
     specifically his post on <a class="external-link" href="https://css-tricks.com/using-svg/">using svg <span class="link-icon icon-external-link"></span></a>.
   </p>
-  <h5 class="heading">Results</h5>
+  <h3 class="heading">Results</h3>
   <p class="image-lightbox">
     The
     <a title="New PageSpeed Score" href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/score-combined.jpg">results <span class="link-icon icon-picture"></span></a>

@@ -69,9 +69,9 @@
     </p>
   </section>
   <section id="setup">
-    <h3 class="heading">
+    <h2 class="heading">
       Setup
-    </h3>
+    </h2>
     <p>
       We'll start off by creating a new Foundation 5 project. Mine will be in my htdocs directory of my xampp install. This project will be named uncss and will use libsass. Starting this project will give you a leg up by giving you a package.json and a gruntfile.js.
     </p>
@@ -94,9 +94,9 @@ npm install grunt-uncss grunt-contrib-cssmin grunt-processhtml grunt-autoprefixe
     <p>
       This will download the plugins, save them locally to your project and update your package.json file. You can then move on to loading the tasks, enabling the tasks and actually creating the tasks you wish to run.
     </p>
-    <h5 class="heading">
+    <h3 class="heading">
       Enabling
-    </h5>
+    </h3>
     <p>
       At the bottom of your Gruntfile you will see the
       <code class="language-javascript"> grunt.loadNpmTasks('task here'); </code>
@@ -114,9 +114,9 @@ grunt.loadNpmTasks('grunt-contrib-cssmin');
 grunt.loadNpmTasks('grunt-autoprefixer');
 </code>
 </pre>
-    <h5 class="heading">
+    <h3 class="heading">
       Uncss Task
-    </h5>
+    </h3>
     <p>
       Uncss will scan our HTML files for used selectors, remove the unused selectors and create a new, smaller css file. The files you want scanned will be on the right. The newly created css file is on the left. At this point the file and directory of this file don't exist. Once the uncss task has been ran it will create the file and/or directory specified on the left.
     </p>
@@ -146,9 +146,9 @@ uncss: {
     <p>
       To separate the cleaned css from the full css file I'll save the uncss task created css file into the "cleaned" directory.
     </p>
-    <h5 class="heading">
+    <h3 class="heading">
       Processhtml Task
-    </h5>
+    </h3>
     <p>
       This task is done in two parts. The first part is creating the task in our gruntfile. Proceeshtml will take the files on the right (our input) and scan those for a snippet we will place in each file then place those in the directory specified on the left.
     </p>
@@ -180,9 +180,9 @@ processhtml: {
     <p>
       During the Processhtml task it will search your HTML files for this snippet. It will repleace our "app.css" with the css file with the .min.css extension located in the "cleaned/css" directory. The minified css will come from the cssmin task.
     </p>
-    <h5 class="heading">
+    <h3 class="heading">
       Autoprefixer Task
-    </h5>
+    </h3>
     <p>
       Autoprefixer will place needed vendor prefixes our css using data from <a class="external-link" href="//caniuse.com">Caniuse <span class="link-icon icon-external-link"></span></a>.
       We'll use the default values from the Autoprefixer github page and use the needed prefixes for the last 2 versions of all browser, Internet Explorer 8 and 9 and Android 2.3. The input is our cleaned CSS file from uncss task. We will save it in the same directory under the same name.
@@ -200,9 +200,9 @@ autoprefixer: {
 },
 </code>
 </pre>
-    <h5 class="heading">
+    <h3 class="heading">
       Cssmin Task
-    </h5>
+    </h3>
     <p>
       Cssmin will take our file we have created from uncss and autoprefixer and minify it. Again the input file is on the right and our new file with the .min.css extension we will like to create is on the left.
     </p>
@@ -219,9 +219,9 @@ cssmin: {
 </pre>
   </section>
   <section id="running">
-    <h3 class="heading">
+    <h2 class="heading">
       Running a Task
-    </h3>
+    </h2>
     <p>
       You can now open up your terminal/command prompt in your project directory if you closed it and enter
       <code class="language-bash"> grunt [task-name] </code>
@@ -255,9 +255,9 @@ grunt.registerTask('clean', ['build', 'uncss', 'autoprefixer', 'cssmin', 'proces
       <!--[if IE 9]></video><![endif]-->
       <img class="center" srcset="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/task.gif" alt="grunt task running">
     </picture>
-    <h5 class="heading">
+    <h3 class="heading">
       Results
-    </h5>
+    </h3>
     <table class="table-no-style">
       <thead>
         <tr>
@@ -298,9 +298,9 @@ grunt.registerTask('clean', ['build', 'uncss', 'autoprefixer', 'cssmin', 'proces
     </p>
   </section>
   <section id="fixing">
-    <h3 class="heading">
+    <h2 class="heading">
       Fixing Components
-    </h3>
+    </h2>
     <p>
       Fixing the broke components can be done at least two ways. The first way is to add an option parameter to uncss and have it ignore the selectors you place there or a regular expression.
     </p>
@@ -345,9 +345,9 @@ uncss: {
 @import "foundation/components/top-bar";
 </code>
 </pre>
-    <h5 class="heading">
+    <h3 class="heading">
       Fixing the Gruntfile
-    </h5>
+    </h3>
     <p>
       Open up your gruntfile and head to the sass task. We want it to compile a separate style sheet for our topbar scss file. Add this option.
     </p>
@@ -397,9 +397,9 @@ cssmin: {
     </p>
   </section>
   <section id="wrapup">
-    <h3 class="heading">
+    <h2 class="heading">
       Result Comparison
-    </h3>
+    </h2>
     <table class="table-no-style">
       <thead>
         <tr>
