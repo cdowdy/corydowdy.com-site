@@ -1,3 +1,5 @@
+{% set css_update = '08-18-2015' %}
+{# make sure to include fn-navTrigger into critical CSS if you get checkbox flashes #}
 <!doctype html>
 <html class="no-js {% if record.slug == 'home' %}do-login{% endif %}" lang="{{ htmllang() }}">
 <head>
@@ -11,9 +13,12 @@
         <link rel="dns-prefetch" href="https://use.typekit.net"/>
         <link rel="dns-prefetch" href="https://p.typekit.net" />
         <link rel="dns-prefetch" href="https://pullzone1-corydowdywebdesi.netdna-ssl.com"/>
+        <link rel="preconnect" href="https://use.typekit.net" crossorigin>
     {% endblock dns_prefetch %}
 
-  <script>{% spaceless %}{# Include TypeKit JavaScript #}{% include 'js/typekit/typekit.min.js' %}{% endspaceless %}</script>
+  <script> {% spaceless %}{# Include TypeKit JavaScript #}{% include 'js/typekit/typekit.min.js' %}
+            {% endspaceless %}
+  </script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#2C3E50"/>
@@ -41,7 +46,7 @@
 
 
     {% block enhance_js_meta %}
-    <meta name="fullcss"  content="{{ paths.theme }}css/app.08-17-2015.min.css">
+    <meta name="fullcss"  content="{{ paths.theme }}css/app.{{ css_update }}.min.css">
     <meta name="gpng" content="{{ paths.theme }}css/icons/icons.fallback.css">
     <meta name="gsvg" content="{{ paths.theme }}css/icons/icons.data.svg.css">
     <meta name="gdpng" content="{{ paths.theme }}css/icons/icons.data.png.css">
@@ -59,7 +64,7 @@
 
 
         {% if app.request.cookies.has('fullcss') %}
-    <link rel="stylesheet" href="{{ paths.theme }}css/app.08-17-2015.min.css"/>
+    <link rel="stylesheet" href="{{ paths.theme }}css/app.{{ css_update }}.min.css"/>
     <link rel="stylesheet" href="{{ app.request.cookies.get('grunticon') }}" />
         {% else %}
             {% block inlined_styles %}
@@ -76,7 +81,7 @@
             {% endblock enhance %}
         {% endif %}
 
-            <noscript><link rel="stylesheet" href="{{ paths.theme }}css/app.08-17-2015.min.css"/></noscript>
+            <noscript><link rel="stylesheet" href="{{ paths.theme }}css/app.{{ css_update }}.min.css"/></noscript>
             <noscript><link rel="stylesheet" href="{{ paths.theme }}css/icons/icons.fallback.css" ></noscript>
 
     {% endblock %}
@@ -88,7 +93,7 @@
             No Flexbox, No Flexbox Legacy, CSS Rem Unit, CSS Media Queryies
         #}
         {# dirty hack to include picturefill AFTER the noscript css#}
-        <script src="{{ paths.theme }}js/lib/modernizr/modernizr.04242015.min.js" async ></script>
+        {#<script src="{{ paths.theme }}js/lib/modernizr/modernizr.04242015.min.js" async ></script>#}
   {% endblock %}
   {% block picturefill %}
   {% endblock picturefill %}
