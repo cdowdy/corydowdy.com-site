@@ -11,7 +11,7 @@
 
 
 {% block inlined_styles %}
-    <style>{% include 'css/critical-css/blog.07212015.css' %}</style>
+    <style>{% include 'css/critical-css/blog.08182015.css' %}</style>
 {% endblock %}
 
 
@@ -74,7 +74,7 @@
             {#</li>#}
             {% for category in app.config.get('taxonomy/categories/options') %}
               <li class="category-list-item">
-                <a href="/category/{{ category|slug }}">{{ category }}</a>
+                <a href="/categories/{{ category|slug }}">{{ category }}</a>
               </li>
             {% endfor %}
 
