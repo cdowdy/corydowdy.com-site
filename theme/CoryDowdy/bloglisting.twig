@@ -43,7 +43,7 @@
                   <strong>Category:</strong>
                   {% if blogpost.taxonomy.categories is defined %}
                     {% for value, category in blogpost.taxonomy.categories %}
-                      <a href="{{ value }}">{{ category }}</a>
+                      <a aria-label="Blog Category {{ category }}" href="{{ value }}">{{ category }}</a>
                     {% endfor %}
                   {% endif %}
                 </li>
@@ -51,44 +51,20 @@
           </article>
             <hr/>
           {% endfor %}
-
+          {{ pager( '' , 3, '_sub_corydowdy_pager.twig') }}
         </div>
         <aside role="complementary" class="blog-list--sidebar">
           {% include 'form/_blog-search.html.twig' %}
-
           <ul class="blog--category-list">
             <li class="category-list-header">
               <h3>Categories</h3>
             </li>
-            {#<li class="category-list-item">#}
-              {#<a href="/categories/nginx">Nginx</a>#}
-            {#</li>#}
-             {#<li class="category-list-item">#}
-              {#<a href="/categories/web-performance">Web Performance</a>#}
-            {#</li>#}
-            {#<li class="category-list-item">#}
-              {#<a href="/categories/foundation">Foundation</a>#}
-            {#</li>#}
-              {#<li class="category-list-item">#}
-              {#<a href="/categories/flexbox">Flexbox</a>#}
-            {#</li>#}
             {% for category in app.config.get('taxonomy/categories/options') %}
               <li class="category-list-item">
                 <a href="/categories/{{ category|slug }}">{{ category }}</a>
               </li>
             {% endfor %}
-
           </ul>
-          {#<ul class="blog--category-list">#}
-            {#<li class="category-list-header">#}
-              {#<h3>Categories</h3>#}
-              {#</li>#}
-            {#{% for category in app.config.get('taxonomy/categories/options') %}#}
-              {#<li class="category-list-item">#}
-                {#<a href="/category/{{ category|slug }}">{{ category }}</a>#}
-              {#</li>#}
-            {#{% endfor %}#}
-          {#</ul>#}
         </aside>
       </div>
     </div><!-- /.push-down -->
