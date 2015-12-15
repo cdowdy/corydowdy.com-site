@@ -58,4 +58,7 @@ Vagrantfile
 composer.json.dist
 401.html
 
+.idea/
+
+
 README.md
