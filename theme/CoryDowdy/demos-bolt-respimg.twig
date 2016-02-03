@@ -1,0 +1,271 @@
+{#
+    08/16/2014
+#}
+
+{% extends 'base.html.twig' %}
+
+
+{% block inlined_styles %}
+    <style>{% include 'css/critical-css/bolt-resposive-images.02-03-2016.css' %}</style>
+{% endblock %}
+
+
+
+{% block body %}
+    <div class="centered-header push-down">
+        <h1>Bolt CMS Responsive Image Extension</h1>
+        <dl class="demo-nav">
+            <dd>
+                <a href="#how">Installation</a>
+            </dd>
+            <dd>
+                <a href="#config">Config Settings</a>
+            </dd>
+            <dd>
+                <a href="#widths">Use for Widths</a>
+            </dd>
+            <dd>
+                <a href="#density">Use For Screen Density</a>
+            </dd>
+            <dd>
+                <a href="#advanced">Advanced Usage</a>
+            </dd>
+            <dd>
+                <a href="#info">Source</a>
+            </dd>
+        </dl>
+    </div>
+    <!-- /.centered-header -->
+    <div class="full">
+        <p>
+            This is a <a href="https://bolt.cm" class="external-link">Bolt</a> Content Management System extension that enables you to use a twig tag to produce responsive images using <strong>srcset</strong>.
+        </p>
+    </div>
+    <div id="install" class="full">
+        <h2 class="heading">Installation</h2>
+        <p>
+            In the backend of your Bolt install navigate to the "Extras" menu in your dashboard and click "view/install extensions". In the "Install New Extension" search box type either "Responsive Images" or paste the following snippet.
+        </p>
+<pre class="language-bash"><code>cdowdy/boltresponsiveimages</code></pre>
+        <p>
+            Then click "Browse Versions and install the latest stable version.
+        </p>
+    </div>
+
+  <div class="full" id="config">
+    <h2 class="heading">Config Settings</h2>
+    <p>
+      For the examples on this page I will be using a rule set I have created in the extensions config titled - demos_bolt.
+    </p>
+    <p>
+      Each responsive image set will need a config defined in the extensions config file. One is already there called 'default'. You can use this but the widths and which descriptor that is used are in most instances not suitable for your project or site.
+    </p>
+    <p>
+      For a custom set of rules start off by giving the rule set a name inside the config. This pages rule set as mentioned above is 'demos_bolt'. Here is this demo page rule set as defined in the extensions config.
+    </p>
+<pre class="language-yaml"><code>demos_bolt:
+    widths: [ 320, 520, 900 ]
+    heights: [ 0 ]
+    widthDensity: 'w'
+    sizes: [ '(min-width: 800px) 30vw', ' 90vw' ]
+</code></pre>
+
+    <p>
+      For this particular page I know that on screens wider than 50em (800px) the image will be approximately 30% of the viewport ( taking into consideration the column padding/gutters ). To help you get you head around this you can read
+      <a href="https://jakearchibald.com/2015/anatomy-of-responsive-images/" class="external-link">Jake Archibald's Anatomy of Responsive Images</a>.
+    </p>
+  </div>
+
+    <div id="how" class="full">
+      <h2 class="heading">Quick Usage</h2>
+        <p>
+          You can quickly use Bolt Responsive Images in your templates with the default settings wherever you want a responsive image set.
+        </p>
+    </div> <!-- /.full -->
+  <div class="full-to-half">
+    <pre class="language-twig"><code>&lbrace;&lbrace; respImg( record.image, 'default' ) }}</code></pre>
+    <p>
+      This will produce three (3) images of the following widths:
+    </p>
+    <ol>
+      <li>320</li>
+      <li>480</li>
+      <li>768</li>
+    </ol>
+  </div>
+  <div class="full-to-half">
+    <figure>
+      {{ respImg( record.image, 'default' ) }}
+      <figcaption>
+        <p class="center-text">
+          Red Panda Stretching By <a href="https://www.flickr.com/photos/ekilby/11061337434" class="external-link">Eric Kilby</a>
+        </p>
+      </figcaption>
+    </figure>
+  </div>
+
+  <div class="full" id="widths">
+    <h2 class="heading">Using Widths</h2>
+    <p>
+      Usage examples for using the "w" descriptor.
+    </p>
+    <p>
+      To use the W descriptor either use the default settings "widthDensity" setting of "w" or create your own set of rules with the widthDensity setting set to w in that rule set.
+    </p>
+      We'll use the config defined above in the "Config" section.
+    </p>
+  </div>
+<div class="full">
+  <h3 class="heading">
+    Template Usage
+  </h3>
+</div>
+
+  <div class="full-to-half center-text">
+    <p>Using with a record image </p>
+    {{ respImg( record.image, 'demos_bolt') }}
+<pre class="language-twig"><code>&lbrace;&lbrace; respImg( record.image, 'demos_bolt' }}</code></pre>
+  </div>
+
+  <div class="full-to-half center-text">
+    <p>Using with a File From Files</p>
+      {{ respImg( 'demos/respimg/red-panda.jpg', 'demos_bolt') }}
+<pre class="language-twig"><code>&lbrace;&lbrace; respImg( 'demos/respimg/red-panda.jpg', 'demos_bolt' }}</code></pre>
+  </div>
+
+
+
+  <div id="density" class="full">
+    <h2 class="heading">Using Densities</h2>
+    <p>
+      To use screen densities with the extension use an 'x' in the 'widthDensity' config setting. The 'sizes' config option isn't needed if using the 'x' descriptor but the 'resolutions' option is. The 'x' descriptor is also good to use with fixed width images. More on why fixed width images can be found here at
+      <a href="http://blog.cloudfour.com/responsive-images-101-part-3-srcset-display-density/"
+         class="external-link">Cloudfour Blog: Responsive Images 101 Display Density</a>.
+    </p>
+    <p>
+      Config:
+    </p>
+<pre class="language-yaml"><code>demos_density:
+    widths: [ 320, 640, 900 ]
+    heights: [ 0 ]
+    widthDensity: 'x'
+    resolutions: [ 1, 2, 3 ]</code></pre>
+  </div>
+
+  <div class="full-to-half center-text">
+    <p>Using with a record image </p>
+    {{ respImg( record.image, 'demos_density') }}
+<pre class="language-twig"><code>&lbrace;&lbrace; respImg( record.image, 'demos_density' }}</code></pre>
+  </div>
+
+  <div class="full-to-half center-text">
+    <p>Using with a File From Files</p>
+    {{ respImg( 'demos/respimg/red-panda.jpg', 'demos_density') }}
+<pre class="language-twig"><code>&lbrace;&lbrace; respImg( 'demos/respimg/red-panda.jpg', 'demos_density' }}</code></pre>
+  </div>
+
+<div class="full" id="advanced">
+  <h2 class="heading">Advanced Usage</h2>
+  <p>
+    You can over ride just about any default setting or user supplied setting in the extensions config inside a template. You must supply the image you wish to use, followed by a rule set (or use defaults) then followed by which custom settings you wish to use.
+  </p>
+</div>
+
+  <div class="full">
+    <h3 class="heading">Template Usage</h3>
+    <p>Template Override Examples</p>
+  </div>
+  <div class="full-to-half center-text">
+    <p>Override Default Width Settings &amp; using a record image</p>
+    {{ respImg( record.image, 'default', {
+      'widths': [ 300, 440, 640, 800, 1000 ],
+      'sizes' : [ '(min-width: 50em) 30vw, 90vw' ]
+    } ) }}
+<pre class="language-twig"><code>
+&lbrace;&lbrace; respImg( record.image, 'default', {
+    'widths' : [300, 440, 640, 800, 1000 ],
+    'sizes' : [ '(min-width: 50em) 30vw, 90vw' ]
+    })
+}}</code></pre>
+  </div>
+
+  <div class="full-to-half center-text">
+    <p>Override Default Width Settings &amp; using an image from 'Files' </p>
+    {{ respImg( 'demos/respimg/bear_cub_tree.jpg', 'default', {
+      'widths': [ 300, 440, 640, 800, 1000 ],
+      'sizes' : [ '(min-width: 50em) 30vw, 90vw' ]
+    } ) }}
+<pre class="language-twig"><code>
+&lbrace;&lbrace; respImg( 'demos/respimg/bear_cub_tree.jpg', 'default', {
+    'widths' : [300, 440, 640, 800, 1000 ],
+    'sizes' : [ '(min-width: 50em) 30vw, 90vw' ]
+    })
+}}</code></pre>
+  </div>
+  <div class="full">
+    <hr>
+    <p>Using the Default settings but replacing the 'width' descriptor with the 'x' or density descriptor</p>
+  </div>
+
+  <div class="full-to-half center-text">
+    <p>Using a record image</p>
+    {{ respImg( record.image, 'default', {
+      'widthDensity': 'x',
+      'resolutions' : [ 1, 1.5, 2 ]
+    } ) }}
+<pre class="language-twig"><code>
+&lbrace;&lbrace; respImg( record.image, 'default', {
+    'widthDensity': 'x',
+    'resolutions' : [ 1, 1.5, 2]
+    })
+}}</code></pre>
+  </div>
+
+  <div class="full-to-half center-text">
+    <p>Using an image from 'Files' </p>
+    {{ respImg( 'demos/respimg/bear_cub_tree.jpg', 'default', {
+      'widthDensity': 'x',
+      'resolutions' : [ 1, 1.5, 2 ]
+    } ) }}
+<pre class="language-twig"><code>
+&lbrace;&lbrace; respImg( 'demos/respimg/bear_cub_tree.jpg', 'default', {
+    'widthDensity': 'x',
+    'resolutions' : [ 1, 1.5, 2 ]
+    })
+}}</code></pre>
+  </div>
+
+
+    <div id="info" class="full">
+      <h3 class="heading">
+        Source
+      </h3>
+      <p>The source for Bolt Responsive Images can be found at my github page</p>
+      <ul class="no-bullet">
+        <li>
+          <a href="https://github.com/cdowdy/boltresponsiveimages" class="external-link">Github Source: Bolt Responsive Images <span class="link-icon icon-github-link"></span></a>
+        </li>
+      </ul>
+      <p>Bolt Responsive Images Extensions Store Page</p>
+      <ul class="no-bullet">
+        <li>
+          <a href="http://extensions.bolt.cm/view/f1b62946-9dd2-11e5-bf25-14cdca8e654f" class="external-link">Bolt Store: Bolt Responsive Images  <span class="link-icon icon-github-link"></span></a>
+        </li>
+      </ul>
+    </div>
+
+{% endblock %}
+
+  {% block footer_tag %}
+    <footer role="contentinfo" class="container">
+      <div class="full">
+        <hr />
+        <p class="text-center">&copy; Cory Dowdy</p>
+      </div>
+    </footer>
+  {% endblock footer_tag%}
+
+{#{% block footer_javascripts %}#}
+    {#<script src="{{ paths.theme }}js/demos-mag.08172015.js" async defer></script>#}
+    {#{{ parent() }}#}
+{#{% endblock footer_javascripts %}#}
