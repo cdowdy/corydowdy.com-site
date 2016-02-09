@@ -1,3 +1,18 @@
+{% block form_start %}
+  {% spaceless %}
+    {% set method = method|upper %}
+    {% if method in ["GET", "POST"] %}
+      {% set form_method = method %}
+    {% else %}
+      {% set form_method = "POST" %}
+    {% endif %}
+    <form method="{{ form_method|lower }}" action="{{ action }}"{% for attrname, attrvalue in attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}{% if multipart %} enctype="multipart/form-data"{% endif %}>
+    {% if form_method != method %}
+      <input type="hidden" name="_method" value="{{ method }}" />
+    {% endif %}
+  {% endspaceless %}
+{% endblock form_start %}
+
 {# Labels #}
 
 {% block form_label %}
@@ -24,26 +39,42 @@
 {% block form_row %}
     {% spaceless %}
         {{ form.vars.attr.prefix|raw }}
-        <div {% if form.vars.attr.type is defined %}class="name-email-container simpleform-{{ form.vars.attr.type }}"{% endif %}>
-            {{ form_label(form) }}
-            {{ form_errors(form) }}
-            {{ form_widget(form) }}
+        <div {% if form.vars.attr.type is defined %}class="name-email-container"{% endif %}>
+            {{ form_label(form[key]) }}
+            {{ form_errors(form[key]) }}
+            {{ form_widget(form[key]) }}
         </div>
         {{ form.vars.attr.postfix|raw }}
     {% endspaceless %}
 {% endblock form_row %}
 
 {# Override widget_attributes to prevent 'prefix', 'postfix' etc to show up as attributes in <input> fields. #}
-{% block widget_attributes %}
-    {% spaceless %} id="{{ id }}" name="{{ full_name }}"
-        {%- if read_only %} readonly="readonly"{% endif %}
-        {%- if disabled %} disabled="disabled"{% endif %}
-        {%- if required %} required="required"{% endif %}
-        {%- if max_length %} maxlength="{{ max_length }}"{% endif %}
-        {%- if pattern %} pattern="{{ pattern }}"{% endif %}
-        {%- for attrname, attrvalue in attr %}{% if attrname in ['placeholder', 'title', 'value', 'autocomplete' ] %} {{ attrname }}="{{ attrvalue|trans({}, translation_domain) }}" {% elseif 'data-' in attrname %}{{ attrname }}="{{ attrvalue }}" {% endif %}{% endfor %}
-    {% endspaceless %}
-{% endblock widget_attributes %}
+{#{% block widget_attributes %}#}
+  {#{% spaceless %} id="{{ id }}" name="{{ full_name }}"#}
+    {#{%- if read_only %} readonly="readonly"{% endif %}#}
+    {#{%- if disabled %} disabled="disabled"{% endif %}#}
+    {#{%- if required %} required="required"{% endif %}#}
+    {#{%- if max_length %} maxlength="{{ max_length }}"{% endif %}#}
+    {#{%- if pattern %} pattern="{{ pattern }}"{% endif %}#}
+    {#{%- for attrname, attrvalue in attr %}{% if attrname in ['placeholder', 'title', 'value', 'autocomplete' ] %} {{ attrname }}="{{ attrvalue|trans({}, translation_domain) }}" {% elseif 'data-' in attrname %}{{ attrname }}="{{ attrvalue }}" {% endif %}{% endfor %}#}
+  {#{% endspaceless %}#}
+{#{% endblock widget_attributes %}#}
+
+{%- block widget_attributes -%}
+  id="{{ id }}" name="{{ full_name }}"
+  {%- if disabled %} disabled="disabled"{% endif -%}
+  {%- if required %} required{% endif -%}
+  {%- for attrname, attrvalue in attr -%}
+    {{- " " -}}
+    {%- if attrname in ['placeholder', 'title', 'value', 'autocomplete', 'minlength', 'maxlength'] -%}
+      {{- attrname }}="{{ translation_domain is same as(false) ? attrvalue : attrvalue|trans({}, translation_domain) }}"
+    {%- elseif attrvalue is same as(true) -%}
+      {{- attrname }}="{{ attrname }}"
+    {%- elseif attrvalue is not same as(false) -%}
+      {{- attrname }}="{{ attrvalue }}"
+    {%- endif -%}
+  {%- endfor -%}
+{%- endblock widget_attributes -%}
 
 
 {# Override widget_container_attributes to prevent 'prefix', 'postfix' etc to show up as attributes in blocks of <input> fields. #}
@@ -51,7 +82,7 @@
     {% spaceless %}
         {% if id is not empty %}id="{{ id }}" {% endif %}
         {% for attrname, attrvalue in attr %}
-            {% if 'data-' in attrname %}{{ attrname }}="{{ attrvalue }}" {% endif %}
+            {% if 'data-parsley-' in attrname %}{{ attrname }}="{{ attrvalue }}" {% endif %}
         {% endfor %}
     {% endspaceless %}
 {% endblock widget_container_attributes %}
@@ -67,13 +98,14 @@
                 {{ block('widget_attributes') }}
                 {% if value is not empty %}value="{{ value }}" {% endif %}
                 {% if required %}
-                data-parsley-required
                 data-parsley-trigger="change"
                 {% endif %}
-                data-parsley-minlength="2"
-                data-parsley-minlength-message="Please Enter At least 2 Characters for your name"
-                {% if max_length %}
-                data-parsley-maxlength="{{ max_length }}"
+                {% if attr.minlength %}
+                data-parsley-minlength="{{ attr.minlength }}"
+                data-parsley-minlength-message="Please Enter At least {{ attr.minlength }} Characters for your name"
+               {% endif %}
+                {% if attr.maxlength %}
+                data-parsley-maxlength="{{ attr.maxlength }}"
                 {% endif %}/>
     {% endspaceless %}
 {% endblock text_widget %}
@@ -89,9 +121,8 @@
     <input type="{{ type }}"
             {{ block('widget_attributes') }}
             {% if value is not empty %}value="{{ value }}" {% endif %}
-           data-parsley-type="email"
+
            {% if required %}
-           data-parsley-required
            data-parsley-trigger="change"
            {% endif %}
             />
@@ -103,15 +134,55 @@
     {% spaceless %}
         <textarea {{ block('widget_attributes') }}
                 {% if required  %}
-                data-parsley-required
                 data-parsley-trigger="change"
-                data-parsley-validation-threshold="4"
-                {% endif %}
-                data-parsley-minlength="5"
-                data-parsley-minlength-message="Please Enter A message of at least 5 characters and no longer than {{ max_length }}"
-                {% if max_length %}
-                data-parsley-maxlength="{{ max_length }}"
+                data-parsley-validation-threshold="{{  attr.minlength - 1  }}"
                 {% endif %}>{{ value }}</textarea>
     {% endspaceless %}
 {% endblock textarea_widget %}
+
+{# base settings for a button in a form #}
+{% block button_widget %}
+  {% spaceless %}
+    {% if label is empty %}
+      {% set label = name|humanize %}
+    {% endif %}
+    <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>{{ label|trans({}, translation_domain) }}</button>
+  {% endspaceless %}
+{% endblock button_widget %}
+
+{# attributes to add. ie: value, name etc #}
+{% block button_attributes %}
+  {% spaceless %}
+    id="{{ id }}" name="{{ full_name }}"{% if disabled %} disabled="disabled"{% endif %}
+    {% for attrname, attrvalue in attr %}{{ attrname }}="{{ attrvalue }}" {% endfor %}
+  {% endspaceless %}
+{% endblock button_attributes %}
+
+{% block button_row %}
+  {% spaceless %}
+      {{ form_widget(form) }}
+  {% endspaceless %}
+{% endblock button_row %}
+
+
+{# submit button #}
+{% block submit_widget %}
+  {% spaceless %}
+    {% set type = type|default('submit') %}
+    {{ block('button_widget') }}
+  {% endspaceless %}
+{% endblock submit_widget %}
+
+{% block form_errors %}
+  {% spaceless %}
+    {% if errors|length > 0 %}
+      <ul class="parsley-errors-list filled">
+        {% for error in errors %}
+          <li>{{ error.message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endspaceless %}
+{% endblock form_errors %}
+
 
