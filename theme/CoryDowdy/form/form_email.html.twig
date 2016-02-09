@@ -1,0 +1,13 @@
+<p>
+  A form on {{ paths.currenturl }} has been submitted. Here is the data:
+</p>
+<hr>
+<ul style="list-style: none">
+  {% for label, value in data %}
+  <li>
+    <strong>{{ label }}</strong>: {{ value }}
+  </li>
+  {% endfor %}
+</ul>
+<hr>
+
