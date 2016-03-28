@@ -11,7 +11,7 @@
 
 
 {% block inlined_styles %}
-    <style>{% include 'css/critical-css/blog.08182015.css' %}</style>
+    <style>{% include 'css/critical-css/blog.02182016.min.css' %}</style>
 {% endblock %}
 
 
@@ -72,5 +72,17 @@
 
 {% block footer_javascripts %}
     {{ parent() }}
+  {% set DNT = 'dnt' %}
+  {#
+  Do Not Track Header is uppercase in Firefox 45.0.1 and Edge and lowercase in Chrome 49.0.2623.108
+  #}
+  {% if app.request.headers.has( DNT|lower )  == 0 %}
     <script src="{{ paths.theme}}js/lib/visited-localstorage.min.js" async defer ></script>
+    {% else %}
+    {# remove the visited local storage from LS ... keep this here for a bit until
+      we can assume all local storage has been wiped. 6 months or so
+    #}
+      <script>window.localStorage.clear();</script>
+  {% endif %}
+
 {% endblock footer_javascripts %}
