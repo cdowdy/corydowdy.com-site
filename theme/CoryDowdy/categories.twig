@@ -2,7 +2,7 @@
 
 {% block inlined_styles %}
   <style>
-        {% include 'css/critical-css/categories.08182015.css' %}
+        {% include 'css/critical-css/categories.04012016.min.css' %}
     </style>
 {% endblock %}
 
@@ -27,7 +27,7 @@
         {% endif %}
       </div>
       <div class="blog-list">
-        {% for record in records %}
+        {% for record in records  %}
           <article class="blog-list--post" itemscope="" itemtype="http://schema.org/BlogPosting">
           <meta itemprop="image" content="{{ paths.canonical }}/files/{{ record.image }}" />
             <header>
