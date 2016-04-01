@@ -8,7 +8,7 @@
 
 
          {% block inlined_styles %}
-             <style>{% include 'css/critical-css/contact.08182015.css' %}</style>
+             <style>{% include 'css/critical-css/contact.04012016.min.css' %}</style>
          {% endblock %}
 
 
@@ -20,7 +20,7 @@
     <p>
       Please Fill out this form and I'll get back to you as soon as possible.
     </p>
-    {{ simpleform( 'contact' ) }}
+    {{ boltforms( 'contact' ) }}
 </div>
   <div class="full-to-half contact-info">
     <p>
@@ -74,6 +74,6 @@
 {% endblock %}
 
 {% block footer_javascripts %}
-<script src="{{ paths.theme }}js/contact.08172015.min.js" async defer></script>
+<script src="{{ paths.theme }}js/contact.02092016.min.js" async defer></script>
     {{ parent() }}
 {% endblock footer_javascripts %}
