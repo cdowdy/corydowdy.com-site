@@ -1,9 +1,11 @@
-{% set css_update = '08-18-2015' %}
+{% set css_update = '02-18-2016' %}
 {# make sure to include fn-navTrigger into critical CSS if you get checkbox flashes #}
 <!doctype html>
-<html class="no-js {% if record.slug == 'home' %}do-login{% endif %}" lang="{{ htmllang() }}">
+<html class="no-js" lang="{{ htmllang() }}">
 <head>
     <meta charset="utf-8" />
+    {# hold off on client hints for now... I'm not exactly sure on how to fetch correct image #}
+    {#<meta http-equiv="CH-Accept" value="DPR, Viewport-Width, Width">#}
     {# Include DNS Prefetch  #}
     {#
        October 29 2014 move here because:
@@ -14,9 +16,10 @@
         <link rel="dns-prefetch" href="https://p.typekit.net" />
         <link rel="dns-prefetch" href="https://pullzone1-corydowdywebdesi.netdna-ssl.com"/>
         <link rel="preconnect" href="https://use.typekit.net" crossorigin>
+        <link rel="preconnect" href="https://p.typekit.net"/>
     {% endblock dns_prefetch %}
 
-  <script> {% spaceless %}{# Include TypeKit JavaScript #}{% include 'js/typekit/typekit.min.js' %}
+  <script>{% spaceless %}{# Include TypeKit JavaScript #}{% include 'js/typekit/typekit.min.js' %}
             {% endspaceless %}
   </script>
 
@@ -47,16 +50,20 @@
 
     {% block enhance_js_meta %}
     <meta name="fullcss"  content="{{ paths.theme }}css/app.{{ css_update }}.min.css">
-    <meta name="gpng" content="{{ paths.theme }}css/icons/icons.fallback.css">
-    <meta name="gsvg" content="{{ paths.theme }}css/icons/icons.data.svg.css">
-    <meta name="gdpng" content="{{ paths.theme }}css/icons/icons.data.png.css">
+    <meta name="gpng" content="{{ paths.theme }}css/icons/icons.fallback.01182016.css">
+    <meta name="gsvg" content="{{ paths.theme }}css/icons/icons.data.svg.01182016.css">
+    <meta name="gdpng" content="{{ paths.theme }}css/icons/icons.data.png.01182016.css">
     {% endblock %}
   <!--[if lt IE 9]>
   <link rel="stylesheet" href="{{ paths.theme }}css/oldie.07-17-2015.css">
   <![endif]-->
     {#  stylesheets block #}
   {% block fout %}
-    <style>.wf-loading h1,.wf-loading p,h2,h3,h4,h5,h6{font-family:sans-serif;font-weight:400;text-rendering:auto}.wf-loading h1,h2,h3,h4,h5,h6{font-style:normal;color:#2c3e50;margin-top:.2rem;margin-bottom:.5rem;line-height:1.4}.wf-inactive h2,.wf-loading h2{font-size:1.6875rem}.wf-inactive h3,.wf-loading h3{font-size:1.375rem}.wf-loading p{font-size:1rem;line-height:1.6;margin-bottom:1.25rem}.wf-loading .fn-header__name a{color:#f2f2f2}.wf-loading .fn-navigation__item a{color:#f2f2f2;line-height:inherit;padding:15px 20px;padding:.9375rem 1.25rem}@media screen and (min-width: 50em){.wf-loading #fn-noJs_label,.fn-navTrigger__no-js{display:none;visibility:hidden}}strong,b{font-weight:bold}</style>
+    {#<style>.wf-loading h1,.wf-loading h2,.wf-loading h3,.wf-loading h4,.wf-loading h5,.wf-loading h6{font-family:sans-serif;font-weight:400;font-style:normal;color:#2c3e50;text-rendering:auto;margin-top:.2rem;margin-bottom:.5rem;line-height:1.4}.wf-inactive h2,.wf-loading h2{font-size:1.6875rem}.wf-inactive h3,.wf-loading h3{font-size:1.375rem}.wf-loading p,.wf-inactive p{font-family:sans-serif;font-weight:400;font-size:1rem;line-height:1.6;margin-bottom:1.25rem;text-rendering:auto}.wf-loading .fn-header__name a{color:#f2f2f2}.wf-loading .fn-navigation__item a{color:#f2f2f2;line-height:inherit;padding:15px 20px;padding:.9375rem 1.25rem}@media screen and (min-width: 50em){.wf-loading #fn-noJs_label,.fn-navTrigger__no-js{display:none;visibility:hidden}}.wf-loading strong,.wf-loading b{font-weight:bold}</style>#}
+    <style>
+      {% include 'css/fout.twig' %}
+    </style>
+
   {% endblock fout %}
 
     {% block stylesheets %}
@@ -93,7 +100,7 @@
             No Flexbox, No Flexbox Legacy, CSS Rem Unit, CSS Media Queryies
         #}
         {# dirty hack to include picturefill AFTER the noscript css#}
-        {#<script src="{{ paths.theme }}js/lib/modernizr/modernizr.04242015.min.js" async ></script>#}
+        <script src="{{ paths.theme }}js/lib/modernizr/modernizr.04242015.min.js" async ></script>
   {% endblock %}
   {% block picturefill %}
   {% endblock picturefill %}
@@ -145,7 +152,7 @@
 
 
     {% block footer_javascripts %}
-    <script src="{{ paths.theme }}js/navigation.08172015.min.js" async defer></script>
+    <script src="{{ paths.theme }}js/navigation-9a37b5a40f.js" async defer></script>
     {% endblock %}
 
 </body>
