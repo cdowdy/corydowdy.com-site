@@ -14,7 +14,7 @@
 
 
     {% block inlined_styles %}
-        <style>{% include 'css/critical-css/work.08182015.css' %}</style>
+        <style>{% include 'css/critical-css/work.04012016.min.css' %}</style>
     {% endblock %}
 
 
@@ -25,8 +25,7 @@
 #}
 {% block header_javascripts %}
   {{ parent() }}
-  <script>document.createElement("picture");</script>
-
+  <script src="{{ paths.theme }}js/picturefill/picturefill.min.js" async ></script>
 {% endblock header_javascripts %}
 
 
@@ -44,7 +43,8 @@
                             files/bypp-showcase-300.png 300w,
                             files/bypp-showcase-500.png 500w,
                             files/bypp-showcase-700.png 700w"
-                  {#src="data:image/gif;base64,R0lGODlhAQABAAAAADs="#}
+                            {#https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/img/bypp-showcase-700.png 700w"#}
+                  src="files/bypp-showcase-500.png 500w"
                   alt="Backyard Pleasure Pools site on Multiple Devices">
             <figcaption class="showcase-container--caption">
               <p>
@@ -53,6 +53,7 @@
               </p>
             </figcaption>
           </figure>
+
         </div> <!-- ./showcase-container -->
       </div>
       <div class="full">
@@ -127,6 +128,6 @@
 {% block footer_javascripts %}
 <script src="{{ paths.theme }}js/lightbox.08172015.min.js" async defer ></script>
   {#<script>if(!window.HTMLPictureElement){function loadJS(e,t){"use strict";var n=window.document.getElementsByTagName("script")[0],o=window.document.createElement("script");return o.src=e,o.async=!0,n.parentNode.insertBefore(o,n),t&&"function"==typeof t&&(o.onload=t),o}loadjs('{{ paths.theme }}js/picturefill/picturefill.min.js')}</script>#}
-<script src="{{ paths.theme }}js/picturefill/picturefill.min.js" async ></script>
+
 {{ parent() }}
 {% endblock footer_javascripts %}
