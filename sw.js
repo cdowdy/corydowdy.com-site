@@ -4,7 +4,7 @@
 'use strict';
 
 // cache versioning
-const VERSION = 'v1.0.4::';
+const VERSION = 'v1.0.5::';
 // Static Cache Name -> for static assets
 const STATIC_CACHE_NAME = VERSION + 'static';
 // URLS/Pages Cache
@@ -36,7 +36,7 @@ function updateStatic() {
       // using current cookie based critical css approach and storing hte homepage on intial
       // install causes no CSS to be served because there is no CSS for some strange reason on mobile haha
       // so remove this for now
-      cache.addAll(URLCACHE);
+      // cache.addAll(URLCACHE);
       return cache.addAll(STATIC_CACHE);
     });
 }
