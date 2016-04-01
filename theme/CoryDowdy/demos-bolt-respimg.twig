@@ -6,7 +6,7 @@
 
 
 {% block inlined_styles %}
-    <style>{% include 'css/critical-css/bolt-resposive-images.02-03-2016.css' %}</style>
+    <style>{% include 'css/critical-css/demos-bolt-resp.04012016.min.css' %}</style>
 {% endblock %}
 
 
@@ -265,7 +265,7 @@
     </footer>
   {% endblock footer_tag%}
 
-{#{% block footer_javascripts %}#}
+{% block footer_javascripts %}
     {#<script src="{{ paths.theme }}js/demos-mag.08172015.js" async defer></script>#}
-    {#{{ parent() }}#}
-{#{% endblock footer_javascripts %}#}
+    {{ parent() }}
+{% endblock footer_javascripts %}
