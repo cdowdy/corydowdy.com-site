@@ -14,7 +14,14 @@
       <meta name="twitter:description" content="{{ record.metadescription }}" />
       <meta name="twitter:image" content="{{ paths.canonical }}/files/{{ record.image }}"/>
   {% endblock metaSeo %}
-
+{% block fout %}
+  {% spaceless %}
+    {{ parent() }}
+    <style>
+      {% include 'css/blog-list-fout.css.twig' %}
+    </style>
+  {% endspaceless %}
+{% endblock fout %}
 
 {% block inlined_styles %}
     <style>
