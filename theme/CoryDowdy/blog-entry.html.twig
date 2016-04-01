@@ -6,27 +6,38 @@
 
 {# try {{ app.request}}/{{ record.slug}} for critical css #}
 
+  {% block metaSeo %}
+      {{ parent() }}
+      {# twitter cards test #}
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:title" content="{{ record.title }}" />
+      <meta name="twitter:description" content="{{ record.metadescription }}" />
+      <meta name="twitter:image" content="{{ paths.canonical }}/files/{{ record.image }}"/>
+  {% endblock metaSeo %}
 
 
 {% block inlined_styles %}
     <style>
       {% spaceless %}
   {% if record.slug == 'foundation-5-sass-and-grunt-uncss' %}
-      {% include 'css/critical-css/foundation-5-sass-and-grunt-uncss.08182015.css' %}
+      {% include 'css/critical-css/foundation-5-sass-and-grunt-uncss.04012016.min.css' %}
   {% endif %}
   {% if record.slug == 'improving-pagespeed-performance' %}
-    {% include 'css/critical-css/improving-pagespeed-performance.08182015.css' %}
+    {% include 'css/critical-css/improving-pagespeed-performance.04012016.min.css' %}
   {% endif %}
   {% if record.slug == 'moving-from-apache-to-nginx' %}
-    {% include 'css/critical-css/moving-from-apache-to-nginx.08182015.css' %}
+    {% include 'css/critical-css/moving-from-apache-to-nginx.04012016.min.css' %}
   {% endif %}
   {% if record.slug == 'flexbox-mobile-navigation' %}
-  {% include 'css/critical-css/flexbox-mobile-navigation.08182015.css' %}
+  {% include 'css/critical-css/flexbox-mobile-navigation.04012016.min.css' %}
   {% endif %}
   {% if record.slug == 'webp-jxr-nginx-content-negotiation-test' %}
-      {% include 'css/critical-css/webp-jxr.08182015.css' %}
+      {% include 'css/critical-css/webp-jxr.04012016.min.css' %}
    {% endif %}
-      {% include 'css/fout.twig' %}
+  {% if record.slug == 'it-s-apple-s-web-we-re-just-playing-in-it' %}
+      {% include 'css/critical-css/moving-from-apache-to-nginx.04012016.min.css' %}
+  {% endif %}
+      {#{% include 'css/fout.twig' %}#}
       {% endspaceless %}
     </style>
 {% endblock %}
