@@ -185,6 +185,35 @@
   list-style: none;
 }
 
+/* blog listing page */
+.blog-list {
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 75%;
+  float: left;
+}
+
+.blog-list--sidebar {
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 25%;
+  float: left;
+}
+
+.blog-list-search-input {
+  padding-left: 0;
+  padding-right: 0;
+  width: 100%;
+  float: left;
+}
+
+.blog-list-search-button-container {
+  padding-left: 0;
+  padding-right: 0;
+  width: 100%;
+  float: left;
+}
+
 /* contact page stuff */
 .form-container,
 .form-submitted-container {
@@ -240,3 +269,8 @@ code {
   background: #272822;
   color: #fff;
 }
+
+//.fn-header__button {
+//  display: none;
+//  visibility: hidden;
+//}
