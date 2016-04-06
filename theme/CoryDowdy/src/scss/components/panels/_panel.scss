@@ -1,0 +1,14 @@
+
+
+.quick-nav-panel {
+  //background: $header-color;
+  color: $header-color;
+  //text-align: center;
+  padding: rem-calc(10);
+  margin-bottom: rem-calc(25);
+  border: solid 2px $light-gray;
+  border-radius: 4px;
+  p {
+    text-align: center;
+  }
+}
