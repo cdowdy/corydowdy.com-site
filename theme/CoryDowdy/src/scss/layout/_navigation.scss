@@ -13,7 +13,7 @@
 .fn-header {
   display: block;
   visibility: visible;
-  background: $navigation-bg;
+  background: $header-color;
   min-width: 100%;
   padding: $header-padding;
 //  @include promote-layer();
@@ -132,17 +132,20 @@
 /* html5 <nav> element... holds the navigation list */
 .fn-nav-container {
   @include promote-layer();
-  background-color: $navigation-bg;
+  background-color: $header-color;
   padding: rem-calc(8);
   max-height: 0;
   @include hide-screen-readers();
   @media screen and (min-width: 50em) {
     display: block;
     visibility: visible;
-    padding: rem-calc(8) rem-calc(15) ;
+    padding: 0  rem-calc(15) rem-calc(8) ;
     width: 50%;
-    max-height: 100%; // override L#135 max-height: 0;
+    //max-height: 100%; // override L#135 max-height: 0;
     float: left;
+  }
+  @media screen and (min-width: 50.03125em ) {
+    padding: rem-calc(8) rem-calc(15);
   }
 }
 
@@ -157,7 +160,7 @@
 /* navigation unordered list */
 .fn-navigation {
   list-style: none;
-  background-color: $navigation-bg;
+  background-color: $header-color;
   @include hide-screen-readers();
   @media screen and (min-width: 50em) {
     display: flex;
@@ -181,19 +184,28 @@
 
 /* navigation list item */
 .fn-navigation__item {
-//  padding: rem-calc(15) rem-calc(20);
-  padding: rem-calc(15) 0;
+
+ @media screen and (max-width: 49.9375em) {
+   &:not(:last-child) {
+     padding: rem-calc(5) 0;
+   }
+ }
+  @media screen and (min-width: 50em) {
+    padding: rem-calc(15) ;
+
+  }
+
   &:focus {
-    outline: 1px solid $header-nav-list-item-bg-hover;
+    outline: 1px solid #F2F2F2;
   }
 
   &:hover,
   &:focus,
   &:active {
-    background-color: $header-nav-list-item-bg-hover;
-//    a {
-//      color: $header-nav-anchor-color-hover;
-//    }
+    background: #F2F2F2;
+   a {
+     color: $header-color;
+   }
   }
 }
 
@@ -203,13 +215,17 @@
     color: $silver;
     line-height: inherit;
     text-decoration: none;
-    padding: rem-calc(15) rem-calc(20);
+    padding: rem-calc(15);
+    @media screen and (max-width: 50em) {
+      display: inline-block;
+      width: 100%;
+    }
 //    &:hover,
 //    &:focus,
     &:active {
 //      background-color: $header-nav-list-item-bg-hover;
 //      color: $header-nav-anchor-color-hover;
-      outline: 1px solid $header-nav-list-item-bg-hover;
+      outline: 1px solid #F2F2F2;
     }
   }
 }
@@ -228,20 +244,28 @@
 
 // hide checkbox trigger for browsers with js and above 800px
 
-.fn-navTrigger__no-js {
-  display: none;
-  visibility: hidden;
-}
-#fn-noJs_label {
-  display: none;
-  visibility: hidden;
-}
+
+  .fn-navTrigger__no-js {
+    display: none;
+    visibility: hidden;
+  }
+  #fn-noJs_label {
+    display: none;
+    visibility: hidden;
+  }
 
 
 // display the checkbox under 800px
 @media screen and (max-width: 49.9375em) {
+
+  .no-js .fn-header__button {
+    display: none;
+    visibility: hidden;
+  }
   // clip (hide) the checkbox under 800px
-  .no-js .fn-navTrigger__no-js {
+  .no-js .fn-navTrigger__no-js,
+  .no-js .fn-navTrigger__no-js,
+  .fn-navTrigger_no-js {
     clip: rect(0px, 0px, 0px, 0px);
     position: absolute;
     top: 1.5%;
@@ -251,7 +275,7 @@
 
   .no-js .fn-navTrigger__no-js:checked ~ .fn-nav-container {
     display: block;
-    background: $navigation-bg;
+    background: $header-color;
     height: auto;
     max-height: 800px;
 
@@ -269,7 +293,7 @@
   .no-js #fn-noJs_label {
     position: absolute;
     top: 1.5%;
-    left: 75%;
+    left: 80%;
     color: $silver;
     width: rem-calc(75);
     height: rem-calc(30);
@@ -298,7 +322,9 @@
 //
 // =====================================================================================================================
 
-
+.no-flexbox .fn-header {
+  height: 6.875em;
+}
 
 .no-flexbox .fn-navigation {
   @media screen and (min-width: 50em) {
@@ -316,7 +342,7 @@
 .no-flexbox .fn-navigation__item {
   @media screen and (min-width: 50em) {
     float: left;
-    margin-left: 1.375rem;
+    //margin-left: 1.375rem;
     display: block;
   }
 }
@@ -336,7 +362,7 @@
 .no-mediaqueries .fn-header {
   display: block;
   visibility: visible;
-  background: $navigation-bg;
+  background: $header-color;
   min-width: 100%;
   height: $big-header-height; // 100px
   padding: $big-header-padding; // 15px 0
@@ -358,12 +384,17 @@
   padding-right: 15px;
   width: 50%;
   float: left;
-
 }
 
 .no-mediaqueries .fn-header__name {
     padding-top: 15px;
 }
+
+.no-mediaqueries .fn-header__button {
+  display: none;
+  visibility: hidden;
+}
+
 
 .no-mediaqueries .fn-nav-container {
   display: block;
@@ -396,11 +427,9 @@
   &:active {
     background: $silver;
     color: $header-color;
-    a {
-      color: $header-nav-anchor-color-hover;
-    }
   }
 }
+
 
 .no-mediaqueries .fn-navigation__item {
   a {
@@ -410,6 +439,10 @@
 
     &:active {
       outline: 1px solid $header-nav-list-item-bg-hover;
+    }
+    &:hover,
+    &:focus {
+      color: $header-color;
     }
   }
 }

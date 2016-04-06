@@ -47,17 +47,20 @@
 
 // centered header
 .centered-header {
-  @include grid-column(
+ @include grid-column(12);
+  text-align: center;
+  @media screen and (min-width: 50em) {
+    @include grid-column(
     $columns:10,
     $center:true
-  );
-  text-align: center;
+    );
+  }
 }
 
 
 .centered-5-to-full {
   @include grid-column(12);
-  @media #{$large-up} {
+  @media screen and (min-width:50em) {
     @include grid-column(
       $columns: 5,
       $center: true
@@ -75,15 +78,13 @@
 }
 .popup-block--two {
   @include block-grid(2);
-  @media #{$large-up} {
+  @media screen and (min-width:50em) {
     @include block-grid(4);
   }
 }
 .popup-block--css-dialog {
-  @media #{$small-to-medium} {
-    @include block-grid(2);
-  }
-  @media #{$large-up} {
+  @include block-grid(2);
+  @media screen and (min-width:50em) {
     @include block-grid(3);
   }
 }
@@ -93,7 +94,7 @@
   @media screen and (min-width: 361px) {
     @include block-grid(2);
   }
-  @media #{$large-up} {
+  @media screen and (min-width:50em) {
     @include block-grid(3);
   }
 }
@@ -101,28 +102,29 @@
 
 .full-to-half {
   @include grid-column(12);
-  @media #{$large-up} {
+  @media screen and (min-width:50em) {
     @include grid-column(6);
   }
 }
-.full-to-half--small-center-only {
-  @media #{$small-to-medium} {
-    @include grid-column(
-      $columns: 12,
-      $center: true
-    );
-  }
-  @media #{$large-up} {
-    @include grid-column(
-    $columns: 6,
-    $center: false
-    );
-  }
-}
+
+//.full-to-half--small-center-only {
+//  @media screen and (max-width: 49.9375em) {
+//    @include grid-column(
+//      $columns: 12,
+//      $center: true
+//    );
+//  }
+//  @media screen and (min-width:50em) {
+//    @include grid-column(
+//    $columns: 6,
+//    $center: false
+//    );
+//  }
+//}
 // Magnific Popup SIngle image grid
 .popup-container--single {
   @include grid-column(12);
-  @media #{$large-up} {
+  @media screen and (min-width:50em) {
     @include grid-column(4);
   }
 }
@@ -139,19 +141,19 @@
 // Contact Form Container
 .form-header {
   @extend .video-container;
-  @media #{$small-to-medium} {
+  @media screen and (max-width: 49.9375em) {
     @include grid-column(12);
   }
 }
 .listing-snippet{
   @include grid-column(8);
-  @media #{$small-to-medium} {
+  @media screen and (max-width: 49.9375em) {
     @include grid-column(12);
   }
 }
 .snippet {
   @include grid-column(12);
-  @media #{$large-up} {
+  @media screen and (min-width:50em) {
     @include grid-column(
       $columns: 8,
       $center: true
