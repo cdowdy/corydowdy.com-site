@@ -1,34 +1,8 @@
 // Full size icons = 356px wide & 266px tall
 // set it to 100% width so it fills its container in every viewport ( for inline svg )
 // add a margin to the top to place them nicely in the container
-.full-size-icon {
-  // 171px to 244px bg size is 100px
-  width: 100%;
-  height: 6.25em; //100px;
-  background-size: contain;
-  @extend %icons;
-  margin-top: 0.625em; // 10px;
-  // hide bg image under 170px
-  @media screen and (max-width: 10.625em ) { // 170px
-    display: none;
-    visibility: hidden;
-  }
-  // 245px to 299px size is 140px
-  @media screen and (min-width: 15.3125em ) { // 245px
-    height: 8.75em; // 140px;
-  }
-  // 400px up size is 260px
-  @media screen and ( min-width: 25em ) { // 400px
-    height: 16.25em; // 260px;
-  }
-  // changed to grunticon so width back to 350px!
 
-}
-.home-icon {
-  width: 350px;
-  height: 266px;
-  margin: 15px auto 0;
-}
+
 
 .icons,
 %icons {

@@ -1,4 +1,8 @@
-
+// quick colors
+$oldpost-text : #050709;
+$oldpost-bg   : #43ac6a;
+$oldpost-secondary-text : #ffffff;
+$oldpost-secondary-bg   : #a62924;
 
 .quick-nav-panel {
   //background: $header-color;
@@ -10,5 +14,20 @@
   border-radius: 4px;
   p {
     text-align: center;
+  }
+}
+
+
+// for blog posts that are over six months old:
+
+.past-six-months {
+  color: $oldpost-secondary-text;
+  background: $oldpost-secondary-bg;
+
+  //text-align: initial;
+  padding: rem-calc(14) rem-calc(24) rem-calc(14);
+  p {
+    color: $oldpost-secondary-text;
+    font-size: rem-calc(14);
   }
 }

@@ -1,0 +1,195 @@
+// Grids and components for the list of blog posts on the Blog main page
+
+.blog-list {
+  @include grid-column(12);
+
+  // larger than 50em (800px)
+  @media screen and (min-width: 50em) {
+    @include grid-column(9);
+  }
+}
+
+// side bar on blog list page.
+.blog-list--sidebar {
+  @include grid-column(12);
+  // above 50em (800px)
+  @media screen and (min-width: 50em) {
+    @include grid-column(3);
+  }
+}
+
+// individual posts
+.blog-list--post {}
+
+// post title and anchor links
+.blog-list--title {
+  font-size: rem-calc(22);
+  @media screen and (min-width: 50em) {
+    font-size: rem-calc(30);
+  }
+  a {
+    color: $header-font-color;
+    &:focus, &:hover, &:active {
+      color: $primary-color;
+      border-bottom: 1px solid $gray;
+    }
+  }
+}
+
+// unordered list containing the posted on date and categories
+.blog-list--info {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 0 auto;
+  width: 100%;
+  justify-content: space-between;
+  list-style: none;
+  a {
+    color: #0080aa;
+  }
+}
+
+// list item of the categories
+.blog-list--categories {
+  // give a comma after each category except the final one
+  a:not(:last-child):after {
+    content: ', ';
+  }
+  a {
+    @include underline-link;
+  }
+}
+
+// the post teaser;
+.blog-teaser { }
+
+.blog-list--post-link {
+  color: $primary-color;
+  font-size: rem-calc(18);
+  @include underline-link;
+}
+
+// sidebar categories
+.blog--category-list {
+  list-style: none;
+  display: flex;
+  flex-flow: column wrap;
+  margin: auto;
+}
+
+.category-list-header {
+  width: 100%;
+  margin-bottom: rem-calc(10);
+  border-bottom: 1px solid #DDDDDD;
+  h3 {
+    font-size: rem-calc(18);
+    @media screen and (min-width: 40em) {
+      font-size: rem-calc(22)
+    }
+  }
+}
+
+.category-list-item {
+  //width: 50%;
+  padding-bottom: rem-calc(10);
+  a {
+    //color: $header-color;
+    //font-weight: bold;
+    &:hover,
+    &:focus,
+    &:active {
+      color: $primary-color;
+    }
+    &:visited {
+      color: $ally-visited;
+    }
+  }
+}
+
+.blog-link[data-visited] {
+  &:after {
+    content: ' \2713 visited!';
+    color: $gray;
+     font-size: rem-calc(12);
+  }
+}
+
+
+// Blog List Page Pagination -> Navigate to more than one page if posts are more than 5
+.blog-pagination {
+  @extend .full;
+}
+
+.pagination-list {
+  display: flex;
+  margin-left: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+  list-style: none;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 100%;
+  @media screen and (max-width: 13.4375em) {
+    li {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.no-flexbox {
+  .blog-pagination {
+    text-align: center;
+  }
+  .pagination-list {
+    display: inline-block;
+    overflow: hidden;
+    li {
+      float: left;
+      width: 50%;
+    }
+  }
+}
+
+.arrow a {
+  border-radius: 3px;
+  padding: rem-calc(10);
+  color: $header-color;
+  @include single-transition(background-color);
+  &:hover,
+  &:focus,
+  &:active {
+    background: $header-color;
+    color: #fff;
+  }
+}
+
+.search {
+ @include base-button;
+}
+
+.search-button {
+  //background-color: $header-color;
+  //color: $white;
+  //transition: background-color 300ms ease-out;
+  @include button-color($header-color , $primary-color);
+  font-size: inherit;
+  padding: rem-calc(12);
+}
+
+// for the blog listing search form... maybe move this to a _forms.scss or the grid markup to _custom-grids.scss
+
+.blog-list-search-input,
+.blog-list-search-button-container {
+  @include grid-column(
+  $columns:12,
+  $collapse:true
+  );
+}
+
+//.blog-list-search-button-container {
+//  @include grid-column(
+//  $columns:12,
+//  $collapse:true
+//  );
+//  //margin-top: 8%;
+//}
