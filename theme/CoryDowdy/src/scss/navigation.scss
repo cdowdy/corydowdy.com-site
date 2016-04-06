@@ -1,8 +1,11 @@
-//@import "bower_components/foundation/scss/normalize";
-@import "utils/_mixins";
-
+// Settings
 @import "settings/settings";
 @import "settings/nav.settings";
+
+// utilities and mixins
+@import "utils/mixins";
 @import "a11y/ally";
 @import "base/type";
+
+// nav import
 @import "layout/navigation";
