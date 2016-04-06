@@ -4,7 +4,7 @@
 'use strict';
 
 // cache versioning
-const VERSION = 'v1.0.5::';
+const VERSION = 'v1.0.10::';
 // Static Cache Name -> for static assets
 const STATIC_CACHE_NAME = VERSION + 'static';
 // URLS/Pages Cache
@@ -20,7 +20,8 @@ const MAXIMG    = 30;
 const URLCACHE = [
   '/',
   '/blog'
-]
+  // 'theme/CoryDowdy/css/app.02-18-2016.min.css'
+];
 
 // our static cache
 const STATIC_CACHE = [
@@ -36,7 +37,7 @@ function updateStatic() {
       // using current cookie based critical css approach and storing hte homepage on intial
       // install causes no CSS to be served because there is no CSS for some strange reason on mobile haha
       // so remove this for now
-      // cache.addAll(URLCACHE);
+      cache.addAll(URLCACHE);
       return cache.addAll(STATIC_CACHE);
     });
 }
@@ -94,7 +95,7 @@ self.addEventListener('activate', event => {
 // once that message is received we can trim the caches to the maximum amount allowed.
 // this also keeps async loaded types from blowing past the cache maximum number allowed like imgs
 self.addEventListener('message', event => {
-  if (event.data.command == 'trimCaches') {
+  if (event.data.command === 'trimCaches') {
     removeOldCache(URL_CACHE_NAME, MAXPAGES);
     removeOldCache(IMG_CACHE_NAME, MAXIMG);
   }
