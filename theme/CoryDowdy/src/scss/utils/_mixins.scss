@@ -52,6 +52,20 @@
   border: rem-calc(2) solid;
 }
 
+@mixin cdowdy-button() {
+  display: inline-block;
+  background: $primary-color;
+  border-radius: rem-calc(3);
+  color: $white;
+  font-size: rem-calc(11);
+  text-align: center;
+  margin: 0 0 rem-calc(20);
+  padding: rem-calc(10) rem-calc(20) rem-calc(11);
+  cursor: pointer;
+  transition: background-color 300ms ease-out;
+  line-height: normal;
+}
+
 
 // visually hide from screen but show to screen readers
 @mixin hide-visually() {
@@ -82,5 +96,12 @@ $old-ie: false !default;
   }
 }
 
+
+@mixin underline-link {
+  &:focus, &:hover {
+    color: #111;
+    border-bottom: 1px solid $gray;
+  }
+}
 
 
