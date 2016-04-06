@@ -1,3 +1,4 @@
+/theme/CoryDowdy/src/svg-icons/_old
 # Created by .gitignore support plugin (hsz.mobi)
 ### Symfony2 template
 # Cache and logs
@@ -33,7 +34,7 @@ modsec-flameeyes-master
 
 theme/CoryDowdy/css/icons/current
 
-theme/CoryDowdy/svg-icons/_old
+theme/CoryDowdy/src/svg-icons/_old
 
 server-configs
 
