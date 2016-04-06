@@ -12,17 +12,7 @@
 }
 
 
-.blog-post-title {
-  a{
-    color: $header-font-color;
-    &:focus, &:hover{
-      color: $primary-color;
-      border-bottom: 1px solid $gray;
-    }
 
-  }
-
-}
 
 .ind-panel {
   @include panel(
@@ -38,27 +28,45 @@
   }
 }
 
+.w-60 {
+  width: 100%;
+  @media screen and (min-width: 50em) {
+    width: 60%;
+  }
+}
+
 // listing link styles
-.listing-link {
-  color: $primary-color;
-  font-size: 18px;
-  &:focus, &:hover {
-    color: #111;
-    border-bottom: 1px solid $gray;
-  }
-}
-.listing-image {
-  @media #{$large-up} {
-    @include grid-column(4);
-  }
-  @media #{$small-to-medium} {
-    display: none;
-  }
-}
+//.listing-link {
+//  color: $primary-color;
+//  font-size: rem-calc(18);
+//  &:focus, &:hover {
+//    color: #111;
+//    border-bottom: 1px solid $gray;
+//  }
+//}
+//.listing-image {
+//  display: none;
+//  @media screen and (min-width: 50em) {
+//    @include grid-column(4);
+//    display: block;
+//  }
+//  @media screen and (max-width: 49.9375em) {
+//    display: none;
+//  }
+//}
+
 
 // styles for publication date
 .pub-date {
   color: $gray;
+  // for flexbox catergories to the right on desktop test
+  //margin-bottom: rem-calc(16);
+  //padding-bottom: rem-calc(16);
+  //margin-bottom: 0;
+}
+
+.heading-pub {
+  font-size: rem-calc(16);
 }
 
 // styles for blog tables .. thing that are used
@@ -76,17 +84,7 @@
   }
 
 }
-/*
-.table-no-style {
- @extend .using;
-  th {
-    background-color: $body-bg;
-  }
-  tr:nth-of-type(even) {
-    background-color: $body-bg;
-  }
-}
-*/
+
 .table-text {
   text-align: left;
 }

@@ -1,15 +1,15 @@
-// overrides for subnav in demos pages
-.demo-nav {
-  @include sub-nav();
-  dd {
-    @media #{$large-up} {
-      float: none;
-      display: inline;
-    }
-  }
-}
-
-
+//// overrides for subnav in demos pages
+//.demo-nav {
+//  @include sub-nav();
+//  dd {
+//    @media screen and (min-width: 50em) {
+//      float: none;
+//      display: inline;
+//    }
+//  }
+//}
+//
+//
 .demo-link {
   text-align: center;
   &:hover, &:focus {
@@ -40,38 +40,38 @@
 //  transition: background-color 300ms ease-out;
 //}
 
-.demo-popup-button,
-.demo-popup-button--alert {
-  background: $primary-color;
-  color: $white;
-  border-radius: rem-calc(3);
-  padding: rem-calc(10) rem-calc(20) rem-calc(11);
-  font-size: rem-calc(11);
-  cursor: pointer;
-  margin: 0 0 rem-calc(20);
-  transition: background-color 300ms ease-out;
-  display: inline-block;
-  &:hover,
-  &:focus,
-  &:active {
+//.demo-popup-button,
+//.demo-popup-button--alert {
+//  background: $primary-color;
+//  color: $white;
+//  border-radius: rem-calc(3);
+//  padding: rem-calc(10) rem-calc(20) rem-calc(11);
+//  font-size: rem-calc(11);
+//  cursor: pointer;
+//  margin: 0 0 rem-calc(20);
+//  transition: background-color 300ms ease-out;
+//  display: inline-block;
+//  &:hover,
+//  &:focus,
+//  &:active {
+////    background-color: #007095;
 //    background-color: #007095;
-    background-color: #007095;
-    color: $white;
-  }
-}
+//    color: $white;
+//  }
+//}
 
-.demo-popup-button--alert {
-  padding: .875rem 1.75rem .9375rem;
-  font-size: rem-calc(13);
-  background: $alert-color;
-  color: $white;
-    &:hover,
-    &:focus,
-    &:active {
-      background-color: scale_color($alert-color, -20%);
-
-    }
-}
+//.demo-popup-button--alert {
+//  padding: .875rem 1.75rem .9375rem;
+//  font-size: rem-calc(13);
+//  background: $alert-color;
+//  color: $white;
+//    &:hover,
+//    &:focus,
+//    &:active {
+//      background-color: scale_color($alert-color, -20%);
+//
+//    }
+//}
 
 // button styles for demo page
 //.demo-popup-button {
@@ -110,7 +110,7 @@
 }
 .lrg {
   display: none;
-  @media #{$large-up} {
+  @media screen and (min-width: 50em) {
     display: block;
   }
 }
@@ -121,3 +121,6 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+
+.popup-caption{text-align:center}

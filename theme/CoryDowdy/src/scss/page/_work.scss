@@ -1,75 +1,28 @@
-//.work{
-//  margin-top: 10%;
-//  margin-bottom: 20%;
-//  h1,h2,h3,h4,h5,h6,p{
-//    text-align: center;
-//    color: #566473;
-//  }
-//  .work_icon {
-//    width: 350px;
-//    height: 266px;
-//    margin: 0 auto;
-//    margin-top: 15px;
-//    background-position: center;
-//  }
-//  @media #{$small-to-medium} {
-//    display: none;
-//  }
-//}
-//.w_hov{
-//  &:hover, &:focus{
-//    background-color: #2C3E50;
-//    border-radius: 4px;
-//    h2{
-//      color: #ECF0F1;
-//    }
-//  }
-//}
-//
-//.work-links{
-//  text-align: center;
-//}
 
-
-
-//.evo {
-//  margin-top: 5%;
-//  @media #{$small-to-medium} {
-//    margin-top: 65px;
-//  }
-//}
 .current-project--evolution {
   margin-top: 5%;
 }
 
 .showcase-container {
-//  @media #{$small-only} {
-//    @include grid-column(12);
-//  }
-//  @media #{$medium-up} {
-//    @include grid-column(
-//      $columns:9,
-//      $center:true
-//    );
-//  }
+
   @include grid-column(12);
-  @media #{$large-up} {
+  @media screen and (min-width: 50em) {
     @include grid-column(
       $columns:9,
       $center:true
     );
   }
 }
-.showcase-container--full {
-  @include grid-column(12);
-}
+//.showcase-container--full {
+//  @include grid-column(12);
+//}
 
-.showcase-container--half {
-  @include grid-column(12);
-  @media #{$medium-up} {
-    @include grid-column(6);
-  }
-}
+//.showcase-container--half {
+//  @include grid-column(12);
+//  @media #{$medium-up} {
+//    @include grid-column(6);
+//  }
+//}
 
 .showcase-figure {
   @media screen and (max-width: 549px) {
