@@ -11,7 +11,7 @@
       color: #444;
     }
   }
-  @media #{$small-to-medium} {
+  @media screen and (max-width: 49.9375em) {
    li {
      padding-top: 15px;
      padding-bottom: 15px;
