@@ -159,10 +159,10 @@ $xxlarge-up;
 
   @for $i from 1 through length($align-class-names) {
     @media #{(nth($align-class-breakpoints, $i))} {
-      .#{(nth($align-class-names, $i))}-text-left { text-align: left !important; }
-      .#{(nth($align-class-names, $i))}-text-right   { text-align: right !important; }
+      //.#{(nth($align-class-names, $i))}-text-left { text-align: left !important; }
+      //.#{(nth($align-class-names, $i))}-text-right   { text-align: right !important; }
       .#{(nth($align-class-names, $i))}-text-center  { text-align: center !important; }
-      .#{(nth($align-class-names, $i))}-text-justify { text-align: justify !important; }
+      //.#{(nth($align-class-names, $i))}-text-justify { text-align: justify !important; }
     }
   }
 }
@@ -187,7 +187,7 @@ $xxlarge-up;
 @include exports("type") {
   @if $include-html-type-classes {
     // Responsive Text alignment
-    @include align-classes;
+    //@include align-classes;
 
     /* Typography resets */
     div,
@@ -301,16 +301,16 @@ $xxlarge-up;
       line-height: inherit;
     }
 
-    code {
-      font-family: $code-font-family;
-      font-weight: $code-font-weight;
-      color: $code-color;
-//      background-color: $code-background-color;
-//      border-width: $code-border-size;
-//      border-style: $code-border-style;
-//      border-color: $code-border-color;
-      padding: $code-padding;
-    }
+//    code {
+//      font-family: $code-font-family;
+//      font-weight: $code-font-weight;
+//      color: $code-color;
+////      background-color: $code-background-color;
+////      border-width: $code-border-size;
+////      border-style: $code-border-style;
+////      border-color: $code-border-color;
+//      padding: $code-padding;
+//    }
 
     /* Lists */
     ul,
