@@ -1,0 +1,205 @@
+//@import "scss/utility/functions";
+//@import "scss/settings/colors";
+@import "scss/settings/settings";
+/// button variables
+
+// display values
+$button-display     : inline-block;
+$button-position    : relative;
+$button-margin-bottom: rem-calc(20) !default;
+
+// color styles / values
+$button-bg-color: $primary-color;
+$button-function-factor: -20% !default;
+$button-bg-hover    : scale-color($button-bg-color, $lightness: $button-function-factor) !default;
+
+// border styles
+$border-style       : solid;
+$border-width       : 0;
+$border-radius      : 0;
+$border-color       : $button-bg-hover;
+
+
+// cursor styles
+$cursor-auto        : auto;
+$cursor-default     : default;
+$cursor-pointer     : pointer;
+
+// button font style
+$button-font        : inherit;
+$button-font-style  : normal;
+$button-font-weight : normal;
+$button-font-color  : $white;
+
+$tiny-font          : rem-calc(11) !default;
+$small-font         : rem-calc(13) !default;
+$medium-font        : rem-calc(16) !default;
+$large-font         : rem-calc(20) !default;
+
+// button sizes
+$tiny-button        : rem-calc(10);
+$small-button       : rem-calc(14);
+$medium-button      : rem-calc(16);
+$large-button       : rem-calc(18);
+
+
+
+
+@mixin single-transition($property:all, $speed:300ms, $ease:ease-out) {
+  transition: $property $speed $ease;
+}
+
+
+//
+//
+//   base button styles
+//
+
+// --------------------------------------------------------------------------  \\
+//    ____        _   _                ____                _
+//   |  _ \      | | | |              |  _ \              | |
+//   | |_) |_   _| |_| |_ ___  _ __   | |_) | ___  _ __ __| | ___ _ __ ___
+//   |  _ <| | | | __| __/ _ \| '_ \  |  _ < / _ \| '__/ _` |/ _ \ '__/ __|
+//   | |_) | |_| | |_| || (_) | | | | | |_) | (_) | | | (_| |  __/ |  \__ \
+//   |____/ \__,_|\__|\__\___/|_| |_| |____/ \___/|_|  \__,_|\___|_|  |___/
+//
+// --------------------------------------------------------------------------  \\
+
+@mixin button-borders( $bdr-radius:false, $bdr-width:$border-width, $bdr-style:$border-style, $bdr-color: $border-color) {
+  @if $bdr-radius == true {
+    border-radius: $border-radius;
+  }
+  border: $bdr-width $bdr-style $bdr-color;
+}
+
+// --------------------------------------------------------------------------  \\
+//    ____        _   _                 _____ _
+//   |  _ \      | | | |               / ____(_)
+//   | |_) |_   _| |_| |_ ___  _ __   | (___  _ _______
+//   |  _ <| | | | __| __/ _ \| '_ \   \___ \| |_  / _ \
+//   | |_) | |_| | |_| || (_) | | | |  ____) | |/ /  __/
+//   |____/ \__,_|\__|\__\___/|_| |_| |_____/|_/___\___|
+//
+// --------------------------------------------------------------------------  \\
+
+@mixin button-size($size:$small-button, $full-width:false) {
+
+  // We control which padding styles come through,
+  // these can be turned off by setting $padding:false
+  @if $size {
+    padding: $size ($size * 2) ($size + rem-calc(1)) ($size * 2);
+    // We control the font-size based on mixin input.
+    @if      $size == $small-button  { font-size: $small-font; }
+    @else if $size == $tiny-button   { font-size: $tiny-font; }
+    @else if $size == $medium-button { font-size: $medium-font; }
+    @else if $size == $large-button  { font-size: $large-font; }
+  }
+
+  // We can set $full-width:true to remove side padding extend width.
+  @if $full-width {
+    // We still need to check if $padding is set.
+    @if $size {
+      padding-bottom: $size + rem-calc(1);
+      padding-top: $size;
+    } @else if $size == false {
+      padding-bottom:0;
+      padding-top:0;
+    }
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+  }
+}
+
+// --------------------------------------------------------------------------  \\
+//    ____        _   _                 _____      _
+//   |  _ \      | | | |               / ____|    | |
+//   | |_) |_   _| |_| |_ ___  _ __   | |     ___ | | ___  _ __
+//   |  _ <| | | | __| __/ _ \| '_ \  | |    / _ \| |/ _ \| '__|
+//   | |_) | |_| | |_| || (_) | | | | | |___| (_) | | (_) | |
+//   |____/ \__,_|\__|\__\___/|_| |_|  \_____\___/|_|\___/|_|
+//
+// --------------------------------------------------------------------------  \\
+
+@mixin button-color ( $bg: $button-bg-color, $bg-hover:null, $transition: true ) {
+  @if $bg {
+
+    @if $bg-hover == null {
+      $bg-hover: if($bg == $button-bg-color, $button-bg-hover, scale-color($bg, $lightness: $button-function-factor));
+    }
+
+    // This find the lightness percentage of the background color.
+    $bg-lightness: lightness($bg);
+    $bg-hover-lightness: lightness($bg-hover);
+
+    background-color: $bg;
+    &:hover,
+    &:focus { background-color: $bg-hover; }
+
+    // We control the text color for you based on the background color.
+    color: if($bg-lightness > 70%, $button-font-color-alt, $button-font-color);
+
+    &:hover,
+    &:focus {
+      color: if($bg-hover-lightness > 70%, $button-font-color-alt, $button-font-color);
+    }
+  }
+
+  @if $transition {
+    @include single-transition(background-color);
+  }
+}
+
+// --------------------------------------------------------------------------  \\
+//    ____                   ____        _   _
+//   |  _ \                 |  _ \      | | | |
+//   | |_) | __ _ ___  ___  | |_) |_   _| |_| |_ ___  _ __
+//   |  _ < / _` / __|/ _ \ |  _ <| | | | __| __/ _ \| '_ \
+//   | |_) | (_| \__ \  __/ | |_) | |_| | |_| || (_) | | | |
+//   |____/ \__,_|___/\___| |____/ \__,_|\__|\__\___/|_| |_|
+//
+// --------------------------------------------------------------------------  \\
+@mixin base-button( ) {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  display: $button-display;
+  position: $button-position;
+  border-radius:0;
+  @include button-size;
+  @include button-borders;
+  cursor: $cursor-pointer;
+  font-family: $button-font;
+  font-style: $button-font-style;
+  font-weight: $button-font-weight;
+  line-height: normal;
+  text-align: center;
+  margin: 0 0 $button-margin-bottom;
+
+}
+
+@mixin button-style ( $bg, $size ) {
+  @include button-color($bg);
+  @include button-size($size);
+  //  @include button-borders($borderWidth, $borderStyle, $borderColor);
+}
+
+.button,
+%button {
+  //  display: inline-block;
+  //  position: relative;
+  //  border-radius: $border-radius;
+  //  border: $border-width $border-style;
+  //  cursor: $cursor-pointer;
+  //  font-family: $button-font;
+  //  font-style: $button-font-style;
+  //  font-weight: $button-font-weight;
+  //  color: $button-font-color;
+  //  text-decoration: none;
+  @include base-button;
+}
+
+//.test-button {
+//  @include base-button;
+//  @include button-style(#bada55, $size: $tiny-button );
+//  @include button-borders( $border-radius, $border-width, $border-style, $border-color );
+//}
