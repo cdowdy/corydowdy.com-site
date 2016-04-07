@@ -4,12 +4,12 @@
 
 {% extends 'base.html.twig' %}
 
-    {% block dns_prefetch %}
-      <link rel="dns-prefetch" href="https://use.typekit.net"/>
-      <link rel="dns-prefetch" href="https://p.typekit.net" />
+    {#{% block dns_prefetch %}#}
+      {#<link rel="dns-prefetch" href="https://use.typekit.net"/>#}
+      {#<link rel="dns-prefetch" href="https://p.typekit.net" />#}
       {#<link rel="dns-prefetch" href="https://www.google-analytics.com"/>#}
-      <link rel="dns-prefetch" href="https://pullzone1-corydowdywebdesi.netdna-ssl.com"/>
-    {% endblock dns_prefetch %}
+      {#<link rel="dns-prefetch" href="https://pullzone1-corydowdywebdesi.netdna-ssl.com"/>#}
+    {#{% endblock dns_prefetch %}#}
 
 
 
@@ -26,6 +26,7 @@
 {% block header_javascripts %}
   {{ parent() }}
   <script src="{{ paths.theme }}js/picturefill/picturefill.min.js" async ></script>
+  <script src="{{ paths.theme }}js/lib/lazysizes.min.js" async></script>
 {% endblock header_javascripts %}
 
 
@@ -62,40 +63,43 @@
         <ul class="icon-blocks">
           <li class="image-lightbox">
             <a href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/img/work/comp_1_pop.png" title="First Site Comp.">
-              <img class="center"
+              <img class="center lazyload"
                    sizes="25vw"
-                    srcset="files/comp1-th-140w.png 140w,
-                            files/comp1-th.png 395w"
-                    alt="first site comp"/>
+                   data-srcset="files/comp1-th-140w.png 140w, files/comp1-th.png 395w"
+                   data-src="files/comp1-th-140w.png"
+                   alt="first site comp"/>
             </a>
             <p class="showcase-popup-caption">First Site Comp. <small class="hide-small">click to enlarge</small></p>
           </li>
           <li class="image-lightbox">
             <a href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/img/work/comp_2_pop.png" title="Second Site Comp.">
-              <img class="center"
+              <img class="center lazyload"
                    sizes="25vw"
-                    srcset="files/comp2-th-140w.png 140w,
+                   data-srcset="files/comp2-th-140w.png 140w,
                               files/comp2-th.png 395w"
-                    alt="Second site comp"/>
+                   data-src="files/comp2-th-140w.png"
+                   alt="Second site comp"/>
             </a>
           <p class="showcase-popup-caption">Second Site Comp. <small class="hide-small">click to enlarge</small></p>
           </li>
           <li class="image-lightbox">
             <a href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/img/work/comp_3_pop.png" title="Third Site Comp.">
-              <img class="center"
+              <img class="center lazyload"
                    sizes="25vw"
-                    srcset="files/comp3-th-140w.png 140w,
+                   data-srcset="files/comp3-th-140w.png 140w,
                               files/comp3-th.png 395w"
-                    alt="Third site comp"/>
+                   data-src="files/comp3-th-140w.png"
+                   alt="Third site comp"/>
             </a>
             <p class="showcase-popup-caption">Third Site Comp. <small class="hide-small">click to enlarge</small></p>
           </li>
           <li class="image-lightbox">
             <a href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/img/work/current_pop.png" title="Current Site.">
-              <img class="center"
+              <img class="center lazyload"
                    sizes="25vw"
-                    srcset="files/current-th-140w.png 140w,
+                   data-srcset="files/current-th-140w.png 140w,
                           files/current-th.png 395w"
+                   data-src="files/current-th-140w.png"
                    alt="Current Backyard Pleasure Pools site"/>
             </a>
             <p class="showcase-popup-caption">Current Site. <small class="hide-small">click to enlarge</small></p>
