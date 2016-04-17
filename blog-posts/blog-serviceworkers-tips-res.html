@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<section id="intro">
+  <p>
+    I was, and still am, super excited about ServiceWorkers. More for the (possible) performance increase and offline fallback/offline aspects than the push notifications areas. So I've been reading as many devs posts about ServiceWorkers as I could and decided... lets do this. So here's me dipping my toes into it, little bit of resources I've used, and one of the problems I ran into and it's solution.
+  </p>
+</section>
+<section>
+  <h3 class="heading">Resources!</h3>
+  <p>
+    First there is already plenty of resources on getting started. So no need for me to reinvent the wheel. These few below are what helped me wrap my brain around it, and see the code in action instead of just random code on a page. By no means is this all there is or all inclusive. Its a springboard.
+  </p>
+  <ul class="no-bullet">
+    <li><a href="https://jakearchibald.com/2014/offline-cookbook/" class="external-link">Jake Archibald's 'Offline Cookbook' <span class="link-icon icon-external-link"></span></a>
+      <ul class="no-bullet">
+        <li>Lots of good recipes on when to cache resources and suggestions on how to serve those cached assets!</li>
+      </ul>
+    </li>
+    <li>
+      <a href="https://adactio.com/journal/9844" class="external-link">Jeremy Keith on Cache Limiting  <span class="link-icon icon-external-link"></span></a>
+      <ul class="no-bullet">
+        <li>
+          A follow up to his initial ServiceWorker post and how to send a message to limit the cache to a certain number.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="https://ponyfoo.com/articles/serviceworker-revolution" class="external-link">Nicolás Bevacqua Service Worker Revolution <span class="link-icon icon-external-link"></span></a>
+      <ul class="no-bullet">
+        <li>
+          An in depth post on SW strategies and how it is implemented on his site.
+        </li>
+      </ul>
+    </li>
+    <li><a href="https://www.smashingmagazine.com/2016/02/making-a-service-worker/" class="external-link">Lyza Danger Gardner's Case Study on ServiceWorkers @ SmashingMagazine <span class="link-icon icon-external-link"></span></a>
+      <ul class="no-bullet">
+        <li>
+          A really nice post on creating a ServiceWorker and some of the pitfalls and solutions.
+        </li>
+      </ul>
+    </li>
+  </ul>
+</section>
+<section>
+  <h3 class="heading">Tips!</h3>
+  <p>
+    For my personal site I run it in a virtual host on my computer. That is I use <code class="language-html">
+    corydowdy.dev</code> instead of 'http://localhost/corydowdy'. For everyday development this isn't an issue. It helps keep the paths pretty much the same for my cms in production. Service workers require HTTPS. So your dev environment will need to use HTTPS for Service
+    Workers. Which means you may need to have a cert or create a self signed one.
+  </p>
+  <p>
+    If you plan on using any "powerful features" in the near future you'll need HTTPS. Things like:
+  </p>
+  <ol>
+    <li>getUserMedia</li>
+    <li>geoLocation</li>
+    <li>fullScreen API</li>
+    <li>Device Orientation and Motion</li>
+  </ol>
+  <p>
+    If you feel like "making a self signed cert" is making you jump through hoops to develop then there are some
+    solutions when it comes to Service Workers.
+  </p>
+  <h4>Solution 1</h4>
+  <p>
+    Using <a href="https://www.mozilla.org/en-US/firefox/developer/" class="external-link">Firefox Developer Edition <span class="link-icon icon-external-link"></span></a> or regular Firefox you can enable Service Workers over HTTP while the developer console/toolbox is open.
+  </p>
+  <div class="full-to-half">
+    <ol>
+      <li>
+        Open Developer Toolbox. Either right click inspect element or:
+        <ul class="no-bullet">
+          <li>
+            <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>i</kbd> for Windows &amp; Linux
+          </li>
+          <li>
+            <kbd>cmd</kbd> + <kbd>opt</kbd> + <kbd>i</kbd> for Mac
+          </li>
+        </ul>
+      </li>
+      <li>
+        Navigate to the settings cog on the right. Highlighted in the image.
+      </li>
+      <li>
+        Under "Advanced" check "Enable Service Workers over HTTP (When Toolbox is open)"
+      </li>
+    </ol>
+  </div>
+  <div class="full-to-half">
+    <figure class="image-lightbox">
+      <a href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/firefox-dev-sw-enable-marked.png">
+        <img class="center"
+             sizes="(max-width: 50em) 80vw, 60vw"
+             srcset="/files/blog/firefox-dev-sw-enable-marked-200.png 200w,
+                /files/blog/firefox-dev-sw-enable-marked-364.png 364w,
+                /files/blog/firefox-dev-sw-enable-marked-486.png 486w,
+                /files/blog/firefox-dev-sw-enable-marked-589.png 589w,
+                /files/blog/firefox-dev-sw-enable-marked-692.png 692w,
+                /files/blog/firefox-dev-sw-enable-marked-766.png 766w,
+                /files/blog/firefox-dev-sw-enable-marked-851.png 851w,
+                /files/blog/firefox-dev-sw-enable-marked-915.png 915w,
+                /files/blog/firefox-dev-sw-enable-marked-1000.png 1000w"
+             src="/files/blog/firefox-dev-sw-enable-marked-thumb.png"
+             alt="Firefox Developer Toolbox Enabled Service Workers Checkbox">
+      </a>
+      <figcaption>
+        <p class="text-center">
+          Checkbox for Service Workers checked.
+          <small aria-hidden="true">click to enlarge</small>
+        </p>
+      </figcaption>
+    </figure>
+  </div>
+  <p>
+    Here is a hastily made screencast of what happens when the toolbox isn't open over HTTP followed up by enabling Service Workers over HTTP and leaving the developer toolbox open. You can see in the console the service worker trying to register then give you the warning it has failed. Upon enabling Service Workers and refreshing the page the "registration failed" warning now says "service worker registration complete". It works!
+  </p>
+  <div class="container">
+    <div class="video-container">
+      <video controls id="enableSW"
+             poster="/files/blog/firefox-dev-serviceworkers-enable-poster.png">
+        <source src="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/video/firefox-dev-serviceworkers-enable.mp4"
+                type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"' />
+        <source src="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/video/firefox-dev-serviceworkers-enable.webm"
+                type='video/webm;codecs="vp8, vorbis"' />
+      </video>
+      <label for="enableSW" class="visuallyhidden">Enabling Service Workers over HTTP in Firefox</label>
+    </div>
+  </div>
+  <h4>Solution 2</h4>
+  <p>
+    If your main development browser is Chrome and your dev site is simply <code class="language-http">http://localhost</code> or <code class="language-http">http://localhost/site-here</code> you're free to get on developing. If its in a virtual host, ie <code class="language-http"> site.dev</code>  then this command line switch will let you develop your ServiceWorker script over regular insecure HTTP.
+  </p>
+<pre><code class="language-bash">
+./chrome --user-data-dir=/tmp/foo --ignore-certificate-errors --unsafely-treat-insecure-origin-as-secure=http://your-site.dev
+</code></pre>
+  <p>
+    As it stands right now. Chrome is a bit easier to develop and debug Service Workers in even if you consider
+    the command needed to use Service Workers locally under a non localhost url. Chrome allows
+    you to check a box to "update on reload" and delete a Service Worker cache from the dev tools. Not to mention
+    the network throttling and offline tools which Firefox says they will soon add as well.
+  </p>
+  <p>
+    Firefox you can navigate to <code class="language-http">about:serviceworkers</code> to see the Service
+    Workers that are registered.
+  </p>
+  <h4 class="heading">Preventing ServiceWorker From Being Cached</h4>
+  <p>
+    In your dev environment it'll be preferable that your Service Worker script to not be cached. This way updates to the script can be reflected in the browser. These are strictly for development purposes. Remove in production.
+  </p>
+  <p>
+    Prevent Caching in Apache.
+  </p>
+<pre><code class="language-apacheconf">
+&lt;Files "sw.js"&gt;
+  &lt;IfModule mod_headers.c&gt;;
+    Header unset ETag
+    Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
+  &lt;/IfModule&gt;
+&lt;/Files&gt;
+</code></pre>
+  <p>
+    Prevent Caching in Nginx
+  </p>
+<pre><code class="language-nginx">
+location = /sw.js {
+  expires -1; # immediately expire this file
+  add_header Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
+}
+</code></pre>
+</section>
+<section id="fixed-critical">
+  <h3 class="heading">Critical CSS Workflow</h3>
+  <!--<p>-->
+  <!--If you are using a Critical CSS pattern like inserting inline css in the head and loading a full CSS file asynchronously you may hit a snag.-->
+  <!--</p>-->
+  <p>
+    I use a Critical CSS workflow and a script from the Filament Group called <a
+    href="https://github.com/filamentgroup/enhance" class="external-link">Enhance</a>. This takes some of their functions, cookie, getMeta, loadCSS and loadJs, and packages them up into a nice script.
+  </p>
+  <p>
+    They recomend in their examples of using Server Side includes. I use twig. An example of this would be...
+  </p>
+  <p>
+    Server Side includes - Apache
+  </p>
+<pre><code class="language-markup">
+&lt;!--#if expr="$HTTP_COOKIE=/fullcss\=true/" --&gt;
+    &lt;link rel="stylesheet" href="stylesheet-here.css"&gt;
+&lt;!--#else --&gt;
+    &lt;style&gt;
+        /* critical CSS goes here*/
+    &lt;/style&gt;
+&lt;!--#endif --&gt;
+    &lt;script&gt;
+        &lt;!--#include virtual="/path/to/enhance.js" --&gt;
+    &lt;/script&gt;
+    &lt;noscript&gt;&lt;link rel="stylesheet" href="stylesheet-here.css"&gt;&lt;/noscript&gt;
+</code></pre>
+  <p>
+    Twig ( or PHP ) pattern
+  </p>
+<pre><code class="language-twig">
+{% if app.request.cookies.has("fullcss") %}
+    &lt;link rel="stylesheet" href="stylesheet-here.css"&gt;
+{% else %}
+    &lt;style&gt;
+        /* critical CSS goes here*/
+    &lt;/style&gt;
+{% endif %}
+    &lt;script&gt;
+        {% include "/path/to/enhance.js" %}
+    &lt;/script&gt;
+    &lt;noscript&gt;&lt;link rel="stylesheet" href="stylesheet-here.css"&gt;&lt;/noscript&gt;
+</code></pre>
+  <p>
+    With many of the examples listed above in Resources they recommend you cache your homepage or your blog page in the initial installation of the ServiceWorker like so:
+  </p>
+<pre><code class="language-javascript">
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open('my-cache::v1')
+      .then( cache => {
+      cache.addAll([
+        '/blog',
+        '/js/javascript-needed-diff-page.js',
+      ]);
+      return cache.addAll([
+        'global.css',
+        'global.js',
+        '/',
+        '/images/img.jpg'
+        // etc
+      ]);
+    })
+  );
+});
+</code></pre>
+  <p>
+    On initial install both my homepage ('/') and my blog page ('/blog') are cached. This is great for perf and almost near instant loading.
+  </p>
+  <p>
+    ServiceWorkers will throw a kink into this because on a repeat visit or a refresh (depending how your serviceworker is set to cache) nothing will touch the server. The calls for the server side include or the twig check for the cookie won't produce anything. On a desktop this isn't an issue because my critical css has all the needed CSS to render the page. On a small screen device there isn't an issue either....until you try to open the navigation. Here is an example.
+  </p>
+  <div class="container">
+    <div class="full-to-half">
+      <video controls class="center video-scale-40" id="swBroke"
+             poster="/files/blog/sw_critical_css-broke-poster.png">
+        <source src="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/video/sw_critical_css-broke.mp4"
+                type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"' />
+        <source src="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/video/sw_critical_css-broke.webm"
+                type='video/webm;codecs="vp8, vorbis"' />
+      </video>
+      <label for="swBroke" class="visuallyhidden">Service Workers Prevents the cookie check for the full css</label>
+    </div>
+    <div class="full-to-half">
+      <!--<p>-->
+      <!--Here is what is happening in the video.-->
+      <!--</p>-->
+      <!--<ol>-->
+      <!--<li>0:04 Page is Loaded and the service worker is registered. The Menu button looks "normal"</li>-->
+      <!--<li>0:05 The Demo Link in the Page is Clicked and the demo's page is cached by the serviceworker</li>-->
+      <!--<li>My Name is clicked to return to the home page. The the service worker serves the cached page homepage that was cached on install. This is where normally the Full CSS file is served in place of the inline critical css</li>-->
+      <!--<li>The Contact in page link is clicked</li>-->
+      <!--<li>Again returned to the homepage and then the blog in page link is clicked</li>-->
+      <!--<li>The service worker serves the cached on install blog page</li>-->
+      <!--</ol>-->
+      <p>
+        Every time I return to the homepage or the blog page or refresh those pages and press the "menu" button
+        nothing happens. The menu button Javascript works but the CSS isn't applied.
+      </p>
+      <p>
+        Since the blog page and the homepage were cached on install the server has no chance to respond to the cookie set. Neither server side includes nor the check in twig for the cookie will succeed.
+      </p>
+      <p>
+        This could be remedied by including the dropdown css in the critical css. This though gets me though right at or just below the 14kb budget I have set for inlined critical css.
+      </p>
+    </div>
+  </div>
+  <p>
+    Luckily for me as I was starting down the ServiceWorkers path the Filament Group updated the <a href="https://github.com/filamentgroup/loadCSS"
+                                                                                                    class="external-link">loadCSS <span class="link-icon icon-external-link"></span></a> function to use the
+    resource hint <a href="http://caniuse.com/#feat=link-rel-preload" class="external-link">preload <span
+    class="link-icon icon-external-link"></span></a>.
+  </p>
+  <p>
+    Using the new pattern with preload supplied by the Filament Group it removes the Server Side Includes or
+    server based cookie check like I have above with php/twig.
+  </p>
+  <p>
+    Your templating language will probably differ from the twig template I have below but the concept is the same
+    across templating languages.
+  </p>
+<pre class="language-twig"><code>
+{#
+  Still have the Cookie check for browsers that don't support ServiceWorkers
+#}
+{% if app.request.cookies.has('fullcss') %}
+  &lt;link rel="stylesheet" href="{{ paths.theme }}css/global-styles.min.css"/&gt;
+{% else %}
+  {# No 'fullcss' cookie present then load the inline styles #}
+   {% block inlined_styles %}
+   {# Individual Inlined Styles Go in Page Template #}
+   {% endblock %}
+   {# use loadCSS along with Preload to load the stylesheet asynchronously and not block rendering #}
+  &lt;link rel="preload" href="{{ paths.theme }}css/global-styles.min.css" as="style" onload="this.rel='stylesheet'"&gt;
+  {% block enhance %}
+  &lt;script&gt;
+  {# Include Enhance JS script inline in our page  #}
+  {% include 'js/enhance/enhance-script.js' %}
+  {% endspaceless %}
+  &lt;/script&gt;
+  {% endblock enhance %}
+{% endif %}
+{# fall back styles for no javascript #}
+  &lt;noscript&gt;&lt;link rel="stylesheet" href="{{ paths.theme }}css/global-styles.min.css"/&gt;&lt;/noscript&gt;
+</code></pre>
+  <p>
+    LoadCSS also contains a polyfill for 'link rel="preload"' so it will use the standard loadCSS function in
+    browsers that don't support preload, which currently only Blink based browsers do - Chrome and Opera.
+  </p>
+  <div class="container">
+    <div class="full-to-half">
+      <p>
+        With the above pattern now applied to my site it will function as follows:
+      </p>
+      <ol>
+        <li>Install service worker if its supported and cache the homepage and blog page along with global css and
+          js
+        </li>
+        <li>
+          Set a cookie to load the full css on a return visit
+        </li>
+        <li>
+          In Service worker instances use preload and the preload polyfill to load the full css bypassing the
+          cookie check
+        </li>
+      </ol>
+      <p>
+        Now the full css file is loaded on a return visit to our homepage and the navigation works again!
+      </p>
+    </div>
+    <div class="full-to-half">
+      <video controls class="center video-scale-40"
+             poster="/files/blog/sw_crit_fixed-poster.png">
+        <source src="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/video/sw_crit_fixed.mp4"
+                type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"' />
+        <source src="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/video/sw_crit_fixed.webm"
+                type='video/webm;codecs="vp8, vorbis"' />
+      </video>
+    </div>
+  </div>
+</section>
+<section>
+  <h2 class="heading">Benefits</h2>
+  <p>
+    So is adding a service worker beneficial to this sites perf? Well... yeah. Return trips really benefit from
+    the service worker cache on a cable connection. Initial
+    first visits don't see much variance on any connection type.
+  </p>
+
+  <div class="responsive-table-container">
+    <table class="w-85 center-table">
+      <caption>Webpage Test Results With and Without Service Worker</caption>
+      <thead>
+      <tr>
+        <td ></td>
+        <td ></td>
+        <th colspan="2" class="center-text bordered">First Byte</th>
+        <th colspan="2" class="center-text bordered">Start Render</th>
+        <th colspan="2" class="center-text bordered">Speed Index</th>
+      </tr>
+      <tr>
+        <th scope="col" class="table-text">Browser</th>
+        <td></td>
+        <th scope="col"  class="table-number bordered">First View</th>
+        <th scope="col"  class="table-number">Repeat View</th>
+        <th scope="col"  class="table-number bordered">First View</th>
+        <th scope="col"  class="table-number">Repeat View</th>
+        <th scope="col"  class="table-number bordered">First View</th>
+        <th scope="col"  class="table-number">Repeat View</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr>
+        <th scope="row" rowspan="2" class="table-text">Chrome</th>
+        <th class="table-text">Without Service Worker</th>
+        <td class="table-number bordered">0.354s</td>
+        <td class="table-number">0.222s</td>
+        <td class="table-number bordered">0.873s</td>
+        <td class="table-number">0.674s</td>
+        <td class="table-number bordered">902</td>
+        <td class="table-number ">702</td>
+      </tr>
+      <tr>
+        <th class="table-text" scope="row">With Service Worker</th>
+        <td class="table-number bordered">0.280s</td>
+        <td class="table-number">0.776s</td>
+        <td class="table-number bordered">0.794s</td>
+        <td class="table-number ">0.323s</td>
+        <td class="table-number bordered">804</td>
+        <td class="table-number">303</td>
+      </tr>
+      <tr>
+        <td colspan="8" ></td>
+      </tr>
+      <tr>
+        <th scope="row" rowspan="2" class="table-text">FireFox</th>
+        <th class="table-text">Without Service Worker</th>
+        <td class="table-number bordered">0.284s</td>
+        <td class="table-number">0.226s</td>
+        <td class="table-number bordered">0.689s</td>
+        <td class="table-number">0.391s</td>
+        <td class="table-number bordered">701</td>
+        <td class="table-number">400</td>
+      </tr>
+      <tr>
+        <th scope="row">With Service Worker</th>
+        <td class="table-number bordered">0.356s</td>
+        <td class="table-number">0.308s</td>
+        <td class="table-number bordered">0.746s</td>
+        <td class="table-number">0.319s</td>
+        <td class="table-number bordered">703</td>
+        <td class="table-number">300</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>
+    Where this particular Service Worker really shines in on a 3G or slower connected device.
+  </p>
+  <table class="w-85 center-table">
+    <caption>Webpage Test Results With and Without Service Worker Over a 3G "Slow" Connection</caption>
+    <thead>
+    <tr>
+      <td ></td>
+      <td ></td>
+      <th colspan="2" class="center-text bordered">First Byte</th>
+      <th colspan="2" class="center-text bordered">Start Render</th>
+      <th colspan="2" class="center-text bordered">Speed Index</th>
+    </tr>
+    <tr>
+      <th scope="col" class="table-text">Browser</th>
+      <td></td>
+      <th scope="col"  class="table-number bordered">First View</th>
+      <th scope="col"  class="table-number">Repeat View</th>
+      <th scope="col"  class="table-number bordered">First View</th>
+      <th scope="col"  class="table-number">Repeat View</th>
+      <th scope="col"  class="table-number bordered">First View</th>
+      <th scope="col"  class="table-number">Repeat View</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr>
+      <th scope="row" rowspan="2" class="table-text">Chrome</th>
+      <th class="table-text">Without Service Worker</th>
+      <td class="table-number bordered">1.754s</td>
+      <td class="table-number">1.538s	</td>
+      <td class="table-number bordered">2.390s</td>
+      <td class="table-number">1.184s</td>
+      <td class="table-number bordered">2390</td>
+      <td class="table-number">1895</td>
+    </tr>
+    <tr>
+      <th class="table-text" scope="row">With Service Worker</th>
+      <td class="table-number bordered">1.749s</td>
+      <td class="table-number">0.098s</td>
+      <td class="table-number bordered">2.093s</td>
+      <td class="table-number">0.298s</td>
+      <td class="table-number bordered">2183</td>
+      <td class="table-number">305</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <p>
+    The Service Worker also seems to be playing a trick. In the above table showing Chrome and Firefox with a
+    service worker installed there seems to be a discrepancy with repeat views and the start render times and
+    first byte in Chrome.
+  </p>
+  <table class="center-table w-85 ">
+    <thead class="table-header">
+    <tr>
+      <th scope="col" width="200">Browser</th>
+      <th class="table-number">First Byte Repeat View</th>
+      <th class="table-number">Start Render Repeat View</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr>
+      <th scope="row">Chrome</th>
+      <td class="table-number">0.776s</td>
+      <td class="table-number">0.323s</td>
+    </tr>
+    </tbody>
+  </table>
+  <p class="image-lightbox">
+    The "first byte" is a lot slower than the start render. Since we have a Service Worker installed I'm going to
+    assume that the first byte is actually the response time from Typekit serving my fonts since they are not
+    cached with the service worker. <a title="Chrome First Byte Discrepancy"
+                                       href="img/blog/sw-chrome-discrepency.png">Here is the filmstrip <span class="link-icon icon-picture"></span></a> showing the start render at .3 seconds which gives us our start render of 0.323 seconds.
+  </p>
+</section>
+<section>
+  <h2 class="heading">And Now A Jumbled Wrap Up</h2>
+  <p>
+    Should you use Service Worker? If you have an HTTPS enabled site yeah! Do it! The Service Worker won't
+    register or run the code on browsers that don't support it so browser support isn't a big hurdle. If you have HTTPS you're probably using HTTP/2 so might as well throw this performance increase in too. Visitors with a slow connection will benefit greatly and visitors with a good connection will be just as happy with a fast loading site.
+  </p>
+</section>
+
+</body>
+</html>
