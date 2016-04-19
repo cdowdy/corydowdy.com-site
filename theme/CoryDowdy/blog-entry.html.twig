@@ -27,22 +27,25 @@
     <style>
       {% spaceless %}
   {% if record.slug == 'foundation-5-sass-and-grunt-uncss' %}
-      {% include 'css/critical-css/foundation-5-sass-and-grunt-uncss.04012016.min.css' %}
+      {% include 'css/critical-css/foundation-5-sass-and-grunt-uncss.' ~ ( critical_update ) ~ '.min.css' %}
   {% endif %}
   {% if record.slug == 'improving-pagespeed-performance' %}
-    {% include 'css/critical-css/improving-pagespeed-performance.04012016.min.css' %}
+    {% include 'css/critical-css/improving-pagespeed-performance.' ~ ( critical_update ) ~ '.min.css' %}
   {% endif %}
   {% if record.slug == 'moving-from-apache-to-nginx' %}
-    {% include 'css/critical-css/moving-from-apache-to-nginx.04012016.min.css' %}
+    {% include 'css/critical-css/moving-from-apache-to-nginx.' ~ ( critical_update ) ~ '.min.css' %}
   {% endif %}
   {% if record.slug == 'flexbox-mobile-navigation' %}
-  {% include 'css/critical-css/flexbox-mobile-navigation.04012016.min.css' %}
+  {% include 'css/critical-css/flexbox-mobile-navigation.' ~ ( critical_update ) ~ '.min.css' %}
   {% endif %}
   {% if record.slug == 'webp-jxr-nginx-content-negotiation-test' %}
-      {% include 'css/critical-css/webp-jxr.04012016.min.css' %}
+      {% include 'css/critical-css/webp-jxr.' ~ ( critical_update ) ~ '.min.css' %}
    {% endif %}
   {% if record.slug == 'it-s-apple-s-web-we-re-just-playing-in-it' %}
-      {% include 'css/critical-css/moving-from-apache-to-nginx.04012016.min.css' %}
+      {% include 'css/critical-css/moving-from-apache-to-nginx.' ~ ( critical_update ) ~ '.min.css' %}
+  {% endif %}
+  {% if record.slug == 'service-workers-resources-tips-and-solutions' %}
+      {% include 'css/critical-css/serviceworkers.' ~ ( critical_update ) ~ '.min.css' %}
   {% endif %}
       {#{% include 'css/fout.twig' %}#}
       {% endspaceless %}
@@ -102,6 +105,13 @@
     {{ parent() }}
   <script src="{{ paths.theme }}js/picturefill/picturefill.min.js" async ></script>
   <script src="{{ paths.theme }}js/lightbox.08172015.min.js" async defer></script>
-  <script src="{{ paths.theme}}js/lib/visited-localstorage.min.js" async defer ></script>
-  <script src="{{ paths.theme }}js/prism/prism-11-17-2014.js"></script>
+{% if app.request.headers.has( DNT|lower )  == 0 %}
+<script src="{{ paths.theme}}js/lib/visited-localstorage.min.js" async defer ></script>
+{% else %}
+    {# remove the visited local storage from LS ... keep this here for a bit until
+      we can assume all local storage has been wiped. 6 months or so
+    #}
+<script>window.localStorage.clear();</script>
+{% endif %}
+  <script src="{{ paths.theme }}js/prism/prism.04-11-2016.js"></script>
 {% endblock %}
