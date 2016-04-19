@@ -4,11 +4,11 @@
 'use strict';
 
 // cache versioning
-const VERSION = 'v1.0.10::';
+const VERSION = 'v1.0.14::';
 // Static Cache Name -> for static assets
 const STATIC_CACHE_NAME = VERSION + 'static';
 // URLS/Pages Cache
-const URL_CACHE_NAME = VERSION + 'page';
+const PAGE_CACHE_NAME = VERSION + 'page';
 // Cache For Images
 const IMG_CACHE_NAME = VERSION + 'img';
 
@@ -20,14 +20,13 @@ const MAXIMG    = 30;
 const URLCACHE = [
   '/',
   '/blog'
-  // 'theme/CoryDowdy/css/app.02-18-2016.min.css'
 ];
 
 // our static cache
 const STATIC_CACHE = [
-  'theme/CoryDowdy/css/app.02-18-2016.min.css',
+  'theme/CoryDowdy/css/app.04-18-2016.min.css',
   'theme/CoryDowdy/css/icons/icons.data.svg.01182016.css',
-  'theme/CoryDowdy/js/navigation-9a37b5a40f.js'
+  'theme/CoryDowdy/js/navigation-04-17-2016.min.js'
 ];
 
 // update our static cache on install
@@ -96,7 +95,7 @@ self.addEventListener('activate', event => {
 // this also keeps async loaded types from blowing past the cache maximum number allowed like imgs
 self.addEventListener('message', event => {
   if (event.data.command === 'trimCaches') {
-    removeOldCache(URL_CACHE_NAME, MAXPAGES);
+    removeOldCache(PAGE_CACHE_NAME, MAXPAGES);
     removeOldCache(IMG_CACHE_NAME, MAXIMG);
   }
 });
@@ -112,7 +111,7 @@ self.addEventListener('fetch', event => {
   }
 
   // Ignore requests to some directories
-  if (request.url.indexOf('/bolt') !== -1 || request.url.indexOf('/info') !== -1) {
+  if (request.url.indexOf('/bolt') !== -1 || request.url.indexOf('/info') !== -1 || request.url.indexOf('/preview') !== -1) {
     return;
   }
 
@@ -121,6 +120,38 @@ self.addEventListener('fetch', event => {
     event.respondWith(
       fetch(request)
         .catch( () => caches.match('/offline') )
+    );
+    return;
+  }
+
+  // if the request is for html look cache first fall back to the network
+  if (request.headers.get('Accept').indexOf('text/html') !== -1) {
+    //  Chrome bug: https://code.google.com/p/chromium/issues/detail?id=573937
+    if (request.mode !== 'navigate') {
+      request = new Request(url, {
+        method: 'GET',
+        headers: request.headers,
+        mode: request.mode,
+        credentials: request.credentials,
+        redirect: request.redirect
+      });
+    }
+    event.respondWith(
+      caches.match(request)
+        .then(response => {
+          // cache bad thaaaang
+          return response || fetch(request)
+              .then( response => {
+                  let copy = response.clone();
+                  putInCache(PAGE_CACHE_NAME, request, copy);
+                return response;
+              })
+              .catch( () => {
+                // return cache match or fallback
+                return caches.match(request)
+                  .then( response => response || caches.match('/offline') );
+              });
+        })
     );
     return;
   }
@@ -138,24 +169,12 @@ self.addEventListener('fetch', event => {
                 let copy = response.clone();
                 putInCache(IMG_CACHE_NAME, request, copy);
               }
-              if(request.headers.get('Accept').indexOf('text/html') !==1 ) {
-                if (request.mode != 'navigate') {
-                  request = new Request(url, {
-                    method: 'GET',
-                    headers: request.headers,
-                    mode: request.mode,
-                    credentials: request.credentials,
-                    redirect: request.redirect
-                  });
-                }
-                let copy = response.clone();
-                putInCache(URL_CACHE_NAME, request, copy);
-              }
               return response;
             })
             .catch( () => {
               // OFFLINE
-              // If the request is for an image, show an offline placeholder
+              // borrowed from Jeremy Keith (@adactio)
+              // https://adactio.com/journal/9844
               if (request.headers.get('Accept').indexOf('image') !== -1) {
                 return new Response('<svg role="img" aria-labelledby="offline-title" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><title id="offline-title">Offline</title><g fill="none" fill-rule="evenodd"><path fill="#D8D8D8" d="M0 0h400v300H0z"/><text fill="#9B9B9B" font-family="Helvetica Neue,Arial,Helvetica,sans-serif" font-size="72" font-weight="bold"><tspan x="93" y="172">offline</tspan></text></g></svg>', {headers: {'Content-Type': 'image/svg+xml'}});
               }
