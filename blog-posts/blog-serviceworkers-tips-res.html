@@ -436,6 +436,7 @@ self.addEventListener('install', event => {
   <p>
     Where this particular Service Worker really shines in on a 3G or slower connected device.
   </p>
+  <div class="responsive-table-container">
   <table class="w-85 center-table">
     <caption>Webpage Test Results With and Without Service Worker Over a 3G "Slow" Connection</caption>
     <thead>
@@ -480,12 +481,13 @@ self.addEventListener('install', event => {
     </tr>
     </tbody>
   </table>
-
+  </div>
   <p>
     The Service Worker also seems to be playing a trick. In the above table showing Chrome and Firefox with a
     service worker installed there seems to be a discrepancy with repeat views and the start render times and
     first byte in Chrome.
   </p>
+  <div class="responsive-table-container">
   <table class="center-table w-85 ">
     <thead class="table-header">
     <tr>
@@ -503,6 +505,7 @@ self.addEventListener('install', event => {
     </tr>
     </tbody>
   </table>
+    </div>
   <p class="image-lightbox">
     The "first byte" is a lot slower than the start render. Since we have a Service Worker installed I'm going to
     assume that the first byte is actually the response time from Typekit serving my fonts since they are not
