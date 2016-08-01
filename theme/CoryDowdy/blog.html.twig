@@ -6,7 +6,7 @@
 
 {% block inlined_styles %}
     <style>
-        {% include 'css/critical-css/blog.04242015.css' %}
+        {% include 'css/critical-css/blog.07212015.css' %}
         {% include 'css/fout.twig' %}
     </style>
 {% endblock %}
@@ -14,32 +14,74 @@
 
 
 {% block body %}
-    <div class="push-down">
-        {% setcontent blogposts = "blog/latest/5" allowpaging  %}
-        {% for blogpost in blogposts %}
-          <article class="container" itemscope="" itemtype="http://schema.org/BlogPosting">
-            <div class="full">
-              <div class="listing-snippet">
-                <header>
-                  <h3 class="blog-post-title" itemprop="headline url"><a href="{{ blogpost.link }}">{{ blogpost.title }}</a></h3>
-                    {% set recdate = blogpost.datepublish|localdate("%A %B %e, %Y") %}
-                      <p class="pub-date" itemprop="datePublished">{{ __('Posted on %date%',{ '%date%': recdate }) }}</p>
-                </header>
-                <p itemprop="description">
-                  {{ blogpost.teaser }}
+  <div class="push-down">
+      <div class="container">
+        <div class="blog-list">
+          {% setcontent blogposts = "blog/latest/5" allowpaging %}
+          {% for blogpost in blogposts %}
+            <article class="blog-list--post" itemscope="" itemtype="http://schema.org/BlogPosting">
+              <header>
+                <h2 class="blog-list--title" itemprop="headline url">
+                  <a href="{{ blogpost.link }}">{{ blogpost.title }}</a>
+                </h2>
+                {% set recdate = blogpost.datepublish|localdate("%A %B %e, %Y") %}
+                <p class="pub-date" itemprop="datePublished">
+                  {{ __('Posted on %date%',{ '%date%': recdate }) }}
                 </p>
-                <a itemprop="url" href="{{ blogpost.link }}">{{ __('Read Post &#10141;') }}</a>
-              </div>
-              <div class="listing-image">
-                <img itemprop="image" class="center" src="{{ image(blogpost.image) }}" alt="{{ blogpost.title }}" >
-              </div><!-- /.listing-image -->
-            </div><!-- /.full -->
+              </header>
+              <p class="blog-teaser" itemprop="description">
+                  {{ blogpost.teaser }}
+              </p>
+              <ul class="blog-list--info">
+                <li>
+                  <a lass="blog-list--post-link" itemprop="url"
+                     href="{{ blogpost.link }}">{{ __('Read Post &#10141;') }}
+                  </a>
+                </li>
+                <li class="blog-list--categories">
+                  <strong>Category:</strong>
+                 {% if blogpost.taxonomy.categories is defined %}
+                   {% for value, category in blogpost.taxonomy.categories %}
+                     <a href="{{ value }}">{{ category }}</a>
+                     {#{{ category }} {{ value }}#}
+                   {% endfor %}
+                 {% endif %}
+                {#{{  dump(blogpost.taxonomy) }}#}
+                </li>
+              </ul>
           </article>
+            <hr/>
+          {% endfor %}
+        </div>
+        <aside class="blog-list--sidebar">
+          <form action="">
+            <div class="container">
+              <div class="blog-list-search-input">
+                <label for="search">Search For A Post</label>
+                <input id="search" type="search" aria-label="Search For A Post" placeholder="Search For Post">
+              </div>
+              <div class="blog-list-search-button-container ">
+                <a href="#" class="search search-button">Search</a>
+              </div>
+            </div>
+          </form>
+          {% setcontent postCategories = "blogs" %}
+            {{ dump(postCategories) }}
+          <hr>
+          {{ dump(postCategories.id) }}
 
-          <hr/>
-        {% endfor %}
+          <ul class="blog--category-list">
+            <li class="category-list-header">Categories</li>
+            <li class="category-list-item"><a href="#">one</a></li>
+            <li class="category-list-item"><a href="#2">two</a></li>
+            <li class="category-list-item"><a href="#3">three</a></li>
+            <li class="category-list-item"><a href="#4">four</a></li>
+            <li class="category-list-item"><a href="#5">five</a></li>
+            <li class="category-list-item"><a href="#6">six</a></li>
+          </ul>
+        </aside>
+      </div>
     </div><!-- /.push-down -->
-
 {% endblock %}
 
 {% block footer_javascripts %}
