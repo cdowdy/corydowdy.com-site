@@ -63,3 +63,12 @@ composer.json.dist
 
 
 README.md
+/theme/base-2016/
+/bolt-public/
+/.htaccess
+/index.php
+/thumbs/
+/extensions/
+/files/
+/phpinfo.php
+/assets/
