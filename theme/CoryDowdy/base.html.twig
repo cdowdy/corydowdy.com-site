@@ -1,5 +1,6 @@
 {% set css_update = '04-18-2016' %}
-{% set critical_update = '04182016' %}
+{% set critical_update = '05172016' %}
+{% set mdrnzr_vers = '05172016' %}
 {# make sure to include fn-navTrigger into critical CSS if you get checkbox flashes #}
 <!doctype html>
 <html class="no-js" lang="{{ htmllang() }}">
@@ -23,6 +24,7 @@
   <script>{% spaceless %}{# Include TypeKit JavaScript #}{% include 'js/typekit/typekit.min.js' %}
             {% endspaceless %}
   </script>
+  <script src="{{ paths.theme }}js/lib/modernizr/modernizr.{{ mdrnzr_vers }}.js" async ></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#2C3E50"/>
@@ -105,7 +107,7 @@
             No Flexbox, No Flexbox Legacy, CSS Rem Unit, CSS Media Queryies
         #}
         {# dirty hack to include picturefill AFTER the noscript css#}
-        <script src="{{ paths.theme }}js/lib/modernizr/modernizr.04242015.min.js" async ></script>
+        {#<script src="{{ paths.theme }}js/lib/modernizr/modernizr-custom.js" async ></script>#}
   {% endblock %}
   {% block picturefill %}
   {% endblock picturefill %}
