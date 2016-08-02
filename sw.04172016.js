@@ -4,7 +4,7 @@
 'use strict';
 
 // cache versioning
-const VERSION = 'v1.0.14::';
+const VERSION = 'v1.0.15.5::';
 // Static Cache Name -> for static assets
 const STATIC_CACHE_NAME = VERSION + 'static';
 // URLS/Pages Cache
@@ -24,7 +24,7 @@ const URLCACHE = [
 
 // our static cache
 const STATIC_CACHE = [
-  'theme/CoryDowdy/css/app.04-18-2016.min.css',
+  'theme/CoryDowdy/css/app.08-01-2016.min.css',
   'theme/CoryDowdy/css/icons/icons.data.svg.01182016.css',
   'theme/CoryDowdy/js/navigation-04-17-2016.min.js'
 ];
