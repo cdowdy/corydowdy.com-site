@@ -157,8 +157,8 @@
     Prevent Caching in Apache.
   </p>
 <pre><code class="language-apacheconf">
-&lt;Files "sw.js"&gt;
-  &lt;IfModule mod_headers.c&gt;;
+&lt; Files "sw.js" &gt;
+  &lt;IfModule mod_headers.c&gt;
     Header unset ETag
     Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
   &lt;/IfModule&gt;
@@ -206,15 +206,15 @@ location = /sw.js {
     Twig ( or PHP ) pattern
   </p>
 <pre><code class="language-twig">
-{% if app.request.cookies.has("fullcss") %}
+&lbrace;% if app.request.cookies.has("fullcss") %&rbrace;
     &lt;link rel="stylesheet" href="stylesheet-here.css"&gt;
-{% else %}
+&lbrace;% else %&rbrace;
     &lt;style&gt;
         /* critical CSS goes here*/
     &lt;/style&gt;
-{% endif %}
+&lbrace;% endif %&rbrace;
     &lt;script&gt;
-        {% include "/path/to/enhance.js" %}
+        &lbrace;% include "/path/to/enhance.js" %&rbrace;
     &lt;/script&gt;
     &lt;noscript&gt;&lt;link rel="stylesheet" href="stylesheet-here.css"&gt;&lt;/noscript&gt;
 </code></pre>
@@ -222,7 +222,7 @@ location = /sw.js {
     With many of the examples listed above in Resources they recommend you cache your homepage or your blog page in the initial installation of the ServiceWorker like so:
   </p>
 <pre><code class="language-javascript">
-self.addEventListener('install', event => {
+self.addEventListener('install', event => &lbrace;
   event.waitUntil(
     caches.open('my-cache::v1')
       .then( cache => {
@@ -237,7 +237,7 @@ self.addEventListener('install', event => {
         '/images/img.jpg'
         // etc
       ]);
-    })
+    &rbrace;)
   );
 });
 </code></pre>
@@ -297,28 +297,29 @@ self.addEventListener('install', event => {
     across templating languages.
   </p>
 <pre class="language-twig"><code>
-{#
+&lbrace;#
   Still have the Cookie check for browsers that don't support ServiceWorkers
-#}
-{% if app.request.cookies.has('fullcss') %}
-  &lt;link rel="stylesheet" href="{{ paths.theme }}css/global-styles.min.css"/&gt;
-{% else %}
-  {# No 'fullcss' cookie present then load the inline styles #}
-   {% block inlined_styles %}
-   {# Individual Inlined Styles Go in Page Template #}
-   {% endblock %}
-   {# use loadCSS along with Preload to load the stylesheet asynchronously and not block rendering #}
-  &lt;link rel="preload" href="{{ paths.theme }}css/global-styles.min.css" as="style" onload="this.rel='stylesheet'"&gt;
-  {% block enhance %}
+#&rbrace;
+&lbrace;% if app.request.cookies.has('fullcss') %&rbrace;
+  &lt;link rel="stylesheet" href="&lbrace;&lbrace; paths.theme &rbrace;&rbrace;css/global-styles.min.css"/&gt;
+&lbrace;% else %&rbrace;
+  &lbrace;# No 'fullcss' cookie present then load the inline styles #&rbrace;
+   &lbrace;% block inlined_styles %&rbrace;
+   &lbrace;# Individual Inlined Styles Go in Page Template #&rbrace;
+   &lbrace;% endblock %&rbrace;
+   &lbrace;# use loadCSS along with Preload to load the stylesheet asynchronously and not block rendering #&rbrace;
+  &lt;link rel="preload" href="&lbrace;&lbrace; paths.theme &rbrace;&rbrace;css/global-styles.min.css" as="style" onload="this.rel='stylesheet'"&gt;
+  &lbrace;% block enhance %&rbrace;
   &lt;script&gt;
-  {# Include Enhance JS script inline in our page  #}
-  {% include 'js/enhance/enhance-script.js' %}
-  {% endspaceless %}
+
+  &lbrace;# Include Enhance JS script inline in our page  #&rbrace;
+  &lbrace;% include 'js/enhance/enhance-script.js' %&rbrace;
+
   &lt;/script&gt;
-  {% endblock enhance %}
-{% endif %}
-{# fall back styles for no javascript #}
-  &lt;noscript&gt;&lt;link rel="stylesheet" href="{{ paths.theme }}css/global-styles.min.css"/&gt;&lt;/noscript&gt;
+  &lbrace;% endblock enhance %&rbrace;
+&lbrace;% endif %&rbrace;
+&lbrace;# fall back styles for no javascript #&rbrace;
+  &lt;noscript&gt;&lt;link rel="stylesheet" href="&lbrace;&lbrace; paths.theme &rbrace;&rbrace;css/global-styles.min.css"/&gt;&lt;/noscript&gt;
 </code></pre>
   <p>
     LoadCSS also contains a polyfill for 'link rel="preload"' so it will use the standard loadCSS function in
@@ -510,7 +511,7 @@ self.addEventListener('install', event => {
     The "first byte" is a lot slower than the start render. Since we have a Service Worker installed I'm going to
     assume that the first byte is actually the response time from Typekit serving my fonts since they are not
     cached with the service worker. <a title="Chrome First Byte Discrepancy"
-                                       href="img/blog/sw-chrome-discrepency.png">Here is the filmstrip <span class="link-icon icon-picture"></span></a> showing the start render at .3 seconds which gives us our start render of 0.323 seconds.
+                                       href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/sw-chrome-discrepency.png">Here is the filmstrip <span class="link-icon icon-picture"></span></a> showing the start render at .3 seconds which gives us our start render of 0.323 seconds.
   </p>
 </section>
 <section>
