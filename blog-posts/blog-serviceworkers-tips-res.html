@@ -157,7 +157,7 @@
     Prevent Caching in Apache.
   </p>
 <pre><code class="language-apacheconf">
-&lt; Files "sw.js" &gt;
+&lt;Files "sw.js" &gt;
   &lt;IfModule mod_headers.c&gt;
     Header unset ETag
     Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
