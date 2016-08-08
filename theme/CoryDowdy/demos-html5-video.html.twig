@@ -1,5 +1,11 @@
 {% extends 'base.html.twig' %}
-
+{#
+ remember to add back in the critical css method
+ {% include 'css/critical-css/demos-bolt-resp.' ~ ( critical_update ) ~ '.min.css
+#}
+{% block inlined_styles %}
+  <style>{% include 'css/critical-css/demos-bolt-html5video.08082016.min.css' %}</style>
+{% endblock inlined_styles %}
 
 {% block body %}
     <div class="centered-header push-down">
