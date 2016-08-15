@@ -4,7 +4,7 @@
 'use strict';
 
 // cache versioning
-const VERSION = 'v1.0.15.5::';
+const VERSION = 'v1.0.16::';
 // Static Cache Name -> for static assets
 const STATIC_CACHE_NAME = VERSION + 'static';
 // URLS/Pages Cache
