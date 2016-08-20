@@ -16,8 +16,8 @@
   background: $header-color;
   min-width: 100%;
   padding: $header-padding;
-//  @include promote-layer();
-//  @include clearfix();
+  //  @include promote-layer();
+  //  @include clearfix();
   @media screen and (min-width: 50em) {
     height: $big-header-height; // 100px
     padding: $big-header-padding; // 15px 0
@@ -31,20 +31,20 @@
   padding: 0 rem-calc(15);
   height: 100%;
   // @800px hide the title container ( name and menu button )
-//  @media screen and (min-width: 50em) {
-//    @include hide-screen-readers();
-//  }
+  //  @media screen and (min-width: 50em) {
+  //    @include hide-screen-readers();
+  //  }
   @media screen and (min-width: 50em ) {
     display: block;
-//    padding-left: 0.9375rem;
-//    padding-right: 0.9375rem;
+    //    padding-left: 0.9375rem;
+    //    padding-right: 0.9375rem;
     width: 50%;
     float: left;
-//    @include grid-column(6);
+    //    @include grid-column(6);
   }
   @media screen and (min-width: 68.75em) {
     padding-top: .5%;
-//    padding-left: 7.75%;
+    //    padding-left: 7.75%;
   }
 }
 
@@ -78,7 +78,7 @@
     transition: color .5s ease;
     &:hover,
     &:focus {
-     color: #95aaaa
+      color: #95aaaa
     }
   }
 }
@@ -94,9 +94,9 @@
     color: $silver;
     border: rem-calc(2) solid $silver;
   }
-    @media screen and (min-width: 50em) {
-      @include hide-screen-readers();
-    }
+  @media screen and (min-width: 50em) {
+    @include hide-screen-readers();
+  }
   // @ 150px center the button in the header
   @media screen and (max-width: 9.375em) {
     margin: auto;
@@ -185,11 +185,11 @@
 /* navigation list item */
 .fn-navigation__item {
 
- @media screen and (max-width: 49.9375em) {
-   &:not(:last-child) {
-     padding: rem-calc(5) 0;
-   }
- }
+  @media screen and (max-width: 49.9375em) {
+    &:not(:last-child) {
+      padding: rem-calc(5) 0;
+    }
+  }
   @media screen and (min-width: 50em) {
     padding: rem-calc(15) ;
 
@@ -203,9 +203,9 @@
   &:focus,
   &:active {
     background: #F2F2F2;
-   a {
-     color: $header-color;
-   }
+    a {
+      color: $header-color;
+    }
   }
 }
 
@@ -220,11 +220,11 @@
       display: inline-block;
       width: 100%;
     }
-//    &:hover,
-//    &:focus,
+    //    &:hover,
+    //    &:focus,
     &:active {
-//      background-color: $header-nav-list-item-bg-hover;
-//      color: $header-nav-anchor-color-hover;
+      //      background-color: $header-nav-list-item-bg-hover;
+      //      color: $header-nav-anchor-color-hover;
       outline: 1px solid #F2F2F2;
     }
   }
@@ -245,14 +245,14 @@
 // hide checkbox trigger for browsers with js and above 800px
 
 
-  .fn-navTrigger__no-js {
-    display: none;
-    visibility: hidden;
-  }
-  #fn-noJs_label {
-    display: none;
-    visibility: hidden;
-  }
+.fn-navTrigger__no-js {
+  display: none;
+  visibility: hidden;
+}
+#fn-noJs_label {
+  display: none;
+  visibility: hidden;
+}
 
 
 // display the checkbox under 800px
@@ -293,12 +293,14 @@
   .no-js #fn-noJs_label {
     position: absolute;
     top: 1.5%;
-    left: 80%;
+    left: 75%; // was 80% but menu image was pushed to far to the right hidding the image
     color: $silver;
     width: rem-calc(75);
     height: rem-calc(30);
     cursor: pointer;
-    background: transparent url("../img/menu.png") center no-repeat;
+    // to match cms paths use "/theme/CoryDowdy/img/menu.png"
+    // otherwise its "img/menu.png"
+    background: transparent url("/theme/CoryDowdy/img/menu.png") center no-repeat;
   }
 }
 
@@ -387,7 +389,7 @@
 }
 
 .no-mediaqueries .fn-header__name {
-    padding-top: 15px;
+  padding-top: 15px;
 }
 
 .no-mediaqueries .fn-header__button {
