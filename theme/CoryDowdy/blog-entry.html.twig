@@ -59,9 +59,9 @@
 
 
 {% block body %}
-    <article class="push-down full" itemscope="" itemtype="http://schema.org/BlogPosting">
+    <article class="push-down post" itemscope="" itemtype="http://schema.org/BlogPosting">
      <meta itemprop="image" content="{{ paths.canonical }}/files/{{ record.image }}" />
-        <header class="centered-header">
+        <header class="blog-header">
             <h1 class="blog-list--title" itemprop="headline">{{ record.title }}</h1>
             <h2 class="heading-pub pub-date" itemprop="datePublished">
               {% set recdate = record.datepublish|localdate("%A %B %e, %Y") %}
