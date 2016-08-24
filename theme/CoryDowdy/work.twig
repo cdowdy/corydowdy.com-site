@@ -26,7 +26,7 @@
 {% block header_javascripts %}
   {{ parent() }}
   <script src="{{ paths.theme }}js/picturefill/picturefill.min.js" async ></script>
-  <script src="{{ paths.theme }}js/lib/lazysizes.min.js" async></script>
+  {#<script src="{{ paths.theme }}js/lib/lazysizes.min.js" async></script>#}
 {% endblock header_javascripts %}
 
 
@@ -91,9 +91,9 @@
             <a href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/img/work/comp_1_pop.png" title="First Site Comp.">
               <img class="center lazyload"
                    sizes="25vw"
-                   data-srcset="files/comp1-th-140w.png 140w,
+                   srcset="files/comp1-th-140w.png 140w,
                    files/comp1-th.png 395w"
-                   data-src="files/comp1-th-140w.png"
+                   src="files/comp1-th-140w.png"
                    alt="first site comp"/>
             </a>
             <p class="showcase-popup-caption">First Site Comp. <small class="hide-small">click to enlarge</small></p>
@@ -102,9 +102,9 @@
             <a href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/img/work/comp_2_pop.png" title="Second Site Comp.">
               <img class="center lazyload"
                    sizes="25vw"
-                   data-srcset="files/comp2-th-140w.png 140w,
+                   srcset="files/comp2-th-140w.png 140w,
                               files/comp2-th.png 395w"
-                   data-src="files/comp2-th-140w.png"
+                   src="files/comp2-th-140w.png"
                    alt="Second site comp"/>
             </a>
           <p class="showcase-popup-caption">Second Site Comp. <small class="hide-small">click to enlarge</small></p>
@@ -113,9 +113,9 @@
             <a href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/img/work/comp_3_pop.png" title="Third Site Comp.">
               <img class="center lazyload"
                    sizes="25vw"
-                   data-srcset="files/comp3-th-140w.png 140w,
+                   srcset="files/comp3-th-140w.png 140w,
                               files/comp3-th.png 395w"
-                   data-src="files/comp3-th-140w.png"
+                   src="files/comp3-th-140w.png"
                    alt="Third site comp"/>
             </a>
             <p class="showcase-popup-caption">Third Site Comp. <small class="hide-small">click to enlarge</small></p>
@@ -124,9 +124,9 @@
             <a href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/img/work/current_pop.png" title="Current Site.">
               <img class="center lazyload"
                    sizes="25vw"
-                   data-srcset="files/current-th-140w.png 140w,
+                   srcset="files/current-th-140w.png 140w,
                           files/current-th.png 395w"
-                   data-src="files/current-th-140w.png"
+                   src="files/current-th-140w.png"
                    alt="Current Backyard Pleasure Pools site"/>
             </a>
             <p class="showcase-popup-caption">Current Site. <small class="hide-small">click to enlarge</small></p>
@@ -159,6 +159,5 @@
 {% block footer_javascripts %}
 <script src="{{ paths.theme }}js/lightbox.08172015.min.js" async defer ></script>
   {#<script>if(!window.HTMLPictureElement){function loadJS(e,t){"use strict";var n=window.document.getElementsByTagName("script")[0],o=window.document.createElement("script");return o.src=e,o.async=!0,n.parentNode.insertBefore(o,n),t&&"function"==typeof t&&(o.onload=t),o}loadjs('{{ paths.theme }}js/picturefill/picturefill.min.js')}</script>#}
-
 {{ parent() }}
 {% endblock footer_javascripts %}
