@@ -47,6 +47,9 @@
   {% if record.slug == 'service-workers-resources-tips-and-solutions' %}
       {% include 'css/critical-css/serviceworkers.' ~ ( critical_update ) ~ '.min.css' %}
   {% endif %}
+{% if record.slug == 'converting-mp4-to-webm' %}
+      {% include 'css/critical-css/mp4webm.' ~ ( critical_update ) ~ '.min.css' %}
+{% endif %}
       {#{% include 'css/fout.twig' %}#}
       {% endspaceless %}
     </style>
@@ -114,4 +117,5 @@
 <script>window.localStorage.clear();</script>
 {% endif %}
   <script src="{{ paths.theme }}js/prism/prism-08-01-2016.js"></script>
+    <script src="{{ paths.theme }}js/lib/lazysizes.3b6dd2a7.min.js" async></script>
 {% endblock %}
