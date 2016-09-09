@@ -25,8 +25,8 @@
 #}
 {% block header_javascripts %}
   {{ parent() }}
-  <script src="{{ paths.theme }}js/picturefill/picturefill.min.js" async ></script>
-  {#<script src="{{ paths.theme }}js/lib/lazysizes.min.js" async></script>#}
+  {#<script src="{{ paths.theme }}js/picturefill/picturefill.min.js" async ></script>#}
+  <script src="{{ paths.theme }}js/lib/lazysizes.3b6dd2a7.min.js" async></script>
 {% endblock header_javascripts %}
 
 
@@ -71,7 +71,7 @@
                             files/bypp-showcase-1433.png 1433w,
                             files/bypp-showcase-1548.png 1548w,
                             files/bypp-showcase-1600.png 1600w"
-                 src="files/bypp-showcase-726.png"
+                 src="files/bypp-showcase-658.png"
                  alt="Backyard Pleasure Pools site on Multiple Devices">
             <figcaption class="showcase-container--caption">
               <p>
@@ -90,10 +90,11 @@
           <li class="image-lightbox">
             <a href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/img/work/comp_1_pop.png" title="First Site Comp.">
               <img class="center lazyload"
-                   sizes="25vw"
-                   srcset="files/comp1-th-140w.png 140w,
+                   {#data-sizes="25vw"#}
+                   data-sizes="auto"
+                   data-srcset="files/comp1-th-140w.png 140w,
                    files/comp1-th.png 395w"
-                   src="files/comp1-th-140w.png"
+                   data-src="files/comp1-th-140w.png"
                    alt="first site comp"/>
             </a>
             <p class="showcase-popup-caption">First Site Comp. <small class="hide-small">click to enlarge</small></p>
@@ -101,10 +102,10 @@
           <li class="image-lightbox">
             <a href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/img/work/comp_2_pop.png" title="Second Site Comp.">
               <img class="center lazyload"
-                   sizes="25vw"
-                   srcset="files/comp2-th-140w.png 140w,
+                   data-sizes="auto"
+                   data-srcset="files/comp2-th-140w.png 140w,
                               files/comp2-th.png 395w"
-                   src="files/comp2-th-140w.png"
+                   data-src="files/comp2-th-140w.png"
                    alt="Second site comp"/>
             </a>
           <p class="showcase-popup-caption">Second Site Comp. <small class="hide-small">click to enlarge</small></p>
@@ -112,10 +113,10 @@
           <li class="image-lightbox">
             <a href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/img/work/comp_3_pop.png" title="Third Site Comp.">
               <img class="center lazyload"
-                   sizes="25vw"
-                   srcset="files/comp3-th-140w.png 140w,
+                   data-sizes="auto"
+                   data-srcset="files/comp3-th-140w.png 140w,
                               files/comp3-th.png 395w"
-                   src="files/comp3-th-140w.png"
+                   data-src="files/comp3-th-140w.png"
                    alt="Third site comp"/>
             </a>
             <p class="showcase-popup-caption">Third Site Comp. <small class="hide-small">click to enlarge</small></p>
@@ -123,10 +124,10 @@
           <li class="image-lightbox">
             <a href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/img/work/current_pop.png" title="Current Site.">
               <img class="center lazyload"
-                   sizes="25vw"
-                   srcset="files/current-th-140w.png 140w,
+                   data-sizes="auto"
+                   data-srcset="files/current-th-140w.png 140w,
                           files/current-th.png 395w"
-                   src="files/current-th-140w.png"
+                   data-src="files/current-th-140w.png"
                    alt="Current Backyard Pleasure Pools site"/>
             </a>
             <p class="showcase-popup-caption">Current Site. <small class="hide-small">click to enlarge</small></p>
