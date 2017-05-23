@@ -59,13 +59,13 @@
 
 
     {% block enhance_js_meta %}
-    <meta name="fullcss"  content="{{ paths.theme }}css/app.{{ css_update }}.min.css">
-    <meta name="gpng" content="{{ paths.theme }}css/icons/icons.fallback.01182016.css">
-    {#<meta name="gsvg" content="{{ paths.theme }}css/icons/icons.data.svg.01182016.css">#}
-    <meta name="gdpng" content="{{ paths.theme }}css/icons/icons.data.png.01182016.css">
+    <meta name="fullcss"  content="/theme/CoryDowdy/css/app.{{ css_update }}.min.css">
+    <meta name="gpng" content="/theme/CoryDowdy/css/icons/icons.fallback.01182016.css">
+    {#<meta name="gsvg" content="/theme/CoryDowdy/css/icons/icons.data.svg.01182016.css">#}
+    <meta name="gdpng" content="/theme/CoryDowdy/css/icons/icons.data.png.01182016.css">
     {% endblock %}
   <!--[if lt IE 9]>
-  <link rel="stylesheet" href="{{ paths.theme }}css/oldie.07-17-2015.css">
+  <link rel="stylesheet" href="/theme/CoryDowdy/css/oldie.07-17-2015.css">
   <![endif]-->
     {#  stylesheets block #}
   {% block fout %}
@@ -78,16 +78,16 @@
     {% block stylesheets %}
 
       {% if app.request.cookies.has('fullcss') %}
-    <link rel="stylesheet" href="{{ paths.theme }}css/app.{{ css_update }}.min.css"/>
-    <link rel="stylesheet" href="{{ paths.theme }}css/icons/icons.data.svg.01182016.css" />
+    <link rel="stylesheet" href="/theme/CoryDowdy/css/app.{{ css_update }}.min.css"/>
+    <link rel="stylesheet" href="/theme/CoryDowdy/css/icons/icons.data.svg.01182016.css" />
       {# No 'fullcss' cookie then load the inline styles #}
       {% else %}
       {% block inlined_styles %}
         {#Individual Inlined Styles Go in Page Template #}
       {% endblock %}
       {# also load the full css and svg icons using "preload" as to not block rendering #}
-    <link rel="preload" href="{{ paths.theme }}css/app.{{ css_update }}.min.css" as="style" onload="this.rel='stylesheet'">
-    <link rel="preload" href="{{ paths.theme }}css/icons/icons.data.svg.01182016.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="/theme/CoryDowdy/css/app.{{ css_update }}.min.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="/theme/CoryDowdy/css/icons/icons.data.svg.01182016.css" as="style" onload="this.rel='stylesheet'">
 
             {% block enhance %}
                 <script>
@@ -100,12 +100,12 @@
             {% endblock enhance %}
         {% endif %}
           {# fall back styles for no javascript #}
-    <noscript><link rel="stylesheet" href="{{ paths.theme }}css/app.{{ css_update }}.min.css"/></noscript>
-    <noscript><link rel="stylesheet" href="{{ paths.theme }}css/icons/icons.fallback.01182016.css" ></noscript>
+    <noscript><link rel="stylesheet" href="/theme/CoryDowdy/css/app.{{ css_update }}.min.css"/></noscript>
+    <noscript><link rel="stylesheet" href="/theme/CoryDowdy/css/icons/icons.fallback.01182016.css" ></noscript>
 
     {% endblock %}
 
-  <script src="{{ paths.theme }}js/lib/modernizr/modernizr.05232017.min.js" async ></script>
+  <script src="/theme/CoryDowdy/js/lib/modernizr/modernizr.05232017.min.js" async ></script>
   {# include javascripts / javascripts block #}
   {% block header_javascripts %}
         {# Modernizr:
@@ -113,7 +113,7 @@
             No Flexbox, No Flexbox Legacy, CSS Rem Unit, CSS Media Queryies
         #}
         {# dirty hack to include picturefill AFTER the noscript css#}
-        {#<script src="{{ paths.theme }}js/lib/modernizr/modernizr-custom.js" async ></script>#}
+        {#<script src="/theme/CoryDowdy/js/lib/modernizr/modernizr-custom.js" async ></script>#}
   {% endblock %}
   {% block picturefill %}
   {% endblock picturefill %}
@@ -165,7 +165,7 @@
 
 
     {% block footer_javascripts %}
-    <script src="{{ paths.theme }}js/navigation-05-17-2017.min.js" async defer></script>
+    <script src="/theme/CoryDowdy/js/navigation-05-17-2017.min.js" async defer></script>
     {% endblock %}
 
 </body>
