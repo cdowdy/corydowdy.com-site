@@ -1,6 +1,6 @@
 {% set css_update = '09-08-2016' %}
 {% set critical_update = '09-08-2016' %}
-{% set mdrnzr_vers = '05172016' %}
+{% set mdrnzr_vers = '05232017' %}
 {# make sure to include fn-navTrigger into critical CSS if you get checkbox flashes #}
 <!doctype html>
 <html class="no-js" lang="{{ htmllang() }}">
@@ -105,7 +105,7 @@
 
     {% endblock %}
 
-  <script src="/theme/CoryDowdy/js/lib/modernizr/modernizr.05232017.min.js" async ></script>
+  <script src="/theme/CoryDowdy/js/lib/modernizr/modernizr.{{ mdrnzr_vers }}.min.js" async ></script>
   {# include javascripts / javascripts block #}
   {% block header_javascripts %}
         {# Modernizr:
