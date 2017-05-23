@@ -24,7 +24,6 @@
   <script>{% spaceless %}{# Include TypeKit JavaScript #}{% include 'js/typekit/typekit.min.js' %}
             {% endspaceless %}
   </script>
-  <script src="{{ paths.theme }}js/lib/modernizr/modernizr.{{ mdrnzr_vers }}.js" async ></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#2C3E50"/>
@@ -54,7 +53,7 @@
     {% block enhance_js_meta %}
     <meta name="fullcss"  content="{{ paths.theme }}css/app.{{ css_update }}.min.css">
     <meta name="gpng" content="{{ paths.theme }}css/icons/icons.fallback.01182016.css">
-    <meta name="gsvg" content="{{ paths.theme }}css/icons/icons.data.svg.01182016.css">
+    {#<meta name="gsvg" content="{{ paths.theme }}css/icons/icons.data.svg.01182016.css">#}
     <meta name="gdpng" content="{{ paths.theme }}css/icons/icons.data.png.01182016.css">
     {% endblock %}
   <!--[if lt IE 9]>
@@ -70,26 +69,23 @@
 
     {% block stylesheets %}
 
-        {# Load these Stylesheets only if the 'fullcss' cookie is present #}
-        {% if app.request.cookies.has('fullcss') %}
+      {% if app.request.cookies.has('fullcss') %}
     <link rel="stylesheet" href="{{ paths.theme }}css/app.{{ css_update }}.min.css"/>
-    <link rel="stylesheet" href="{{ app.request.cookies.get('grunticon') }}" />
-        {% else %}
-        {# No 'fullcss' cookie then load the inline styles #}
-            {% block inlined_styles %}
-                 {#Individual Inlined Styles Go in Page Template #}
-            {% endblock %}
+    <link rel="stylesheet" href="{{ paths.theme }}css/icons/icons.data.svg.01182016.css" />
+      {# No 'fullcss' cookie then load the inline styles #}
+      {% else %}
+      {% block inlined_styles %}
+        {#Individual Inlined Styles Go in Page Template #}
+      {% endblock %}
       {# also load the full css and svg icons using "preload" as to not block rendering #}
     <link rel="preload" href="{{ paths.theme }}css/app.{{ css_update }}.min.css" as="style" onload="this.rel='stylesheet'">
-     {% if app.request.cookies.has('grunticon') %}
-       <link rel="preload" href="{{ app.request.cookies.get('grunticon') }}" as="style" onload="this.rel='stylesheet'">
-       {% endif %}
+    <link rel="preload" href="{{ paths.theme }}css/icons/icons.data.svg.01182016.css" as="style" onload="this.rel='stylesheet'">
+
             {% block enhance %}
                 <script>
                     {% spaceless %}
                     {# Include Enhance JS  #}
-                    {#{% include 'js/enhance/enhance-newLoadCSS-07-23-2015.js' %}#}
-                    {% include 'js/enhance/enhance-04-18-2016.min.js' %}
+                    {% include 'js/enhance/enhance-05-15-2017.min.js' %}
                     {% endspaceless %}
                 </script>
 
@@ -100,6 +96,8 @@
     <noscript><link rel="stylesheet" href="{{ paths.theme }}css/icons/icons.fallback.01182016.css" ></noscript>
 
     {% endblock %}
+
+  <script src="{{ paths.theme }}js/lib/modernizr/modernizr.05232017.min.js" async ></script>
   {# include javascripts / javascripts block #}
   {% block header_javascripts %}
         {# Modernizr:
@@ -159,7 +157,7 @@
 
 
     {% block footer_javascripts %}
-    <script src="{{ paths.theme }}js/navigation-04-17-2016.min.js" async defer></script>
+    <script src="{{ paths.theme }}js/navigation-05-17-2017.min.js" async defer></script>
     {% endblock %}
 
 </body>
