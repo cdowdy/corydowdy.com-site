@@ -1,0 +1,1079 @@
+<section id="intro">
+  <p>
+    With Chrome now supporting Animated PNG as of Chrome 59 we have two image formats that can supplant the old and
+    tired GIF format. Varying posts and sites have different conclusions on when to use APNG versus an animated
+    Webp. In all my findings (linked below where the source Gif comes from) animated webp beats apng in filesize
+    each and every time. Sometimes by not
+    very much. This of course is anecdotal and I'm not as familiar with apng as the creators and others may be so
+    they may be able to squeeze more out of an apng than I can.
+  </p>
+  <p>
+    All that being said I've heard and read people say "APNG might be bigger but webp takes longer to decode in the
+    browser". That assumes the larger APNG will load faster than the smaller webp. Is that the case though? I assume
+    the smaller webp gets downloaded to the client faster then it'll start decoding faster. Thus animating faster.
+    So lets actually test that instead of me spouting off haha. On to the source GIF.
+  </p>
+  <p>
+    The GIF I'm using for this post comes from my post on <a
+    href="https://corydowdy.com/blog/converting-mp4-to-webm"
+    class="external-link">Converting MP4 To Webm <span class="link-icon icon-external-link">&nbsp;</span></a>. That was a
+    1080p video stripped down to about 5 seconds and resized to a width of 800.
+  </p>
+  <p>
+    Here are the relevant details of the unoptimized GIF:
+  </p>
+  <ul>
+    <li>Dimensions: 800x450</li>
+    <li>Length: 5s</li>
+    <li>Size: &thickapprox;37.9MB</li>
+  </ul>
+
+</section>
+<section id="setup">
+  <h2 class="heading">Setup</h2>
+  <p>
+    Before we can even embark on this trip we have to convert the GIF above to an APNG and an Animated Webp. Maybe
+    you can convert the GIF on this page to an APNG and get better results. Please try I don't want to dismiss APNG
+    as much as I think I'm probably coming off as.
+  </p>
+  <h3 class="heading">Converting to an Animated PNG (apng)</h3>
+  <p>
+    Gif2apng offers three different options for converting a GIF to an animated PNG. We have zlib, 7zip and Zopfli
+    compression. Each compression option besides zlib allows you to set an iteration amount which defaults to 15.
+  </p>
+  <p>
+    I'm using gif2apng version 1.9 <sup><a aria-labelledby="apng-footnote-label" href="#footnotes-apng">[ 1 ] [ 2
+    ]</a></sup>. For both 7zip and zopfli I'll use the "default" iterations of 15 and a more aggressive version of
+    100. Be warned if you want to do this. Depending on your server specs or locally on your own computer and it's
+    specs Zopfli will take a long time. Increasing the iterations for either of the compression algorithms will also
+    increase how long it takes to convert your image to an APNG. Be prepared to set aside a pretty big chunk of time
+    if you do this on your computer :).
+  </p>
+  <p>
+    After converting the GIF to an Animated PNG I'll also run it through APNGOPT. This should "optimize" the
+    Animated PNG. This too offers differing amount of iterations. I'll use the "default" of 15 for each apng that
+    was converted with the defaults above and 100 for all the 100 iterations.
+  </p>
+  <h4 class="heading">APNG Filesize Results</h4>
+  <div class="responsive-table-container">
+    <table class="center-table">
+      <caption>Filesize Comparisons of Animated PNG</caption>
+      <thead class="table-header">
+      <tr>
+        <th scope="col">Compression Type</th>
+        <th scope="col" class="table-number">Size in MB</th>
+        <th scope="col">Link To File</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">Unoptimized Gif</th>
+        <td class="table-number">&thickapprox;37.9MB</td>
+        <td class="image-lightbox">
+          <a href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/squirrel.gif"
+             class="external-link">Unoptimized Gif <span
+            class="link-icon icon-picture">&nbsp;</span></a></td>
+      </tr>
+
+      <tr>
+        <th scope="row">Animated PNG with Zlib</th>
+        <td class="table-number">&thickapprox;33.01MB</td>
+        <td class="image-lightbox">
+          <a href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/squirrel.zlib.png"
+             class="external-link">Animated PNG (using zLib) <span class="link-icon icon-picture">&nbsp;</span></a>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">Animated PNG with 7zip 15 iterations</th>
+        <td class="table-number">&thickapprox;31.22MB</td>
+        <td class="image-lightbox">
+          <a href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog//apngwebp/squirrel.7z.png"
+             class="external-link">Animated PNG 7zip 15 iterations<span class="link-icon icon-picture">&nbsp;</span></a>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">Animated PNG with 7zip 100 iterations</th>
+        <td class="table-number">&thickapprox;31.22MB</td>
+        <td class="image-lightbox">
+          <a href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog//apngwebp/squirrel.7z.100.png"
+             class="external-link">Animated PNG 7zip 100 iterations<span class="link-icon icon-picture">&nbsp;</span></a>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">Animated PNG with Zopfli 15 iterations</th>
+        <td class="table-number">&thickapprox;30.92MB</td>
+        <td class="image-lightbox">
+          <a href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/squirrel.zopfli.png"
+             class="external-link">Animated PNG zopfli 15 iterations<span class="link-icon icon-picture">&nbsp;</span></a>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">Animated PNG with Zopfli 100 iterations</th>
+        <td class="table-number">&thickapprox;30.87MB</td>
+        <td class="image-lightbox">
+          <a href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/squirrel.zopfli.100.png"
+             class="external-link">Animated PNG zopfli 100 iterations<span
+            class="link-icon icon-picture">&nbsp;</span></a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>
+    We can see that Zopfli compression saves the most before running these through apngopt. It's very CPU intensive
+    though. After running these through apngopt things didn't change much or at all.
+  </p>
+
+  <div class="responsive-table-container">
+    <table class="center-table">
+      <caption>Filesize of APNG after using APNGOPT</caption>
+      <thead class="table-header">
+      <tr>
+        <th scope="col">Compression Type</th>
+        <th scope="col" class="table-number">Original Size in MB</th>
+        <th scope="col" class="table-number">APNGOPT Size in MB</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">Unoptimized Gif</th>
+        <td class="table-number">&thickapprox;37.9MB</td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <th scope="row">Animated PNG with Zlib</th>
+        <td class="table-number">&thickapprox;33.01MB</td>
+        <td class="table-number">&thickapprox;33.04MB</td>
+      </tr>
+      <tr>
+        <th scope="row">Animated PNG with 7zip 15 iterations</th>
+        <td class="table-number">&thickapprox;31.22MB</td>
+        <td class="table-number">&thickapprox;31.21MB</td>
+      </tr>
+      <tr>
+        <th scope="row">Animated PNG with 7zip 100 iterations</th>
+        <td class="table-number">&thickapprox;31.22MB</td>
+        <td class="table-number">&thickapprox;31.21MB</td>
+      </tr>
+      <tr>
+        <th scope="row">Animated PNG with Zopfli 15 iterations</th>
+        <td class="table-number">&thickapprox;30.92MB</td>
+        <td class="table-number">&thickapprox;30.91MB</td>
+      </tr>
+      <tr>
+        <th scope="row">Animated PNG with Zopfli 100 iterations</th>
+        <td class="table-number">&thickapprox;30.87MB</td>
+        <td class="table-number">&thickapprox;30.86MB</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h5 class="heading" id="apng-footnote-label">APNG Footnotes</h5>
+  <ol id="footnotes-apng">
+    <li>On a windows machine just use the GUI they package from sourceforge. It seems to be the most up to date. I
+      haven't had the time to see if the GUI and CLI differ in anyway so that'll be up to you unless you're ok with
+      the output of the GUI then keep on keepin on!
+    </li>
+    <li>If you install gif2apng through your OS's package manager (ie: apt-get/apt) depending on your OS's you'll
+      more than likely get version 1.7.
+    </li>
+    <li>
+      Depending on your OS again if you use the CLI version of apngopt you'll get versions ranging from 1.1 to 1.4.
+    </li>
+  </ol>
+  <h2 class="heading">Animated Webp</h2>
+  <p>
+    The same reference gif was converted to a webp using three different options and WebP Encoder version: 0.6.0
+    (WebP Mux version: 0.4.0).
+  </p>
+  <p>
+    I didn't dive into the different CLI options available for gif2webp. Things such has <code
+    class="language-bash"> -kmin </code> , <code class="language-bash"> -kmax </code> &mdash; which specify the
+    minimum and maximum distance between consecutive key frames and can improve decoding performance &mdash; or
+    adjust the deblocking filter <code
+    class="language-bash"> -f </code> from the docs suggested 50. These could with adjustments and tweaking
+    produce smaller or in some instances bigger files. You'll have to test those out for specific images, or use
+    the defaults such as I have.
+  </p>
+  <ul>
+    <li>
+      <a href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/squirrel.default.webp"
+         class="external-link">It's default settings (quality 75) <span class="link-icon icon-picture">&nbsp;</span></a>
+    </li>
+    <li>
+      <a href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/squirrel.q70.m6.webp"
+         class="external-link">quality of 70 and 6 (-m 6) for the compression mode. It's highest.<span
+        class="link-icon icon-picture">&nbsp;</span></a>
+    </li>
+    <li>
+      <a href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/squirrel.q70.webp"
+         class="external-link">A quality of 70 with default compression of 4 (lossless)<span
+        class="link-icon icon-picture">&nbsp;</span></a>
+
+    </li>
+    <li>
+      <a href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/squirrel.q70.mixed.webp"
+         class="external-link">an unfair mixed mode (lossless and lossy compression) with a quality of 70<span
+        class="link-icon icon-picture">&nbsp;</span></a>
+    </li>
+    <li>
+      <a href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/squirrel.q70.m6.mixed.webp"
+         class="external-link">another unfair Quality 70 with Commpression of 6 &amp; Mixed compression (lossy and
+        lossles)<span class="link-icon icon-picture">&nbsp;</span></a>
+    </li>
+  </ul>
+  <p>
+    Webp at it's default settings beats (barely) each of the converted APNG's, 30.86MB for the Webp compared to
+    33.01MB using default APNG settings (zlib) and 30.87MB using zopfli compression @ 100 iterations.
+  </p>
+  <div class="responsive-table-container">
+    <table class="center-table">
+      <caption>Filesize of Webp &amp; Optimized APNG</caption>
+      <thead class="table-header">
+      <tr>
+        <th scope="col">File</th>
+        <th scope="col">Quality</th>
+        <th scope="col">Compression Mode</th>
+        <th scope="col" class="table-number">Webp Size in MB</th>
+        <th scope="col" class="table-number">Best APNGOPT Size in MB</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row" rowspan="5">Animated Webp</th>
+        <td class="table-number">Default (75)</td>
+        <td class="table-number">Default (4)</td>
+        <td class="table-number">&thickapprox;30.82MB</td>
+        <td rowspan="5">&thickapprox;30.86MB</td>
+      </tr>
+      <tr>
+        <td class="table-number">70</td>
+        <td class="table-number">6 highest</td>
+        <td class="table-number">&thickapprox;31.80MB</td>
+      </tr>
+      <tr>
+        <td class="table-number">70</td>
+        <td class="table-number">Default (4)</td>
+        <td class="table-number">&thickapprox;30.82MB</td>
+      </tr>
+      <tr>
+        <td class="table-number">70</td>
+        <td class="table-number">Mixed</td>
+        <td class="table-number">&thickapprox;5.86MB</td>
+      </tr>
+      <tr>
+        <td class="table-number">70</td>
+        <td class="table-number">Mixed &amp; 6 (highest)</td>
+        <td class="table-number">&thickapprox;5.32MB</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <p>
+    Ok cool all the file size mumbo jumbo is out of the way. Does a few kb/mb matter when they are so close? The
+    default webp settings gives us the same size file of an apng using apngout and zopfli @ 100 iterations.
+  </p>
+  <p>
+    Yep. The larger apng will in fact decode faster. But does that matter? Kind of.
+  </p>
+</section><!-- /#setup -->
+<section id="realworld-tests">
+  <h2 class="heading">Summoning the WebPageTest Gods!</h2>
+  <p>
+    Typically in a situation like this I would use <a href="http://www.webpagetest.org/video/"
+                                                      class="external-link">Webpagetest's "visual comparison"
+    <span class="link-icon icon-external-link">&nbsp;</span></a> option that way
+    we could see the pages load side by side. I'd run a desktop test and then I'd run a mobile test using the
+    "emerging markets" settings. I can't right now since as mentioned above APNG support is in Chrome 59+. The
+    visual comparison tool uses the current stable release of Chrome (which just happened to be updated while I
+    was testing these out. Still to be sure I ran with the Canary version). What most everyone using a non dev/beta
+    version of Chrome uses.
+  </p>
+  <p>
+    So I'm running these tests on Chrome Canary and will use the median from the first view as the comparison. I'll
+    run each image option/type three (3) times on Chrome desktop using a cable connection &mdash; 5Mbps 28ms Latency
+    &mdash; and three times using a Fourth Generation Moto G and their "Mobile 3g" connection &mdash; 768
+    Kbps 3G connection with 300ms of latency.
+  </p>
+</section>
+
+<h3 class="heading">Webp Defaults vs. Best Animated PNG</h3>
+<p>
+  The first comparison I ran is the default settings of gif2webp. As mentioned above this defaults to a quality
+  of 75, compression mode of 4 and is lossless like APNG. You can download these animated images and run them
+  yourself. You'll see which actually loads faster without even having to read haha.
+</p>
+<p>
+  Webp at it's default settings might in fact be smaller in file size (for this particular animation) than the
+  APNG. It helps in the fact that we are sending less bytes down the wire but as for over all page load
+  performance you can see below it's not helping much or if any at all.
+</p>
+<div class="responsive-table-container">
+  <table class="center-table w-85">
+    <caption>Webp Defaults, Best APNG Chrome Desktop Cable Connection</caption>
+    <thead class="table-header">
+    <tr class="image-lightbox">
+      <th>&nbsp;</th>
+      <th scope="col" class="table-number">Webp Defaults (<a
+        href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/data_results/webp-defaults-desktop.png"
+        title="Webp Defaults Desktop Cable Connection">test screenshot
+        <span
+          class="link-icon icon-picture">&nbsp;</span></a>)
+      </th>
+      <th scope="col" class="table-number">Best APNG (<a
+        href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/data_results/apng-best-desktop.png"
+        title="APNG Zopfli 100 Iterations Desktop Cable Connection">test screenshot
+        <span
+          class="link-icon icon-picture">&nbsp;</span></a>)
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <th>Page Load Time</th>
+      <td class="table-number">65.398s</td>
+      <td class="table-number">53.274s</td>
+    </tr>
+    <tr>
+      <th>Speed Index (lower better)</th>
+      <td class="table-number">2671</td>
+      <td class="table-number">3108</td>
+    </tr>
+    <tr>
+      <th>Document Complete</th>
+      <td class="table-number">65.398s</td>
+      <td class="table-number">53.274s</td>
+    </tr>
+    <tr>
+      <th>Visually Complete</th>
+      <td class="table-number">16.400s</td>
+      <td class="table-number">44.7s</td>
+    </tr>
+    <tr>
+      <th>Fully Loaded</th>
+      <td class="table-number">65.489s</td>
+      <td class="table-number">53.341s</td>
+    </tr>
+    <tr>
+      <th>First Interactive</th>
+      <td class="table-number">1.076s</td>
+      <td class="table-number">0.984s</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<p>
+  Here we can see the visual differences between both of these formats.
+</p>
+
+<div class="container">
+  <div class="video-container">
+    <video controls
+           preload="metadata"
+           poster="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/data_results/webp-defaults-apng-desktop-poster.png"
+           src="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/data_results/webp-defaults-apng-desktop.1.mp4">
+    </video>
+  </div>
+</div>
+
+<p>
+  These are large files. You're doing yourself and your users a disservice if you send these big honking things
+  down the wire to them.
+</p>
+
+<h3 class="heading">Webp and APNG on Mobile 3g Connection</h3>
+<p>
+  Webp's defaults will help you out on a a slow 3g connection because it's sending less data. APNG gets frames
+  faster to the screen since it decodes faster, hence the better speed index below.
+</p>
+
+<div class="responsive-table-container">
+  <table class="center-table w-85">
+    <caption>Webp Defaults, Best APNG Chrome Mobile 3g Connection</caption>
+    <thead class="table-header">
+    <tr class="image-lightbox">
+      <th>&nbsp;</th>
+      <th scope="col" class="table-number">Webp Defaults (<a
+        href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/data_results/webp-defaults-mobile.png"
+        title="Webp Defaults Mobile 3g Connection">test screenshot
+        <span
+          class="link-icon icon-picture">&nbsp;</span></a>)
+      </th>
+      <th scope="col" class="table-number">Best APNG (<a
+        href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/data_results/apng-best-mobile-3g.png"
+        title="APNG Zopfli 100 Iterations Mobile 3g Connection">test screenshot
+        <span
+          class="link-icon icon-picture">&nbsp;</span></a>)
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <th>Page Load Time</th>
+      <td class="table-number">144.133s</td>
+      <td class="table-number">146.060s</td>
+    </tr>
+    <tr>
+      <th>Speed Index (lower better)</th>
+      <td class="table-number">5791</td>
+      <td class="table-number">5157</td>
+    </tr>
+    <tr>
+      <th>Visually Complete</th>
+      <td class="table-number">21.037s</td>
+      <td class="table-number">41.014s</td>
+    </tr>
+    <tr>
+      <th>Fully Loaded</th>
+      <td class="table-number">144.133s</td>
+      <td class="table-number">146.060s</td>
+    </tr>
+    <tr>
+      <th>First Interactive</th>
+      <td class="table-number">4.485s</td>
+      <td class="table-number">3.327s</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div class="container">
+  <div class="video-container">
+    <video controls
+           preload="metadata"
+           poster="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/data_results/webp-defaults-apng-mobile-poster.png"
+           src="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/data_results/webp-defaults-apng-mobile.mp4">
+    </video>
+  </div>
+</div>
+<p>
+  So don't use APNG nor the Webp Defaults on a slow connection in my opinion. They are big files.
+</p>
+<section id="best-option">
+  <h2 class="heading">Your Best Bet</h2>
+  <p>
+    So is there a solution for smaller file size than gif and that actually helps your page performance? Yes if
+    you don't mind a possible lossy compressed image.
+  </p>
+  <p>
+    We can take the Webp image converted with the defaults, the mixed compression (lossy & lossless), the lossy
+    converted webp, and a lossy compressed and filtered webp image and compare those to the "best" file size wise
+    APNG and an unoptimized GIF.
+  </p>
+  <p>
+    Before I show you those here are the numbers from those runs on a desktop.
+  </p>
+  <div class="responsive-table-container">
+    <table class="center-table">
+      <caption>WPT Result Comparison of Gif, Animated PNG &amp; Animated Webp on Desktop Cable Connection</caption>
+      <thead class="table-header">
+      <tr>
+        <th>&nbsp;</th>
+        <th scope="col" colspan="4" class="center-text bordered">Webp Conversion Type</th>
+        <th class="bordered">&nbsp;</th>
+        <th></th>
+      </tr>
+      <tr>
+        <th></th>
+        <th class="bordered">Defaults</th>
+        <th>Lossy</th>
+        <th>Lossy &amp; Filtered</th>
+        <th>Mixed</th>
+        <th class="bordered">APNG Best</th>
+        <th class="bordered">GIF</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th>Page Load Time</th>
+        <td class="table-number bordered">65.398s</td>
+        <td class="table-number bordered">11.495s</td>
+        <td class="table-number bordered">11.349s</td>
+        <td class="table-number bordered">9.632s</td>
+        <td class="table-number bordered">53.274s</td>
+        <td class="table-number bordered">66.412s</td>
+      </tr>
+      <tr>
+        <th>Speed Index (lower better)</th>
+        <td class="table-number bordered">2671</td>
+        <td class="table-number bordered">962</td>
+        <td class="table-number bordered">785</td>
+        <td class="table-number bordered">882</td>
+        <td class="table-number bordered">3108</td>
+        <td class="table-number bordered">2282</td>
+      </tr>
+      <tr>
+        <th>Document Complete</th>
+        <td class="table-number bordered">65.398s</td>
+        <td class="table-number bordered">11.495s</td>
+        <td class="table-number bordered">11.349s</td>
+        <td class="table-number bordered">9.632s</td>
+        <td class="table-number bordered">53.274s</td>
+        <td class="table-number bordered">66.412s</td>
+      </tr>
+      <tr>
+        <th>Visually Complete</th>
+        <td class="table-number bordered">16.400s</td>
+        <td class="table-number bordered">1.200s</td>
+        <td class="table-number bordered">4.400s</td>
+        <td class="table-number bordered">4.200s</td>
+        <td class="table-number bordered">44.7s</td>
+        <td class="table-number bordered">45.100s</td>
+      </tr>
+      <tr>
+        <th>Fully Loaded</th>
+        <td class="table-number bordered">65.489s</td>
+        <td class="table-number bordered">11.600s</td>
+        <td class="table-number bordered">11.446s</td>
+        <td class="table-number bordered">9.734s</td>
+        <td class="table-number bordered">53.341s</td>
+        <td class="table-number bordered">66.486s</td>
+      </tr>
+      <tr>
+        <th>First Interactive</th>
+        <td class="table-number bordered">1.076s</td>
+        <td class="table-number bordered">0.879s</td>
+        <td class="table-number bordered">0.681s</td>
+        <td class="table-number bordered">0.783s</td>
+        <td class="table-number bordered">0.984s</td>
+        <td class="table-number bordered">0.778s</td>
+      </tr>
+      <tr class="image-lightbox">
+        <th></th>
+        <td class="bordered">
+          <a
+            href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/data_results/webp-defaults-desktop.png"
+            title="Webp Defaults Desktop Cable Connection">test screenshot <span
+            class="link-icon icon-picture">&nbsp;</span></a>
+        </td>
+        <td class="bordered">
+          <a
+            href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/data_results/webp-lossy-desktop.png"
+            title="Webp Lossy Desktop Cable Connection">test screenshot <span class="link-icon icon-picture"></span></a>
+        </td>
+        <td class="bordered">
+          <a
+            href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/data_results/webp-lossy-filtered-desktop.png"
+            title="Webp Lossy & Filtered Desktop Cable Connection">test screenshot <span
+            class="link-icon icon-picture">&nbsp;</span></a>
+        </td>
+        <td class="bordered">
+          <a
+            href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/data_results/webp-mixed-desktop.png"
+            title="Webp Mixed Compression Desktop Cable Connection">test screenshot <span
+            class="link-icon icon-picture">&nbsp;</span></a>
+        </td>
+        <td class="bordered">
+          <a
+            href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/data_results/apng-best-desktop.png"
+            title="APNG Zopfli 100 Iterations Desktop Cable Connection">test screenshot <span
+            class="link-icon icon-picture">&nbsp;</span></a>
+        </td>
+        <td class="bordered">
+          <a
+            href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/data_results/gif-desktop.png"
+            title="Unoptimized GIF Desktop Cable Connection">test screenshot <span
+            class="link-icon icon-picture">&nbsp;</span></a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <p>
+    Here is the visual comparison.
+  </p>
+  <div class="container">
+    <div class="video-container">
+      <video controls preload="metadata"
+             poster="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/data_results/webp-apng-gif-desktop-poster.png">
+        <source
+          src="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/data_results/webp-apng-gif-desktop.1.webm"
+          type='video/webm'/>
+        <source
+          src="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/data_results/webp-apng-gif-desktop.1.mp4"
+          type='video/mp4'/>
+      </video>
+    </div>
+  </div>
+
+  <p>
+    What I was most surprised by was how close a default settings animated webp and an unoptimized gif page load
+    times and speed index were.
+  </p>
+  <p>
+    These aren't fair comparision to APNG either since there is lossy compression. There's also high variance in the
+    load times. Much like you'd have in a real world scenario. So take these results with a grain of salt. I
+    didn't put much effort into making them all variable free.
+  </p>
+  <h3 class="heading">APNG and Webp Mobile 3g</h3>
+  <p>
+    Where you'll get the most benefit with this animated webp is on a slow 3g connection.
+  </p>
+  <div class="responsive-table-container">
+    <table class="center-table">
+      <caption>WPT Result Comparison of Gif, Animated PNG &amp; Animated Webp on Mobile 3g Connection</caption>
+      <thead class="table-header">
+      <tr>
+        <th>&nbsp;</th>
+        <th scope="col" colspan="4" class="center-text bordered">Webp Conversion Type</th>
+        <th class="bordered">&nbsp;</th>
+        <th></th>
+      </tr>
+      <tr>
+        <th></th>
+        <th class="bordered">Defaults</th>
+        <th>Lossy</th>
+        <th>Lossy &amp; Filtered</th>
+        <th>Mixed</th>
+        <th class="bordered">APNG Best</th>
+        <th class="bordered">GIF</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th>Page Load Time</th>
+        <td class="table-number bordered">144.133s</td>
+        <td class="table-number bordered">37.631s</td>
+        <td class="table-number bordered">37.408s</td>
+        <td class="table-number bordered">31.839s</td>
+        <td class="table-number bordered">146.060s</td>
+        <td class="table-number bordered">124.712s</td>
+      </tr>
+      <tr>
+        <th>Speed Index (lower better)</th>
+        <td class="table-number bordered">5791</td>
+        <td class="table-number bordered">3811</td>
+        <td class="table-number bordered">3964</td>
+        <td class="table-number bordered">3858</td>
+        <td class="table-number bordered">5157</td>
+        <td class="table-number bordered">29382</td>
+      </tr>
+      <tr>
+        <th>Visually Complete</th>
+        <td class="table-number bordered">21.037s</td>
+        <td class="table-number bordered">6.871s</td>
+        <td class="table-number bordered">34.057s</td>
+        <td class="table-number bordered">30.033s</td>
+        <td class="table-number bordered">41.014s</td>
+        <td class="table-number bordered">106.860s</td>
+      </tr>
+      <tr>
+        <th>Fully Loaded</th>
+        <td class="table-number bordered">144.133s</td>
+        <td class="table-number bordered">38.075s</td>
+        <td class="table-number bordered">37.950s</td>
+        <td class="table-number bordered">32.412s</td>
+        <td class="table-number bordered">146.060s</td>
+        <td class="table-number bordered">124.712s</td>
+      </tr>
+      <tr>
+        <th>First Interactive</th>
+        <td class="table-number bordered">4.485s</td>
+        <td class="table-number bordered">3.448s</td>
+        <td class="table-number bordered">3.473s</td>
+        <td class="table-number bordered">3.458s</td>
+        <td class="table-number bordered">3.327s</td>
+        <td class="table-number bordered">18.347s</td>
+      </tr>
+      <tr class="image-lightbox">
+        <th></th>
+        <td class="bordered">
+          <a
+            href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/data_results/webp-defaults-mobile.png"
+            title="Webp Defaults Mobile 3g Connection">test screenshot <span class="link-icon icon-picture">&nbsp;</span></a>
+        </td>
+        <td class="bordered">
+          <a
+            href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/data_results/webp-lossy-mobile.png"
+            title="Webp Lossy Mobile 3g Connection">test screenshot <span class="link-icon icon-picture">&nbsp;</span></a>
+        </td>
+        <td class="bordered">
+          <a
+            href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/data_results/webp-lossy-filtered-mobile.png"
+            title="Webp Lossy & Filtered Mobile 3g Connection">test screenshot <span
+            class="link-icon icon-picture">&nbsp;</span></a>
+        </td>
+        <td class="bordered">
+          <a
+            href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/data_results/webp-mixed-mobile.png"
+            title="Webp Mixed Compression Mobile 3g Connection">test screenshot <span
+            class="link-icon icon-picture">&nbsp;</span></a>
+        </td>
+        <td class="bordered">
+          <a
+            href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/data_results/apng-best-mobile-3g.png"
+            title="APNG Zopfli 100 Iterations Mobile 3g Connection">test screenshot <span
+            class="link-icon icon-picture">&nbsp;</span></a>
+        </td>
+        <td class="bordered">
+          <a
+            href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/data_results/gif-mobile.png"
+            title="Unoptimized GIF Mobile 3g Connection">test screenshot <span
+            class="link-icon icon-picture">&nbsp;</span></a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="container">
+    <div class="video-container">
+      <video controls preload="metadata"
+             poster="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/data_results/webp-apng-gif-mobile-poster.png">
+        <source
+          src="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/data_results/webp-apng-gif-mobile.webm"
+          type='video/webm'/>
+        <source
+          src="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/data_results/webp-apng-gif-mobile.mp4"
+          type='video/mp4'/>
+      </video>
+    </div>
+  </div>
+  <p>
+    The animated webp's load faster on 3g since there's less data being sent. APNG's decode a bit faster and the
+    GIF is just flat out bad. What I didn't include is CPU busy time but you can get a feel for that in the
+    "First Interactive" numbers. Here's what Webpagetest says First interactive is:
+  </p>
+  <blockquote>
+    <p>
+      reports when the page is first expected to be usable and will respond to input quickly (with the possibility
+      of slow responses as more content loads).
+    </p>
+  </blockquote>
+</section>
+<section id="what-should-i-use">
+  <h2 class="heading">What Should You Use</h2>
+  <p>
+    None of these. No really. Well I should say typically depending on your browser support and what you have as
+    a source format you shouldn't use any of these (animated webp, animated png or GIF).
+  </p>
+  <p>
+    If you have control over your source. Meaning you have the actual video you wish to use as a short animation
+    then use a short video. As I've shown in my other post, <a
+    href="https://corydowdy.com/blog/converting-mp4-to-webm#giflike">Converting MP4 To Webm</a>, these video
+    formats can be significantly smaller. For instance these same animated images as their corresponding MP4's
+    and webm's are a lot smaller.
+  </p>
+  <div class="responsive-table-container">
+    <table class="center-table w-85">
+      <caption>Filesize Comparison of GIF, Animated Webp, Animated PNG, MP4 &amp; WebM</caption>
+      <thead class="table-header">
+      <tr>
+        <th scope="col">File Type Type</th>
+        <th scope="col" class="table-number">Size in MB</th>
+        <th scope="col">Link To File</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">Unoptimized Gif</th>
+        <td class="table-number">&thickapprox;37.9MB</td>
+        <td><a href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/squirrel.gif"
+               class="external-link">Unoptimized Gif <span
+          class="link-icon icon-picture">&nbsp;</span></a></td>
+      </tr>
+      <tr>
+        <th>Default Webp</th>
+        <td class="table-number">&thickapprox;30.82MB</td>
+        <td></td>
+      </tr>
+      <tr>
+        <th>APNG Zopfli 100 Iterations</th>
+        <td class="table-number">&thickapprox;30.87MB</td>
+        <td></td>
+      </tr>
+      <tr>
+        <th scope="row">Trimmed MP4</th>
+        <td class="table-number">&thickapprox;457KB</td>
+        <td>
+          <a
+            href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/video/blog/Squirrel.handbrake.trimmed.mp4"
+            class="external-link">MP4 Trimmed, Resized and No Audio <span class="link-icon icon-youtube">&nbsp;</span></a>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">Constant w/43 crf</th>
+        <td class="table-number">&thickapprox;182KB</td>
+        <td>
+          <a
+            href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/video/blog/Squirrel.constant.scaled.noaudio.trimmed.webm"
+            class="external-link">Constant Webm Trimmed, Resized and No Audio <span
+            class="link-icon icon-youtube">&nbsp;</span></a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <p>
+    Running these short videos through WPT gives us, in my opinion, the definitive answer on why you should use
+    these video formats for short gif like animations over the other formats in this post.
+  </p>
+  <div class="responsive-table-container">
+    <table class="center-table">
+      <caption>Webp Defaults, APNG, MP4 &amp; Webm Webpagetest Results</caption>
+      <thead class="table-header">
+      <tr>
+        <th>&nbsp;</th>
+        <th scope="col" colspan="2" class="center-text bordered">Webp</th>
+        <th scope="col" colspan="2" class="center-text bordered">APNG</th>
+        <th scope="col" colspan="2" class="center-text bordered">MP4</th>
+        <th scope="col" colspan="2" class="center-text bordered">WebM</th>
+      </tr>
+      <tr>
+        <th></th>
+        <th class="bordered">Cable</th>
+        <th>3g</th>
+        <th class="bordered">Cable</th>
+        <th>3g</th>
+        <th class="bordered">Cable</th>
+        <th>3g</th>
+        <th class="bordered">Cable</th>
+        <th>3g</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th>Page Load Time</th>
+        <td class="table-number bordered">65.398s</td>
+        <td class="table-number ">144.133s</td>
+        <td class="table-number bordered">53.274s</td>
+        <td class="table-number">146.060s</td>
+        <td class="table-number bordered">0.775s</td>
+        <td class="table-number">3.555s</td>
+        <td class="table-number bordered">0.832s</td>
+        <td class="table-number">3.679s</td>
+
+      </tr>
+      <tr>
+        <th>Speed Index (lower better)</th>
+        <td class="table-number bordered">2671</td>
+        <td class="table-number ">5791</td>
+        <td class="table-number bordered">3108</td>
+        <td class="table-number">5157</td>
+        <td class="table-number bordered">1025</td>
+        <td class="table-number">3597</td>
+        <td class="table-number bordered">1012</td>
+        <td class="table-number">3448</td>
+
+      </tr>
+      <tr>
+        <th>Visually Complete</th>
+        <td class="table-number bordered">16.400s</td>
+        <td class="table-number ">21.037s</td>
+        <td class="table-number bordered">44.7s</td>
+        <td class="table-number ">41.014s</td>
+        <td class="table-number bordered">3.500s</td>
+        <td class="table-number">6.340s</td>
+        <td class="table-number bordered">1.800s</td>
+        <td class="table-number">6.510s</td>
+
+      </tr>
+      <tr>
+        <th>Fully Loaded</th>
+        <td class="table-number bordered">65.489s</td>
+        <td class="table-number ">144.133s</td>
+        <td class="table-number bordered">53.341s</td>
+        <td class="table-number">146.060s</td>
+        <td class="table-number bordered">1.404s</td>
+        <td class="table-number">9.175s</td>
+        <td class="table-number bordered">0.926s</td>
+        <td class="table-number">4.476s</td>
+      </tr>
+      <tr>
+        <th>First Interactive</th>
+        <td class="table-number bordered">1.076s</td>
+        <td class="table-number">4.485s</td>
+        <td class="table-number bordered">0.984s</td>
+        <td class="table-number">3.327s</td>
+        <td class="table-number bordered">> 0.980s</td>
+        <td class="table-number">3.570s</td>
+        <td class="table-number bordered">> 0.971s</td>
+        <td class="table-number">3.418s</td>
+      </tr>
+      <tr class="image-lightbox">
+        <th></th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="bordered">
+          <a
+            href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/data_results/mp4-desktop.png"
+            title="MP4 Desktop Cable Connection">test screenshot <span class="link-icon icon-picture">&nbsp;</span></a>
+        </td>
+        <td>
+          <a
+            href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/data_results/mp4-mobile.png"
+            title="MP4 Mobile 3g Connection">test screenshot <span class="link-icon icon-picture">&nbsp;</span></a>
+        </td>
+        <td class="bordered">
+          <a
+            href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/data_results/webm-desktop.png"
+            title="WebM Desktop Cable Connection">test screenshot <span class="link-icon icon-picture">&nbsp;</span></a>
+        </td>
+        <td>
+          <a
+            href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/data_results/webm-mobile.png"
+            title="WebM Mobile 3g Connection">test screenshot <span class="link-icon icon-picture">&nbsp;</span></a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="container">
+    <div class="full-to-half">
+      <p>Webp, APNG, MP4 and Webm Desktop Cable Connection</p>
+      <video controls preload="metadata"
+             poster="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/data_results/webp-apng-mp4-webm-desktop-poster.png">
+        <source
+          src="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/data_results/webp-apng-mp4-webm-desktop.webm"
+          type='video/webm'/>
+        <source
+          src="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/data_results/webp-apng-mp4-webm-desktop.mp4"
+          type='video/mp4'/>
+      </video>
+
+
+    </div>
+    <div class="container">
+      <div class="full-to-half">
+        <p>Webp, APNG, MP4 and Webm Mobile 3g Connection</p>
+        <video controls preload="metadata"
+               poster="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/data_results/webp-apng-mp4-webm-mobile-poster.png">
+          <source
+            src="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/data_results/webp-apng-mp4-webm-mobile.webm"
+            type='video/webm'/>
+          <source
+            src="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/data_results/webp-apng-mp4-webm-mobile.mp4"
+            type='video/mp4'/>
+        </video>
+      </div>
+    </div>
+  </div>
+  <h3 class="heading">Real World Scenario</h3>
+  <p>
+    Now this is a very particular "test" for one type of animation. Certain images and videos will vary greatly in
+    their file sizes compared to their actual size. For instances like using responsive images. If we have three
+    images used in srcset, or picture element (which hopefully you should be using a responsive image element or
+    attributes) with the following dimensions <sup><a aria-labelledby="srcet-settings-label"
+                                                      href="#srcet-settings">1</a></sup>:
+  </p>
+  <div class="responsive-table-container">
+    <table class="center-table">
+      <thead class="table-header">
+      <tr>
+        <th>File Dimensions</th>
+        <th>Webp</th>
+        <th>APNG</th>
+        <th>GIF</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th>800x450</th>
+        <td>&thickapprox;30.82MB</td>
+        <td>&thickapprox;31.22MB</td>
+        <td>&thickapprox;37.9MB</td>
+      </tr>
+      <tr>
+        <th>400x225</th>
+        <td>&thickapprox;7.76MB</td>
+        <td>&thickapprox;8.02MB</td>
+        <td>&thickapprox;9.43MB</td>
+      </tr>
+      <tr>
+        <th>300x169</th>
+        <td>&thickapprox;4.16MB</td>
+        <td>&thickapprox;3.97MB</td>
+        <td>&thickapprox;4.93MB</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="heading" id="srcset-settings-lable"><strong>APNG Default Settings</strong></p>
+  <ol>
+    <li>
+      The GIF's are converted to Animated Webp's and Animated PNG's using their default settings. Animated Webp
+      defaults are covered above. Animated PNG's defaults for gif2apng are
+      <ol>
+        <li>7zip compression</li>
+        <li>15 iterations</li>
+        <li>Optimized Palette</li>
+      </ol>
+    </li>
+  </ol>
+  <p>
+    Then usually an 800px wide webp/apng wont be sent to mobile users. So page load times and the rest of the
+    metrics will be better. For instance here are the 400px wide animated images Webpagetest results:
+  </p>
+  <div class="responsive-table-container">
+    <table class="center-table w-85">
+      <thead class="table-header">
+      <tr>
+        <th></th>
+        <th>Webp</th>
+        <th>APNG</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th>Page Load Time</th>
+        <td>47.528s</td>
+        <td>47.947s</td>
+      </tr>
+      <tr>
+        <th>Speed Index</th>
+        <td>2905</td>
+        <td>3155</td>
+      </tr>
+      <tr>
+        <th>Visually Complete</th>
+        <td>20.049s</td>
+        <td>26.078s</td>
+      </tr>
+      <tr>
+        <th>Fully Loaded</th>
+        <td>47.892s</td>
+        <td>48.327s</td>
+      </tr>
+      <tr>
+        <th>First Interactive</th>
+        <td>1.199s</td>
+        <td>1.454s</td>
+      </tr>
+      <tr class="image-lightbox">
+        <th>Test Screenshot</th>
+        <td>
+          <a
+            href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/data_results/real-webp-mobile.png"
+            title="400px wide Webp Mobile">Webp Mobile 400px <span class="link-icon icon-picture">&nbsp;</span></a>
+        </td>
+        <td>
+          <a
+            href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/blog/apngwebp/data_results/real-apng-mobile.png"
+            title="400px wide APNG Mobile">APNG Mobile 400px <span class="link-icon icon-picture">&nbsp;</span></a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <p>
+    These smaller images load a lot faster. Still not as fast as an MP4 or WebM at 800px wide.
+  </p>
+</section>
+<section id="wrapup">
+  <h2 class="heading">Wrap Up</h2>
+  <p>
+    There's a reason Gyfcat (webm or MP4) and Imgur (gifv) serve videos for their "GIFS". They are faster and
+    typically smaller. The end user can also stop these from playing which could keep lower powered machine's
+    fans from spinning :) or let them actually use the page.
+  </p>
+  <p>
+    Use video formats! Then think about webp if your browser support allows it followed by APNG and then if you
+    have to use a GIF. You can use your server and content negotiation like I outlined in this post <a
+    href="https://corydowdy.com/blog/webp-jxr-nginx-content-negotiation-test">Conditionally Serve Webp, JXR
+    Images with Nginx</a> for both Nginx and Apache or use the picture element and type switching if you don't have
+    access to server configs or htaccess file.
+  </p>
+</section>
