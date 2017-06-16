@@ -101,7 +101,7 @@ entries:
       <div class="full-to-half">
         <p>Using the contenttype field like "record.video"</p>
 <pre class="language-twig"><code>
-&lbrace;&lbrace; html5video(record.video ) &rbrace;&rbrace;
+&lbrace;&lbrace; html5video( record.video, 'default' ) &rbrace;&rbrace;
 </code></pre>
       </div>
 
@@ -109,7 +109,7 @@ entries:
       <div class="full-to-half">
         <p>Using a file from "files"</p>
 <pre class="language-twig"><code>
-&lbrace;&lbrace; html5video('your-file.webm' ) &rbrace;&rbrace;
+&lbrace;&lbrace; html5video( 'your-file.webm', 'default' ) &rbrace;&rbrace;
 </code></pre>
       </div>
     </div>
@@ -164,8 +164,8 @@ blogposts:
             type: file
 </code></pre>
 
-<pre class="language-twig"><code>&lbrace;# Your Template #&rbrace;
-&lbrace;&lbrace; html5video( record.video ) &rbrace;&rbrace;
+<pre class="language-twig"><code>&lbrace;# Your Template and using the example config from above called blogVideos #&rbrace;
+&lbrace;&lbrace; html5video( record.video, 'blogVideos' ) &rbrace;&rbrace;
 </code></pre>
       <p>
         If your field is the filelist type
@@ -181,8 +181,8 @@ blogposts:
             type: filelist
 </code></pre>
 
-<pre class="language-twig"><code>&lbrace;# Your Template #&rbrace;
-&lbrace;&lbrace; html5video( record.video.0 ) &rbrace;&rbrace;
+<pre class="language-twig"><code>&lbrace;# Your Template and using the example config from above called blogVideos #&rbrace;
+&lbrace;&lbrace; html5video( record.video.0, 'blogVideos' ) &rbrace;&rbrace;
 </code></pre>
 
       <h3 class="heading">Combining File and Filelist types in a template</h3>
@@ -234,11 +234,11 @@ blogposts:
     </section>
   <div class="full-to-half">
     <p>File from "files". This is in a sub directory in files. </p>
-<pre class="language-twig"><code>&lbrace;&lbrace; html5video( '/demos/firefox-dev-serviceworkers-enable.webm' ) &rbrace;&rbrace;</code></pre>
+<pre class="language-twig"><code>&lbrace;&lbrace; html5video( '/demos/firefox-dev-serviceworkers-enable.webm', 'default' ) &rbrace;&rbrace;</code></pre>
     <p>
       To use the video that is locally stored and attached to our contenttype's record you replace the file path with the contenttype field you have chosen. For example:
     </p>
-    <pre class="language-twig"><code>&lbrace;&lbrace; html5video( record.video ) &rbrace;&rbrace;</code></pre>
+    <pre class="language-twig"><code>&lbrace;&lbrace; html5video( record.video, 'default' ) &rbrace;&rbrace;</code></pre>
   </div>
 
     <div class="full-to-half">
@@ -260,7 +260,7 @@ blogposts:
       <p>
         Then in your twig template you can just pass the file name.
       </p>
-<pre class="language-twig"><code>&lbrace;&lbrace; html5video( 'my-cdn-file.webm' ) &rbrace;&rbrace;</code></pre>
+<pre class="language-twig"><code>&lbrace;&lbrace; html5video( 'my-cdn-file.webm', 'default' ) &rbrace;&rbrace;</code></pre>
       <p>
         The filename will be appended to your cdn URL set in the config.
       </p>
@@ -273,7 +273,7 @@ blogposts:
         Alternatively if you leave the config setting of cdn_url blank you can pass in the CDN url in the twig tag.
       </p>
 <pre class="language-yaml"><code>cdn_url:</code></pre>
-<pre class="language-twig"><code>&lbrace;&lbrace; html5video( 'https://your-cdn.com/path/to/files/my-cdn-file.webm' ) &rbrace;&rbrace;</code></pre>
+<pre class="language-twig"><code>&lbrace;&lbrace; html5video( 'https://your-cdn.com/path/to/files/my-cdn-file.webm', 'default' ) &rbrace;&rbrace;</code></pre>
 
     </div>
 
