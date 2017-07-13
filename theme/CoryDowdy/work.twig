@@ -4,15 +4,6 @@
 
 {% extends 'base.html.twig' %}
 
-    {#{% block dns_prefetch %}#}
-      {#<link rel="dns-prefetch" href="https://use.typekit.net"/>#}
-      {#<link rel="dns-prefetch" href="https://p.typekit.net" />#}
-      {#<link rel="dns-prefetch" href="https://www.google-analytics.com"/>#}
-      {#<link rel="dns-prefetch" href="https://pullzone1-corydowdywebdesi.netdna-ssl.com"/>#}
-    {#{% endblock dns_prefetch %}#}
-
-
-
     {% block inlined_styles %}
         <style>{% include 'css/critical-css/work.' ~ ( critical_update ) ~ '.min.css' %}</style>
     {% endblock %}
@@ -25,8 +16,8 @@
 #}
 {% block header_javascripts %}
   {{ parent() }}
-  {#<script src="{{ paths.theme }}js/picturefill/picturefill.min.js" async ></script>#}
-  <script src="{{ paths.theme }}js/lib/lazysizes.3b6dd2a7.min.js" async></script>
+  {#<script src="/theme/CoryDowdy/js/picturefill/picturefill.min.js" async ></script>#}
+  <script src="/theme/CoryDowdy/js/lib/lazysizes.3b6dd2a7.min.js" async></script>
 {% endblock header_javascripts %}
 
 
@@ -37,23 +28,6 @@
       <h2>Current Project</h2>
       <div class="container">
         <div class="showcase-container">
-          {#<figure class="showcase-figure">#}
-            {#<img class="center"#}
-                  {#sizes="(min-width: 40em) 80vw, 100vw"#}
-                  {#srcset="files/bypp-showcase-250w.png 250w,#}
-                            {#files/bypp-showcase-300.png 300w,#}
-                            {#files/bypp-showcase-500.png 500w,#}
-                            {#files/bypp-showcase-700.png 700w"#}
-                            {#https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/img/bypp-showcase-700.png 700w"#}
-                  {#src="files/bypp-showcase-500.png 500w"#}
-                  {#alt="Backyard Pleasure Pools site on Multiple Devices">#}
-            {#<figcaption class="showcase-container--caption">#}
-              {#<p>#}
-                {#The above screen shots are of Backyard Pleasure Pools. An inground pool company located in Ravenna, Ohio.#}
-                {#They specialize in custom pools, pool rebuilds and maintenance.#}
-              {#</p>#}
-            {#</figcaption>#}
-          {#</figure>#}
           <figure class="showcase-figure">
             <img class="center"
                  sizes="(min-width: 40em) 80vw, 100vw"
@@ -158,7 +132,6 @@
 {% endblock %}
 
 {% block footer_javascripts %}
-<script src="{{ paths.theme }}js/lightbox.08172015.min.js" async defer ></script>
-  {#<script>if(!window.HTMLPictureElement){function loadJS(e,t){"use strict";var n=window.document.getElementsByTagName("script")[0],o=window.document.createElement("script");return o.src=e,o.async=!0,n.parentNode.insertBefore(o,n),t&&"function"==typeof t&&(o.onload=t),o}loadjs('{{ paths.theme }}js/picturefill/picturefill.min.js')}</script>#}
+<script src="/theme/CoryDowdy/js/lightbox.08172015.min.js" async defer ></script>
 {{ parent() }}
 {% endblock footer_javascripts %}

@@ -19,7 +19,7 @@
         // Picture element HTML5 shiv
         document.createElement( "picture" );
         function loadCSS(e,n,o,t){"use strict";var d=window.document.createElement("link"),i=n||window.document.getElementsByTagName("script")[0],s=window.document.styleSheets;return d.rel="stylesheet",d.href=e,d.media="only x",t&&(d.onload=t),i.parentNode.insertBefore(d,i),d.onloadcssdefined=function(n){for(var o,t=0;t<s.length;t++)s[t].href&&s[t].href.indexOf(e)>-1&&(o=!0);o?n():setTimeout(function(){d.onloadcssdefined(n)})},d.onloadcssdefined(function(){d.media=o||"all"}),d}
-      loadCSS('{{ paths.theme }}css/magnific.04222015.min.css')
+      loadCSS('/theme/CoryDowdy/css/magnific.04222015.min.css')
     </script>
 {% endblock %}
 
@@ -291,6 +291,6 @@
 {% endblock %}
 
 {% block footer_javascripts %}
-<script src="{{ paths.theme }}js/demos-mag.08172015.js" async defer></script>
+<script src="/theme/CoryDowdy/js/demos-mag.08172015.js" async defer></script>
 {{ parent() }}
 {% endblock footer_javascripts %}
