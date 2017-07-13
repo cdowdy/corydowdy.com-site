@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+  {% block metaSeo %}
+    <meta name="robots" content="noindex, nofollow, none, noarchive, nosnippet, noodp">
+  {% endblock metaSeo %}
+
+{% block body %}
+
+  <div class="full push-down">
+    <p>
+      This is a demo of using the save-data client hint with Bolt Betterthumbs and sending a lesser quality image to users with this header set
+    </p>
+  </div>
+
+  <div class=" full-to-half center-text">
+
+    <figure>
+      {{ img( 'demos/betterthumbs/McKinleyMemorial.jpg', 'betterthumbs') }}
+      <figcaption>
+        <p>
+          McKinely Memorial, Canton, Ohio by <a
+            href="https://www.flickr.com/photos/ekilby/7040673501/in/album-72157629728195325/"
+            class="external-link">Eric Kilby</a>
+        </p>
+        <p>
+          This is a "normal quality" jpg @ &thickapprox;197 KB
+        </p>
+      </figcaption>
+    </figure>
+  </div>
+
+  <div class="full-to-half">
+    {% set SaveData = 'Save-Data' %}
+    {% if app.request.headers.get( SaveData|lower ) %}
+      <figure class="center-text">
+        {{ img( 'demos/betterthumbs/McKinleyMemorial.jpg', 'betterthumbs', {
+          'modifications': {
+            'small': {'q': 60 },
+            'medium': {'q': 60 },
+            'large': { 'q': 60},
+            'xlarge': { 'q': 60}
+          }
+        }) }}
+        <figcaption>
+          <p>Save Data Header is Present. This is a 60 quality JPG @ &thickapprox;130 KB</p>
+        </figcaption>
+      </figure>
+      {% else %}
+      <p>
+        The save-data header isn't present. If it were the image on this page would also be in this space at a quality of 60.
+      </p>
+    {% endif %}
+  </div>
+
+
+
+{% endblock body %}
+
+
+{% block footer_tag %}
+  <footer role="contentinfo" class="container">
+    <div class="full">
+      <hr />
+      <p class="text-center">&copy; Cory Dowdy</p>
+    </div>
+  </footer>
+{% endblock footer_tag%}
+
+{% block footer_javascripts %}
+  {#<script src="{{ paths.theme }}js/demos-mag.08172015.js" async defer></script>#}
+  {{ parent() }}
+  <script src="{{ paths.theme }}js/prism/prism-08-01-2016.js"></script>
+{% endblock footer_javascripts %}
