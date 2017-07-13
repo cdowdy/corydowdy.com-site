@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Betterthumbs CLient Hints</title>
-  <link rel="stylesheet" href="../theme/CoryDowdy/css/app.07122017.min.css">
-  <script src="../theme/CoryDowdy/js/prism/prism-08-01-2016.js"></script>
-</head>
-<body>
-<main class="container">
-  <article class="push-down post">
-    <section id="intro">
+<section id="intro">
       <p>
         If you've ever used <a href="https://developer.chrome.com/multidevice/data-compression" class="external-link">Chrome's Data-Saver
         <span class="link-icon icon-external-link">&nbsp;</span></a> extension or turned it on through Chrome for Android you might have noticed a speed increase. What you may have not known is it adds a header to each request. This header is called a
@@ -35,53 +24,53 @@
       <p>
         When you're using Betterthumbs a typical betterthumbs tag looks as follows:
       </p>
-      <pre class="language-twig"><code>&lbrace;&lbrace; img( record.image, 'betterthumbs' ) }}</code></pre>
+      <pre class="language-twig"><code>{% verbatim %}&lbrace;&lbrace; img( record.image, 'betterthumbs' ) }}{% endverbatim %}</code></pre>
       <p>
         That will use the settings found in "presets". See the Betterthumbs docs, config file or demo page for more information on those settings
       </p>
       <p>
         Here is a full example in a template.
       </p>
-      <pre class="language-twig"><code>
+      <pre class="language-twig"><code>{% verbatim %}
 &lbrace;% extends 'base.html.twig' %&rbrace;
 
-  &lt;main&gt;
+  &amp;lt;main&amp;gt;
     &lbrace;% block body %&rbrace;
-      &lt;figure&gt;
+      &amp;lt;figure&amp;gt;
         &lbrace;&lbrace; img( record.image, 'betterthumbs' ) &rbrace;&rbrace;
-        &lt;figcaption&gt;
-         &lt;p&gt;
+        &amp;lt;figcaption&amp;gt;
+         &amp;lt;p&amp;gt;
           my figcaption text!
-         &lt;/p>
-        &lt;/figcaption&gt;
-      &lt;/figure&gt;
+         &amp;lt;/p>
+        &amp;lt;/figcaption&amp;gt;
+      &amp;lt;/figure&amp;gt;
     &lbrace;% endblock body %&rbrace;
-  &lt;/main&gt;
-      </code></pre>
+  &amp;lt;/main&amp;gt;
+      {% endverbatim %}</code></pre>
 
       <h3 class="heading">Checking For the Save-Data header</h3>
       <p>
         To check for the Save-Data client hint header we'll set a variable and then later on we'll "normalize" it (lower case it) that way if it changes or another browser sends the header differently we have a nice stable base to work with.
       </p>
-      <pre class="language-twig"><code>
+      <pre class="language-twig"><code>{% verbatim %}
 &lbrace;% extends 'base.html.twig' %&rbrace;
   &lbrace;# Here is the variable we are setting #&rbrace;
   &lbrace;% set SaveData = 'Save-Data' %&rbrace;
-  &lt;main&gt;
+  &amp;lt;main&amp;gt;
   &lbrace;# rest below here #&rbrace;
-      </code></pre>
+      {% endverbatim %}</code></pre>
       <p>
         We'll have to double up on the actual markup we use. Which is kind of clunky but it gets the job done. I'm doing it this way since it will give you more control over what quality we are using for the image. Eventually the extension may check for the header so we can use it in the backend but right now it would be too rigid.
       </p>
       <p>
         After we've set our variable we'll move directly above our betterthumbs tag. Here is where we'll actually check for the request header of Save-Data with an <code class="language-twig">if</code> statement and use a twig filter to lowercase our variable.
       </p>
-      <pre class="language-twig"><code>
+      <pre class="language-twig"><code>{% verbatim %}
 &lbrace;% extends 'base.html.twig' %&rbrace;
  &lbrace;% set SaveData = 'Save-Data' %&rbrace;
-  &lt;main&gt;
+  &amp;lt;main&amp;gt;
     &lbrace;% block body %&rbrace;
-      &lt;figure&gt;
+      &amp;lt;figure&amp;gt;
         &lbrace;% if app.request.headers.get( SaveData|lower ) %&rbrace;
          &lbrace;# here is where we put our betterthumbs tag that has
            a lesser quality than our regular tag
@@ -90,15 +79,15 @@
            &lbrace;# our normal betterthumbs tag #&rbrace;
            &lbrace;&lbrace; img( record.image, 'betterthumbs' ) &rbrace;&rbrace;
          &lbrace;% endif %&rbrace;
-        &lt;figcaption&gt;
-         &lt;p&gt;
+        &amp;lt;figcaption&amp;gt;
+         &amp;lt;p&amp;gt;
           my figcaption text!
-         &lt;/p>
-        &lt;/figcaption&gt;
-      &lt;/figure&gt;
+         &amp;lt;/p>
+        &amp;lt;/figcaption&amp;gt;
+      &amp;lt;/figure&amp;gt;
     &lbrace;% endblock body %&rbrace;
-  &lt;/main&gt;
-      </code></pre>
+  &amp;lt;/main&amp;gt;
+      {% endverbatim %}</code></pre>
 
       <h3 class="heading">Over-riding the Quality</h3>
       <p>
@@ -107,12 +96,12 @@
       <p>
         The quality you choose will more than likely depend on what type of JPG you're using. If you reduce the quality to much from what is set in the extensions config you could get blocky images or ones with lots of artifacts.
       </p>
-      <pre class="language-twig"><code>
+      <pre class="language-twig"><code>{% verbatim %}
 &lbrace;% extends 'base.html.twig' %&rbrace;
  &lbrace;% set SaveData = 'Save-Data' %&rbrace;
-  &lt;main&gt;
+  &amp;lt;main&amp;gt;
     &lbrace;% block body %&rbrace;
-      &lt;figure&gt;
+      &amp;lt;figure&amp;gt;
         &lbrace;% if app.request.headers.get( SaveData|lower ) %&rbrace;
           &lbrace;&lbrace; img( record.image, 'betterthumbs', &lbrace;
             'modifications': &lbrace;
@@ -126,15 +115,15 @@
            &lbrace;# our normal betterthumbs tag #&rbrace;
            &lbrace;&lbrace; img( record.image, 'betterthumbs' ) &rbrace;&rbrace;
          &lbrace;% endif %&rbrace;
-        &lt;figcaption&gt;
-         &lt;p&gt;
+        &amp;lt;figcaption&amp;gt;
+         &amp;lt;p&amp;gt;
           my figcaption text!
-         &lt;/p>
-        &lt;/figcaption&gt;
-      &lt;/figure&gt;
+         &amp;lt;/p>
+        &amp;lt;/figcaption&amp;gt;
+      &amp;lt;/figure&amp;gt;
     &lbrace;% endblock body %&rbrace;
-  &lt;/main&gt;
-      </code></pre>
+  &amp;lt;/main&amp;gt;
+     {% endverbatim %} </code></pre>
       <p>
        Thats it. Now if the Save-Data header is present we'll send JPG's with a quality of 60 to the browser instead of the default quality of 80 (unless you've changed that).
       </p>
@@ -157,8 +146,3 @@
            class="external-link">Modify Header Value <span class="link-icon icon-external-link">&nbsp;</span></a>
       </p>
     </section>
-
-  </article>
-</main>
-</body>
-</html>
