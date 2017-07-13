@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+
+  {% block header_javascripts %}
+    <script src=" https://cdn.polyfill.io/v2/polyfill.js?features=IntersectionObserver"></script>
+    <script src="{{ asset('js/io-lazyload-dist.js', 'theme') }}" defer></script>
+  {% endblock %}
+
+{% block body %}
+
+  <div class="full push-down">
+    <h1 class="heading">Lazy Loading Images With IntersectionObserver Demo</h1>
+    <p>
+      This is a demo of using IntersectionObserver to lazy load images related to my blog post <a class="external-link"
+        href="/blog/lazy-loading-images-with-intersection-observer">Lazy Loading Images with IntersectionObserver <span class="link-icon icon-external-link">&nbsp;</span></a>. There are five (5) paragraphs of lorem ipsum text. After these paragraphs is an image that is lazy loaded using IntersectionObserver. Open your console to see the console logs.
+    </p>
+    <p>
+      Lorem Khaled Ipsum is a major key to success. To succeed you must believe. When you believe, you will succeed. We the best. It’s important to use cocoa butter. It’s the key to more success, why not live smooth? Why live rough? How’s business? Boomin. The key to success is to keep your head above the water, never give up. Learning is cool, but knowing is better, and I know the key to success. Don’t ever play yourself. To succeed you must believe. When you believe, you will succeed.
+    </p>
+    <p>
+      Lion! Don’t ever play yourself. Another one. It’s important to use cocoa butter. It’s the key to more success, why not live smooth? Why live rough? Another one. Lion! To be successful you’ve got to work hard, to make history, simple, you’ve got to make it. You do know, you do know that they don’t want you to have lunch. I’m keeping it real with you, so what you going do is have lunch. Stay focused.
+    </p>
+    <p>
+      Congratulations, you played yourself. Eliptical talk. The key to more success is to get a massage once a week, very important, major key, cloth talk. To be successful you’ve got to work hard, to make history, simple, you’ve got to make it. Lion! The key is to enjoy life, because they don’t want you to enjoy life. I promise you, they don’t want you to jetski, they don’t want you to smile. Wraith talk. I’m up to something.
+    </p>
+    <p>
+      Don’t ever play yourself. In life you have to take the trash out, if you have trash in your life, take it out, throw it away, get rid of it, major key. How’s business? Boomin. Learning is cool, but knowing is better, and I know the key to success. Give thanks to the most high. The key to success is to keep your head above the water, never give up. We the best. Eliptical talk. In life there will be road blocks but we will over come it. Hammock talk come soon. The key to success is to keep your head above the water, never give up.
+    </p>
+    <p>
+      The ladies always say Khaled you smell good, I use no cologne. Cocoa butter is the key. To succeed you must believe. When you believe, you will succeed. The key is to drink coconut, fresh coconut, trust me. Find peace, life is like a water fall, you’ve gotta flow. Congratulations, you played yourself. Surround yourself with angels, positive energy, beautiful people, beautiful souls, clean heart, angel.
+    </p>
+    <figure style="width: 400px; height: 300px;">
+      <img data-{{ btsrc( 'pineapples-800.jpg', 'iolazy') }} src="{{ bthumb( 'pineapples-800.jpg', 'iolazySingle') }}"
+           alt="Pineapple in a field"
+           class="lazyload" width="100%" height="100%">
+    </figure>
+  </div>
+
+
+
+{% endblock body %}
+
+
+{% block footer_tag %}
+  <footer role="contentinfo" class="container">
+    <div class="full">
+      <hr />
+      <p class="text-center">&copy; Cory Dowdy</p>
+    </div>
+  </footer>
+{% endblock footer_tag%}
+
+{% block footer_javascripts %}
+  {#<script src="{{ paths.theme }}js/demos-mag.08172015.js" async defer></script>#}
+  {{ parent() }}
+  <script src="{{ paths.theme }}js/prism/prism-08-01-2016.js"></script>
+{% endblock footer_javascripts %}
