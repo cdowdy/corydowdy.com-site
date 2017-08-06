@@ -113,6 +113,49 @@
         } );
       lightbox.run();
     });</code></pre>
+  <hr>
+  <p><b>Changing The Dialog ID</b></p>
+  <p>
+    The default ID that dbox looks for to open your lightbox is <code class="language-markup">js-dbox</code>. If you have multiple dialog types in a page you'll need a dialog element for each one with a unique ID. Pass this new id with hash mark included to the dialogBox key.
+  </p>
+
+  <pre class="language-markup"><code>&amp;lt;dialog id="myNewDialogID" class="dbox-dialog">
+    &amp;lt;div class="dbox-dialog--content"&amp;gt;
+        &amp;lt;img src="" alt="" class="dbox-dialog--image"&amp;gt;
+        &amp;lt;div class="dbox-dialog--container"&amp;gt;
+          &amp;lt;p class="dbox-dialog--caption"&amp;gt;&amp;lt;/p&amp;gt;
+            &amp;lt;button type="button" class="dbox-dialog--close"&amp;gt;close&amp;lt;/button&amp;gt;
+        &amp;lt;/div&amp;gt;
+    &amp;lt;/div&amp;gt;
+&amp;lt;/dialog&amp;gt;</code></pre>
+
+  <pre class="language-javascript"><code>document.addEventListener("DOMContentLoaded", function () {
+    // you could also use var instead of let here
+      let lightbox = new Dbox( {
+          dialogBox: '.myNewDialogClass'
+          // or using an id
+          element: '#myNewDialogID'
+        } );
+      lightbox.run();
+    });</code></pre>
+  <hr>
+  <p><b>Using Dbox as a Modal</b></p>
+  <p>
+    Dbox has two modes to operate in. One is a normal dialog / lightbox mode. Clicking anywhere on the image or backdrop will close the lightbox. The second mode is a modal mode. The lightbox will only close when the 'close' button is clicked. You have hto pass 'modal: true' to the constructor.
+  </p>
+  <pre class="language-javascript"><code>document.addEventListener("DOMContentLoaded", function () {
+    // you could also use var instead of let here
+      let lightbox = new Dbox( {
+          modal: true
+        } );
+      lightbox.run();
+    });</code></pre>
+  <div class="full-to-half">
+    <p>Modal Example. Click the image to open a modal lightbox</p>
+  </div>
+  <div class="full-to-half">
+
+  </div>
 </section>
 
 <section id="limitations">
