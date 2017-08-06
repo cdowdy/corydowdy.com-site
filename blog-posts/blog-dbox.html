@@ -1,0 +1,197 @@
+<section id="intro">
+  <p>
+    Dbox is an image lightbox written in es6 with no external dependencies &mdash; that is not dependent on JQuery.
+  </p>
+</section>
+
+<section id="quick-start">
+  <h2 class="heading">
+    {{ 'Quick Start'|l2s( 'quick-start', 'l2s') }}
+  </h2>
+
+  <p>
+    Download the latest release from github and insert the provided CSS into the head of your document and the provided JavaScript file before your closing <code class="language-markup"> &amp;lt;/head&amp;gt;</code> tag.
+  </p>
+  <pre class="language-markup"><code>&amp;lt;head&amp;gt;
+    &amp;lt;!-- your other files and markup on your head --&amp;gt;
+    &amp;lt;!-- The dbox css --&amp;gt;
+    &amp;lt;link rel="stylesheet" href="dist/css/dbox.min.css"&amp;gt;
+
+    &amp;lt;!-- The dbox JS file --&amp;gt;
+    &amp;lt;script src="dist/js/dbox.min.js" defer&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;/head&amp;gt;
+  </code></pre>
+
+  <p>
+    Markup an image to be placed in a lightbox. Include a thumbnail image and the larger image you wish to show in the lightbox. The Anchor tag (<code class="language-markup">&amp;lt;a&amp;gt;</code>) needs to have a class of <code class="language-markup">dbox</code>.
+  </p>
+  <pre class="language-markup"><code>&amp;lt;!-- a responsive image example --&amp;gt;
+    &amp;lt;a class="dbox" href="your/lightboxed/image.jpg"&amp;gt;
+      &amp;lt;img sizes="(min-width: 530px) 25vw, 100vw"
+           srcset="your/thumb/image-177w.png 177w,
+              your/thumb/image-240w.png 240w,
+              your/thumb/image-321w.png 321w,
+              img/thumb/640-th.png 367w"
+           src="img/thumb/640-th.png"
+           alt="Your Alt Text Used For the Lightbox Caption"
+           class=""
+           width="100%"
+      &amp;gt;
+    &amp;lt;/a&amp;gt;
+
+    &amp;lt;!-- a regular image example --&amp;gt;
+    &amp;lt;a class="dbox" href="your/lightboxed/image.jpg"&amp;gt;
+       &amp;lt;img sizes="25vw" src="your/thumb/image-th.jpg"
+            alt="Your Alt Text Used For the Lightbox Caption"
+            class="any classes used to style your image"
+            width="100%"
+       &amp;gt;
+     &amp;lt;/a&amp;gt;</code></pre>
+
+  <p>
+    Before your closing body tag, insert the dialog element and initialize the dbox script.
+  </p>
+  <pre class="language-markup"><code>&amp;lt;dialog id="js-dbox" class="dbox-dialog"&amp;gt;
+  &amp;lt;div class="dbox-dialog--content"&amp;gt;
+    &amp;lt;img src="" alt="" class="dbox-dialog--image"&amp;gt;
+    &amp;lt;div class="dbox-dialog--container"&amp;gt;
+      &amp;lt;p class="dbox-dialog--caption"&amp;gt;&amp;lt;/p&amp;gt;
+      &amp;lt;button type="button" class="dbox-dialog--close"&amp;gt;close&amp;lt;/button&amp;gt;
+    &amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+&amp;lt;/dialog&amp;gt;
+
+&amp;lt;script&amp;gt;
+    document.addEventListener("DOMContentLoaded", function () {
+    // you could also use var instead of let here
+      let lightbox = new Dbox();
+      lightbox.run();
+    });
+&amp;lt;/script&amp;gt;</code></pre>
+</section>
+
+<section id="example">
+  <h2 class="heading">
+    {{ 'Example'|l2s( 'example', 'l2s') }}
+  </h2>
+  <div class="full-to-half">
+    <p>
+      Click the image to open the lightbox !
+    </p>
+  </div>
+  <div class="full-to-half">
+    <a href="/files/demos/betterthumbs/milky-way.jpg" class="dbox">
+      {{ img('demos/betterthumbs/milky-way.jpg', 'betterthumb_demo', {
+        'altText': 'Milky Way Above Bend in Forested Shoreline By Eric Kilby'
+      }) }}
+    </a>
+
+  </div>
+</section>
+
+<section id="customizing">
+  <h2 class="heading">
+    {{ 'Customizing Dbox'|l2s('customizing', 'l2s' ) }}
+  </h2>
+  <p><b>Changing the Anchor Class</b></p>
+  <p>
+    The default anchor class is <code class="language-markup">dbox</code> if you'd wish to change this to something else you need to pass it to the constructor at the end of your page or in your own JS file. The new class will be used for the 'element' key. Classes must be prefixed with a period and ID's with a hash mark.
+  </p>
+  <pre class="language-markup"><code>&amp;lt;a class="myNewClass" href="your/lightboxed/image.jpg"&amp;gt;
+    &amp;lt;img sizes="25vw" src="your/thumb/image-th.jpg"
+        alt="Your Alt Text Used For the Lightbox Caption"
+        class="any classes used to style your image"
+        width="100%"
+    &amp;gt;
+&amp;lt;/a&amp;gt;</code></pre>
+  <pre class="language-javascript"><code>document.addEventListener("DOMContentLoaded", function () {
+    // you could also use var instead of let here
+      let lightbox = new Dbox( {
+          element: '.myNewClass'
+          // or using an id
+          element: '#myNewID'
+        } );
+      lightbox.run();
+    });</code></pre>
+</section>
+
+<section id="limitations">
+  <h2 class="heading">
+    {{ 'Dbox Limitations'|l2s( 'limitations', 'l2s') }}
+  </h2>
+  <p>
+    Dbox uses <code class="language-css">object-fit:</code> to display images in the lightbox. This is only supported in
+  </p>
+  <ol>
+    <li>Firefox 36+
+      <ul class="no-bullets">
+        <li>FireFox for Android</li>
+      </ul>
+    </li>
+    <li>Chrome 31+
+      <ul class="no-bullets">
+        <li>Chrome For Android</li>
+      </ul>
+    </li>
+    <li>Safari 7.1+
+      <ul class="no-bullets">
+        <li>iOS Safari 8+</li>
+      </ul>
+    </li>
+    <li>Opera 19+
+      <ul class="no-bullets">
+        <li>Opera Mobile 12+</li>
+      </ul>
+    </li>
+    <li>Opera Mini</li>
+    <li>Android Browser 4.4.4+</li>
+    <li>Samsung Internet 4+</li>
+  </ol>
+</section>
+
+<section id="why">
+  <h2 class="heading">
+    {{ 'Why Dbox?'|l2s( 'quick-start', 'l2s') }}
+  </h2>
+  <p>
+    Why did I build Dbox?  HTML5.1 initially introduced the <a href="https://html.spec.whatwg.org/multipage/interactive-elements.html#the-dialog-element" class="external-link">dialog element <span class="link-icon icon-external-link">&nbsp;</span></a>. It makes using and making dialogs, modals and lightboxes super easy. The current browser support (as of this posting) isn't very good but there is a small polyfill included in this library to over come that.
+  </p>
+  <script src="https://cdn.jsdelivr.net/caniuse-embed/1.1.0/caniuse-embed.min.js" defer></script>
+  <p class="ciu_embed" data-feature="dialog" data-periods="future_1,current,past_1,past_2">
+    <a href="http://caniuse.com/#feat=dialog">Can I Use dialog?</a> Data on support for the dialog feature across the major browsers from caniuse.com.
+  </p>
+  <p>
+    In one of Twitter's recent updates they started to apply a dominant color to the image's description on desktop and the background on mobile
+  </p>
+  <div class="container-flex">
+    <div class="flex-img-gallery">
+      <p>Twitter Lightbox on a Desktop</p>
+      {{ html5video('blog/twitter-lightboxes.opt.mp4', 'default', {
+      video_poster: '/files/twitter-lightbox-poster.jpg',
+      use_cdn: true,
+      } ) }}
+    </div>
+    <div class="flex-img-gallery">
+      <p>Twitter Lightbox on a phone</p>
+      {{ html5video('blog/twitter-lightbox.mobile.opt.mp4', 'default', {
+        video_poster: '/files/twitter-lightbox-mobile-poster.jpg',
+        use_cdn: true
+      } ) }}
+    </div>
+  </div>
+  <p>
+    I really liked that. So I wanted to replicate it
+  </p>
+</section>
+
+<!-- the dialog element -->
+<dialog id="js-dbox" class="dbox-dialog">
+  <div class="dbox-dialog--content">
+    <img src="" alt="" class="dbox-dialog--image">
+    <div class="dbox-dialog--container">
+      <p class="dbox-dialog--caption"></p>
+      <button type="button" class="dbox-dialog--close">close</button>
+    </div>
+  </div>
+</dialog>
+
