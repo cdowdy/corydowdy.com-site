@@ -2,6 +2,29 @@
   <p>
     Dbox is an image lightbox written in es6 with no external dependencies &mdash; that is not dependent on JQuery.
   </p>
+
+  <div class="responsive-table-container">
+    <table class="center-table">
+      <caption>File Sizes</caption>
+      <thead class="table-header">
+      <tr>
+        <th scope="col">File</th>
+        <th scope="col" class="table-number">Size in KB</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">Unoptimized Gif</th>
+        <td class="table-number">&thickapprox;37.9MB</td>
+      </tr>
+
+      <tr>
+        <th scope="row">Animated PNG with Zlib</th>
+        <td class="table-number">&thickapprox;33.01MB</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </section>
 
 <section id="quick-start">
@@ -154,7 +177,17 @@
     <p>Modal Example. Click the image to open a modal lightbox</p>
   </div>
   <div class="full-to-half">
-
+    <a href="/files/demos/betterthumbs/milky-way.jpg" class="modal-example">
+    <figure>
+      {{ img('demos/betterthumbs/milky-way.jpg', 'betterthumb_demo', {
+      'altText': 'Milky Way Above Bend in Forested Shoreline By Eric Kilby',
+      }) }}
+      <figcaption>
+        <p>Milky Way Above Bend in Forested Shoreline By <a href="https://www.flickr.com/photos/ekilby/27869530792/" class="external-link">Eric Kilby</a>
+        </p>
+      </figcaption>
+    </figure>
+    </a>
   </div>
 </section>
 
@@ -190,6 +223,44 @@
     <li>Android Browser 4.4.4+</li>
     <li>Samsung Internet 4+</li>
   </ol>
+  <p>
+    So images will be "stretched" on large screens that don't support object-fit.  The images below show the difference between Firefox that supports object-fit and Edge 15 which doesn't.
+  </p>
+  <div class="container-flex">
+    <div class="flex-img-gallery">
+      <p>FireFox</p>
+      {{ img('demos/firefox-object-fit-desktop.png', 'betterthumb_demo', {
+      'altText': 'Milky Way Above Bend in Forested Shoreline By Eric Kilby',
+      }) }}
+    </div>
+    <div class="flex-img-gallery">
+      <p>Edge 15 No Object Fit</p>
+      {{ img('demos/edge15-no-object-fit.png', 'betterthumb_demo', {
+      'altText': 'Milky Way Above Bend in Forested Shoreline By Eric Kilby',
+      }) }}
+    </div>
+  </div>
+  <p>
+    The object-fit polyfills I found didn't work very well so I opted to not use them. If you wish to try you can find one at
+    <a href="https://github.com/bfred-it/object-fit-images/" class="external-link">object-fit-images <span class="link-icon icon-external-link">&nbsp;</span></a>. It also links to other available polyfills. You'll use this at your own discretion. I don't plan on debugging any object-fit polyfill usage with this library.
+  </p>
+
+  <h3 id="browserSupport" class="heading">
+   {{ 'Browser Support'|l2s( 'browserSupport', 'l2s' ) }}
+  </h3>
+  <p>
+    As shown above this supports all "modern" browsers. So Edge, Firefox, Chrome, Opera, Safari.
+  </p>
+  <div class="full-to-half">
+    <p>
+      <b>Internet Explorer 11</b> is "supported" but you'll have to include some of your own custom CSS to properly align the dialog box in the window when it's opened.
+    </p>
+  </div>
+  <div class="full-to-half">
+    {{ img('demos/ie-11-misaligned-backdrop.png', 'betterthumb_demo', {
+    'altText': 'Internet Explorer 11 misaligned dialog backdrop',
+    }) }}
+  </div>
 </section>
 
 <section id="why">
@@ -237,4 +308,15 @@
     </div>
   </div>
 </dialog>
+
+<dialog id="js-modal-example" class="dbox-dialog">
+  <div class="dbox-dialog--content">
+    <img src="" alt="" class="dbox-dialog--image">
+    <div class="dbox-dialog--container">
+      <p class="dbox-dialog--caption"></p>
+      <button type="button" class="dbox-dialog--close">close</button>
+    </div>
+  </div>
+</dialog>
+
 
