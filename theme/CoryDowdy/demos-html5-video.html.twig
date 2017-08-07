@@ -258,7 +258,7 @@ blogposts:
     </div>
     <div class="full-to-half">
       <p>File from "files". This is in a sub directory in files. </p>
-      <pre class="language-twig"><code>&lbrace;&lbrace; html5video( '/demos/firefox-dev-serviceworkers-enable.webm', 'default' ) &rbrace;&rbrace;</code></pre>
+      <pre class="language-twig"><code>&lbrace;&lbrace; html5video( 'demos/firefox-dev-serviceworkers-enable.webm', 'default' ) &rbrace;&rbrace;</code></pre>
       <p>
         To use the video that is locally stored and attached to our contentType's record you replace the file path with
         the contentType field you have chosen. For example:
@@ -269,7 +269,7 @@ blogposts:
 
     <div class="full-to-half">
       <p>Result:</p>
-      {{ html5video('/demos/firefox-dev-serviceworkers-enable.08222016.webm', 'default') }}
+      {{ html5video([ 'demos/firefox-dev-serviceworkers-enable.08222016.webm', 'demos/firefox-dev-serviceworkers-enable.08222016.mp4'] , 'default') }}
     </div>
   </section>
   <!-- /#localVid -->
@@ -351,7 +351,7 @@ blogposts:
           The video will now have muted, loop and playsinline along with controls as attributes and preload="none" added
           to the video element
         </p>
-        {{ html5video( '/demos/firefox-dev-serviceworkers-enable.08222016.webm', 'default', {
+        {{ html5video(['demos/firefox-dev-serviceworkers-enable.08222016.webm', 'demos/firefox-dev-serviceworkers-enable.08222016.mp4' ], 'default', {
           preload: 'none',
           video_poster: '/files/demos/sw-enable-poster.png',
           attributes: [ 'controls',  'muted', 'loop', 'playsinline' ]
