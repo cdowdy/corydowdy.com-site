@@ -25,6 +25,16 @@
         <td class="table-number">&thickapprox;17.3KB</td>
         <td class="table-number">&thickapprox;6.4KB</td>
       </tr>
+      <tr>
+        <th scope="row">dbox.noPollyFill.min.js</th>
+        <td class="table-number">&thickapprox;7.9KB</td>
+        <td class="table-number">&thickapprox;3.5KB</td>
+      </tr>
+      <tr>
+        <th scope="row">dbox.noColorThief.min.js</th>
+        <td class="table-number">&thickapprox;11.5KB</td>
+        <td class="table-number">&thickapprox;4.3KB</td>
+      </tr>
       </tbody>
     </table>
   </div>
@@ -34,17 +44,34 @@
   <h2 class="heading">
     {{ 'Download Dbox'|l2s( 'download', 'l2s') }}
   </h2>
-  <ul>
-    <li>
-      <a href="https://github.com/cdowdy/dialog-lightbox" class="external-link">Dbox Source</a>
-    </li>
-    <li>
-      <a href="https://github.com/cdowdy/dialog-lightbox/issues" class="external-link">Issues</a>
-    </li>
-    <li>
-      <a href="https://github.com/cdowdy/dialog-lightbox/releases/latest" class="external-link">Latest Release</a>
-    </li>
-  </ul>
+  <div class="full-to-half">
+    <p>Github</p>
+    <ul>
+      <li>
+        <a href="https://github.com/cdowdy/dialog-lightbox" class="external-link">Dbox Source</a>
+      </li>
+      <li>
+        <a href="https://github.com/cdowdy/dialog-lightbox/issues" class="external-link">Issues</a>
+      </li>
+      <li>
+        <a href="https://github.com/cdowdy/dialog-lightbox/releases/latest" class="external-link">Latest Release</a>
+      </li>
+    </ul>
+  </div>
+  <div class="full-to-half">
+    <p>Usage examples:</p>
+    <ul>
+      <li>
+        <a href="https://cdowdy.github.io/dialog-lightbox/" class="external-link">Dbox Demo <span class="link-icon icon-external-link">&nbsp;</span></a>
+      </li>
+      <li>
+        <a href="https://cdowdy.github.io/dialog-lightbox/dbox-modal.html" class="external-link">Modal Demo <span class="link-icon icon-external-link">&nbsp;</span></a>
+      </li>
+      <li>
+        <a href="https://cdowdy.github.io/dialog-lightbox/dbox-classes-id.html" class="external-link">Adding or Changing Classes or ID <span class="link-icon icon-external-link">&nbsp;</span></a>
+      </li>
+    </ul>
+  </div>
 </section>
 
 <section id="quick-start">
@@ -209,6 +236,20 @@
     </figure>
     </a>
   </div>
+</section>
+
+<section id="no-colorThief">
+  <h2 class="heading">
+    {{ 'Using Dbox without a PolyFill or ColorThief'|l2s( 'no-colorThief', 'l2s') }}
+  </h2>
+
+  <p>
+    If you want to live on the edge and only support one browser &mdash; you shouldn't do this but I'll let you :) &mdash; you can use the <em>dbox.noPolyfill.min.js</em> file found in <em>dist/js</em> directory.
+  </p>
+
+  <p>
+    If you have a server side solution for getting an images dominant color you can use the file <em>dbox.noColorThief.min.js</em> found in the dist/js directory.
+  </p>
 </section>
 
 <section id="limitations">
