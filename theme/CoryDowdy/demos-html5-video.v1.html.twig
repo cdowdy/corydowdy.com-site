@@ -80,7 +80,7 @@ entries:
     </p>
     <div class="video-container center-text">
       <figure>
-        {{ html5video('filelist-upload.08222016.webm', 'default', {
+        {{ html5video(['filelist-upload.08222016.webm','filelist-upload.08222016.mp4' ], 'default', {
           use_cdn: true,
           width_height: [ 600, '100%']
         }) }}
@@ -247,7 +247,7 @@ blogposts:
 
   <div class="full-to-half">
     <p>Result:</p>
-    {{ html5video('/demos/firefox-dev-serviceworkers-enable.08222016.webm', 'default') }}
+    {{ html5video(['demos/firefox-dev-serviceworkers-enable.08222016.webm', 'demos/firefox-dev-serviceworkers-enable.08222016.mp4'], 'default') }}
   </div>
 
 
@@ -321,7 +321,7 @@ default:
         <p>
           The video will now have muted, loop and playsinline along with controls as attributes and preload="none" added to the video element
         </p>
-        {{ html5video( '/demos/firefox-dev-serviceworkers-enable.08222016.webm', 'default', {
+        {{ html5video(['demos/firefox-dev-serviceworkers-enable.08222016.webm', 'demos/firefox-dev-serviceworkers-enable.08222016.mp4'], 'default', {
           preload: 'none',
           video_poster: '/files/demos/sw-enable-poster.png',
           attributes: [ 'controls',  'muted', 'loop', 'playsinline' ]
@@ -372,7 +372,7 @@ default:
       result:
     </p>
     <figure>
-      {{ html5video('goldengate.webm', 'default', {
+      {{ html5video(['goldengate.webm','goldengate.mp4'], 'default', {
         use_cdn: true,
         save_data: true,
         width_height: [ 600, '100%']
@@ -409,7 +409,7 @@ media_fragment: [6, 16 ]</code></pre>
       result:
     </p>
     <figure>
-      {{ html5video('yosemitie-spring.webm', 'default', {
+      {{ html5video(['yosemitie-spring.webm','yosemitie-spring.mp4'], 'default', {
         use_cdn: true,
         save_data: true,
         width_height: [ 600, '100%'],
@@ -448,7 +448,7 @@ media_fragment: [6, 16 ]</code></pre>
     <p class="center-text">
       result:
     </p>
-    {{ html5video('chloe-gizmo-run.webm', 'gifLike', {
+    {{ html5video(['chloe-gizmo-run.webm', 'chloe-gizmo-run.mp4'], 'gifLike', {
       use_cdn: true,
       save_data: false
     }) }}
