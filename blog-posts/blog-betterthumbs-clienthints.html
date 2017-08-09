@@ -65,9 +65,10 @@
       <p>
         After we've set our variable we'll move directly above our betterthumbs tag. Here is where we'll actually check for the request header of Save-Data with an <code class="language-twig">if</code> statement and use a twig filter to lowercase our variable.
       </p>
-      <pre class="language-twig"><code>{% verbatim %}
-&lbrace;% extends 'base.html.twig' %&rbrace;
+      <pre class="language-twig"><code>{% verbatim %}&lbrace;% extends 'base.html.twig' %&rbrace;
+
  &lbrace;% set SaveData = 'Save-Data' %&rbrace;
+
   &amp;lt;main&amp;gt;
     &lbrace;% block body %&rbrace;
       &amp;lt;figure&amp;gt;
