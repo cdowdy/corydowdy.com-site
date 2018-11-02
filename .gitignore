@@ -46,9 +46,8 @@ BingSiteAuth.xml
 google4a8043676cc37564.html
 sitemap.xml
 
-favicon.ico
+
 info.php
-LICENSE
 htaccess_currentonsite.txt
 .htaccess
 changelog.md
@@ -62,7 +61,7 @@ composer.json.dist
 .idea/
 
 
-README.md
+
 /theme/base-2016/
 /bolt-public/
 /.htaccess
