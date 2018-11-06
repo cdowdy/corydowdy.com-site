@@ -2,7 +2,7 @@
   "name": "corydowdy_rw",
   "version": "1.0.0",
   "description": "Site Theme For CoryDowdy.com ====   v2 on the way",
-  "main": "index.js",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
