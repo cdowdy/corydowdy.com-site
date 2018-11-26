@@ -5,8 +5,8 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack --mode=development --watch",
-    "build": "webpack --mode=production"
+    "dev": "encore dev --watch",
+    "build": "encore production"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,11 @@
   },
   "homepage": "https://github.com/cdowdy/corydowdy.com-site#readme",
   "devDependencies": {
+    "@symfony/webpack-encore": "^0.22.1",
+    "autoprefixer": "^9.3.1",
+    "node-sass": "^4.10.0",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^7.0.1"
   },
   "dependencies": {}
 }
