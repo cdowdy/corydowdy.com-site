@@ -62,7 +62,7 @@ composer.json.dist
 .idea/
 
 
-README.md
+
 /theme/base-2016/
 /bolt-public/
 /.htaccess
