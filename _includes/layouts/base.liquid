@@ -1,4 +1,4 @@
-<!doctype html>
+ <!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,6 +16,13 @@
           content="yes">
 
     <title>{{ title | capitalize }}</title>
+
+    {% if headscript %}
+        {% for script in headscript %}
+    <script src="{{ script }}" async></script>
+        {% endfor %}
+    {% endif %}
+
 </head>
 <body>
 <header class="fn-header" id="js-header" role="banner">
@@ -34,8 +41,8 @@
             <ul class="fn-navigation" id="js-nav">
                 {% for nav in collections.main-nav %}
                 <li class="fn-navigation__item">
-                        <a href="{{ nav.data.slug }}">{{ nav.data.title | capitalize }}</a>
-                    </li>
+                    <a href="{{ nav.data.slug }}">{{ nav.data.title | capitalize }}</a>
+                </li>
                 {% endfor %}
             </ul>
         </nav>
