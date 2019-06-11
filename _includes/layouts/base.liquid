@@ -34,7 +34,7 @@
             <ul class="fn-navigation" id="js-nav">
                 {% for nav in collections.main-nav %}
                 <li class="fn-navigation__item">
-                        <a href="{{ nav.data.slug }}">{{ nav.data.title }}</a>
+                        <a href="{{ nav.data.slug }}">{{ nav.data.title | capitalize }}</a>
                     </li>
                 {% endfor %}
             </ul>
