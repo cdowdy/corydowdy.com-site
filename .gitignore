@@ -68,7 +68,6 @@ composer.json.dist
 /index.php
 /thumbs/
 /extensions/
-/files/
 /phpinfo.php
 /assets/
 /theme/CoryDowdy/bash-scripts-file-perms-webp.txt
