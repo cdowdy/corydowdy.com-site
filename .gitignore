@@ -81,3 +81,4 @@ composer.json.dist
 /theme/CoryDowdy/svgsprites/
 /node_modules/
 theme/CoryDowdy/js/enhance/README.md
+_site/files
