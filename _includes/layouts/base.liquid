@@ -8,14 +8,25 @@
           content="ie=edge">
     <meta name="theme-color"
           content="#2C3E50"/>
+
+    <meta name="description" 
+        content="{{ metadescription }}" />
+    {% if metakeywords %}
+    <meta name="keywords" 
+        content="{{ metakeywords }}" />
+    {% endif %}      
+
     {%- comment -%}Bing Validation {%- endcomment -%}
     <meta name="msvalidate.01"
           content="346403273F73350B6928A46B28684A5B" />
-    {%- comment -%}Chrome Webapp Capable{%- endcomment -%}
+          
+    {%- comment -%}Chrome Webapp Capable{%- endcomment -%}  
     <meta name="mobile-web-app-capable"
           content="yes">
 
     <title>{{ title | capitalize }}</title>
+
+    <link rel="stylesheet" href="/css/app.05112018.min.css">
 
     {% if headscript %}
         {% for script in headscript %}
