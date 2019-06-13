@@ -83,3 +83,4 @@ composer.json.dist
 theme/CoryDowdy/js/enhance/README.md
 _site/files
 bolt_data/
+_site
