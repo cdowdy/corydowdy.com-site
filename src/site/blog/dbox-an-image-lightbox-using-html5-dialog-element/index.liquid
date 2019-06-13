@@ -1,0 +1,295 @@
+---
+slug: "dbox-an-image-lightbox-using-html5-dialog-element"
+datecreated: "2017-08-06 14:56:50"
+datechanged: "2017-08-07 16:39:23"
+datepublish: "2017-08-06 14:47:48"
+datedepublish: ""
+ownerid: 1,
+status: "published"
+templatefields: []
+title: "DBox - An Image Lightbox using HTML5 Dialog Element"
+metatitle: ""
+metadescription: "Dbox is an image lightbox and modal using HTML5's dialog element that has a colored dialog background
+like twitters lightbox images written in ES6"
+metakeywords: "html5 dialog, dialog element, dialog lightbox, dialog modal, modal, lightbox, image lightbox, image
+modal, es6 lightbox, es6 modal, accessbile lightbox, acessible modal, lightbox"
+image: dbox-blog.png
+teaser: "<p>Dbox is an image lightbox written in es6 that leverages HTML5 dialog element and mimics Twitters image
+    lightbox by applying an images dominant color to it's background.</p>"
+tags: [ blogs ]
+---
+
+<section id="intro">
+    <p>Dbox is an image lightbox written in es6 with no external dependencies — that is not dependent on JQuery.</p>
+    <div class="responsive-table-container">
+        <table class="table-no-style w-60">
+            <caption>File Sizes
+            </caption>
+            <thead class="table-header">
+                <tr>
+                    <th>File</th>
+                    <th class="table-number">Size in KB</th>
+                    <th class="table-number">Gzip
+                        Size in KB</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>dbox.min.css</th>
+                    <td class="table-number">&amp;thickapprox;3.0KB</td>
+                    <td class="table-number">&amp;thickapprox;1.7KB</td>
+                </tr>
+                <tr>
+                    <th>dbox.min.js</th>
+                    <td class="table-number">&amp;thickapprox;17.3KB</td>
+                    <td class="table-number">
+                        &amp;thickapprox;6.4KB</td>
+                </tr>
+                <tr>
+                    <th>dbox.noPollyFill.min.js</th>
+                    <td class="table-number">&amp;thickapprox;7.9KB</td>
+                    <td class="table-number">
+                        &amp;thickapprox;3.5KB</td>
+                </tr>
+                <tr>
+                    <th>dbox.noColorThief.min.js</th>
+                    <td class="table-number">&amp;thickapprox;11.5KB</td>
+                    <td class="table-number">
+                        &amp;thickapprox;4.3KB</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+<section id="download">
+    <h2 class="heading">{{ 'Download Dbox'|l2s( 'download', 'l2s') }}</h2>
+    <div class="full-to-half">
+        <p>
+            Github</p>
+        <ul>
+            <li><a class="external-link" href="https://github.com/cdowdy/dialog-lightbox">Dbox Source</a> </li>
+            <li><a class="external-link" href="https://github.com/cdowdy/dialog-lightbox/issues">Issues </a>
+            </li>
+            <li><a class="external-link" href="https://github.com/cdowdy/dialog-lightbox/releases/latest">Latest
+                    Release</a>
+            </li>
+        </ul>
+    </div>
+    <div class="full-to-half">
+        <p>Usage examples:</p>
+        <ul>
+            <li><a class="external-link" href="https://cdowdy.github.io/dialog-lightbox/">Dbox Demo <span
+                        class="link-icon icon-external-link"> </span></a></li>
+            <li><a class="external-link" href="https://cdowdy.github.io/dialog-lightbox/dbox-modal.html">Modal Demo
+                    <span class="link-icon icon-external-link"> </span></a></li>
+            <li><a class="external-link" href="https://cdowdy.github.io/dialog-lightbox/dbox-classes-id.html">Adding or
+                    Changing Classes or ID <span class="link-icon icon-external-link"> </span></a>
+            </li>
+        </ul>
+    </div>
+</section>
+<section id="quick-start">
+    <h2 class="heading">{{ 'Quick Start'|l2s( 'quick-start', 'l2s') }}</h2>
+    <p>Download the latest release from
+        github and insert the provided CSS into the head of your document and the provided JavaScript file before your
+        closing <code class="language-markup"> &amp;lt;/head&amp;gt;</code> tag.</p>
+    <div>
+        <pre
+            class="language-markup"><code class="hljs">&amp;lt;head&amp;gt;    &amp;lt;!-- your other files and markup on your head --&amp;gt;    &amp;lt;!-- The dbox css --&amp;gt;    &amp;lt;link rel="stylesheet" href="dist/css/dbox.min.css"&amp;gt;    &amp;lt;!-- The dbox JS file --&amp;gt;    &amp;lt;script src="dist/js/dbox.min.js" defer&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;/head&amp;gt;  </code></pre>
+    </div>
+    <p>Markup an image to be placed in a lightbox. Include a thumbnail image and the larger image
+        you wish to show in the lightbox. The Anchor tag (<code class="language-markup">&amp;lt;a&amp;gt;</code>)
+        needs to have a class of <code class="language-markup">dbox</code>.</p>
+    <div>
+        <pre
+            class="language-markup"><code class="hljs">&amp;lt;!-- a responsive image example --&amp;gt;    &amp;lt;a class="dbox" href="your/lightboxed/image.jpg"&amp;gt;      &amp;lt;img sizes="(min-width: 530px) 25vw, 100vw"           srcset="your/thumb/image-177w.png 177w,              your/thumb/image-240w.png 240w,              your/thumb/image-321w.png 321w,              img/thumb/640-th.png 367w"           src="img/thumb/640-th.png"           alt="Your Alt Text Used For the Lightbox Caption"           class="           width="100%"      &amp;gt;    &amp;lt;/a&amp;gt;    &amp;lt;!-- a regular image example --&amp;gt;    &amp;lt;a class="dbox" href="your/lightboxed/image.jpg"&amp;gt;       &amp;lt;img sizes="25vw" src="your/thumb/image-th.jpg"            alt="Your Alt Text Used For the Lightbox Caption"            class="any classes used to style your image"            width="100%"       &amp;gt;     &amp;lt;/a&amp;gt;</code></pre>
+    </div>
+    <p>Before your closing body tag, insert the dialog element and initialize the dbox script.</p>
+    <div>
+        <pre
+            class="language-markup"><code class="hljs">&amp;lt;dialog id="js-dbox" class="dbox-dialog"&amp;gt;  &amp;lt;div class="dbox-dialog--content"&amp;gt;    &amp;lt;img src=" alt=" class="dbox-dialog--image"&amp;gt;    &amp;lt;div class="dbox-dialog--container"&amp;gt;      &amp;lt;p class="dbox-dialog--caption"&amp;gt;&amp;lt;/p&amp;gt;      &amp;lt;button type="button" class="dbox-dialog--close"&amp;gt;close&amp;lt;/button&amp;gt;    &amp;lt;/div&amp;gt;  &amp;lt;/div&amp;gt;&amp;lt;/dialog&amp;gt;&amp;lt;script&amp;gt;    document.addEventListener("DOMContentLoaded", function () {    // you could also use var instead of let here      let lightbox = new Dbox();      lightbox.run();    });&amp;lt;/script&amp;gt;</code></pre>
+    </div>
+</section>
+<section id="example">
+    <h2 class="heading">{{ 'Example'|l2s( 'example', 'l2s') }}</h2>
+    <div class="full-to-half">
+        <p>Click
+            the image to open the lightbox !</p>
+    </div>
+    <div class="full-to-half"><a class="dbox"
+            href="/files/demos/betterthumbs/milky-way.jpg">{{ img('demos/betterthumbs/milky-way.jpg', 'betterthumb_demo', { 'altText': 'Milky Way Above Bend in Forested Shoreline By Eric Kilby' }) }}
+        </a> </div>
+</section>
+<section id="customizing">
+    <h2 class="heading">{{ 'Customizing Dbox'|l2s('customizing', 'l2s' ) }}</h2>
+    <p><b>Changing the
+            Anchor Class</b></p>
+    <p>The default anchor class is <code class="language-markup">dbox</code> if you'd wish to change this to something
+        else you need to
+        pass it to the constructor at the end of your page or in your own JS file. The new class will be used
+        for the 'element' key. Classes must be prefixed with a period and ID's with a hash mark.</p>
+    <div>
+        <pre
+            class="language-markup"><code class="hljs">&amp;lt;a class="myNewClass" href="your/lightboxed/image.jpg"&amp;gt;    &amp;lt;img sizes="25vw" src="your/thumb/image-th.jpg"        alt="Your Alt Text Used For the Lightbox Caption"        class="any classes used to style your image"        width="100%"    &amp;gt;&amp;lt;/a&amp;gt;</code></pre>
+    </div>
+    <div>
+        <pre
+            class="language-javascript"><code class="hljs">document.addEventListener("DOMContentLoaded", function () {    // you could also use var instead of let here      let lightbox = new Dbox( {          element: '.myNewClass'          // or using an id          element: '#myNewID'        } );      lightbox.run();    });</code></pre>
+    </div>
+    <hr>
+    <p><b>Changing The Dialog ID</b></p>
+    <p>The default ID that dbox looks for to open your
+        lightbox is <code class="language-markup">js-dbox</code>. If you have multiple dialog types in a page
+        you'll need a dialog element for each one with a unique ID. Pass this new id with hash mark included to
+        the dialogBox key.</p>
+    <div>
+        <pre
+            class="language-markup"><code class="hljs">&amp;lt;dialog id="myNewDialogID" class="dbox-dialog"&gt;    &amp;lt;div class="dbox-dialog--content"&amp;gt;        &amp;lt;img src=" alt=" class="dbox-dialog--image"&amp;gt;        &amp;lt;div class="dbox-dialog--container"&amp;gt;          &amp;lt;p class="dbox-dialog--caption"&amp;gt;&amp;lt;/p&amp;gt;            &amp;lt;button type="button" class="dbox-dialog--close"&amp;gt;close&amp;lt;/button&amp;gt;        &amp;lt;/div&amp;gt;    &amp;lt;/div&amp;gt;&amp;lt;/dialog&amp;gt;</code></pre>
+    </div>
+    <div>
+        <pre
+            class="language-javascript"><code class="hljs">document.addEventListener("DOMContentLoaded", function () {    // you could also use var instead of let here      let lightbox = new Dbox( {          dialogBox: '.myNewDialogClass'          // or using an id          element: '#myNewDialogID'        } );      lightbox.run();    });</code></pre>
+    </div>
+    <hr>
+    <p><b>Using Dbox as a Modal</b></p>
+    <p>Dbox has two modes to operate in. One is a normal dialog
+        / lightbox mode. Clicking anywhere on the image or backdrop will close the lightbox. The second mode is
+        a modal mode. The lightbox will only close when the 'close' button is clicked. You have hto pass 'modal:
+        true' to the constructor.</p>
+    <div>
+        <pre
+            class="language-javascript"><code class="hljs">document.addEventListener("DOMContentLoaded", function () {    // you could also use var instead of let here      let lightbox = new Dbox( {          modal: true        } );      lightbox.run();    });</code></pre>
+    </div>
+    <div class="full-to-half">
+        <p>Modal Example. Click the image to open a modal
+            lightbox</p>
+    </div>
+    <div class="full-to-half">
+        <figure><a class="modal-example"
+                href="/files/demos/betterthumbs/milky-way.jpg">{{ img('demos/betterthumbs/milky-way.jpg', 'betterthumb_demo', { 'altText': 'Milky Way Above Bend in Forested Shoreline By Eric Kilby', }) }}
+            </a>
+            <figcaption>
+                <p><a class="modal-example" href="/files/demos/betterthumbs/milky-way.jpg">Milky Way Above
+                        Bend in Forested Shoreline By </a> <a class="external-link"
+                        href="https://www.flickr.com/photos/ekilby/27869530792/">Eric Kilby</a> </p>
+            </figcaption>
+        </figure>
+    </div>
+</section>
+<section id="no-colorThief">
+    <h2 class="heading">
+        {{ 'Using Dbox without a PolyFill or ColorThief'|l2s( 'no-colorThief', 'l2s') }}
+    </h2>
+    <p>If you want to live on the edge and only support one browser — you
+        shouldn't do this but I'll let you :) — you can use the
+        <em>dbox.noPolyfill.min.js</em> file found in <em>dist/js</em> directory.</p>
+    <p>If you have a server side solution for getting an images dominant color you
+        can use the file <em>dbox.noColorThief.min.js</em> found in the dist/js directory.
+    </p>
+</section>
+<section id="limitations">
+    <h2 class="heading">{{ 'Dbox Limitations'|l2s( 'limitations', 'l2s') }}</h2>
+    <p>Dbox uses <code class="language-css">object-fit:</code> to display images in the lightbox. This is only supported
+        in</p>
+    <ol>
+        <li>Firefox 36+ <ul class="no-bullets">
+                <li>FireFox for Android</li>
+            </ul>
+        </li>
+        <li>
+            Chrome 31+ <ul class="no-bullets">
+                <li>Chrome For Android</li>
+            </ul>
+        </li>
+        <li>Safari
+            7.1+ <ul class="no-bullets">
+                <li>iOS Safari 8+</li>
+            </ul>
+        </li>
+        <li>Opera 19+ <ul class="no-bullets">
+                <li>Opera Mobile 12+</li>
+            </ul>
+        </li>
+        <li>Opera Mini</li>
+        <li>
+            Android Browser 4.4.4+</li>
+        <li>Samsung Internet 4+</li>
+    </ol>
+    <p>So images will be "stretched" on
+        large screens that don't support object-fit. The images below show the difference between Firefox that supports
+        object-fit and Edge 15 which doesn't.</p>
+    <div class="container-flex">
+        <div class="flex-img-gallery">
+            <p>FireFox</p>
+            {{ img('demos/firefox-object-fit-desktop.png', 'betterthumb_demo', { 'altText': 'Milky Way Above Bend in Forested Shoreline By Eric Kilby', }) }}
+        </div>
+        <div class="flex-img-gallery">
+            <p>Edge 15 No Object Fit</p>
+            {{ img('demos/edge15-no-object-fit.png', 'betterthumb_demo', { 'altText': 'Milky Way Above Bend in Forested Shoreline By Eric Kilby', }) }}
+        </div>
+    </div>
+    <p>The object-fit polyfills I found didn't work very well so I opted to not use them. If
+        you wish to try you can find one at <a class="external-link"
+            href="https://github.com/bfred-it/object-fit-images/">object-fit-images <span class="link-icon
+            icon-external-link"> </span></a>. It also links to other available polyfills. You'll use this at your own
+        discretion. I don't plan on debugging any object-fit polyfill usage with this library.</p>
+    <p>Dbox also
+        uses <a class="external-link" href="http://lokeshdhakar.com/projects/color-thief/">Color Thief <span
+                class="link-icon icon-external-link"> </span></a> to get the dominant color of an image. If your
+        thumbnail
+        image is large then this could cause a delay since it has to process a large image.</p>
+    <h3 class="heading" id="browserSupport">{{ 'Browser Support'|l2s( 'browserSupport', 'l2s' ) }}</h3>
+    <p>As
+        shown above this supports all "modern" browsers. So Edge, Firefox, Chrome, Opera, Safari.</p>
+    <div class="full-to-half">
+        <p><b>Internet Explorer 11</b> is "supported" but you'll have to include some of
+            your own custom CSS to properly align the dialog box in the window when it's opened.</p>
+    </div>
+    <div class="full-to-half">
+        {{ img('demos/ie-11-misaligned-backdrop.png', 'betterthumb_demo', { 'altText': 'Internet Explorer 11 misaligned dialog backdrop', }) }}
+    </div>
+</section>
+<section id="why">
+    <h2 class="heading">{{ 'Why Dbox?'|l2s( 'quick-start', 'l2s') }}</h2>
+    <p>Why did I build Dbox? HTML5.1
+        initially introduced the <a class="external-link"
+            href="https://html.spec.whatwg.org/multipage/interactive-elements.html#the-dialog-element">dialog element
+            <span class="link-icon icon-external-link"> </span></a>. It makes using and making dialogs, modals and
+        lightboxes super easy. The current browser support (as of this posting) isn't very good but there is a small
+        polyfill included in this library to over come that.</p>
+    <script src="https://cdn.jsdelivr.net/caniuse-embed/1.1.0/caniuse-embed.min.js" defer></script>
+    <p class="ciu_embed" data-feature="dialog" data-periods="future_1,current,past_1,past_2">
+        <a href="http://caniuse.com/#feat=dialog">Can I Use dialog?</a> 
+        Data on support for the dialog feature across
+        the major browsers from caniuse.com.
+    </p>
+    <p>In one of Twitter's recent updates they started to apply
+        a dominant color to the image's description on desktop and the background on mobile</p>
+    <div class="container-flex">
+        <div class="flex-img-gallery">
+            <p>Twitter Lightbox on a Desktop</p>
+            {{ html5video('blog/twitter-lightboxes.opt.mp4', 'default', { video_poster: '/files/twitter-lightbox-poster.jpg', use_cdn: true, } ) }}
+        </div>
+        <div class="flex-img-gallery">
+            <p>Twitter Lightbox on a phone</p>
+            {{ html5video('blog/twitter-lightbox.mobile.opt.mp4', 'default', { video_poster: '/files/twitter-lightbox-mobile-poster.jpg', use_cdn: true } ) }}
+        </div>
+    </div>
+    <p>I really liked that. So I wanted to replicate it</p>
+</section><!-- the dialog element -->
+<dialog class="dbox-dialog" id="js-dbox"></dialog>
+<div class="dbox-dialog--content">
+    <img alt="" class=" dbox-dialog--image" src="">
+    <div class=" dbox-dialog--container">
+    <p class="dbox-dialog--caption"></p><button class="dbox-dialog--close" type="button">close</button>
+</div>
+</div>
+<p></p>
+<dialog class="dbox-dialog" id="js-modal-example"></dialog>
+<div class="dbox-dialog--content">
+    <img alt="" class=" dbox-dialog--image" src="">
+    <div class="dbox-dialog--container">
+    <p class="dbox-dialog--caption"></p><button class="dbox-dialog--close" type="button">close</button>
+</div>
+</div>
+<p></p>

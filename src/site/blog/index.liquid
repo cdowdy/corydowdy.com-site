@@ -1,0 +1,59 @@
+---
+title: Blog
+slug: ./blog
+tags: [ main-nav ]
+layout: layouts/base.liquid
+---
+
+<div class="push-down">
+        <div class="container">
+          <div class="blog-list">
+            {% comment %} setcontent blogposts = "blog/latest/5" allowpaging {% endcomment %}
+            {% for blog in collections.blogs %}
+              <article role="article" class="blog-list--post" itemscope="" itemtype="http://schema.org/BlogPosting">
+                <meta itemprop="image" content="/files/{{ blog.image }}" />
+                <header>
+                  <h1 class="blog-list--title" itemprop="headline url">
+                    <a class="blog-link" href="{{ blog.data.slug }}">{{ blog.data.title }}</a>
+                  </h1>
+                  {% comment %} set recdate = blog.datepublish|localdate("%A %B %e, %Y") {% endcomment %}
+                  <p class="pub-date" itemprop="datePublished">
+                    {{ __('Posted on %date%',{ '%date%': recdate }) }}
+                  </p>
+                </header>
+                <p class="blog-teaser" itemprop="description">
+                    {{ blog.data.teaser | strip_html }}
+                </p>
+                <ul class="blog-list--info">
+                  <li>
+                    <a itemprop="url" href="{{ blog.data.slug }}">{{ __('Read Post &#10141;') }}</a>
+                  </li>
+                  {%- comment -%}<li class="blog-list--categories">
+                    <strong>Category:</strong>
+                    {% if blogpost.taxonomy.categories is defined %}
+                      {% for value, category in blogpost.taxonomy.categories %}
+                        <a aria-label="Blog Category {{ category }}" href="{{ value }}">{{ category }}</a>
+                      {% endfor %}
+                    {% endif %}
+                  </li>{%- endcomment -%}
+                </ul>
+            </article>
+              <hr/>
+            {% endfor %}
+            {% comment %} {{ pager( '' , 3, '_sub_corydowdy_pager.twig') }} {% endcomment %}
+          </div>
+          <aside role="complementary" class="blog-list--sidebar">
+            {% comment %} include 'form/_blog-search.html.twig' {% endcomment %}
+            <ul class="blog--category-list">
+              <li class="category-list-header">
+                <h3>Categories</h3>
+              </li>
+              {% comment %} for category in app.config.get('taxonomy/categories/options') %}
+                <li class="category-list-item">
+                  <a href="/categories/{{ category|slug }}">{{ category }}</a>
+                </li>
+              {% endfor %} {% endcomment %}
+            </ul>
+          </aside>
+        </div>
+      </div><!-- /.push-down -->
