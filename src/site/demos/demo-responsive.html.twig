@@ -1,0 +1,84 @@
+ {# Include header, navigation here #}
+
+<div class="centered-header push-down">
+    <h2>Concrete 5 Responsive Images Block</h2>
+    <p>An Add-on block the uses Non-Picture Element Responsive Image Techniques</p>
+  </div>
+  <hr />
+  <!-- /.centered-header push-down -->
+  <div class="full">
+    <h3>Responsive Images: Interchange</h3>
+    <p>You have the option to use Foundation 5's media queries or your own custom queries. Resize your browser to see them change.</p>
+  </div>
+  <div class="full-to-half">
+    <ul class="no-bullet">
+      <li><strong>Media Queries Currently Used:</strong></li>
+      <li><span class="sm">Default/Small</span></li>
+      <li><span class="med">Medium</span></li>
+      <li><span class="lrg">Large</span></li>
+    </ul>
+  </div>
+  <div class="full-to-half">
+    <img class="center" data-interchange="[//pullzone1-corydowdywebdesi.netdna-ssl.com/assets/img/resp/default.png, (default)], [//pullzone1-corydowdywebdesi.netdna-ssl.com/assets/img/resp/medium.png, (medium)], [//pullzone1-corydowdywebdesi.netdna-ssl.com/assets/img/resp/large.png, (large)]">
+    <noscript><img src="//pullzone1-corydowdywebdesi.netdna-ssl.com/assets/img/resp/default.png"></noscript>
+  </div>
+  <div class="full">
+    <hr />
+    <h3>Responsive Images: PictureFill</h3>
+    <p>PictureFill allows you to use Foundation 5's Media queries or your own custom queries</p>
+    <p>This uses version 1.2. A new version of picturefill can be found <a href="//github.com/scottjehl/picturefill">here</a></p>
+  </div>
+  <div class="full-to-half">
+    <ul class="no-bullet">
+      <li><strong>Using Foundation 5 Media Queries:</strong></li>
+      <li><span class="sm">Default/Small</span></li>
+      <li><span class="med">Medium</span></li>
+      <li><span class="lrg">Large</span></li>
+    </ul>
+  </div>
+  <div class="full-to-half">
+    <span class="pfill-images" data-picture data-alt="Image Alternate Text">
+      <span data-src="//pullzone1-corydowdywebdesi.netdna-ssl.com/assets/img/resp/default.png"></span>
+      <span data-src="//pullzone1-corydowdywebdesi.netdna-ssl.com/assets/img/resp/large.png" data-media="(min-width: 1024px)"></span>
+      <!--[if (lt IE 9) & (!IEMobile)]>
+      <span data-src="//pullzone1-corydowdywebdesi.netdna-ssl.com/assets/img/resp/medium.png"></span>
+      <![endif]-->
+      <!-- Fallback content for non-JS browsers. Same img src as the initial, unqualified source element. -->
+      <noscript>
+        <img src="//pullzone1-corydowdywebdesi.netdna-ssl.com/assets/img/resp/medium.png" alt="Medium Image">
+      </noscript>
+    </span>
+  </div>
+
+  <!--
+    Use Vid
+  -->
+
+    <div class="full">
+      <hr />
+      <h3>Responsive Image Block In Use</h3>
+    </div>
+    <hr />
+    <div class="video-container">
+      <video controls preload="metadata" poster="img/resp/resp-poster.jpg">
+        <source src="//pullzone1-corydowdywebdesi.netdna-ssl.com/assets/video/resp-in-use.webm"
+                type='video/webm;codecs="vp8, vorbis"' />
+        <source src="//pullzone1-corydowdywebdesi.netdna-ssl.com/assets/video/resp-in-use.mp4"
+                type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"' />
+      </video>
+
+    </div>
+    <hr />
+    <div class="full panel">
+      <p>
+        Foundation Interchange can be found at Zurb Foundations Website <a href="//foundation.zurb.com/docs/components/interchange.html">Interchange</a>
+      </p>
+      <p>
+        PictureFill by Scott Jehl can be found at his github respository <a href="//github.com/scottjehl/picturefill">PictureFill Github</a>
+      </p>
+      <p>
+        The Complete Source Code For this Add-on can be found at my github account. <a href="//github.com/cdowdy/concrete5-responsive-images">Concrete 5 Responsive Images</a>
+      </p>
+    </div>
+
+    {# Include Footer, closing main, scripts and body #}

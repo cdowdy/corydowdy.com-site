@@ -1,0 +1,79 @@
+{#
+    08/16/2014
+#}
+
+{% extends 'base.html.twig' %}
+
+
+
+
+         {% block inlined_styles %}
+             <style>{% include 'css/critical-css/contact.' ~ ( critical_update ) ~ '.min.css' %}</style>
+         {% endblock %}
+
+
+{% block body %}
+<div class="centered-header push-down">
+    <h4>Get In Touch</h4>
+</div>
+  <div class="full-to-half contact-info">
+    <p>
+      Please Fill out this form and I'll get back to you as soon as possible.
+    </p>
+    {{ boltforms( 'contact' ) }}
+</div>
+  <div class="full-to-half contact-info">
+    <p>
+      Forms aren't your thing and you'd rather email? Here is my contact info
+    </p>
+    <section itemscope itemtype="http://schema.org/Person">
+      <!--<p itemprop="name"><strong>Cory Dowdy</strong></p>-->
+     <div class="container">
+       <div class="contact-list">
+         <ul class="no-bullet">
+           <li itemprop="name"><strong>Cory Dowdy</strong></li>
+           <li itemscope itemtype="http://schema.org/Organization">
+          <span itemprop="name">
+            Cory Dowdy Web Development
+          </span>
+           </li>
+           <span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+           <li>
+             <span itemprop="addressLocality">Ravenna</span>, <span itemprop="addressRegion">Ohio</span>
+           </li>
+           <li itemprop="postalCode">
+             44266
+           </li>
+           <li itemprop="addressCountry">
+             United States
+           </li>
+         </span>
+           <li itemprop="email">
+             <script>
+               var x="function f(x){var i,o=\"\",l=x.length;for(i=0;i<l;i+=2) {if(i+1<l)o+=" +
+                 "x.charAt(i+1);try{o+=x.charAt(i);}catch(e){}}return o;}f(\"ufcnitnof x({)av" +
+                 " r,i=o\\\"\\\"o,=l.xelgnhtl,o=;lhwli(e.xhcraoCedtAl(1/)3=!84{)rt{y+xx=l;=+;" +
+                 "lc}tahce({)}}of(r=i-l;1>i0=i;--{)+ox=c.ahAr(t)i};erutnro s.buts(r,0lo;)f}\\" +
+                 "\"(8),7\\\"\\\\19W;B_32\\\\0U\\\\5E03\\\\\\\\V:31\\\\05\\\\03\\\\\\\\22\\\\" +
+                 "07\\\\03\\\\\\\\N42M10\\\\0!\\\\pK{r]ty74Aqx|x,L1Qfna}&sX'mn.b07\\\\01\\\\0" +
+                 "3\\\\\\\\13\\\\04\\\\02\\\\\\\\36\\\\00\\\\00\\\\\\\\\\\\n0\\\\03\\\\\\\\25" +
+                 "\\\\05\\\\\\\\r1\\\\00\\\\\\\\35\\\\02\\\\02\\\\\\\\0J00\\\\\\\\32\\\\01\\\\"+
+                 "00\\\\\\\\05\\\\0n\\\\\\\\\\\\07\\\\0K\\\\Z400\\\\00\\\\00\\\\\\\\26\\\\03\\"+
+                 "\\01\\\\\\\\0B00\\\\\\\\\\\\\\\\\\\\\\\\v}03.>*0x :!?63$* \\\"\\\\f(;} ornt" +
+                 "ure;}))++(y)^(iAtdeCoarchx.e(odrChamCro.fngriSt+=;o27=1y%i;+=)y78==(iif){++" +
+                 ";i<l;i=0(ior;fthnglex.l=\\\\,\\\\\\\"=\\\",o iar{vy)x,f(n ioctun\\\"f)\")"   ;
+               while(x=eval(x));
+             </script>
+
+           </li>
+         </ul>
+       </div>
+     </div>
+    </section>
+  </div>
+{% endblock %}
+
+{% block footer_javascripts %}
+<script src="/theme/CoryDowdy/js/contact.02092016.min.js" async defer></script>
+    {{ parent() }}
+{% endblock footer_javascripts %}
