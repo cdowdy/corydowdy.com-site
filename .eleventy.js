@@ -5,7 +5,10 @@ module.exports = function(eleventyConfig) {
     // Copy the `css/` directory
     eleventyConfig.addPassthroughCopy("src/site/css");
     // Copy the 'js/' directory
-    eleventyConfig.addPassthroughCopy("src/site/js")
+    eleventyConfig.addPassthroughCopy("src/site/js");
+
+    // add layout aliases
+    eleventyConfig.addLayoutAlias('default', 'layouts/base.liquid');
     
     return {
 
