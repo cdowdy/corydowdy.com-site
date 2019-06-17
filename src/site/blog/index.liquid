@@ -14,7 +14,7 @@ layout: layouts/base.liquid
               TODO: convert meta tag for images to liquid syntatx 
             {%- endcomment -%}
               <article role="article" class="blog-list--post" itemscope="" itemtype="http://schema.org/BlogPosting">
-                <meta itemprop="image" content="/files/{{ blog.image }}" />
+                <meta itemprop="image" content="/files/{{ blog.data.image }}" />
                 <header>
                   <h1 class="blog-list--title" itemprop="headline url">
                     <a class="blog-link" href="{{ blog.data.slug }}">{{ blog.data.title }}</a>
