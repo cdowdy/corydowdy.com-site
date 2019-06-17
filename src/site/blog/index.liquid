@@ -24,7 +24,7 @@ layout: layouts/base.liquid
                   {%- endcomment -%}
                   {% comment %} set recdate = blog.datepublish|localdate("%A %B %e, %Y") {% endcomment %}
                   <p class="pub-date" itemprop="datePublished">
-                    {{ __('Posted on %date%',{ '%date%': recdate }) }}
+                    {{ blog.data.datepublish | humanDate }}
                   </p>
                 </header>
                 <p class="blog-teaser" itemprop="description">
