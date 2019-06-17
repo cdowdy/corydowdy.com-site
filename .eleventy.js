@@ -9,6 +9,13 @@ module.exports = function(eleventyConfig) {
 
     // add layout aliases
     eleventyConfig.addLayoutAlias('default', 'layouts/base.liquid');
+
+    // add and use luxon for our dates.
+    // copied and slightly modified from 11ty blog boilerplate 
+    // and eleventyone template https://github.com/philhawksworth/eleventyone
+
+    eleventyConfig.addFilter('humanDate', require( "./src/utils/filters/date.js" ) );
+
     
     return {
 
