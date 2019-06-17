@@ -10,12 +10,18 @@ layout: layouts/base.liquid
           <div class="blog-list">
             {% comment %} setcontent blogposts = "blog/latest/5" allowpaging {% endcomment %}
             {% for blog in collections.blogs %}
+            {%- comment -%} 
+              TODO: convert meta tag for images to liquid syntatx 
+            {%- endcomment -%}
               <article role="article" class="blog-list--post" itemscope="" itemtype="http://schema.org/BlogPosting">
                 <meta itemprop="image" content="/files/{{ blog.image }}" />
                 <header>
                   <h1 class="blog-list--title" itemprop="headline url">
                     <a class="blog-link" href="{{ blog.data.slug }}">{{ blog.data.title }}</a>
                   </h1>
+                  {%- comment -%}
+                    TODO: convert data published to liquid tag and put into below 'itemprop;'
+                  {%- endcomment -%}
                   {% comment %} set recdate = blog.datepublish|localdate("%A %B %e, %Y") {% endcomment %}
                   <p class="pub-date" itemprop="datePublished">
                     {{ __('Posted on %date%',{ '%date%': recdate }) }}
@@ -26,8 +32,14 @@ layout: layouts/base.liquid
                 </p>
                 <ul class="blog-list--info">
                   <li>
+                    {%- comment -%}
+                      TODO: make the anchor text a string
+                    {%- endcomment -%}
                     <a itemprop="url" href="{{ blog.data.slug }}">{{ __('Read Post &#10141;') }}</a>
                   </li>
+                  {%- comment -%}
+                    TODO: make the taxonomies and "collection" and output them here
+                  {%- endcomment -%}
                   {%- comment -%}<li class="blog-list--categories">
                     <strong>Category:</strong>
                     {% if blogpost.taxonomy.categories is defined %}
@@ -40,6 +52,9 @@ layout: layouts/base.liquid
             </article>
               <hr/>
             {% endfor %}
+            {%- comment -%}
+              TODO: convert bolt pager to eleventy pagination using collections
+            {%- endcomment -%}
             {% comment %} {{ pager( '' , 3, '_sub_corydowdy_pager.twig') }} {% endcomment %}
           </div>
           <aside role="complementary" class="blog-list--sidebar">
@@ -48,6 +63,9 @@ layout: layouts/base.liquid
               <li class="category-list-header">
                 <h3>Categories</h3>
               </li>
+              {%- comment -%}
+              TODO: make the catergooes collection clickable
+              {%- endcomment -%}
               {% comment %} for category in app.config.get('taxonomy/categories/options') %}
                 <li class="category-list-item">
                   <a href="/categories/{{ category|slug }}">{{ category }}</a>
