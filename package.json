@@ -2,14 +2,13 @@
   "name": "corydowdy",
   "version": "2.0.0",
   "description": "CoryDowdy.com site built off of eleventy",
-
   "scripts": {
     "build": "npx eleventy",
     "watch": "npx eleventy --watch",
     "debug": "DEBUG=* npx eleventy"
   },
-
   "devDependencies": {
-    "@11ty/eleventy": "^0.8.3"
+    "@11ty/eleventy": "^0.8.3",
+    "luxon": "^1.16.0"
   }
 }
