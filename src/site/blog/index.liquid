@@ -17,7 +17,7 @@ layout: layouts/base.liquid
                 <meta itemprop="image" content="/files/{{ blog.data.image }}" />
                 <header>
                   <h1 class="blog-list--title" itemprop="headline url">
-                    <a class="blog-link" href="{{ blog.data.slug }}">{{ blog.data.title }}</a>
+                    <a class="blog-link" href="{{ blog.url }}">{{ blog.data.title }}</a>
                   </h1>
                   {%- comment -%}
                     TODO: convert data published to liquid tag and put into below 'itemprop;'
