@@ -8,21 +8,13 @@ layout: layouts/base.liquid
 <div class="push-down">
         <div class="container">
           <div class="blog-list">
-            {% comment %} setcontent blogposts = "blog/latest/5" allowpaging {% endcomment %}
             {% for blog in collections.blogs %}
-            {%- comment -%} 
-              TODO: convert meta tag for images to liquid syntatx 
-            {%- endcomment -%}
               <article role="article" class="blog-list--post" itemscope="" itemtype="http://schema.org/BlogPosting">
                 <meta itemprop="image" content="/files/{{ blog.data.image }}" />
                 <header>
                   <h1 class="blog-list--title" itemprop="headline url">
                     <a class="blog-link" href="{{ blog.url }}">{{ blog.data.title }}</a>
                   </h1>
-                  {%- comment -%}
-                    TODO: convert data published to liquid tag and put into below 'itemprop;'
-                  {%- endcomment -%}
-                  {% comment %} set recdate = blog.datepublish|localdate("%A %B %e, %Y") {% endcomment %}
                   <p class="pub-date" itemprop="datePublished">
                     {{ blog.data.datepublish | humanDate }}
                   </p>
@@ -35,7 +27,7 @@ layout: layouts/base.liquid
                     {%- comment -%}
                       TODO: make the anchor text a string
                     {%- endcomment -%}
-                    <a itemprop="url" href="{{ blog.data.slug }}">{{ __('Read Post &#10141;') }}</a>
+                    <a itemprop="url" href="{{ blog.data.slug }}">Read Post &#10141;</a>
                   </li>
                   {%- comment -%}
                     TODO: make the taxonomies and "collection" and output them here
