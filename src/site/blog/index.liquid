@@ -3,48 +3,48 @@ title: Blog
 slug: ./blog
 tags: [ main-nav ]
 layout: layouts/base.liquid
+pagination: 
+  data: collections.blogs
+  size: 5
+  alias: posts
 ---
 
 <div class="push-down">
         <div class="container">
           <div class="blog-list">
-            {% for blog in collections.blogs %}
-              <article role="article" class="blog-list--post" itemscope="" itemtype="http://schema.org/BlogPosting">
-                <meta itemprop="image" content="/files/{{ blog.data.image }}" />
-                <header>
-                  <h1 class="blog-list--title" itemprop="headline url">
-                    <a class="blog-link" href="{{ blog.url }}">{{ blog.data.title }}</a>
-                  </h1>
-                  <p class="pub-date" itemprop="datePublished">
-                    {{ blog.data.datepublish | humanDate }}
-                  </p>
-                </header>
-                <p class="blog-teaser" itemprop="description">
-                    {{ blog.data.teaser | strip_html }}
+            {% for post in posts %}
+            <article role="article" class="blog-list--post" itemscope="" itemtype="http://schema.org/BlogPosting">
+              <meta itemprop="image" content="/files/{{ post.data.image }}" />
+              <header>
+                <h1 class="blog-list--title" itemprop="headline url">
+                  <a class="blog-link" href="{{ post.url }}">{{ post.data.title }}</a>
+                </h1>
+                <p class="pub-date" itemprop="datePublished">
+                  {{ post.data.datepublish | humanDate }}
                 </p>
-                <ul class="blog-list--info">
-                  <li>
-                    <a itemprop="url" href="{{ blog.data.slug }}">Read Post &#10141;</a>
-                  </li>
-                  {%- comment -%}
-                    TODO: make the taxonomies and "collection" and output them here
-                  {%- endcomment -%}
-                  {%- comment -%}<li class="blog-list--categories">
-                    <strong>Category:</strong>
-                    {% if blogpost.taxonomy.categories is defined %}
-                      {% for value, category in blogpost.taxonomy.categories %}
-                        <a aria-label="Blog Category {{ category }}" href="{{ value }}">{{ category }}</a>
-                      {% endfor %}
-                    {% endif %}
-                  </li>{%- endcomment -%}
-                </ul>
+              </header>
+              <p class="blog-teaser" itemprop="description">
+                {{ post.data.teaser | strip_html }}
+              </p>
+              <ul class="blog-list--info">
+                <li>
+                  <a itemprop="url" href="{{ post.data.slug }}">Read Post &#10141;</a>
+                </li>
+                {%- comment -%}
+                TODO: make the taxonomies and "collection" and output them here
+                {%- endcomment -%}
+                {%- comment -%}<li class="blog-list--categories">
+                  <strong>Category:</strong>
+                  {% if blogpost.taxonomy.categories is defined %}
+                  {% for value, category in blogpost.taxonomy.categories %}
+                  <a aria-label="Blog Category {{ category }}" href="{{ value }}">{{ category }}</a>
+                  {% endfor %}
+                  {% endif %}
+                </li>{%- endcomment -%}
+              </ul>
             </article>
-              <hr/>
+            <hr />
             {% endfor %}
-            {%- comment -%}
-              TODO: convert bolt pager to eleventy pagination using collections
-            {%- endcomment -%}
-            {% comment %} {{ pager( '' , 3, '_sub_corydowdy_pager.twig') }} {% endcomment %}
           </div>
           <aside role="complementary" class="blog-list--sidebar">
             {% comment %} include 'form/_blog-search.html.twig' {% endcomment %}
