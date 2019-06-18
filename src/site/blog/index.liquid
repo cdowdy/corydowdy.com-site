@@ -45,6 +45,29 @@ pagination:
             </article>
             <hr />
             {% endfor %}
+            
+            {% if pagination.hrefs.length > 1 %}
+            <section class="blog-pagination">
+                <ul class="pagination-list" role="menubar" aria-label="Pagination">
+                  {% if pagination.previousPageHref %}
+                  <li class="arrow">
+                    <a href="{{ pagination.previousPageHref }}" aria-label="Newer Posts">
+                      &laquo; Newer Posts
+                    </a>
+                  </li>
+                  {% endif %}
+              
+                  {% if pagination.nextPageHref %}
+                  <li class="arrow">
+                    <a href="{{ pagination.nextPageHref }}"> 
+                      Older Posts &raquo;
+                    </a>
+                  </li>
+                  {% endif %}
+                </ul>
+              </section>
+            {% endif %}
+            
           </div>
           <aside role="complementary" class="blog-list--sidebar">
             {% comment %} include 'form/_blog-search.html.twig' {% endcomment %}
