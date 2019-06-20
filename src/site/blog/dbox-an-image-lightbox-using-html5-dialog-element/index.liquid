@@ -122,49 +122,50 @@ tags: [ blogs, 'the web', categories ]
             the lightbox. The Anchor tag (<code class="language-markup">&lt;a&gt;</code>) needs to have a class of
             <code class="language-markup">dbox</code>.
         </p>
-        <pre class="language-markup"><code>&lt;!-- a responsive image example --&gt;
-                  &lt;a class="dbox" href="your/lightboxed/image.jpg"&gt;
-                    &lt;img sizes="(min-width: 530px) 25vw, 100vw"
-                         srcset="your/thumb/image-177w.png 177w,
-                            your/thumb/image-240w.png 240w,
-                            your/thumb/image-321w.png 321w,
-                            img/thumb/640-th.png 367w"
-                         src="img/thumb/640-th.png"
-                         alt="Your Alt Text Used For the Lightbox Caption"
-                         class=""
-                         width="100%"
-                    &gt;
-                  &lt;/a&gt;
+ <pre class="language-markup"><code>&lt;!-- a responsive image example --&gt;
+&lt;a class="dbox" href="your/lightboxed/image.jpg"&gt;
+    &lt;img sizes="(min-width: 530px) 25vw, 100vw"
+        srcset="your/thumb/image-177w.png 177w,
+            your/thumb/image-240w.png 240w,
+            your/thumb/image-321w.png 321w,
+            img/thumb/640-th.png 367w"
+        src="img/thumb/640-th.png"
+        alt="Your Alt Text Used For the Lightbox Caption"
+        class=""
+        width="100%"
+    &gt;
+&lt;/a&gt;
               
-                  &lt;!-- a regular image example --&gt;
-                  &lt;a class="dbox" href="your/lightboxed/image.jpg"&gt;
-                     &lt;img sizes="25vw" src="your/thumb/image-th.jpg"
-                          alt="Your Alt Text Used For the Lightbox Caption"
-                          class="any classes used to style your image"
-                          width="100%"
-                     &gt;
-                   &lt;/a&gt;</code></pre>
+&lt;!-- a regular image example --&gt;
+&lt;a class="dbox" href="your/lightboxed/image.jpg"&gt;
+    &lt;img sizes="25vw" 
+        src="your/thumb/image-th.jpg"
+        alt="Your Alt Text Used For the Lightbox Caption"
+        class="any classes used to style your image"
+        width="100%"
+    &gt;
+&lt;/a&gt;</code></pre>
     
         <p>
             Before your closing body tag, insert the dialog element and initialize the dbox script.
         </p>
-        <pre class="language-markup"><code>&lt;dialog id="js-dbox" class="dbox-dialog"&gt;
-                &lt;div class="dbox-dialog--content"&gt;
-                  &lt;img src="" alt="" class="dbox-dialog--image"&gt;
-                  &lt;div class="dbox-dialog--container"&gt;
-                    &lt;p class="dbox-dialog--caption"&gt;&lt;/p&gt;
+<pre class="language-markup"><code>&lt;dialog id="js-dbox" class="dbox-dialog"&gt;
+    &lt;div class="dbox-dialog--content"&gt;
+        &lt;img src="" alt="" class="dbox-dialog--image"&gt;
+            &lt;div class="dbox-dialog--container"&gt;
+                &lt;p class="dbox-dialog--caption"&gt;&lt;/p&gt;
                     &lt;button type="button" class="dbox-dialog--close"&gt;close&lt;/button&gt;
-                  &lt;/div&gt;
-                &lt;/div&gt;
-              &lt;/dialog&gt;
+            &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/dialog&gt;
               
-              &lt;script&gt;
-                  document.addEventListener("DOMContentLoaded", function () {
-                  // you could also use var instead of let here
-                    let lightbox = new Dbox();
-                    lightbox.run();
-                  });
-              &lt;/script&gt;</code></pre>
+&lt;script&gt;
+    document.addEventListener("DOMContentLoaded", function () {
+        // you could also use var instead of let here
+        let lightbox = new Dbox();
+        lightbox.run();
+    });
+ &lt;/script&gt;</code></pre>
     </section>
     
     <section id="example">
@@ -196,22 +197,23 @@ tags: [ blogs, 'the web', categories ]
             else you need to pass it to the constructor at the end of your page or in your own JS file. The new class will
             be used for the 'element' key. Classes must be prefixed with a period and ID's with a hash mark.
         </p>
-        <pre class="language-markup"><code>&lt;a class="myNewClass" href="your/lightboxed/image.jpg"&gt;
-                  &lt;img sizes="25vw" src="your/thumb/image-th.jpg"
-                      alt="Your Alt Text Used For the Lightbox Caption"
-                      class="any classes used to style your image"
-                      width="100%"
-                  &gt;
-              &lt;/a&gt;</code></pre>
-        <pre class="language-javascript"><code>document.addEventListener("DOMContentLoaded", function () {
-                  // you could also use var instead of let here
-                    let lightbox = new Dbox( {
-                        element: '.myNewClass'
-                        // or using an id
-                        element: '#myNewID'
-                      } );
-                    lightbox.run();
-                  });</code></pre>
+<pre class="language-markup"><code>&lt;a class="myNewClass" href="your/lightboxed/image.jpg"&gt;
+    &lt;img sizes="25vw" 
+        src="your/thumb/image-th.jpg"
+        alt="Your Alt Text Used For the Lightbox Caption"
+        class="any classes used to style your image"
+        width="100%"
+    &gt;
+&lt;/a&gt;</code></pre>
+<pre class="language-javascript"><code>document.addEventListener("DOMContentLoaded", function () {
+    // you could also use var instead of let here
+    let lightbox = new Dbox( {
+        element: '.myNewClass'
+        // or using an id
+        element: '#myNewID'
+    } );
+    lightbox.run();
+});</code></pre>
         <hr>
         <p><b>Changing The Dialog ID</b></p>
         <p>
@@ -220,25 +222,25 @@ tags: [ blogs, 'the web', categories ]
             id with hash mark included to the dialogBox key.
         </p>
     
-        <pre class="language-markup"><code>&lt;dialog id="myNewDialogID" class="dbox-dialog">
-                  &lt;div class="dbox-dialog--content"&gt;
-                      &lt;img src="" alt="" class="dbox-dialog--image"&gt;
-                      &lt;div class="dbox-dialog--container"&gt;
-                        &lt;p class="dbox-dialog--caption"&gt;&lt;/p&gt;
-                          &lt;button type="button" class="dbox-dialog--close"&gt;close&lt;/button&gt;
-                      &lt;/div&gt;
-                  &lt;/div&gt;
-              &lt;/dialog&gt;</code></pre>
+<pre class="language-markup"><code>&lt;dialog id="myNewDialogID" class="dbox-dialog">
+    &lt;div class="dbox-dialog--content"&gt;
+        &lt;img src="" alt="" class="dbox-dialog--image"&gt;
+        &lt;div class="dbox-dialog--container"&gt;
+            &lt;p class="dbox-dialog--caption"&gt;&lt;/p&gt;
+                &lt;button type="button" class="dbox-dialog--close"&gt;close&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/dialog&gt;</code></pre>
     
-        <pre class="language-javascript"><code>document.addEventListener("DOMContentLoaded", function () {
-                  // you could also use var instead of let here
-                    let lightbox = new Dbox( {
-                        dialogBox: '.myNewDialogClass'
-                        // or using an id
-                        element: '#myNewDialogID'
-                      } );
-                    lightbox.run();
-                  });</code></pre>
+<pre class="language-javascript"><code>document.addEventListener("DOMContentLoaded", function () {
+    // you could also use var instead of let here
+        let lightbox = new Dbox( {
+            dialogBox: '.myNewDialogClass'
+            // or using an id
+            element: '#myNewDialogID'
+        } );
+        lightbox.run();
+});</code></pre>
         <hr>
         <p><b>Using Dbox as a Modal</b></p>
         <p>
@@ -246,13 +248,13 @@ tags: [ blogs, 'the web', categories ]
             backdrop will close the lightbox. The second mode is a modal mode. The lightbox will only close when the 'close'
             button is clicked. You have hto pass 'modal: true' to the constructor.
         </p>
-        <pre class="language-javascript"><code>document.addEventListener("DOMContentLoaded", function () {
-                  // you could also use var instead of let here
-                    let lightbox = new Dbox( {
-                        modal: true
-                      } );
-                    lightbox.run();
-                  });</code></pre>
+<pre class="language-javascript"><code>document.addEventListener("DOMContentLoaded", function () {
+    // you could also use var instead of let here
+    let lightbox = new Dbox( {
+        modal: true
+    } );
+    lightbox.run();
+});</code></pre>
         <div class="full-to-half">
             <p>Modal Example. Click the image to open a modal lightbox</p>
         </div>
