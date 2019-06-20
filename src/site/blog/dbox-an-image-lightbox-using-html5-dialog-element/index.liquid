@@ -1,4 +1,5 @@
 ---
+layout: layouts/blogentry.liquid
 datechanged: 2017-08-07 12:30:36
 slug: dbox-an-image-lightbox-using-html5-dialog-element
 datecreated: 2017-08-07 11:59:32
@@ -14,7 +15,7 @@ modal, es6 lightbox, es6 modal, accessbile lightbox, acessible modal, lightbox"
 image: dbox-blog.png
 teaser: "<p>Dbox is an image lightbox written in es6 that leverages HTML5 dialog element and mimics Twitters image
     lightbox by applying an images dominant color to it's background.</p>"
-tags: [ blogs, the web ]
+tags: [ blogs, 'the web', categories ]
 ---
 
     <section id="intro">
@@ -104,26 +105,26 @@ tags: [ blogs, the web ]
     
         <p>
             Download the latest release from github and insert the provided CSS into the head of your document and the
-            provided JavaScript file before your closing <code class="language-markup"> &amp;lt;/head&amp;gt;</code> tag.
+            provided JavaScript file before your closing <code class="language-markup">&lt;/head&gt;</code> tag.
         </p>
-        <pre class="language-markup"><code>&amp;lt;head&amp;gt;
-                  &amp;lt;!-- your other files and markup on your head --&amp;gt;
-                  &amp;lt;!-- The dbox css --&amp;gt;
-                  &amp;lt;link rel="stylesheet" href="dist/css/dbox.min.css"&amp;gt;
+<pre class="language-markup"><code>&lt;head&gt;
+    &lt;!-- your other files and markup on your head --&gt;
+    &lt;!-- The dbox css --&gt;
+    &lt;link rel="stylesheet" href="dist/css/dbox.min.css"&gt;
               
-                  &amp;lt;!-- The dbox JS file --&amp;gt;
-                  &amp;lt;script src="dist/js/dbox.min.js" defer&amp;gt;&amp;lt;/script&amp;gt;
-              &amp;lt;/head&amp;gt;
-                </code></pre>
+    &lt;!-- The dbox JS file --&gt;
+    &lt;script src="dist/js/dbox.min.js" defer&gt;&lt;/script&gt;
+&lt;/head&gt;
+</code></pre>
     
         <p>
             Markup an image to be placed in a lightbox. Include a thumbnail image and the larger image you wish to show in
-            the lightbox. The Anchor tag (<code class="language-markup">&amp;lt;a&amp;gt;</code>) needs to have a class of
+            the lightbox. The Anchor tag (<code class="language-markup">&lt;a&gt;</code>) needs to have a class of
             <code class="language-markup">dbox</code>.
         </p>
-        <pre class="language-markup"><code>&amp;lt;!-- a responsive image example --&amp;gt;
-                  &amp;lt;a class="dbox" href="your/lightboxed/image.jpg"&amp;gt;
-                    &amp;lt;img sizes="(min-width: 530px) 25vw, 100vw"
+        <pre class="language-markup"><code>&lt;!-- a responsive image example --&gt;
+                  &lt;a class="dbox" href="your/lightboxed/image.jpg"&gt;
+                    &lt;img sizes="(min-width: 530px) 25vw, 100vw"
                          srcset="your/thumb/image-177w.png 177w,
                             your/thumb/image-240w.png 240w,
                             your/thumb/image-321w.png 321w,
@@ -132,38 +133,38 @@ tags: [ blogs, the web ]
                          alt="Your Alt Text Used For the Lightbox Caption"
                          class=""
                          width="100%"
-                    &amp;gt;
-                  &amp;lt;/a&amp;gt;
+                    &gt;
+                  &lt;/a&gt;
               
-                  &amp;lt;!-- a regular image example --&amp;gt;
-                  &amp;lt;a class="dbox" href="your/lightboxed/image.jpg"&amp;gt;
-                     &amp;lt;img sizes="25vw" src="your/thumb/image-th.jpg"
+                  &lt;!-- a regular image example --&gt;
+                  &lt;a class="dbox" href="your/lightboxed/image.jpg"&gt;
+                     &lt;img sizes="25vw" src="your/thumb/image-th.jpg"
                           alt="Your Alt Text Used For the Lightbox Caption"
                           class="any classes used to style your image"
                           width="100%"
-                     &amp;gt;
-                   &amp;lt;/a&amp;gt;</code></pre>
+                     &gt;
+                   &lt;/a&gt;</code></pre>
     
         <p>
             Before your closing body tag, insert the dialog element and initialize the dbox script.
         </p>
-        <pre class="language-markup"><code>&amp;lt;dialog id="js-dbox" class="dbox-dialog"&amp;gt;
-                &amp;lt;div class="dbox-dialog--content"&amp;gt;
-                  &amp;lt;img src="" alt="" class="dbox-dialog--image"&amp;gt;
-                  &amp;lt;div class="dbox-dialog--container"&amp;gt;
-                    &amp;lt;p class="dbox-dialog--caption"&amp;gt;&amp;lt;/p&amp;gt;
-                    &amp;lt;button type="button" class="dbox-dialog--close"&amp;gt;close&amp;lt;/button&amp;gt;
-                  &amp;lt;/div&amp;gt;
-                &amp;lt;/div&amp;gt;
-              &amp;lt;/dialog&amp;gt;
+        <pre class="language-markup"><code>&lt;dialog id="js-dbox" class="dbox-dialog"&gt;
+                &lt;div class="dbox-dialog--content"&gt;
+                  &lt;img src="" alt="" class="dbox-dialog--image"&gt;
+                  &lt;div class="dbox-dialog--container"&gt;
+                    &lt;p class="dbox-dialog--caption"&gt;&lt;/p&gt;
+                    &lt;button type="button" class="dbox-dialog--close"&gt;close&lt;/button&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/dialog&gt;
               
-              &amp;lt;script&amp;gt;
+              &lt;script&gt;
                   document.addEventListener("DOMContentLoaded", function () {
                   // you could also use var instead of let here
                     let lightbox = new Dbox();
                     lightbox.run();
                   });
-              &amp;lt;/script&amp;gt;</code></pre>
+              &lt;/script&gt;</code></pre>
     </section>
     
     <section id="example">
@@ -195,13 +196,13 @@ tags: [ blogs, the web ]
             else you need to pass it to the constructor at the end of your page or in your own JS file. The new class will
             be used for the 'element' key. Classes must be prefixed with a period and ID's with a hash mark.
         </p>
-        <pre class="language-markup"><code>&amp;lt;a class="myNewClass" href="your/lightboxed/image.jpg"&amp;gt;
-                  &amp;lt;img sizes="25vw" src="your/thumb/image-th.jpg"
+        <pre class="language-markup"><code>&lt;a class="myNewClass" href="your/lightboxed/image.jpg"&gt;
+                  &lt;img sizes="25vw" src="your/thumb/image-th.jpg"
                       alt="Your Alt Text Used For the Lightbox Caption"
                       class="any classes used to style your image"
                       width="100%"
-                  &amp;gt;
-              &amp;lt;/a&amp;gt;</code></pre>
+                  &gt;
+              &lt;/a&gt;</code></pre>
         <pre class="language-javascript"><code>document.addEventListener("DOMContentLoaded", function () {
                   // you could also use var instead of let here
                     let lightbox = new Dbox( {
@@ -219,15 +220,15 @@ tags: [ blogs, the web ]
             id with hash mark included to the dialogBox key.
         </p>
     
-        <pre class="language-markup"><code>&amp;lt;dialog id="myNewDialogID" class="dbox-dialog">
-                  &amp;lt;div class="dbox-dialog--content"&amp;gt;
-                      &amp;lt;img src="" alt="" class="dbox-dialog--image"&amp;gt;
-                      &amp;lt;div class="dbox-dialog--container"&amp;gt;
-                        &amp;lt;p class="dbox-dialog--caption"&amp;gt;&amp;lt;/p&amp;gt;
-                          &amp;lt;button type="button" class="dbox-dialog--close"&amp;gt;close&amp;lt;/button&amp;gt;
-                      &amp;lt;/div&amp;gt;
-                  &amp;lt;/div&amp;gt;
-              &amp;lt;/dialog&amp;gt;</code></pre>
+        <pre class="language-markup"><code>&lt;dialog id="myNewDialogID" class="dbox-dialog">
+                  &lt;div class="dbox-dialog--content"&gt;
+                      &lt;img src="" alt="" class="dbox-dialog--image"&gt;
+                      &lt;div class="dbox-dialog--container"&gt;
+                        &lt;p class="dbox-dialog--caption"&gt;&lt;/p&gt;
+                          &lt;button type="button" class="dbox-dialog--close"&gt;close&lt;/button&gt;
+                      &lt;/div&gt;
+                  &lt;/div&gt;
+              &lt;/dialog&gt;</code></pre>
     
         <pre class="language-javascript"><code>document.addEventListener("DOMContentLoaded", function () {
                   // you could also use var instead of let here
