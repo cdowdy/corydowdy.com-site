@@ -14,7 +14,8 @@ module.exports = function(eleventyConfig) {
     // copied and slightly modified from 11ty blog boilerplate 
     // and eleventyone template https://github.com/philhawksworth/eleventyone
 
-    eleventyConfig.addFilter('humanDate', require( "./src/utils/filters/date.js" ) );
+    eleventyConfig.addFilter('humanDate', require( "./src/utils/filters/humandate.js" ) );
+    eleventyConfig.addFilter('dateCompare', require('./src/utils/filters/datecompare.js' ) );
     eleventyConfig.addShortcode( 'l2s', require("./src/utils/shortcodes/link2section.js") );
 
     // test out filtering blog posts and have a categories tag
