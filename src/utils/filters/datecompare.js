@@ -1,6 +1,6 @@
 const { DateTime } = require('luxon');
 
-
+// use Like:  {% assign isOld = datepublish | dateCompare: 6   %}
 module.exports = ( dateObj, compareTo = 6 ) => {
 
     const today = DateTime.local().toISO();
