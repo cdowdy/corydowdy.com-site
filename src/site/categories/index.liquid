@@ -1,0 +1,70 @@
+---
+title: Categories on CoryDowdy.com
+slug: categories
+layout: layouts/base.liquid
+pagination:
+  data: collections
+  size: 1
+  alias: category
+  filter: [ blogs, all, main-nav ]
+permalink: /categories/{{ category | slug  }}/
+---
+      <!-- Main Blog Content -->
+  <div class="push-down" role="content">
+
+    <div class="container">
+      <div class="full">
+          <h2>
+              Category: {{ category }}
+          </h2>
+      </div>
+      <div class="blog-list">
+          {% assign catlist = collections[category] %}
+          {% for post in catlist %}
+    
+          <article class="blog-list--post" itemscope="" itemtype="http://schema.org/BlogPosting">
+            <meta itemprop="image" content="/files/{{ post.data.image }}" />
+              <header>
+                <h1 class="blog-list--title" itemprop="headline url">
+                  <a href="{{ post.url }}">{{ post.data.title }}</a>
+                </h1>
+                <p class="pub-date" itemprop="datePublished">
+                  {{ post.data.datepublish | humanDate }}
+                </p>
+              </header>
+              <p class="blog-teaser" itemprop="description">
+                {{ post.data.teaser | strip_html }}
+              </p>
+            <ul class="blog-list--info">
+                <li>
+                    <a itemprop="url" href="{{ post.data.slug }}">Read Post &#10141;</a>
+                </li>
+            </ul>
+            </article>
+            <hr/>
+          {% endfor %}
+    
+      </div> <!-- /.blog-list -->
+      <aside class="blog-list--sidebar" role="complementary">
+          {%- comment -%} TODO: implement search {%- endcomment -%}
+       {%- comment -%} {% include 'form/_blog-search.html.twig' %}{%- endcomment -%}
+        <ul class="blog--category-list">
+            <li class="category-list-header">Categories</li>
+            {% for item in category %}
+        
+            <li class="category-list-item">
+                <a href="{{ item.url }}">this eats butt</a>
+            </li>
+            {% endfor %}
+        </ul>
+        <ul class="blog--category-list">
+          <li class="category-list-header">Latest Blog Posts</li>
+          {% for post in collections.blogs limit: 5 %}
+          <li class="category-list-item">
+            <a href="{{ post.url }}">{{ post.data.title }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </aside>
+    </div> <!-- /.full -->
+  </div><!-- /.container -->
