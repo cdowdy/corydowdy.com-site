@@ -1,0 +1,28 @@
+{% include layouts/header.liquid %}
+
+
+<article class="push-down post" itemscope="" itemtype="http://schema.org/BlogPosting">
+    {% if  image  %}
+   <meta itemprop="image" content="/files/{{ image }}" />{% endif %}
+      <header class="blog-header">
+          <h1 class="blog-list--title" itemprop="headline">{{ title }}</h1>
+          <h2 class="heading-pub pub-date" itemprop="datePublished">
+              {{ datepublish | humanDate }}
+          </h2>
+
+        {% assign isOld = datepublish | dateCompare: 6   %}
+        {% if isOld %}
+        <div class="past-six-months">
+            <p>
+              This post is over six (6) months old. Some things on this page my be out of date or
+              no longer applicable.
+            </p>
+          </div>
+        {% endif %}
+        <hr/>
+      </header>
+      <div itemprop="articleBody">
+     {{ content }}
+      </div>
+  </article>
+  {% include layouts/footer.liquid %}
