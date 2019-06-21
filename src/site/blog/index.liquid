@@ -20,6 +20,7 @@ pagination:
                   <a class="blog-link" href="{{ post.url }}">{{ post.data.title }}</a>
                 </h1>
                 <p class="pub-date" itemprop="datePublished">
+                   
                   {{ post.data.datepublish | humanDate }}
                 </p>
               </header>
@@ -28,19 +29,17 @@ pagination:
               </p>
               <ul class="blog-list--info">
                 <li>
-                  <a itemprop="url" href="{{ post.data.slug }}">Read Post &#10141;</a>
+                  <a itemprop="url" href="{{ post.url }}">Read Post &#10141;</a>
                 </li>
                 {%- comment -%}
                 TODO: make the taxonomies and "collection" and output them here
                 {%- endcomment -%}
-                {%- comment -%}<li class="blog-list--categories">
-                  <strong>Category:</strong>
-                  {% if blogpost.taxonomy.categories is defined %}
-                  {% for value, category in blogpost.taxonomy.categories %}
-                  <a aria-label="Blog Category {{ category }}" href="{{ value }}">{{ category }}</a>
-                  {% endfor %}
-                  {% endif %}
-                </li>{%- endcomment -%}
+                <li class="blog-list--categories">
+                  <!-- <strong>Category:</strong>
+    
+                  <a aria-label="Blog Category {{ post.data.t }}" href="{{ value }}">{{ category }}</a>
+         -->
+                </li>
               </ul>
             </article>
             <hr />
@@ -83,6 +82,8 @@ pagination:
                   <a href="/categories/{{ category|slug }}">{{ category }}</a>
                 </li>
               {% endfor %} {% endcomment %}
+              <li>Category test: </li>
+              {{ post | json }}
             </ul>
           </aside>
         </div>
