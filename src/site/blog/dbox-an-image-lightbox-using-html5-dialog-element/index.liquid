@@ -16,6 +16,12 @@ image: dbox-blog.png
 teaser: "<p>Dbox is an image lightbox written in es6 that leverages HTML5 dialog element and mimics Twitters image
     lightbox by applying an images dominant color to it's background.</p>"
 tags: [ blogs, 'the web', categories ]
+# copy over bolts categories. leave the 'slug' key
+# because eleventy's slug filter doesn't produce URL safe slugs
+# see https://github.com/11ty/eleventy/issues/278
+# so for current backwards compat with current site keep these slugs 
+categories:
+    - { slug: the-web, name: 'The Web' }
 ---
 
     <section id="intro">
