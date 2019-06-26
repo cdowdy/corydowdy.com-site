@@ -9,6 +9,8 @@ module.exports = function(eleventyConfig) {
 
     // add layout aliases
     eleventyConfig.addLayoutAlias('default', 'layouts/base.liquid');
+    // add layout alias for a blog post/entry
+    eleventyConfig.addLayoutAlias( 'blogentry', 'layouts/blogentry.liquid');
 
     // add and use luxon for our dates.
     // copied and slightly modified from 11ty blog boilerplate 
