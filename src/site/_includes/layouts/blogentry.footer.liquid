@@ -1,0 +1,35 @@
+</main>
+
+
+<footer role="contentinfo" class="container">
+    <div class="full">
+        <hr />
+        <p class="text-center">&copy; Cory Dowdy</p>
+    </div>
+</footer>
+
+
+<script src="/js/lightbox.08172015.min.js" async></script>
+
+<script src="/js/prism/prism-08-01-2016.js"></script>
+<script src="/js/lib/lazysizes.3b6dd2a7.min.js" async></script>
+
+
+{% if slug == 'dbox-an-image-lightbox-using-html5-dialog-element' %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // you could also use var instead of let here
+      var lightbox = new Dbox();
+      lightbox.run();
+
+      var modalExample = new Dbox({
+        element: '.modal-example',
+        dialogBox: '#js-modal-example',
+        modal: true
+      });
+      modalExample.run();
+    });
+  </script>
+{% endif %}
+</body>
+</html>
