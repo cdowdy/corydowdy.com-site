@@ -20,7 +20,6 @@ pagination:
                   <a class="blog-link" href="{{ post.url }}">{{ post.data.title }}</a>
                 </h1>
                 <p class="pub-date" itemprop="datePublished">
-                   
                   {{ post.data.datepublish | humanDate }}
                 </p>
               </header>
@@ -28,18 +27,28 @@ pagination:
                 {{ post.data.teaser | strip_html }}
               </p>
               <ul class="blog-list--info">
-                <li>
+                <li style="margin-left: auto">
                   <a itemprop="url" href="{{ post.url }}">Read Post &#10141;</a>
                 </li>
                 {%- comment -%}
-                TODO: make the taxonomies and "collection" and output them here
+                  June 26 2019
+                  Remove the categories from the main blog list for now. I can't figure out how to have
+                  a one to many relationship between blogs and their categories show up in pagination.
+                  that is. 1 blog post can have many categories and a category can have many posts. 
+
+                  you have to add the "tag" (aka category) add to the tags front matter. this makes the post.data.tags 
+                  contain all the collections associated with it. So blogs will be there and then output in the below 
+                  markup. I only want the "tag" associated with the individual post to be put here. Not the collection of "blogs"
+                  also here. 
                 {%- endcomment -%}
+                {%- comment -%}
                 <li class="blog-list--categories">
-                  <!-- <strong>Category:</strong>
-    
-                  <a aria-label="Blog Category {{ post.data.t }}" href="{{ value }}">{{ category }}</a>
-         -->
+                  <strong>Category:</strong>
+                  {% for category in post.data.tags %}
+                  <a aria-label="Blog Category {{ category }}" href="/categories/{{ category | slug  }}">{{ category }}</a>
+                  {% endfor %}
                 </li>
+                {%- endcomment -%}
               </ul>
             </article>
             <hr />
@@ -82,8 +91,6 @@ pagination:
                   <a href="/categories/{{ category|slug }}">{{ category }}</a>
                 </li>
               {% endfor %} {% endcomment %}
-              <li>Category test: </li>
-              {{ post | json }}
             </ul>
           </aside>
         </div>
