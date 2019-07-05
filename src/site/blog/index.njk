@@ -34,7 +34,8 @@ pagination:
               <li class="blog-list--categories">
                 <strong>Category:</strong>
                 {% for category in post.data.categories %}
-                  <a aria-label="Blog Category {{ category }}" href="/categories/{{ category | slug  }}">{{ category }}</a>
+                  <a aria-label="Blog Category {{ category }}"
+                     href="/categories/{{ category | slug  }}">{{ category | capitalize }}</a>
                 {% endfor %}
               </li>
             {% endif %}
