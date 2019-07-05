@@ -9,31 +9,31 @@
     <meta name="theme-color"
           content="#2C3E50"/>
 
-    <meta name="description" 
+    <meta name="description"
         content="{{ metadescription }}" />
     {% if metakeywords %}
-    <meta name="keywords" 
+    <meta name="keywords"
         content="{{ metakeywords }}" />
-    {% endif %}      
+    {% endif %}
 
-    {%- comment -%}Bing Validation {%- endcomment -%}
+    {# Bing Validation #}
     <meta name="msvalidate.01"
           content="346403273F73350B6928A46B28684A5B" />
-          
-    {%- comment -%}Chrome Webapp Capable{%- endcomment -%}  
+
+    {# Chrome Webapp Capable #}
     <meta name="mobile-web-app-capable"
           content="yes">
 
     <title>{{ title | capitalize }}</title>
 
-    {% capture css %}/css/app.05112018.min.css{% endcapture %}
-    {% capture icons %}/css/icons/icons.data.svg.01182016.css{% endcapture %}
+    {% set css = '/css/app.05112018.min.css' %}
+    {% set icons = '/css/icons/icons.data.svg.01182016.css'%}
     <link rel="stylesheet" href="{{ css }}">
     <link rel="stylesheet" href="{{ icons }}">
 
     {% if headscript %}
         {% for script in headscript %}
-        {% capture file %}/js/{{ script }}{% endcapture %}
+          {% set file  %}/js/{{ script }} {%  endset %}
     <script src="{{ file }}" async></script>
         {% endfor %}
     {% endif %}
