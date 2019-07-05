@@ -2,8 +2,8 @@
 title: Blog
 slug: ./blog
 tags: [ main-nav ]
-layout: layouts/base.liquid
-pagination: 
+layout: layouts/base.njk
+pagination:
   data: collections.blogs
   size: 5
   alias: posts
@@ -42,7 +42,7 @@ pagination:
             </article>
             <hr />
             {% endfor %}
-            
+
             {% if pagination.hrefs.length > 1 %}
             <section class="blog-pagination">
                 <ul class="pagination-list" role="menubar" aria-label="Pagination">
@@ -53,10 +53,10 @@ pagination:
                     </a>
                   </li>
                   {% endif %}
-              
+
                   {% if pagination.nextPageHref %}
                   <li class="arrow">
-                    <a href="{{ pagination.nextPageHref }}"> 
+                    <a href="{{ pagination.nextPageHref }}">
                       Older Posts &raquo;
                     </a>
                   </li>
@@ -64,22 +64,14 @@ pagination:
                 </ul>
               </section>
             {% endif %}
-            
+
           </div>
           <aside role="complementary" class="blog-list--sidebar">
-            {% comment %} include 'form/_blog-search.html.twig' {% endcomment %}
+            {#  include 'form/_blog-search.html.twig' #}
             <ul class="blog--category-list">
               <li class="category-list-header">
                 <h3>Categories</h3>
               </li>
-              {%- comment -%}
-              TODO: make the catergooes collection clickable
-              {%- endcomment -%}
-              {% comment %} for category in app.config.get('taxonomy/categories/options') %}
-                <li class="category-list-item">
-                  <a href="/categories/{{ category|slug }}">{{ category }}</a>
-                </li>
-              {% endfor %} {% endcomment %}
             </ul>
           </aside>
         </div>

@@ -1,5 +1,5 @@
 ---
-layout: blogentry
+layout: "blogentry"
 datechanged: 2017-08-07 12:30:36
 slug: dbox-an-image-lightbox-using-html5-dialog-element
 datecreated: 2017-08-07 11:59:32
@@ -15,20 +15,20 @@ modal, es6 lightbox, es6 modal, accessbile lightbox, acessible modal, lightbox"
 image: dbox-blog.png
 teaser: "<p>Dbox is an image lightbox written in es6 that leverages HTML5 dialog element and mimics Twitters image
     lightbox by applying an images dominant color to it's background.</p>"
-tags: [ blogs, 'the web', 'category' ]
+tags: [ blogs, 'the web' ]
 # copy over bolts categories. leave the 'slug' key
 # because eleventy's slug filter doesn't produce URL safe slugs
 # see https://github.com/11ty/eleventy/issues/278
-# so for current backwards compat with current site keep these slugs 
+# so for current backwards compat with current site keep these slugs
 categories:
-    - 'The Web' 
+    - 'The Web'
 ---
 
     <section id="intro">
         <p>
             Dbox is an image lightbox written in es6 with no external dependencies &mdash; that is not dependent on JQuery.
         </p>
-    
+
         <div class="responsive-table-container">
             <table class="table-no-style w-60">
                 <caption>File Sizes</caption>
@@ -45,7 +45,7 @@ categories:
                         <td class="table-number">&thickapprox;3.0KB</td>
                         <td class="table-number">&thickapprox;1.7KB</td>
                     </tr>
-    
+
                     <tr>
                         <th scope="row">dbox.min.js</th>
                         <td class="table-number">&thickapprox;17.3KB</td>
@@ -65,10 +65,10 @@ categories:
             </table>
         </div>
     </section>
-    
+
     <section id="download">
         <h2 class="heading">
-            {% l2s "Download Dbox" "download " "l2s" %}
+            {% l2s "Download Dbox", "download ", "l2s" %}
         </h2>
         <div class="full-to-half">
             <p>Github</p>
@@ -103,12 +103,12 @@ categories:
             </ul>
         </div>
     </section>
-    
+
     <section id="quick-start">
         <h2 class="heading">
-            {% l2s "Quick Start" "quick-start" "l2s" %}
+            {% l2s "Quick Start", "quick-start", "l2s" %}
         </h2>
-    
+
         <p>
             Download the latest release from github and insert the provided CSS into the head of your document and the
             provided JavaScript file before your closing <code class="language-markup">&lt;/head&gt;</code> tag.
@@ -117,12 +117,12 @@ categories:
     &lt;!-- your other files and markup on your head --&gt;
     &lt;!-- The dbox css --&gt;
     &lt;link rel="stylesheet" href="dist/css/dbox.min.css"&gt;
-              
+
     &lt;!-- The dbox JS file --&gt;
     &lt;script src="dist/js/dbox.min.js" defer&gt;&lt;/script&gt;
 &lt;/head&gt;
 </code></pre>
-    
+
         <p>
             Markup an image to be placed in a lightbox. Include a thumbnail image and the larger image you wish to show in
             the lightbox. The Anchor tag (<code class="language-markup">&lt;a&gt;</code>) needs to have a class of
@@ -141,17 +141,17 @@ categories:
         width="100%"
     &gt;
 &lt;/a&gt;
-              
+
 &lt;!-- a regular image example --&gt;
 &lt;a class="dbox" href="your/lightboxed/image.jpg"&gt;
-    &lt;img sizes="25vw" 
+    &lt;img sizes="25vw"
         src="your/thumb/image-th.jpg"
         alt="Your Alt Text Used For the Lightbox Caption"
         class="any classes used to style your image"
         width="100%"
     &gt;
 &lt;/a&gt;</code></pre>
-    
+
         <p>
             Before your closing body tag, insert the dialog element and initialize the dbox script.
         </p>
@@ -164,7 +164,7 @@ categories:
             &lt;/div&gt;
     &lt;/div&gt;
 &lt;/dialog&gt;
-              
+
 &lt;script&gt;
     document.addEventListener("DOMContentLoaded", function () {
         // you could also use var instead of let here
@@ -173,10 +173,10 @@ categories:
     });
  &lt;/script&gt;</code></pre>
     </section>
-    
+
     <section id="example">
         <h2 class="heading">
-            {% l2s "Example" "example" "l2s" %}
+            {% l2s "Example", "example", "l2s" %}
         </h2>
         <div class="full-to-half">
             <p>
@@ -185,17 +185,19 @@ categories:
         </div>
         <div class="full-to-half">
             <a href="/files/demos/betterthumbs/milky-way.jpg" class="dbox">
+              {#
                 {{ img('demos/betterthumbs/milky-way.jpg', 'betterthumb_demo', {
                       'altText': 'Milky Way Above Bend in Forested Shoreline By Eric Kilby'
                     }) }}
+                    #}
             </a>
-    
+
         </div>
     </section>
-    
+
     <section id="customizing">
         <h2 class="heading">
-            {% l2s "Customizing Dbox" "customizing" "l2s" %}
+            {% l2s "Customizing Dbox", "customizing", "l2s" %}
         </h2>
         <p><b>Changing the Anchor Class</b></p>
         <p>
@@ -204,7 +206,7 @@ categories:
             be used for the 'element' key. Classes must be prefixed with a period and ID's with a hash mark.
         </p>
 <pre class="language-markup"><code>&lt;a class="myNewClass" href="your/lightboxed/image.jpg"&gt;
-    &lt;img sizes="25vw" 
+    &lt;img sizes="25vw"
         src="your/thumb/image-th.jpg"
         alt="Your Alt Text Used For the Lightbox Caption"
         class="any classes used to style your image"
@@ -227,7 +229,7 @@ categories:
             have multiple dialog types in a page you'll need a dialog element for each one with a unique ID. Pass this new
             id with hash mark included to the dialogBox key.
         </p>
-    
+
 <pre class="language-markup"><code>&lt;dialog id="myNewDialogID" class="dbox-dialog">
     &lt;div class="dbox-dialog--content"&gt;
         &lt;img src="" alt="" class="dbox-dialog--image"&gt;
@@ -237,7 +239,7 @@ categories:
         &lt;/div&gt;
     &lt;/div&gt;
 &lt;/dialog&gt;</code></pre>
-    
+
 <pre class="language-javascript"><code>document.addEventListener("DOMContentLoaded", function () {
     // you could also use var instead of let here
         let lightbox = new Dbox( {
@@ -267,9 +269,9 @@ categories:
         <div class="full-to-half">
             <a href="/files/demos/betterthumbs/milky-way.jpg" class="modal-example">
                 <figure>
-                    {{ img('demos/betterthumbs/milky-way.jpg', 'betterthumb_demo', {
-                    'altText': 'Milky Way Above Bend in Forested Shoreline By Eric Kilby',
-                    }) }}
+{#                    {{ img('demos/betterthumbs/milky-way.jpg', 'betterthumb_demo', {#}
+{#                    'altText': 'Milky Way Above Bend in Forested Shoreline By Eric Kilby',#}
+{#                    }) }}#}
                     <figcaption>
                         <p>Milky Way Above Bend in Forested Shoreline By Eric Kilby
                         </p>
@@ -278,26 +280,26 @@ categories:
             </a>
         </div>
     </section>
-    
+
     <section id="no-colorThief">
         <h2 class="heading">
-            {% l2s "Using Dbox without a PolyFill or ColorThief" "no-colorThief" "l2s" %}
+            {% l2s "Using Dbox without a PolyFill or ColorThief", "no-colorThief", "l2s" %}
         </h2>
-    
+
         <p>
             If you want to live on the edge and only support one browser &mdash; you shouldn't do this but I'll let you :)
             &mdash; you can use the <em>dbox.noPolyfill.min.js</em> file found in <em>dist/js</em> directory.
         </p>
-    
+
         <p>
             If you have a server side solution for getting an images dominant color you can use the file
             <em>dbox.noColorThief.min.js</em> found in the dist/js directory.
         </p>
     </section>
-    
+
     <section id="limitations">
         <h2 class="heading">
-            {% l2s "Dbox Limitations" "limitations" "l2s" %}
+            {% l2s "Dbox Limitations", "limitations", "l2s" %}
         </h2>
         <p>
             Dbox uses <code class="language-css">object-fit:</code> to display images in the lightbox. This is only
@@ -335,15 +337,15 @@ categories:
         <div class="container-flex">
             <div class="flex-img-gallery">
                 <p>FireFox</p>
-                {{ img('demos/firefox-object-fit-desktop.png', 'betterthumb_demo', {
-                    'altText': 'Milky Way Above Bend in Forested Shoreline By Eric Kilby',
-                    }) }}
+{#                {{ img('demos/firefox-object-fit-desktop.png', 'betterthumb_demo', {#}
+{#                    'altText': 'Milky Way Above Bend in Forested Shoreline By Eric Kilby',#}
+{#                    }) }}#}
             </div>
             <div class="flex-img-gallery">
                 <p>Edge 15 No Object Fit</p>
-                {{ img('demos/edge15-no-object-fit.png', 'betterthumb_demo', {
-                    'altText': 'Milky Way Above Bend in Forested Shoreline By Eric Kilby',
-                    }) }}
+{#                {{ img('demos/edge15-no-object-fit.png', 'betterthumb_demo', {#}
+{#                    'altText': 'Milky Way Above Bend in Forested Shoreline By Eric Kilby',#}
+{#                    }) }}#}
             </div>
         </div>
         <p>
@@ -359,9 +361,9 @@ categories:
                     class="link-icon icon-external-link">&nbsp;</span></a> to get the dominant color of an image. If your
             thumbnail image is large then this could cause a delay since it has to process a large image.
         </p>
-    
+
         <h3 id="browserSupport" class="heading">
-            {% l2s "Browser Support" "browserSupport" "l2s" %}
+            {% l2s "Browser Support", "browserSupport", "l2s" %}
         </h3>
         <p>
             As shown above this supports all "modern" browsers. So Edge, Firefox, Chrome, Opera, Safari.
@@ -373,15 +375,15 @@ categories:
             </p>
         </div>
         <div class="full-to-half">
-            {{ img('demos/ie-11-misaligned-backdrop.png', 'betterthumb_demo', {
-                  'altText': 'Internet Explorer 11 misaligned dialog backdrop',
-                  }) }}
+{#            {{ img('demos/ie-11-misaligned-backdrop.png', 'betterthumb_demo', {#}
+{#                  'altText': 'Internet Explorer 11 misaligned dialog backdrop',#}
+{#                  }) }}#}
         </div>
     </section>
-    
+
     <section id="why">
         <h2 class="heading">
-            {% l2s "Why Dbox?" "why" "l2s" %}
+            {% l2s "Why Dbox?", "why", "l2s" %}
         </h2>
         <p>
             Why did I build Dbox? HTML5.1 initially introduced the <a
@@ -402,24 +404,24 @@ categories:
         <div class="container-flex">
             <div class="flex-img-gallery">
                 <p>Twitter Lightbox on a Desktop</p>
-                {{ html5video('blog/twitter-lightboxes.opt.mp4', 'default', {
-                    video_poster: '/files/twitter-lightbox-poster.jpg',
-                    use_cdn: true,
-                    } ) }}
+{#                {{ html5video('blog/twitter-lightboxes.opt.mp4', 'default', {#}
+{#                    video_poster: '/files/twitter-lightbox-poster.jpg',#}
+{#                    use_cdn: true,#}
+{#                    } ) }}#}
             </div>
             <div class="flex-img-gallery">
                 <p>Twitter Lightbox on a phone</p>
-                {{ html5video('blog/twitter-lightbox.mobile.opt.mp4', 'default', {
-                      video_poster: '/files/twitter-lightbox-mobile-poster.jpg',
-                      use_cdn: true
-                    } ) }}
+{#                {{ html5video('blog/twitter-lightbox.mobile.opt.mp4', 'default', {#}
+{#                      video_poster: '/files/twitter-lightbox-mobile-poster.jpg',#}
+{#                      use_cdn: true#}
+{#                    } ) }}#}
             </div>
         </div>
         <p>
             I really liked that. So I wanted to replicate it
         </p>
     </section>
-    
+
     <!-- the dialog element -->
     <dialog id="js-dbox" class="dbox-dialog">
         <div class="dbox-dialog--content">
@@ -430,7 +432,7 @@ categories:
             </div>
         </div>
     </dialog>
-    
+
     <dialog id="js-modal-example" class="dbox-dialog">
         <div class="dbox-dialog--content">
             <img src="" alt="" class="dbox-dialog--image">
