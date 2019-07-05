@@ -1,4 +1,4 @@
-{% include layouts/header.liquid %}
+{% include 'layouts/header.njk' %}
 
 
 <article class="push-down post" itemscope="" itemtype="http://schema.org/BlogPosting">
@@ -10,7 +10,7 @@
               {{ datepublish | humanDate }}
           </h2>
 
-        {% assign isOld = datepublish | dateCompare: 6   %}
+        {% set isOld = datepublish | dateCompare( 6 )  %}
         {% if isOld %}
         <div class="past-six-months">
             <p>
@@ -25,4 +25,4 @@
      {{ content }}
       </div>
   </article>
-  {% include layouts/blogentry.footer.liquid %}
+  {% include 'layouts/blogentry.footer.njk' %}
