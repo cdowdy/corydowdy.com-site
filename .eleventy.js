@@ -1,7 +1,7 @@
 module.exports = function(eleventyConfig) {
-    // Copy the `files/` directory 
+    // Copy the `files/` directory
     eleventyConfig.addPassthroughCopy("src/site/files");
-    
+
     // Copy the `css/` directory
     eleventyConfig.addPassthroughCopy("src/site/css");
     // Copy the 'js/' directory
@@ -13,7 +13,7 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addLayoutAlias( 'blogentry', 'layouts/blogentry.liquid');
 
     // add and use luxon for our dates.
-    // copied and slightly modified from 11ty blog boilerplate 
+    // copied and slightly modified from 11ty blog boilerplate
     // and eleventyone template https://github.com/philhawksworth/eleventyone
 
     eleventyConfig.addFilter('humanDate', require( "./src/utils/filters/humandate.js" ) );
@@ -22,16 +22,61 @@ module.exports = function(eleventyConfig) {
 
     // test out filtering blog posts and have a categories tag
     // so we can loop through all our blog posts on /blog and have categories on the aside section
-    
+  //   eleventyConfig.addCollection("categoryList", function(collection) {
+
+  //     let categoryTags = new Set();
+
+  //     collection.getAll().forEach( item => {
+
+  //       if ( Array.isArray( item.data.categories ) ) {
+
+  //           categoryTags.add( categoryTags );
+
+  //       }
+  //     })
+
+  //     // collection.getAll().forEach(function(item) {
+
+  //     //   if(Array.isArray(item.data.categories)) {
+
+  //     //     console.log(item.data.categories);
+
+  //     //     for(let categoryTags of item.data["categories"]) {
+
+  //     //       categoryTags.add(categoryTags);
+
+  //     //     }
+  //     //   }
+  //     // });
+
+  //     return Array.from(categoryTags).sort();
+  // });
+
+  // eleventyConfig.addCollection("noteTagCollections", function (collection) {
+  //   let resultArrays = {};
+  //   collection.getAll().forEach(function (item) {
+  //     if (Array.isArray(item.data["categories"])) {
+  //       for (let categoryTags of item.data["categories"]) {
+  //         if (!resultArrays[categoryTags]) {
+  //           resultArrays[categoryTags] = [];
+  //         }
+  //         resultArrays[categoryTags].push(item);
+  //       }
+  //     }
+  //   });
+
+  //   console.log(resultArrays);
+  //   return resultArrays;
+  // });
 
 
-    
     return {
 
       dir: {
         input: "src/site"
       },
 
+      htmlTemplateEngine: "njk",
       passthroughFileCopy: true
     };
   };
