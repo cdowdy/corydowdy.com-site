@@ -22,7 +22,7 @@
         <hr/>
       </header>
       <div itemprop="articleBody">
-     {{ content }}
+     {{ content | safe  }}
       </div>
   </article>
   {% include 'layouts/blogentry.footer.njk' %}
