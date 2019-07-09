@@ -7,10 +7,10 @@
       <header class="blog-header">
           <h1 class="blog-list--title" itemprop="headline">{{ title }}</h1>
           <h2 class="heading-pub pub-date" itemprop="datePublished">
-              {{ datepublish | humanDate }}
+              {{ date | humanDate }}
           </h2>
 
-        {% set isOld = datepublish | dateCompare( 6 )  %}
+        {% set isOld = date | dateCompare( 6 )  %}
         {% if isOld %}
         <div class="past-six-months">
             <p>
