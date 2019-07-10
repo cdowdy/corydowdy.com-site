@@ -6,7 +6,7 @@ pagination:
   data: collections
   size: 1
   alias: category
-  filter: [ blogs, all, mainnav ]
+  filter: [ blogs, all, mainnav, categoryList ]
 permalink: /categories/{{ category | slug  }}/
 ---
       <!-- Main Blog Content -->
@@ -52,12 +52,13 @@ permalink: /categories/{{ category | slug  }}/
        {#  {% include 'form/_blog-search.html.twig' %}#}
         <ul class="blog--category-list">
             <li class="category-list-header">Categories</li>
-            {% for item in collections.categories %}
-
-            <li class="category-list-item">
-                <a href="{{ item.url }}">this eats butt</a>
-            </li>
-            {% endfor %}
+          {% for cat in collections.categoryList %}
+          <li class="category-list-item">
+            <a href="{{ cat.url }}">
+              {{ cat.data.title or cat.fileSlug }}
+            </a>
+          </li>
+          {% endfor %}
         </ul>
         <ul class="blog--category-list">
           <li class="category-list-header">Latest Blog Posts</li>
