@@ -14,3 +14,238 @@ tags: [blogs, 'web performance' ]
 categories:
     - 'web performance'
 ---
+<section id="intro">
+  <p>
+    IntersectionObserver is a fairly new web API that makes lazy loading images <b>extremely</b> easy.
+    How easy is to to lazy load with IntersectionObserver? You can do it in about &approx;20 lines of code if you don't need a polyfill. Yes 20. You'll need a polyfill though so that selling point is kinda .... meh haha.
+  </p>
+</section> <!-- /#intro -->
+
+<section id="ioLazy">
+  <h2 class="heading">
+    {{ 'Update! Introducing IOLazy Library'|l2s('ioLazy', 'l2s' ) }}
+  </h2>
+  <p>
+    I turned this post into a small JavaScript library to lazy load images. You can find the demo for the library over at
+    <a href="https://cdowdy.github.io/io-lazyload/" class="external-link">IOlazy Demo page <span class="link-icon icon-external-link">&nbsp;</span></a>
+  </p>
+  <div class="responsive-table-container">
+    <table class="table-no-style w-60">
+      <caption>IOLazy File Sizes</caption>
+      <thead class="table-header">
+      <tr>
+        <th scope="col">File</th>
+        <th scope="col" class="table-number">Size in KB</th>
+        <th scope="col" class="table-number">Gzip Size</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">iolazy.min.js</th>
+        <td class="table-number">&thickapprox;1.6KB</td>
+        <td class="table-number">&thickapprox;0.846kB</td>
+      </tr>
+
+      <tr>
+        <th scope="row">using polyfill.io polyfill for intersection observer</th>
+        <td class="table-number">&thickapprox;6.3KB</td>
+        <td class="table-number">&thickapprox;1.93KB</td>
+      </tr>
+      <tr>
+        <th>
+          Totals
+        </th>
+        <td>&nbsp;</td>
+        <td class="table-number">&thickapprox;2.776KB</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="browserSupport">
+  <h2  class="heading">
+    {{ 'Browser Support'|l2s('browserSupport', 'l2s' ) }}
+  </h2>
+  <p>
+    As of this post being published Edge 15 (released 11 April 2017 with Windows 10 Creators Update), Chrome 51 and Opera 38 support it without a polyfill. Firefox has this enabled behind a flag.
+  </p>
+  <script src="https://cdn.jsdelivr.net/caniuse-embed/1.1.0/caniuse-embed.min.js" async></script>
+  <p class="ciu_embed" data-feature="intersectionobserver" data-periods="future_1,current,past_1,past_2">
+    <a href="http://caniuse.com/#feat=intersectionobserver">Can I Use intersectionobserver?</a> Data on support for the intersectionobserver feature across the major browsers from caniuse.com.
+  </p>
+</section><!-- /#browserSupport -->
+
+<section id="ioCode">
+  <h2  class="heading">
+    {{ 'IntersectionObserver Javascript'|l2s('ioCode', 'l2s' ) }}
+  </h2>
+  <p>
+    As I mentioned above using the IntersectionObserver API to lazy load images results in a small bit of Javascript. IntersectionObservers basically tell the browser "don't load this until it comes into or around the browsers viewport". If this is faster than the other lazy load solutions I don't know I haven't tested it out so you'll have to test this yourself to see.
+  </p>
+
+  <p>
+    I've taken the example from <a href="https://jeremenichelli.github.io/2016/04/quick-introduction-to-the-intersection-observer-api/" class="external-link">Quick Introduction to the Intersection Observer API <span class="link-icon icon-external-link">&nbsp;</span></a> and made a few changes.
+  </p>
+  <p>
+    Many of the tutorials from 2016 haven't updated their examples to an API change that check for <code class="language-javascript"> .isIntersecting </code>
+  </p>
+  <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Yes, IOs now emit a change on init. You need to check for change.isIntersecting in your callback.</p>&mdash; Surma (@DasSurma) <a href="https://twitter.com/DasSurma/status/867045377811337216">May 23, 2017</a></blockquote>
+  <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <p>
+    That also introduces an issue in Microsoft Edge 15 since it doesn't have an <code class="language-javascript"> .isIntersecting </code> property. Nolan Lawson wrote a another small polyfill we can place in our intersectionobserver lazy load file. You can find that here at
+    <a href="https://github.com/WICG/IntersectionObserver/issues/211#issuecomment-309144669">IntersectionObserver issue #211 comment by Nolan Lawson</a>
+  </p>
+
+  <p>
+    We'll follow this pattern to create our Observer. Note I'm using es6 so you may need a build step/compilation step based on your browser support.
+  </p>
+  <ol>
+    <li>set a variable with a node list of all our image elements we want to lazy load</li>
+    <li>Create a new IntersectionObserver, add a callback and options to the new IntersectionObserver</li>
+    <li>get the data-src attribute from all our lazyload image candidates in our callback</li>
+    <li>If our image is within our <a
+        href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#Thresholds"
+        class="external-link">Threshold <span class="link-icon icon-external-link">&nbsp;</span></a> we'll apply our image candidate from #3 to our image src attribute.
+    </li>
+  </ol>
+  <pre class="language-javascript"><code>// small polyfill for Microsoft Edge 15 isIntersecting property
+// see https://github.com/WICG/IntersectionObserver/issues/211#issuecomment-309144669
+if ('IntersectionObserver' in window &&
+  'IntersectionObserverEntry' in window &&
+  'intersectionRatio' in window.IntersectionObserverEntry.prototype &&
+  !('isIntersecting' in IntersectionObserverEntry.prototype)) {
+
+  Object.defineProperty(window.IntersectionObserverEntry.prototype, 'isIntersecting', {
+    get: function () {
+      return this.intersectionRatio > 0
+    }
+  })
+}
+
+
+// #1 using the spread operator get all our images with the class 'lazyload'
+const imgElements = [ ...document.querySelectorAll( '.lazyload' ) ];
+
+// #2 create our new IntersectionObserver followed by our callback and any options
+// 'onChange' is our callback. 'threshold' is our options - the percentage our image is visible.
+let observer = new IntersectionObserver( onChange, {
+  threshold: [ .15 ],
+});
+
+// #3 Our callback to grab all our data-src attributes when they become visible.
+// This comes from our threshold set above in our options
+function onChange( changes ) {
+  // for each element that becomes visible
+  changes.forEach( change => {
+    // Here is the API change mentioned in the linked tweet above
+    if ( change.isIntersecting ) {
+      // added a class to our 'target'. This is the visible image element from #1
+      change.target.classList.add( 'visible' );
+      // the visible image element we'll grab our image to load from the data-src attribute
+      // and apply it to the src attribute
+      change.target.src = change.target.dataset.src;
+      // stop observing this element
+      observer.unobserve( change.target );
+    }
+  });
+}
+
+// Here is where we'll 'observe' our elements to lazyload.
+const createObserver = function () {
+  // for each of our image elements
+  imgElements.forEach( img => {
+    // observe the image currently visible and apply #3
+    observer.observe( img );
+  });
+};
+
+// We'll listen for the 'load' event. Once that has fired we'll apply the function we created
+// above called 'createObserver'.
+window.addEventListener("load", () => {
+    createObserver();
+}, false);
+
+</code></pre>
+
+</section><!-- /#ioCode -->
+
+<section id="htmlMarkup">
+  <h2  class="heading">
+    {{ 'Lazyload HTML markup'|l2s('htmlMarkup', 'l2s' ) }}
+  </h2>
+  <p>
+    The HTML markup needed is rather small too. We'll need to add in a <code class="language-markup">data-src</code> attribute with the image we'll load once it comes into our threshold defined in our Intersection Observer.
+  </p>
+  <pre class="language-markup">
+  <code>
+&amp;lt;img class="lazyload" data-src="/your/file.jpg" src=""  alt="an awesome bear" &amp;gt;
+  </code>
+</pre>
+
+  <h3 class="heading">Making Sure Images Load</h3>
+  <p>
+    If your image tag has an empty <code class="language-markup">src</code> attribute <b>and</b> there is no <code class="language-markup">alt</code> text then FireFox will not load the image.
+  </p>
+  <p>
+    Easiest fix for this is to have Alt text. In cases you are using a <code class="language-markup">figure</code> element with figcaption that negates the use of alt text then you should use a base64 encoded 1px gif - or a really small low quality placeholder image.
+  </p>
+</section><!-- /#htmlMarkup -->
+
+<section id="polyfill">
+  <h2 class="heading">
+    {{ 'Polyfills for IntersectionObserver'|l2s( 'polyfill', 'l2s') }}
+  </h2>
+  <p>
+    Now on to getting this to work in browsers with no support yet.
+  </p>
+  <ul class="no-bullets">
+    <li>
+      <a href="https://github.com/WICG/IntersectionObserver/tree/gh-pages/polyfill" class="external-link">Web Incubator Community Group IntersectionObserver Polyfill <span class="link-icon icon-external-link">&nbsp;</span></a>
+    </li>
+  </ul>
+  <p>
+    That above one is nice if you have have one off's or you have a build step, use NPM with Browserfiy or Wepback.
+  </p>
+  <p>
+    The easiest one to use would be the one from <a href="https://polyfill.io/v2/docs/">Polyfill.io</a>. That one is just inserting a script tag into your document with the features query string set to IntersectionObserver
+  </p>
+  <pre class="language-bash"><code>
+https://cdn.polyfill.io/v2/polyfill.js?features=IntersectionObserver
+  </code></pre>
+  <p>
+    Check out polyfill.io! It could really simplify your polyfill needs!
+  </p>
+</section><!-- /#polyfill -->
+
+<section id="LiveExample">
+  <h2 class="heading">{{ 'Live Demo'|l2s( 'LiveExample', 'l2s' ) }}</h2>
+  <p>
+    There is a demo located <a href="/demo/io-lazy">here</a>.
+  </p>
+  <p>
+    There willl be some lorem ipsum text followed by an image that will lazy load.
+  </p>
+  <p>
+    You can open up your console and see the console logs I've placed in the script to tell you when an image is visible and when the visible class was applied.
+  </p>
+</section><!-- /#LiveExample -->
+
+<section id="furtherReading">
+  <h2 class="heading">
+    {{ 'More Information'|l2s( 'furtherReading', 'l2s' ) }}
+  </h2>
+  <ul>
+    <li>
+      <a href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API" class="external-link">MDN Intersection Observer API</a>
+    </li>
+    <li>
+      <a href="https://github.com/WICG/IntersectionObserver/blob/gh-pages/explainer.md" class="external-link">IntersectionObserver Explainer</a>
+    </li>
+    <li>
+      <a href="https://developers.google.com/web/updates/2016/04/intersectionobserver" class="external-link">IntersectionObserver’s Coming into View</a>
+    </li>
+  </ul>
+</section><!-- /#furtherReading -->
+
+
