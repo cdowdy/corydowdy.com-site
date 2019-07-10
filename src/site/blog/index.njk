@@ -77,6 +77,16 @@ pagination:
         <li class="category-list-header">
           <h3>Categories</h3>
         </li>
+        {% if  collections.categoryList %}
+          {% for cat in collections.categoryList %}
+            <li>
+              <a href="{{ cat.url }}">
+                {% set linkText = cat.data.title or cat.fileSlug %}
+                {{ linkText | capitalize  }}
+              </a>
+            </li>
+          {% endfor %}
+        {% endif %}
       </ul>
     </aside>
   </div>
