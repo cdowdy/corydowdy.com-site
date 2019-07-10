@@ -20,55 +20,10 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addFilter('dateCompare', require('./src/utils/filters/datecompare.js' ) );
     eleventyConfig.addShortcode( 'l2s', require("./src/utils/shortcodes/link2section.js") );
 
-    // test out filtering blog posts and have a categories tag
-    // so we can loop through all our blog posts on /blog and have categories on the aside section
-  //   eleventyConfig.addCollection("categoryList", function(collection) {
-
-  //     let categoryTags = new Set();
-
-  //     collection.getAll().forEach( item => {
-
-  //       if ( Array.isArray( item.data.categories ) ) {
-
-  //           categoryTags.add( categoryTags );
-
-  //       }
-  //     })
-
-  //     // collection.getAll().forEach(function(item) {
-
-  //     //   if(Array.isArray(item.data.categories)) {
-
-  //     //     console.log(item.data.categories);
-
-  //     //     for(let categoryTags of item.data["categories"]) {
-
-  //     //       categoryTags.add(categoryTags);
-
-  //     //     }
-  //     //   }
-  //     // });
-
-  //     return Array.from(categoryTags).sort();
-  // });
-
-  // eleventyConfig.addCollection("noteTagCollections", function (collection) {
-  //   let resultArrays = {};
-  //   collection.getAll().forEach(function (item) {
-  //     if (Array.isArray(item.data["categories"])) {
-  //       for (let categoryTags of item.data["categories"]) {
-  //         if (!resultArrays[categoryTags]) {
-  //           resultArrays[categoryTags] = [];
-  //         }
-  //         resultArrays[categoryTags].push(item);
-  //       }
-  //     }
-  //   });
-
-  //   console.log(resultArrays);
-  //   return resultArrays;
-  // });
-
+    // add a collection using  a glob from all markdown files found in the categories directory
+    eleventyConfig.addCollection("categoryList", function (collection) {
+      return collection.getFilteredByGlob("./src/site/categories/*.md");
+    });
 
     return {
 
