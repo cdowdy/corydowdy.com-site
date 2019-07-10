@@ -23,7 +23,7 @@ categories:
 
 <section id="ioLazy">
   <h2 class="heading">
-    {{ 'Update! Introducing IOLazy Library'|l2s('ioLazy', 'l2s' ) }}
+    {% l2s "Update! Introducing IOLazy Library", "ioLazy", "l2s" %}
   </h2>
   <p>
     I turned this post into a small JavaScript library to lazy load images. You can find the demo for the library over at
@@ -65,7 +65,7 @@ categories:
 
 <section id="browserSupport">
   <h2  class="heading">
-    {{ 'Browser Support'|l2s('browserSupport', 'l2s' ) }}
+    {% l2s "Browser Support", "browserSupport", "l2s" %}
   </h2>
   <p>
     As of this post being published Edge 15 (released 11 April 2017 with Windows 10 Creators Update), Chrome 51 and Opera 38 support it without a polyfill. Firefox has this enabled behind a flag.
@@ -78,7 +78,7 @@ categories:
 
 <section id="ioCode">
   <h2  class="heading">
-    {{ 'IntersectionObserver Javascript'|l2s('ioCode', 'l2s' ) }}
+    {% l2s "IntersectionObserver Javascript", "ioCode", "l2s" %}
   </h2>
   <p>
     As I mentioned above using the IntersectionObserver API to lazy load images results in a small bit of Javascript. IntersectionObservers basically tell the browser "don't load this until it comes into or around the browsers viewport". If this is faster than the other lazy load solutions I don't know I haven't tested it out so you'll have to test this yourself to see.
@@ -172,7 +172,7 @@ window.addEventListener("load", () => {
 
 <section id="htmlMarkup">
   <h2  class="heading">
-    {{ 'Lazyload HTML markup'|l2s('htmlMarkup', 'l2s' ) }}
+    {% l2s "Lazyload HTML markup", "htmlMarkup", "l2s" %}
   </h2>
   <p>
     The HTML markup needed is rather small too. We'll need to add in a <code class="language-markup">data-src</code> attribute with the image we'll load once it comes into our threshold defined in our Intersection Observer.
@@ -194,7 +194,7 @@ window.addEventListener("load", () => {
 
 <section id="polyfill">
   <h2 class="heading">
-    {{ 'Polyfills for IntersectionObserver'|l2s( 'polyfill', 'l2s') }}
+    {% l2s "Polyfills for IntersectionObserver", "polyfill", "l2s" %}
   </h2>
   <p>
     Now on to getting this to work in browsers with no support yet.
@@ -219,7 +219,9 @@ https://cdn.polyfill.io/v2/polyfill.js?features=IntersectionObserver
 </section><!-- /#polyfill -->
 
 <section id="LiveExample">
-  <h2 class="heading">{{ 'Live Demo'|l2s( 'LiveExample', 'l2s' ) }}</h2>
+  <h2 class="heading">
+    {% l2s "Live Demo", "LiveExample", "l2s" %}
+  </h2>
   <p>
     There is a demo located <a href="/demo/io-lazy">here</a>.
   </p>
@@ -233,7 +235,7 @@ https://cdn.polyfill.io/v2/polyfill.js?features=IntersectionObserver
 
 <section id="furtherReading">
   <h2 class="heading">
-    {{ 'More Information'|l2s( 'furtherReading', 'l2s' ) }}
+    {% l2s "More Information", "furtherReading", "l2s" %}
   </h2>
   <ul>
     <li>
