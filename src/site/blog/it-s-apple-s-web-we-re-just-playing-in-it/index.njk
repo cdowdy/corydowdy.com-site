@@ -16,3 +16,207 @@ tags: [ blogs, 'the web' ]
 categories:
     - 'the web'
 ---
+<section  id="intro">
+  <p><strong>Things Change rapidly. Many of the "dumb" ramblings I have no longer apply... </strong> but I'll leave this up still cause I don't wanna "post and run" haha.</p>
+  <p>
+    I need to preface this with a few things. One, these are random rambling thoughts with really no cohesion or structure. Some of the stuff mentioned below is easily fixed but still annoying and therefore really really really trivial. Two I don’t use an iPhone nor do I use an OS X computer. So this of course will cause some issues. I even debated on whether this should be published since it honestly adds nothing to any conversation. It's random thoughts of a dev who got a little peeved one day. Lets begin haha!
+  </p>
+  <p>
+    Microsoft (actually Internet Explorer) received the anger of a thousand web devs for years because of their lack of, media query support, HTML5 form input types, to a lesser extent rem units, and a host of other things. To their credit they updated a lot of those quirks in IE 9, 10, 11 and now Edge. But we as web devs had no issue using those features. We employed modernizr, a Jquery plugin or a polyfill and moved on our way.
+  </p>
+  <p>
+    Apple on the other hand seems to look at things like “LOL nah we good!” or “You can go ahead and do it our way!”*.
+  </p>
+  <p>
+    * - This strictly isn't Apple either. Any company with any clout, money, power etc can attempt to pull this off. They just seem to be more successful at it.
+  </p>
+</section>
+<!-- /#intro -->
+<section id="pointer-events">
+  <h2 class="heading">Pointer Events :-(</h2>
+  <p><strong>Update!</strong>
+    They have since added in css touch-action. The corresponding bug report can be found at <a href="https://bugs.webkit.org/show_bug.cgi?id=149854" class="external-link">webkits bugzill: Implement touch-action: manipulation; for iOS</a>
+  </p>
+  <p>
+    Why do I think Apple says “do it our way”? In this instance we’ll take <a class="external-link" href="http://www.w3.org/TR/pointerevents/">Pointer Events <span class="link-icon icon-external-link"></span></a> which was recommended for standard on 24 February 2015. If you do any searching of this you’ll come across several articles, posts, tweets about this. For instance:
+  </p>
+  <ul class="no-bullet">
+    <li>
+      <a class="external-link" href="http://timkadlec.com/2015/02/apples-web/">Apple's Web - Tim Kadlec</a>
+    </li>
+    <li>
+      <a class="external-link" href="http://arstechnica.com/information-technology/2015/02/pointer-events-finalized-but-apples-lack-of-support-still-a-deal-breaker/">ArsTechnica Pointer Events Finalized  </a>
+    </li>
+  </ul>
+  <p>
+    Apple said no. Google then backtracked and said we won't support it unless Apple does. So Mozilla, Microsoft and Google were a go. Apple says “no”. Google then says no and we’re left with two and everyone loses. < insert xkcd standards cartoon here > … UGH.
+  </p>
+  <p>
+    As things do on the web they change and do so quickly. Google <a class="external-link" href="https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/ODWmcKNQl0I">now has intent to implement PE <span class="link-icon icon-external-link"></span></a> with the <a class="external-link" href="https://www.chromestatus.com/feature/4504699138998272">Chrome Status Page <span class="link-icon icon-external-link"></span></a> on who else is going to implement it. You may notice a browser with the words "opposed" next to its name meaning not implementing.
+  </p>
+  <p>
+    Normally things end here. If you follow any of the latest tech news back in September Apple announced their new devices. We had the normal refresh of the iPhone and iPads along with two new things previously not seen on an Apple device. 3D touch and an Apple pen.
+  </p>
+  <p>
+    Many devices already had these with variations. Android has the long press, which from explanations I’ve read differs in speed and exactly what is performed from 3D touch… maybe not a good comparison haha, and stylus support. Microsoft has offered stylus support on Surface tabs for a while now and of course their touch events/gestures on Windows 8+.
+  </p>
+  <p>
+    This seems like a good time to implement Pointer Events. Apple introduced a Stylus, err “Apple Pen”, and new touch actions. Not to mention the Force Touch trackpad on OS X devices. You can probably already infer where this is going.
+  </p>
+  <div class="container">
+    <div class="snippet">
+      <blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">JavaScript Force Touch events&#10;<a href="https://t.co/kFQD9cAZVu">https://t.co/kFQD9cAZVu</a> <a href="http://t.co/erXyYsJPD7">pic.twitter.com/erXyYsJPD7</a></p>&mdash; Guillermo Rauch (@rauchg) <a href="https://twitter.com/rauchg/status/608019450663567360">June 8, 2015</a></blockquote>
+    </div>
+  </div>
+  <p>
+    They created their own :-(.
+  </p>
+  <p>
+    Here is the full Apple Developer Docs on <a href="https://developer.apple.com/library/mac/documentation/AppleApplications/Conceptual/SafariJSProgTopics/RespondingtoForceTouchEventsfromJavaScript.html" class="external-link">responding to Force Touch with Javascript <span class="link-icon icon-external-link"></span></a>. Pointer Events is nowhere to be found. A lot of the responses are ¯\_(ツ)_/¯. A lot because yes some people are very annoyed.
+  </p>
+</section>
+<section id="safari">
+  <h2 class="heading">Safari iOS 9 Bugs</h2>
+  <p>
+    The Apple Event also gave us a chance to find what most would call a bug, Apple and the Webkit team call a “feature™”.  If you set up your meta tags with “width=device-width” or “initial-scale=”1” you’ll be greeted with this <a href="https://www.reddit.com/r/web_design/comments/3la04p/psa_safari_on_ios9_has_a_media_query_bug/" class="external-link">media query bug  on iOS9 devices <span class="link-icon icon-external-link"></span></a>.
+  </p>
+  <p>
+    According to Benjamin Poulain <a href="https://twitter.com/awfulben/status/646382994496729088" class="external-link"> that's the intended behavior <span class="link-icon icon-external-link"></span></a> and “<a href="https://twitter.com/awfulben/status/648649951619080193" class="external-link">Desktop Sites were adding a responsive meta tag <span class="link-icon icon-external-link"></span></a>” so they trotted out this “fix”.
+  </p>
+  <p>
+    In my personal opinion if a desktop site looks broken or zoomed in that’s the fault of the dev or project manager or whomever put that meta tag there. Not mine who did it right from the start. You can't even blame this on <a href="http://googlewebmastercentral.blogspot.com/2015/02/finding-more-mobile-friendly-search.html" class="external-link">search engines tesing for mobile "friendly-ness"</a>. This becomes a search engine problem. Not a browser's problem. There were no changes made to rendering when we had keyword stuffing, hidden keywords placed all over pages like some weird <a href="http://magiceye.com/" class="external-link">magic eye book from the 1990's</a> or other search engine ranking updates.
+  </p>
+  <p>
+    Examples of Webkit/Apple’s “fix” - o and you need to be on ios9 safari:
+  </p>
+  <ul class="no-bullet">
+    <li>
+      <a class="external-link" href="https://twitter.com/toddmparker/status/648850161230196737">Todd Parker Filament Group iOS9 Safari Comps</a>
+    </li>
+    <li>
+      <a class="external-link" href="https://twitter.com/RWD/status/650686643955896320">Responsive Web Design Example</a>
+    </li>
+    <li>
+      <a class="external-link" href="https://twitter.com/nhoizey/status/651108925140545536">Nicolas Hoizey Example</a>
+    </li>
+  </ul>
+  <p>
+    In order to fix Webkit’s/Apple’s “fix” you can do a few things. Ruin accessibility and usability and add “user-scalable=no” to the meta tag or add in yet another Apple specific meta tag/addition - "shrink-to-fit=no" .
+  </p>
+  <p>
+    Where shrink to fit comes from I haven’t a clue. <a href="https://drafts.csswg.org/css-device-adapt/#viewport-meta" class="external-link">I’ve searched <span class="link-icon icon-external-link"></span></a>.
+  </p>
+  <p>
+    What is the current response to this “fix”... ¯\_(ツ)_/¯ hope it gets changed. If Google, Microsoft or Mozilla did something like this all hell would break loose. There would be think pieces, scathing posts on how those companies are “breaking the web” or “not being good web citizens”.
+  </p>
+</section>
+<section id="tapdelay">
+  <h2 class="heading">
+    300ms Delay
+  </h2>
+  <p><strong>Update!!!</strong> This is no longer applicable. The Webkit Team has removed this as of 10/27/15: <a href="http://trac.webkit.org/changeset/191644" class="external-link">Implement viewport-width-based fast-click heuristic</a></p>
+  <p>
+    While I’m on the subject of Meta Tags and viewports. If you’re a web developer dealing with responsive design you’re aware of the 300ms delay on mobile devices. You can remove it in all browsers sans Safari and still retain pinch to zoom.
+  </p>
+  <p>
+    Chrome / FireFox / Opera / Android Browser / Chrome Android / Firefox Android
+  </p>
+  <pre class="language-markup"><code>&lt;meta name="viewport" content="width=device-width"&gt;</code></pre>
+  <p>
+    Chrome / Internet Explorer / Edge / Opera / Chrome Android / Firefox Android
+  </p>
+  <pre class="language-css"><code>
+a[href] {
+    touch-action: manipulation;
+}
+/*
+  or
+*/
+button {
+    touch-action: manipulation;
+}</code></pre>
+
+  <p>
+    Safari (Webkit) will not use the meta tag solution above because iOS uses a “double tap to scroll” which I wasn’t aware of until I read the <a href="https://bugs.webkit.org/show_bug.cgi?id=122212" class="external-link">related bug on Webkit’s Bugzilla <span class="link-icon icon-external-link"></span></a> and Benjamin Poulain (<a href="https://twitter.com/jaffathecake/status/642216114420875264" class="external-link">@awfulben on twitter - ironic <span class="link-icon icon-external-link"></span></a>) doesn’t like some people.
+  </p>
+  <p>
+    CSS touch-action is being talked about but as of 6 October 2015. <a href="https://bugs.webkit.org/show_bug.cgi?id=133112" class="external-link">Related Bug on touch-action at Webkit Bugzilla</a>. Having to use fastclick for one browser (with a giant market share in some markets) is annoying especially when a few fixes are readily available.
+  </p>
+  <h3 class="heading">Touch Icons</h3>
+  <p>
+    Continuing the subject of meta tags we’ll add in touch-icons/favicons. This is also the trivial rant part. Currently you can supply a favicon with an ico and move on. All browsers **should** recognize it. You can also have touch icons for bookmarks or “pinning” the site to the desktop like so.
+  </p>
+  <pre class="language-markup"><code>
+&lt;link rel="icon" sizes="192x192" href="my-awesome-icon.png"&gt;
+</code></pre>
+  <p>
+    This also uses the <a href="https://html.spec.whatwg.org/multipage/semantics.html#rel-icon" class="external-link">sizes attribute <span class="link-icon icon-external-link"></span></a> for the link type of icon. Most browsers again will decide on which icon to use.
+  </p>
+  <p>
+    Microsoft also has a two line markup for their tiles for Windows
+  </p>
+  <pre class="language-markup"><code>
+&lt;meta name="msapplication-TileColor" content="#d00d00"&gt;
+&lt;meta name="msapplication-TileImage" content="my-awesome-icon.png"&gt;
+</code></pre>
+  <p>
+    It would be nice if Apple and Safari would take the rel=icon from above and the sizes and use it. That way we would only need to use it once for Android and iOS devices. That's not the case. To cover all your bases you’re going to need all these icons: <a href="https://mathiasbynens.be/notes/touch-icons" class="external-link">Everything you always wanted to know about touch icons - Mathias Bynens <span class="link-icon icon-external-link"></span></a>
+  </p>
+  <p>
+    Another solution would be to use the <a href="https://w3c.github.io/manifest/" class="external-link">Web Manifest <span class="link-icon icon-external-link"></span></a> specification. This would cover:
+  </p>
+  <ul class="no-bullet">
+    <li>Titles / Names </li>
+    <li>Icons</li>
+    <li>Splash and Startup Images</li>
+    <li>Theme or status bar colors</li>
+  </ul>
+  <p>
+    This could remove all the "apple-" meta tags.
+  </p>
+</section>
+<section id="leftover-ramblings">
+  <h2 class="heading">Left Over Ramblings</h2>
+  <p>
+    It’s not just Apple who’s at fault here. Some developers put out OS X only tutorials, documentation etc. Many of them use Macs. I can’t fault them there. That’s what they use. Some dev’s go as far as saying “meh its android/windows phone” when it comes to bugs. Well many people's first smartphone may be one of those because they are cheap.
+  </p>
+  <p>
+    If you don’t own an Apple computer good luck debugging Safari. Either through Safari itself or an emulator. If you don’t own an iphone nor an Apple computer go sign up for a service because that's the only way you’ll debug it. It's also not like iOS has a small browser market share either. Depending on where you get your stats from, and what country you choose ( or worldwide) to use Safari can have a  <a href="http://gs.statcounter.com/#mobile+tablet+console-browser-US-monthly-201409-201509" class="external-link">~50% market share</a>. Microsoft offers free VM’s to test IE 6-11 and Edge on just about any OS.
+  </p>
+  <p>
+    Why else do I call this “Apple’s Web”? Ad blocking has been available on Android devices for ages. Adblock plus offers a browser for android devices and FireFox for Android can use extensions. But now that it's available on iOS and Safari there's a million articles on it. You’d be hard pressed to find any post or article published previously on the effects of ad blocking on mobile or the effects of ads on loading time.
+  </p>
+
+  <p>
+    Facebook released "Instant Articles". Again only available on i-devices. Within days articles were published how Facebook is now the big bad gatekeeper of the news. How this is bad for publishers, content creators and the web - and some of the same criticisms for Google's recently released project Amp.
+  </p>
+  <p>
+    Apple news, which bypasses it's own content filtering/ad blocking framework, recieved a "this is beautiful" etc. O and by the way:
+  </p>
+  <div class="container">
+    <div class="snippet">
+      <blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">“please install this operating system” appears to be the new “please install our app” <a href="http://t.co/jvCpDmPZNF">pic.twitter.com/jvCpDmPZNF</a></p>&mdash; Ethan Marcotte (@beep) <a href="https://twitter.com/beep/status/645931538975170561">September 21, 2015</a></blockquote>
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+  </div>
+  <p>Please move to the US and purchase an i-device to read this article until the date specified.</p>
+
+  <p>
+    We can even talk about Service Worker and offline first websites/web apps. Again Apple and Safari are holding
+    many of us back here because of their large market share. Take a read through of Lyza Danger Gardener's
+    "<a href="http://alistapart.com/column/how-do-we-get-it-done-now" class="external-link">How Do We Get It Done,
+      Now? <span class="link-icon icon-external-link"></span></a> article. You can use Service Worker now! Firefox will
+    even
+    have full support here soon. Microsoft lists it as <a
+      href="https://dev.modern.ie/platform/status/serviceworker/?filter=f3f0000bf&search=service"
+      class="external-link">under consideration <span class="link-icon icon-external-link"></span></a>. You can
+    actually go to a Microsoft site. See what they are considering and talk about it. Think about this. Yes
+    Microsoft. In 2015. Apple... again ¯\_(ツ)_/¯ &mdash; <strong>Update!! They've since added in <a href="https://webkit.org/status/" class="external-link">Webkit Status</a> to list things under consideration, and in development similiar to the other browser vendors. Its pretty great!</strong> This also goes into the territory of indexdb which prompted Nolan
+    Lawson to write <a href="http://nolanlawson.com/2015/06/30/safari-is-the-new-ie/" class="external-link">Apple
+      is the new IE</a> and <a href="http://nolanlawson.com/2015/07/05/safari-is-the-new-ie-2-revenge-of-the-linkbait/" class="external-link">safari is the new ie 2 revenge of the linkbait</a>.
+  </p>
+
+  <p>
+    We as developers need to realize something though. We are giving them a free pass. Like I said above. If Google, Microsoft or Mozilla did any of these things there would be an outrage. We need to do better.
+  </p>
+</section>
