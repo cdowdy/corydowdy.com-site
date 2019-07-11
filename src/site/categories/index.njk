@@ -5,6 +5,7 @@ layout: layouts/base.njk
 pagination:
   data: collections
   size: 1
+# need to reverse this for some reason with nunjucks https://www.11ty.io/docs/pagination/#how-to-reverse-a-data-set-prior-to-pagination
   alias: category
   filter: [ blogs, all, mainnav, categoryList ]
 permalink: /categories/{{ category | slug  }}/
@@ -20,7 +21,7 @@ permalink: /categories/{{ category | slug  }}/
       </div>
       <div class="blog-list">
           {% set catlist = collections[category] %}
-          {% for post in catlist %}
+          {% for post in catlist | reverse %}
 
           <article class="blog-list--post" itemscope="" itemtype="http://schema.org/BlogPosting">
             {% if post.data.image %}
