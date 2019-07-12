@@ -1,4 +1,9 @@
 module.exports = function(eleventyConfig) {
+
+
+  eleventyConfig.setBrowserSyncConfig({
+    cors: true
+  });
     // Copy the `files/` directory
     eleventyConfig.addPassthroughCopy("src/site/files");
 
@@ -26,12 +31,17 @@ module.exports = function(eleventyConfig) {
     });
 
     return {
-
+      templateFormats: [
+        "md",
+        "njk",
+        "html"
+      ],
       dir: {
         input: "src/site"
       },
 
       htmlTemplateEngine: "njk",
+      markdownTemplateEngine: "njk",
       passthroughFileCopy: true
     };
   };
