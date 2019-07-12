@@ -1,0 +1,12 @@
+---
+
+title: Demos
+metadescription:
+tags: [ mainnav ]
+---
+<div class="push-down">
+  {% for demo in collections.demos %}
+    {% import './macros/demo-listing.njk' as link %}
+    {{ link.demoLink( demo ) }}
+  {% endfor %}
+</div>
