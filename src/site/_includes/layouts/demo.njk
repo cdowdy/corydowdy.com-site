@@ -1,0 +1,11 @@
+{% extends 'layouts/base.njk' %}
+
+{% block body %}
+  {{ content | safe  }}
+{% endblock body %}
+
+
+{% block footerJS %}
+ {{ super() }}
+ <script src="/js/prism/prism-08-01-2016.js"></script>
+{% endblock footerJS %}
