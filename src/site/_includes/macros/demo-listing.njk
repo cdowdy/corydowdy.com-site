@@ -1,0 +1,22 @@
+
+{% macro demoLink(  demo ) %}
+<div class="full-to-half demo-link">
+  <figure>{% if demo.data.slug  %}{% set url = demo.data.slug  %}{% else %}{% set url = demo.url %}{% endif %}
+    <a href="{{ url }}">
+        <span class="visuallyhidden">{{ demo.data.title }}</span>
+      {% if demo.data.icon %}{% set icon = demo.data.icon %}{% else %}{% set icon = 'icon-demo'  %}{% endif %}
+        <div class="demo-icon  {{ icon }}"></div>
+      </a>
+    <figcaption>
+      <h4>
+        {{ demo.data.listingTitle or demo.data.title }}
+      </h4>
+      {% if demo.data.listingDescription %}
+      <p>
+        {{ demo.data.listingDescription }}
+      </p>
+      {% endif %}
+    </figcaption>
+  </figure>
+</div>
+{% endmacro  %}
