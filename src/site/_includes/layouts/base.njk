@@ -82,7 +82,10 @@
   </footer>
 {% endblock %}
 {% block footerJS %}
-<script src="/js/navigation-05-17-2017.min.js"></script>
+<script src="/js/navigation-05-17-2017.min.js" async></script>
+{% if lightbox == true %}
+<script src="/js/lightbox.08172015.min.js" async></script>
+{% endif %}
 {% endblock %}
   </body>
 </html>
