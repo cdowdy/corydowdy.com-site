@@ -1,5 +1,17 @@
 {% extends 'layouts/base.njk' %}
 
+{% block headerJS %}
+  {{  super() }}
+  {% if title == 'Concrete5 Magnific Popup' %}
+    <script>
+        // Picture element HTML5 shiv
+        document.createElement( "picture" );
+        function loadCSS(e,n,o,t){"use strict";var d=window.document.createElement("link"),i=n||window.document.getElementsByTagName("script")[0],s=window.document.styleSheets;return d.rel="stylesheet",d.href=e,d.media="only x",t&&(d.onload=t),i.parentNode.insertBefore(d,i),d.onloadcssdefined=function(n){for(var o,t=0;t<s.length;t++)s[t].href&&s[t].href.indexOf(e)>-1&&(o=!0);o?n():setTimeout(function(){d.onloadcssdefined(n)})},d.onloadcssdefined(function(){d.media=o||"all"}),d}
+        loadCSS('/css/magnific.04222015.min.css')
+    </script>
+  {% endif %}
+{% endblock %}
+
 {% block body %}
   {{ content | safe  }}
 {% endblock body %}
@@ -8,12 +20,14 @@
 {% block footerJS %}
  {{ super() }}
 <script src="/js/prism/prism-08-01-2016.js"></script>
-  {% if lightbox == true %}
+
+{% if lightbox == true %}
 <script src="/js/lightbox.08172015.min.js" async></script>
-  {% endif %}
-  {% if footerJS %}
-    {% for js in footerJS  %}
+{% endif %}
+
+{% if footerJS %}
+{% for js in footerJS  %}
 <script src="/js/{{ js }}" async></script>
-    {% endfor %}
-  {% endif %}
+{% endfor %}
+{% endif %}
 {% endblock footerJS %}
