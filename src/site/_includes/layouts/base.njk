@@ -34,8 +34,7 @@
   {% block headerJS %}
     {% if headscript %}
       {% for script in headscript %}
-        {% set file  %}/js/{{ script }} {%  endset %}
-        <script src="{{ file }}" async></script>
+        <script src="{{ script }}" async></script>
       {% endfor %}
     {% endif %}
   {% endblock %}
