@@ -21,10 +21,6 @@
  {{ super() }}
 <script src="/js/prism/prism-08-01-2016.js"></script>
 
-{% if lightbox == true %}
-<script src="/js/lightbox.08172015.min.js" async></script>
-{% endif %}
-
 {% if footerJS %}
 {% for js in footerJS  %}
 <script src="/js/{{ js }}" async></script>
