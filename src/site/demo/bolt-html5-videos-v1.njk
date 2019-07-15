@@ -8,3 +8,506 @@ stillActive: false
 listingTitle:
 listingDescription:
 ---
+<div class="centered-header push-down">
+  <h1>Bolt CMS HTML5 Video Extension</h1>
+  <ul class="demo-nav">
+    <li class="demo-nav--item">
+      <a class="demo-nav--anchor" href="#how">Installation</a>
+    </li>
+    <li class="demo-nav--item">
+      <a class="demo-nav--anchor" href="#config">Config Settings</a>
+    </li>
+    <li class="demo-nav--item">
+      <a class="demo-nav--anchor" href="#localVid">Using Local Videos</a>
+    </li>
+    <li class="demo-nav--item">
+      <a class="demo-nav--anchor" href="#cdn">Using A CDN</a>
+    </li>
+    <li class="demo-nav--item">
+      <a class="demo-nav--anchor" href="#advanced">Advanced Usage</a>
+    </li>
+    <li class="demo-nav--item">
+      <a class="demo-nav--anchor" href="#examples">Extension Examples</a>
+    </li>
+    <li class="demo-nav--item">
+      <a class="demo-nav--anchor" href="#tips">Usage Tips</a>
+    </li>
+    <li class="demo-nav--item">
+      <a class="demo-nav--anchor" href="#info">Extension Source</a>
+    </li>
+  </ul>
+</div>
+<!-- /.centered-header -->
+<section class="full">
+  <h2 class="heading">What This Is</h2>
+  <p>
+    <strong>This is the Demo Page for version 1.x of this extension. For the newest version see: <a
+        href="/demo/bolt-html5-videos">Bolt HTML5 Videos demo</a></strong>
+  </p>
+  <p>
+    This is a <a href="https://bolt.cm" class="external-link">Bolt</a> Content Management System extension that enables you to use a twig tag to insert HTML5 videos using the <strong>video</strong> element.
+  </p>
+  <p>
+    Bolt's video field uses <a href="http://oembed.com/" class="external-link">oEmbed</a> - relevant <a href="https://docs.bolt.cm/3.0/manual/fieldtypes#video" class="external-link">bolt docs</a> on the field. This works great if you're using a video hosted on any of the video hosting services. If you have local videos, in your "files" directory, or on your own cdn you can't insert your videos. This allows that.
+  </p>
+</section>
+<section id="install" class="full">
+  <h2 class="heading">Installation</h2>
+  <p>
+    In the backend of your Bolt install navigate to the "Extras" menu in your dashboard and click "view/install extensions". In the "Install New Extension" search box type either "HTML5 Videos" or paste the following snippet.
+  </p>
+  <pre class="language-bash"><code>cdowdy/html5video</code></pre>
+  <p>
+    Then click "Browse Versions and install the latest stable version.
+  </p>
+  <h2 class="heading">Setup</h2>
+  <p>
+    You'll need to add a field to each contenttype you wish to use this extension in. The easiest field to use would be either <strong>file</strong> or the <strong>filelist</strong> type.
+  </p>
+  <pre class="language-yaml"><code>
+entries:
+    name: Entries
+    singular_name: Entry
+    fields:
+    # Other Fields Here!
+        video:
+            type: file
+        videolist:
+            type: filelist
+</code></pre>
+  <p>
+    If you plan on uploading video's through the backend in the contenttypes creation and edit page ie: yourContenttype -> your record or "new yourContenttype", you will need to use the <strong>Filelist</strong> field type.
+  </p>
+  <div class="video-container center-text">
+    <figure>
+      {{ html5video(['filelist-upload.08222016.webm','filelist-upload.08222016.mp4' ], 'default', {
+        use_cdn: true,
+        width_height: [ 600, '100%']
+      }) }}
+      <figcaption>
+        <p >
+          Uploading Multiple videos through the contenttype's edit or creation screen
+        </p>
+      </figcaption>
+    </figure>
+  </div>
+
+</section>
+
+<section id="how" class="full">
+  <h2 class="heading">Quick Usage</h2>
+  <p>
+    Once you have your contenttype fields set you can quickly use the twig tag in your templates with default settings.
+  </p>
+
+
+  <div class="container">
+    <div class="full-to-half">
+      <p>Using the contenttype field like "record.video"</p>
+      <pre class="language-twig"><code>
+&lbrace;&lbrace; html5video( record.video, 'default' ) &rbrace;&rbrace;
+</code></pre>
+    </div>
+
+
+    <div class="full-to-half">
+      <p>Using a file from "files"</p>
+      <pre class="language-twig"><code>
+&lbrace;&lbrace; html5video( 'your-file.webm', 'default' ) &rbrace;&rbrace;
+</code></pre>
+    </div>
+  </div>
+
+  <p>
+    The default settings used are:
+  </p>
+  <ul class="no-bullet">
+    <li>use_cdn: false</li>
+    <li>attributes: [ 'controls']</li>
+    <li>preload: 'metadata'</li>
+    <li>multiple_source: true</li>
+    <li>video_types: [ 'webm', 'mp4' ]</li>
+  </ul>
+
+</section>
+
+
+<section class="full" id="config">
+  <h2 class="heading">Config Settings</h2>
+  <p class="image-lightbox">
+    For your own html5video settings you need to create a named config in the extensions config file. Either through a text editor and edit the "html5video.cdowdy.yml" file or through the extend screen and the <a class="image-lightbox" title="Extension Config Button" href="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/img/html5video-extend-config.png">"config" button located in the extensions info box <span class="link-icon icon-picture"></span></a>.
+  </p>
+
+
+  <p>Here is an example named config</p>
+
+  <pre class="language-yaml"><code>
+blogVideos:
+  use_cdn: false
+  save_data: false
+  video_poster: 'path/to/poster.png'
+  attributes: [ 'controls', 'muted' ]
+  preload: 'metadata'
+  width_height: [ 400, '100%' ]
+  multiple_source: true
+  video_types: [ 'webm', 'mp4' ]
+</code></pre>
+  <h3 class="heading">Using The Extension With Your Settings</h3>
+  <p>
+    With your named config in place you can move on to using the extension. There are two distinct ways you can use it.
+  </p>
+  <p>If your field is of the type "file" you use it as follows</p>
+  <pre class="language-yaml"><code>
+# Your Contenttypes.yml file and your contenttype
+blogposts:
+    name: BlogPosts
+    singular_name: blogpost
+    fields:
+    # Other Fields above or below
+        video:
+            type: file
+</code></pre>
+
+  <pre class="language-twig"><code>&lbrace;# Your Template and using the example config from above called blogVideos #&rbrace;
+&lbrace;&lbrace; html5video( record.video, 'blogVideos' ) &rbrace;&rbrace;
+</code></pre>
+  <p>
+    If your field is the filelist type
+  </p>
+  <pre class="language-yaml"><code>
+# Your Contenttypes.yml file and your contenttype
+blogposts:
+    name: BlogPosts
+    singular_name: blogpost
+    fields:
+    # Other Fields above or below
+        video:
+            type: filelist
+</code></pre>
+
+  <pre class="language-twig"><code>&lbrace;# Your Template and using the example config from above called blogVideos #&rbrace;
+&lbrace;&lbrace; html5video( record.video.0, 'blogVideos' ) &rbrace;&rbrace;
+</code></pre>
+
+  <h3 class="heading">Combining File and Filelist types in a template</h3>
+  <p>
+    You can use both filelist type and the file type in your templates. This allows you to upload files to <em>files</em> or through your contenttype's record creation and edit screen. This gives you the most flexibility. You'll need to add both types to your contenttype's config file. Here is an example.
+  </p>
+  <pre class="language-yaml"><code>
+# Your Contenttypes.yml file and your contenttype
+blogposts:
+    name: BlogPosts
+    singular_name: blogpost
+    fields:
+    # Other Fields above or below
+        video:
+            type: file
+        videoList:
+            type: filelist
+</code></pre>
+
+  <p>Then in your twig template you're using this extension in you'll need to include an if / else statement. If a file is uploaded through the "files" screen, SFTP or your preferred deployment strategy it will use the file type. If a file is uploaded through the create/edit screen it will use the filelist type.
+  </p>
+  <pre class="language-twig"><code>&lbrace;% if record.videolist %&rbrace;
+  &lbrace;&lbrace; html5video( record.videolist.0, 'blogVideos') &rbrace;&rbrace;
+&lbrace;% endif %&rbrace;
+
+&lbrace;% if record.video %&rbrace;
+  &lbrace;&lbrace; html5video( record.video, 'blogVideos' ) &rbrace;&rbrace;
+&lbrace;% endif %&rbrace;
+
+&lbrace;# of you could use one like this #&rbrace;
+&lbrace;% if record.videolist %&rbrace;
+  &lbrace;&lbrace; html5video( record.videolist.0, 'blogVideos') &rbrace;&rbrace;
+&lbrace;% else %&rbrace;
+  &lbrace;&lbrace; html5video( record.video, 'blogVideos' ) &rbrace;&rbrace;
+&lbrace;% endif %&rbrace;</code></pre>
+
+
+</section>
+
+
+<section class="full" id="localVid">
+  <h2 class="heading">Using Local Videos</h2>
+  <p>
+    Local videos is defined as videos stored locally on your server. You can see any local videos you have uploaded in Bolt's backend under the File Management > Uploaded Files page.
+  </p>
+  <p>
+    Below is an example of using a file from files.
+  </p>
+</section>
+<div class="full-to-half">
+  <p>File from "files". This is in a sub directory in files. </p>
+  <pre class="language-twig"><code>&lbrace;&lbrace; html5video( '/demos/firefox-dev-serviceworkers-enable.webm', 'default' ) &rbrace;&rbrace;</code></pre>
+  <p>
+    To use the video that is locally stored and attached to our contenttype's record you replace the file path with the contenttype field you have chosen. For example:
+  </p>
+  <pre class="language-twig"><code>&lbrace;&lbrace; html5video( record.video, 'default' ) &rbrace;&rbrace;</code></pre>
+</div>
+
+<div class="full-to-half">
+  <p>Result:</p>
+  {{ html5video(['demos/firefox-dev-serviceworkers-enable.08222016.webm', 'demos/firefox-dev-serviceworkers-enable.08222016.mp4'], 'default') }}
+</div>
+
+
+
+<div id="cdn" class="full">
+  <h2 class="heading">Using A CDN</h2>
+  <p>
+    A CDN is defined as your personal content delivery network. Examples of these are Amazon Cloudfront or MaxCDN.
+  </p>
+  <p>
+    The CDN can be configured in the extensions config file so you all you have to do is pass a filename to the twig tag.
+  </p>
+  <pre class="language-yaml"><code>cdn_url: https://your-cdn.com/path/to/files/</code></pre>
+  <p>
+    Then in your twig template you can just pass the file name.
+  </p>
+  <pre class="language-twig"><code>&lbrace;&lbrace; html5video( 'my-cdn-file.webm', 'default' ) &rbrace;&rbrace;</code></pre>
+  <p>
+    The filename will be appended to your cdn URL set in the config.
+  </p>
+  <pre class="language-markup"><code>
+&lt;video controls preload="metadata"&gt;
+  &lt;source src="https://your-cdn.com/path/to/files/my-cdn-file.webm" type="video/webm" &gt;
+  &lt;source src="https://your-cdn.com/path/to/files/my-cdn-file.mp4" type="video/mp4" &gt;
+&lt;/video&gt;</code></pre>
+  <p>
+    Alternatively if you leave the config setting of cdn_url blank you can pass in the CDN url in the twig tag.
+  </p>
+  <pre class="language-yaml"><code>cdn_url:</code></pre>
+  <pre class="language-twig"><code>&lbrace;&lbrace; html5video( 'https://your-cdn.com/path/to/files/my-cdn-file.webm', 'default' ) &rbrace;&rbrace;</code></pre>
+
+</div>
+
+
+
+<div class="full" id="advanced">
+  <h2 class="heading">Advanced Usage</h2>
+  <p>
+    You can over ride just about any default setting or user supplied settings in the extensions config inside a template. You must supply the video file or url you wish to use, followed by a rule set (or use defaults) then followed by which custom settings you wish to use
+  </p>
+  <p>
+    When you decide to override inside the template you must follow the same conventions used in the extensions config. If an array is used ( brackets ie: [ ] ) use those in your templates too.
+  </p>
+  <h3 class="heading">Over-ride an array option and a string</h3>
+
+  <div class="container">
+    <div class="full-to-half">
+      <p>
+        The Default settings
+      </p>
+      <pre class="language-yaml"><code>
+default:
+  use_cdn: false
+  attributes: [ 'controls']
+  preload: 'metadata'
+  multiple_source: true
+  video_types: [ 'webm', 'mp4' ]</code>
+</pre>
+      <p>
+        Adding an option in our template to the attributes and preload setting and adding in a poster.
+      </p>
+      <pre class="language-twig"><code>&lbrace;&lbrace; html5video( record.video, 'default', &lbrace;
+    preload: 'none',
+    video_poster: '/files/demos/sw-enable-poster.png',
+    attributes: [ 'controls', 'muted', 'loop', 'playsinline' ]
+  &rbrace; )
+&rbrace;&rbrace;</code>
+</pre>
+    </div>
+    <div class="full-to-half">
+      <p>
+        The video will now have muted, loop and playsinline along with controls as attributes and preload="none" added to the video element
+      </p>
+      {{ html5video(['demos/firefox-dev-serviceworkers-enable.08222016.webm', 'demos/firefox-dev-serviceworkers-enable.08222016.mp4'], 'default', {
+        preload: 'none',
+        video_poster: '/files/demos/sw-enable-poster.png',
+        attributes: [ 'controls',  'muted', 'loop', 'playsinline' ]
+      } )
+      }}
+    </div>
+  </div>
+</div>
+
+<div class="full" id="examples">
+  <h2 class="heading">Examples</h2>
+  <p>Usage Examples of some of the available options that do affect the video markup and output</p>
+</div>
+<div class="full">
+  <h3 class="heading">Saving Data using the Client Hints Save-Data header</h3>
+</div>
+<div class="full-to-half">
+  <p>
+    The extension has a section titled <strong>save_data_options</strong>
+  </p>
+  <p>
+    Here you can add a message to display to the user when the video isn't loaded on page load. A wrapping div if
+    you need or want one, and any classes you want to add to the button that is displayed to match your sites css.
+    Here is this examples config.
+  </p>
+  <pre class="language-yaml"><code>save_data_options:
+  message: 'The Save Data Header is Present. To Play and Load the Video click the button below.'
+  message_class: [ ]
+  button_class: [ 'demo-popup-button' ]
+  wrapping_div: true
+  wrapping_div_class: [ ]</code></pre>
+  <p>
+    Your named config for the extension and adding in save_data: true
+  </p>
+  <pre class="language-yaml"><code>saveData:
+  save_data: true
+  attributes: [ 'controls']
+  preload: 'metadata'
+  multiple_source: true
+  video_types: [ 'webm', 'mp4' ]</code></pre>
+  <p>
+    Since I'm using the <em>figure</em> element I will wrap the save_data option in a div. The video will be
+    inserted after its parent element. Without the div it will be underneath the figure element.
+  </p>
+</div>
+<div class="full-to-half">
+  <p class="center-text">
+    result:
+  </p>
+  <figure>
+    {{ html5video(['goldengate.webm','goldengate.mp4'], 'default', {
+      use_cdn: true,
+      save_data: true,
+      width_height: [ 600, '100%']
+    }) }}
+    <figcaption>
+      <p>
+        Video Author: <a href="http://eugenia.queru.com/">Eugenia Loli </a>
+        License: <a href="http://creativecommons.org/licenses/by/3.0/us/">ATTRIBUTION LICENSE 3.0</a>
+      </p>
+    </figcaption>
+  </figure>
+</div>
+
+<div class="full">
+  <h3 class="heading">Controlling A Videos Start and End Times</h3>
+</div>
+<div class="full-to-half">
+  <p>
+    You can pass a media fragment ( a set of numbers) to the <em>media_fragment</em> setting. This allows you to
+    start and stop a video at a specified time.
+  </p>
+  <p>
+    Your named config for the extension and providing a media fragment.
+  </p>
+  <pre class="language-yaml"><code>yourConfig:
+# other settings here
+media_fragment: [6, 16 ]</code></pre>
+  <p>
+    This video will start playing at 6 seconds and stop at 16.
+  </p>
+</div>
+<div class="full-to-half">
+  <p class="center-text">
+    result:
+  </p>
+  <figure>
+    {{ html5video(['yosemitie-spring.webm','yosemitie-spring.mp4'], 'default', {
+      use_cdn: true,
+      save_data: true,
+      width_height: [ 600, '100%'],
+      media_fragment: [ 6, 16 ]
+    }) }}
+    <figcaption>
+      <p>
+        Video Author: <a href="https://vimeo.com/aaronrickel">Aaron Rickel</a>
+        License: <a href="http://creativecommons.org/licenses/by/3.0/us/">ATTRIBUTION LICENSE 3.0</a>
+      </p>
+    </figcaption>
+  </figure>
+</div>
+
+<div class="full">
+  <h3 class="heading">Using Videos for Animations like a Gif</h3>
+</div>
+<div class="full-to-half">
+  <p>
+    You can drop bandwidth heavy gif animations and use videos instead! There are a few things you'll need to have for this to work and act like a gif in Android and eventually iOS 10+.
+  </p>
+  <ul>
+    <li>mark the video as muted</li>
+    <li>add the autoplay attribute</li>
+    <li>add the loop attribute</li>
+    <li>special snowflake iOS needs the playsinline attribute</li>
+  </ul>
+  <pre class="language-yaml"><code>gifLike:
+  attributes: [ 'autoplay', 'muted', 'loop', 'playsinline' ]
+  width_height: [ 640, '100%' ]
+  multiple_source: true
+  video_types: [ 'webm', 'mp4']</code></pre>
+</div>
+
+<div class="full-to-half">
+  <p class="center-text">
+    result:
+  </p>
+  {{ html5video(['chloe-gizmo-run.webm', 'chloe-gizmo-run.mp4'], 'gifLike', {
+    use_cdn: true,
+    save_data: false
+  }) }}
+</div>
+
+<div id="tips" class="full">
+  <h2 class="heading">Usage Tips</h2>
+  <ol>
+    <li>
+      If Using <strong>multiple files</strong> for a video tag the video files should have the same name:
+      <ul>
+        <li>video-1.mp4 should have a sibling called video-1.webm</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Webm</strong> Files are typically smaller than MP4 files. Those extensions should be first in your <em>types</em> setting
+      <ul>
+        <li>
+          <pre class="language-yaml"><code>video_types: [ 'webm', 'mp4' ]</code></pre>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>Don't Use Autoplay on videos!</strong>
+      <ul>
+        <li>Autoplay is ok though for gif like animations</li>
+      </ul>
+    </li>
+    <li>
+      For gif like animations use the following in your attributes settings for best browser support & user experience
+      <ul>
+        <li>autoplay</li>
+        <li>muted</li>
+        <li>loop</li>
+        <li>playsinline</li>
+      </ul>
+    </li>
+  </ol>
+</div>
+
+
+<div id="info" class="full">
+  <h2 class="heading">Extension Source and Bug Filling</h2>
+  <p>The source for Bolt HTML5 Videos can be found at my github page</p>
+  <ul class="no-bullet">
+    <li>
+      <a href="https://github.com/cdowdy/bolt-html5-video" class="external-link">Github Source: Bolt HTML5 Videos <span class="link-icon icon-github-link"></span></a>
+    </li>
+  </ul>
+  <p>Bolt HTML5 Videos Bug filling</p>
+  <ul class="no-bullet">
+    <li>
+      <a href="https://github.com/cdowdy/bolt-html5-video/issues" class="external-link">Bolt HTML5 Video Issues  <span class="link-icon icon-github-link"></span></a>
+    </li>
+  </ul>
+  <p>Bolt HTML5 Videos Extensions Store Page</p>
+  <ul class="no-bullet">
+    <li>
+      <a href="https://market.bolt.cm/view/cdowdy/html5video" class="external-link">Bolt Store: Bolt HTML5 Video  <span class="link-icon icon-github-link"></span></a>
+    </li>
+  </ul>
+</div>
