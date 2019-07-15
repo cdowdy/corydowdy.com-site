@@ -80,10 +80,15 @@ entries:
   </p>
   <div class="video-container center-text">
     <figure>
-      {{ html5video(['filelist-upload.08222016.webm','filelist-upload.08222016.mp4' ], 'default', {
-        use_cdn: true,
-        width_height: [ 600, '100%']
-      }) }}
+      <video  controls
+              preload="metadata"
+              width="600"
+              height="100%">
+        <source src="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/video/filelist-upload.08222016.webm"
+                type="video/webm">
+        <source src="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/video/filelist-upload.08222016.mp4"
+                type="video/mp4">
+      </video>
       <figcaption>
         <p >
           Uploading Multiple videos through the contenttype's edit or creation screen
@@ -247,7 +252,10 @@ blogposts:
 
 <div class="full-to-half">
   <p>Result:</p>
-  {{ html5video(['demos/firefox-dev-serviceworkers-enable.08222016.webm', 'demos/firefox-dev-serviceworkers-enable.08222016.mp4'], 'default') }}
+  <video controls preload="metadata">
+    <source src="/files/demos/firefox-dev-serviceworkers-enable.08222016.webm" type="video/webm">
+    <source src="/files/demos/firefox-dev-serviceworkers-enable.08222016.mp4" type="video/mp4">
+  </video>
 </div>
 
 
@@ -321,12 +329,15 @@ default:
       <p>
         The video will now have muted, loop and playsinline along with controls as attributes and preload="none" added to the video element
       </p>
-      {{ html5video(['demos/firefox-dev-serviceworkers-enable.08222016.webm', 'demos/firefox-dev-serviceworkers-enable.08222016.mp4'], 'default', {
-        preload: 'none',
-        video_poster: '/files/demos/sw-enable-poster.png',
-        attributes: [ 'controls',  'muted', 'loop', 'playsinline' ]
-      } )
-      }}
+      <video controls
+             muted
+             loop
+             playsinline
+             preload="none"
+             poster="/files/demos/sw-enable-poster.png">
+        <source src="/files/demos/firefox-dev-serviceworkers-enable.08222016.webm" type="video/webm">
+        <source src="/files/demos/firefox-dev-serviceworkers-enable.08222016.mp4" type="video/mp4">
+      </video>
     </div>
   </div>
 </div>
@@ -372,11 +383,15 @@ default:
     result:
   </p>
   <figure>
-    {{ html5video(['goldengate.webm','goldengate.mp4'], 'default', {
-      use_cdn: true,
-      save_data: true,
-      width_height: [ 600, '100%']
-    }) }}
+    <video controls
+           preload="metadata"
+           width="600"
+           height="100%">
+      <source src="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/video/goldengate.webm"
+              type="video/webm">
+      <source src="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/video/goldengate.mp4"
+              type="video/mp4">
+    </video>
     <figcaption>
       <p>
         Video Author: <a href="http://eugenia.queru.com/">Eugenia Loli </a>
@@ -409,12 +424,15 @@ media_fragment: [6, 16 ]</code></pre>
     result:
   </p>
   <figure>
-    {{ html5video(['yosemitie-spring.webm','yosemitie-spring.mp4'], 'default', {
-      use_cdn: true,
-      save_data: true,
-      width_height: [ 600, '100%'],
-      media_fragment: [ 6, 16 ]
-    }) }}
+    <video controls
+           preload="metadata"
+           width="600"
+           height="100%">
+      <source src="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/video/yosemitie-spring.webm#t=6,16"
+              type="video/webm">
+      <source src="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/video/yosemitie-spring.mp4#t=6,16"
+              type="video/mp4">
+    </video>
     <figcaption>
       <p>
         Video Author: <a href="https://vimeo.com/aaronrickel">Aaron Rickel</a>
@@ -448,10 +466,10 @@ media_fragment: [6, 16 ]</code></pre>
   <p class="center-text">
     result:
   </p>
-  {{ html5video(['chloe-gizmo-run.webm', 'chloe-gizmo-run.mp4'], 'gifLike', {
-    use_cdn: true,
-    save_data: false
-  }) }}
+  <video controls autoplay muted loop playsinline preload="metadata" width="640" height="100%">
+    <source src="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/video/chloe-gizmo-run.mp4" type="video/mp4">
+    <source src="https://pullzone1-corydowdywebdesi.netdna-ssl.com/assets/video/chloe-gizmo-run.webm" type="video/webm">
+  </video>
 </div>
 
 <div id="tips" class="full">
